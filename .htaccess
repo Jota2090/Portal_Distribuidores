@@ -3,12 +3,12 @@
     RewriteBase /
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond $1 !^(index\.php|img|fonts|banne|images|img_public|css|js|robots\.txt)
-    RewriteRule ^(.*)$ Portal_Distribuidores/index.php/$1 [L]
+    RewriteCond $1 !^(index\.php|img|fonts|banne|images|img_public|css|js|robots\.txt)
+    RewriteRule ^(.*)$ Portal_Distribuidores/login/ [L]
 </IfModule>
  
 <IfModule !mod_rewrite.c>
-    # If we don’t have mod_rewrite installed, all 404’s
+    # If we donï¿½t have mod_rewrite installed, all 404ï¿½s
     # can be sent to index.php, and everything works as normal.
     # Submitted by: WEB2MQ
  
