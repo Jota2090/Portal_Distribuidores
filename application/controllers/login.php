@@ -3,41 +3,56 @@
     
     class login extends CI_Controller {
     
-     function __construct(){
-     parent::__construct();
+        function __construct(){
+            parent::__construct();
             $this->load->library("form_validation");
-     }
-        
-        function vista_login($data){
-            $this->load->view("view_login", $data);
+            $this->load->model("mod_usuario","usuario");
         }
+        
+        
+        function index(){
+            $this->load->view("administrador/vw_login");
+        }
+        
+        
+        function crear_usuario(){
+
+            if ($this->form_validation->run() == FALSE)
+            {
+                $this->load->view("administrador/vw_crear_usuario");
+            }
+            else
+            {
+                $this->usuario->guardar_usuario();
+                $resultado = $this->db->_error_message();
+ 
+                if(empty($resultado))
+                    $this->load->view("administrador/vw_login");
+                else
+                    $this->load->view("administrador/vw_crear_usuario");
+            }
+        }
+        
         
         function validar(){
-            $u = $this->input->post("txtUser");
-            $c = $this->input->post("txtClave");
-
-            if($this->clslogin->login($u, $c)){
-                redirect(site_url("main/menu"));
+            if ($this->form_validation->run() == FALSE)
+            {
+                $this->load->view("administrador/vw_login");
             }
-            else{
-                $data["error"]="<div class='alert alert-error' style='text-align:center;
-margin-left:470px;
-margin-right:130px' >
-Usuario o Contrase&ntilde;a incorrectos
-</div>";
-                $this->vista_login($data);
+            else
+            {
+                if($this->clslogin->login($this->input->post("usuario"), $this->input->post("contrasena")))
+                    $this->load->view("administrador/vw_crear_usuario");
+                else{
+                    $this->load->view("administrador/vw_login");
+                }
             }
         }
         
-        function cerrar(){
+        
+        function logout(){
             $this->clslogin->logout();
             redirect(site_url("main/menu"));
-        }
-        
-        function login2(){
-            $data["error"]="";
-            $data["sin_menu"]="sin_menu";
-            $this->vista_login($data);
         }
         
      }

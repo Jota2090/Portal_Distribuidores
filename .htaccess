@@ -1,16 +1,23 @@
 <IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteBase /
+    DirectoryIndex index.php
+    RewriteEngine on
+
+    RewriteCond $1 !^(index\.php|(.*)\.swf|forums|images|css|downloads|jquery|js|robots\.txt|favicon\.ico)
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond $1 !^(index\.php|img|fonts|banne|images|img_public|css|js|robots\.txt)
-    RewriteRule ^(.*)$ Portal_Distribuidores/login/ [L]
+    RewriteRule ^(.*)$ ./index.php?$1 [L,QSA]
 </IfModule>
  
 <IfModule !mod_rewrite.c>
-    # If we don�t have mod_rewrite installed, all 404�s
+    # If we don't have mod_rewrite installed, all 404's
     # can be sent to index.php, and everything works as normal.
-    # Submitted by: WEB2MQ
+    # Submitted by: ElliotHaughin
  
     ErrorDocument 404 /index.php
-</IfModule>
+</IfModule>  
+
+# Para mantenimiento
+# RewriteCond %{REQUEST_URI} !/maintenance.html$
+# RewriteCond %{REMOTE_ADDR} !^123.123.123.123
+# RewriteRule $ /Portal_Distribuidores/maintenance.html [R=302,L]
+

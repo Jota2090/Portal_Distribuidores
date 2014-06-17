@@ -16,7 +16,7 @@
 */
 $portal_root  = "http://".$_SERVER['HTTP_HOST'];
 $portal_root .= str_replace(basename($_SERVER['SCRIPT_NAME']),"",$_SERVER['SCRIPT_NAME']);
-$config['base_url']	= $portal_root;
+$config['base_url']	= "http://localhost:8080/Portal_Distribuidores/";
 
 
 /*define('HTTP_CSS_PATH', $config['base_url'].'assets/css/');
@@ -234,7 +234,7 @@ $config['cache_path'] = '';
 | MUST set an encryption key.  See the user guide for info.
 |
 */
-$config['encryption_key'] = '';
+$config['encryption_key'] = 'distribuidores_2014';
 
 /*
 |--------------------------------------------------------------------------
