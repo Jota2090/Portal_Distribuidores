@@ -18,11 +18,10 @@ $portal_root  = "http://".$_SERVER['HTTP_HOST'];
 $portal_root .= str_replace(basename($_SERVER['SCRIPT_NAME']),"",$_SERVER['SCRIPT_NAME']);
 $config['base_url']	= "http://localhost:8080/Portal_Distribuidores/";
 
-
-/*define('HTTP_CSS_PATH', $config['base_url'].'assets/css/');
-define('HTTP_IMAGES_PATH', $config['base_url'].'assets/images/');
-define('HTTP_JS_PATH', $config['base_url'].'assets/js/');
-
+define('HTTP_CSS_PATH', $config['base_url'].'recursos/css/');
+define('HTTP_IMAGES_PATH', $config['base_url'].'recursos/images/');
+define('HTTP_JS_PATH', $config['base_url'].'recursos/js/');
+/*
 define('HTTP_CSS_PATH_ADMIN', $config['base_url'].'assets/admin/css/');
 define('HTTP_IMAGES_PATH_ADMIN', $config['base_url'].'assets/admin/images/');
 define('HTTP_JS_PATH_ADMIN', $config['base_url'].'assets/js/jquery/');*/

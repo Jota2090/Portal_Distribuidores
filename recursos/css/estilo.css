@@ -1,0 +1,244 @@
+/* 
+    Document   : estilo
+    Created on : 18/06/2014, 09:33:07 AM
+    Author     : Edson Jonathan Franco Borja
+    Description: Estilo de la estructura principal del portal
+*/
+
+body{
+    width: 100%;
+    height: auto;
+    padding: 0px; 
+    margin: 0px; 
+    color: #666666; 
+    font-family: Arial;
+}
+
+@font-face {
+    font-family: Lego;
+    src: url('../fonts/Lego.ttf');
+}
+
+/* Header (Cabecera) */
+#header{
+    background: url('../images/Header/background.png') repeat-x;
+    width: 100%;
+    height: 50px;
+    padding: 0px; 
+    margin: 0px;
+}
+
+    #header_titulo{
+        width: 35%;
+        height: 50px;
+        float: left;
+        font-family: Lego;
+        padding-top: 10px;
+        padding-left: 50px;
+        color: #000000;
+    }
+
+    #header_titulo div{
+        float: left;
+        padding-top: 10px;
+    }
+
+    #header_titulo img{
+        width: 40px;
+        height: 40px;
+        padding-left: 30px;
+    }
+
+    #header_opciones{
+        width: 57%;
+        height: 50px;
+        float: left;
+        margin: auto;
+    }
+
+    .opcion{
+        background: url('../images/Header/opcion.png') no-repeat;
+        float: left;
+        width: 110px;
+        height: 45px;
+        margin-top: 8px;
+        margin-left: 15px;
+        line-height: 38px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 12px;
+    }
+
+    .opcion_selected{
+        background: url('../images/Header/opcion_selected.png') no-repeat;
+        float: left;
+        width: 110px;
+        height: 45px;
+        margin-top: 8px;
+        margin-left: 15px;
+        line-height: 38px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 12px;
+        color: #ff0000;
+    }
+
+    #header_buscador{
+        float: right;
+        width: 280px;
+    }
+
+    .input_buscador{
+        background: url('../images/Header/buscador.png') no-repeat;
+        border: 0px;
+        width: 180px;
+        height: 32px;
+        padding-left: 16px;
+        padding-right: 16px;
+        float: left;
+        margin-top: 10px;
+        z-index: 99;
+    }
+
+    .img_buscador{
+        position: relative;
+        top: 5px;
+        right: 10px;
+        float: left;
+        width: 45px;
+        height: 45px;
+        z-index: 1;
+    }
+
+    #inicio_header{
+        background: url('../images/Header/opcion_inicio.png') no-repeat;
+        float: right;
+        width: 130px;
+        height: 45px;
+        margin-top: 8px;
+        margin-left: 15px;
+        line-height: 38px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 12px;
+    }
+
+    #inicio_header img{
+        float:left;
+        width: 22px;
+        height: 18px;
+        padding-top: 7px;
+        padding-left: 9px;
+        padding-right: 6px;
+    }
+
+    #inicio_header div{
+        float:left;
+    }
+
+
+/* Main (Contenido) */
+#main{
+    background-color: #ffffff;
+    width: 100%;
+    padding: 0px; 
+    margin: 0px; 
+}
+    
+    /* Seccion Superior */
+    #seccion_superior{
+        width: 100%;
+        height: 400px;
+        padding: 0px; 
+        margin: 0px; 
+    }
+
+    /* Seccion Inferior */
+    #seccion_inferior{
+        background: url('../images/Main/Inferior/background.png') repeat-x;
+        width: 100%;
+        height: 400px;
+        position: relative;
+        top: -12px;
+        padding-top: 10px;
+    }
+    
+    #tema_inferior{
+        padding-left: 150px;
+    }
+    
+    #cursos{
+        padding-left: 150px;
+    }
+    
+    .cursos_destacados{
+        width: 300px;
+        float: left;
+        height: auto;
+    }
+    
+    .espacio_cursos_destacados{
+        width: 100px;
+        float: left;
+    }
+    
+    .titulo_curso_destacados{
+       background: url('../images/Main/Inferior/titulo_curso.png') no-repeat;
+       float: left;
+       width: 300px;
+       height: 50px;
+       margin-top: 8px;
+       line-height: 38px;
+       text-align: center;
+       font-weight: bold;
+       font-size: 12px;
+       color: #ff0000;
+    }
+    
+    .cuerpo_curso_destacados{
+        border: 1px solid #cccccc;
+        padding: 35px 0px 10px 0px;
+        font-size: 11px;
+        width: 290px;
+        margin-top: 25px;
+        margin-left: 5px;
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        border-radius: 8px;
+        -webkit-box-shadow: #cccccc 0px 2px 3px;
+        -moz-box-shadow: #cccccc 0px 2px 3px;
+        box-shadow: #cccccc 0px 2px 3px;
+        background: #cccccc;
+        background: -webkit-gradient(linear, 0 0, 0 bottom, from(#cccccc), to(#ffffff));
+        background: -webkit-linear-gradient(#cccccc, #ffffff);
+        background: -moz-linear-gradient(#cccccc, #ffffff);
+        background: -ms-linear-gradient(#cccccc, #ffffff);
+        background: -o-linear-gradient(#cccccc, #ffffff);
+        background: linear-gradient(#cccccc, #ffffff);
+        -pie-background: linear-gradient(#cccccc, #ffffff);
+        behavior: url(../pie/PIE.htc);
+    }
+    
+    .cuerpo_curso_destacados img{
+        width: 250px;
+        height: 150px;
+        padding: 0px 20px;
+    }
+    
+    .cuerpo_curso_destacados div{
+        padding: 10px 20px;
+        width: 250px;
+        height: auto;
+        text-align: justify;
+    }
+    
+    
+
+/* Footer */
+#footer{
+    background: url('../images/Footer/background.png') repeat-x;
+    width: 100%;
+    height: 30px;
+    position: relative;
+    top: -12px;
+}
