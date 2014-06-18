@@ -1,6 +1,6 @@
 <?php
     if (! defined('BASEPATH'))
-    exit ('No se puede ejecutar directamente este SCRIPT');
+        exit ('No se puede ejecutar directamente este SCRIPT');
 
     /**
      * mod_usuario

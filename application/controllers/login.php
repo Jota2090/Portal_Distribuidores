@@ -1,6 +1,14 @@
 <?php
-    if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+    if (! defined('BASEPATH'))
+        exit ('No se puede ejecutar directamente este SCRIPT');
     
+    /**
+     * login
+     *
+     * @package      controllers
+     * @author       Edson Jonathan Franco Borja
+     * @version      1.0
+    */
     class login extends CI_Controller {
     
         function __construct(){
