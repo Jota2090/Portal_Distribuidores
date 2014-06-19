@@ -7,26 +7,43 @@
 
     <body>
         <div id="header">
-            <div id="header_titulo">
-                <div>Cursos de Capacitaci&oacute;n</div>
-                <img src="<?php echo HTTP_IMAGES_PATH; ?>Header/logo_claro.png" />
-            </div>
-            <div id="header_opciones">
-                <div class="opcion_selected">Cursos</div>
-                <div class="opcion">Categor&iacute;as</div>
-                <div id="inicio_header">
-                    <img src="<?php echo HTTP_IMAGES_PATH; ?>Header/ico_usuario.png" />
-                    <div>Iniciar Sesi&oacute;n</div>
+            <div id="header_contenido">
+                <div id="header_titulo">
+                    <div>Cursos de Capacitaci&oacute;n</div>
+                    <img src="<?php echo HTTP_IMAGES_PATH; ?>Header/logo_claro.png" />
                 </div>
-                <div id="header_buscador">
-                    <input class="input_buscador" type="text" value="" placeholder="Busca un curso aqu&iacute;" />
-                    <img class="img_buscador" src="<?php echo HTTP_IMAGES_PATH; ?>Header/btn_buscador.png" />
+                <div id="header_opciones">
+                    <div id="inicio_header">
+                        <img src="<?php echo HTTP_IMAGES_PATH; ?>Header/ico_usuario.png" />
+                        <div>Iniciar Sesi&oacute;n</div>
+                    </div>
+                    <div id="menu_header">
+                        <div class="opcion"><a href="#">Categor&iacute;as</a></div>
+                        <div class="opcion"><a href="#">Cursos</a></div>
+                    </div>
                 </div>
             </div>
         </div>
         <div id="main">
             <div id="seccion_superior">
-                <img width="100%" height="400px" src="<?php echo HTTP_IMAGES_PATH; ?>Main/Superior/cursos_slider.jpg" />
+                <div id="seccion_superior_contenido" >
+                    <div class="filas">
+                        <div id="slogan_publicidad">
+                            CAPAC&Iacute;TATE
+                        </div>
+                    </div>
+                    <div class="filas">
+                        <div id="buscador">
+                            <input class="input_buscador" type="text" value="" placeholder="Busca un curso aqu&iacute;" />
+                            <img class="img_buscador" src="<?php echo HTTP_IMAGES_PATH; ?>Header/btn_buscador.png" />
+                        </div>
+                    </div>
+                    <div class="filas">
+                        <div style="float: right;">
+                            <img src="<?php echo HTTP_IMAGES_PATH; ?>Main/Superior/txt_curso_online.png" />
+                        </div>
+                    </div>
+                </div>
             </div>
             <div id="seccion_inferior">
                 <div id="tema_inferior">
