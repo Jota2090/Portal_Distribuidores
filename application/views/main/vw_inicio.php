@@ -37,12 +37,14 @@
                         <div class="titulo_curso_destacados">
                             T&eacute;cnicas en Ventas
                         </div>
-                        <div class="borde-redondeado-jquery cuerpo_curso_destacados">
+                        <div class="cuerpo_curso_destacados">
                             <img src="<?php echo HTTP_IMAGES_PATH; ?>Noticias/1.jpg" />
                             <div>
                                 Desarrollo de ideas innovadoras para crear estrategias y mejorar las ventas. 
                             </div>
                         </div>
+                        <div class="footer_curso_destacados">&nbsp;</div>
+                        <div class="boton_curso_destacados">Entrar al curso</div>
                     </div>
                     <div class="espacio_cursos_destacados">&nbsp;</div>
                     <div class="cursos_destacados">
@@ -55,6 +57,8 @@
                                 Importancia de la seguridad inform&aacute;tica y las nuevas tecnolog&iacute;as de la informaci&oacute;n. 
                             </div>
                         </div>
+                        <div class="footer_curso_destacados">&nbsp;</div>
+                        <div class="boton_curso_destacados">Entrar al curso</div>
                     </div>
                     <div class="espacio_cursos_destacados">&nbsp;</div>
                     <div class="cursos_destacados">
@@ -67,6 +71,8 @@
                                 An&aacute;lisis sobre su crecimiento y t&eacute;cnicas estrat&eacute;gicas para emprendedores.
                             </div>
                         </div>
+                        <div class="footer_curso_destacados">&nbsp;</div>
+                        <div class="boton_curso_destacados">Entrar al curso</div>
                     </div>
                 </div>
             </div>

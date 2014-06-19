@@ -24,8 +24,7 @@ body{
     background: url('../images/Header/background.png') repeat-x;
     width: 100%;
     height: 50px;
-    padding: 0px; 
-    margin: 0px;
+    padding: 0px;
 }
 
     #header_titulo{
@@ -36,6 +35,7 @@ body{
         padding-top: 10px;
         padding-left: 50px;
         color: #000000;
+        margin: auto;
     }
 
     #header_titulo div{
@@ -157,18 +157,20 @@ body{
     #seccion_inferior{
         background: url('../images/Main/Inferior/background.png') repeat-x;
         width: 100%;
-        height: 400px;
+        height: auto;
+        overflow: hidden;
         position: relative;
         top: -12px;
         padding-top: 10px;
+        padding-bottom: 30px;
     }
     
     #tema_inferior{
-        padding-left: 150px;
+        padding-left: 225px;
     }
     
     #cursos{
-        padding-left: 150px;
+        padding-left: 225px;
     }
     
     .cursos_destacados{
@@ -178,7 +180,7 @@ body{
     }
     
     .espacio_cursos_destacados{
-        width: 100px;
+        width: 25px;
         float: left;
     }
     
@@ -196,27 +198,35 @@ body{
     }
     
     .cuerpo_curso_destacados{
-        border: 1px solid #cccccc;
-        padding: 35px 0px 10px 0px;
+        background: url('../images/Main/Inferior/gradiente_recuadro.png') repeat-x;
+        border-left: 1px solid #cccccc;
+        border-right: 1px solid #cccccc;
+        padding-top: 35px;
         font-size: 11px;
-        width: 290px;
+        width: 287px;
         margin-top: 25px;
         margin-left: 5px;
-        -webkit-border-radius: 8px;
-        -moz-border-radius: 8px;
-        border-radius: 8px;
-        -webkit-box-shadow: #cccccc 0px 2px 3px;
-        -moz-box-shadow: #cccccc 0px 2px 3px;
-        box-shadow: #cccccc 0px 2px 3px;
-        background: #cccccc;
-        background: -webkit-gradient(linear, 0 0, 0 bottom, from(#cccccc), to(#ffffff));
-        background: -webkit-linear-gradient(#cccccc, #ffffff);
-        background: -moz-linear-gradient(#cccccc, #ffffff);
-        background: -ms-linear-gradient(#cccccc, #ffffff);
-        background: -o-linear-gradient(#cccccc, #ffffff);
-        background: linear-gradient(#cccccc, #ffffff);
-        -pie-background: linear-gradient(#cccccc, #ffffff);
-        behavior: url(../pie/PIE.htc);
+    }
+    
+    .footer_curso_destacados{
+        background: url('../images/Main/Inferior/footer_recuadro.png') repeat-x;
+        border: 0px;
+        width: 290px;
+        height: 6px;
+        margin-left: 5px;
+    }
+    
+    .boton_curso_destacados{
+        background: url('../images/Main/Inferior/bg_boton.png') repeat;
+        border: 0px;
+        width: 289px;
+        height: 20px;
+        margin-left: 5px;
+        margin-top: 15px;
+        padding-top: 5px;
+        font-size: 12px;
+        text-align: center;
+        color: #ffffff;
     }
     
     .cuerpo_curso_destacados img{
