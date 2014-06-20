@@ -13,11 +13,45 @@
                     <img src="<?php echo HTTP_IMAGES_PATH; ?>Header/logo_claro.png" />
                 </div>
                 <div id="header_opciones">
-                    <div id="inicio_header">
-                        <img src="<?php echo HTTP_IMAGES_PATH; ?>Header/ico_usuario.png" />
-                        <div>Iniciar Sesi&oacute;n</div>
+                    <div class="menu_header" style="float: right;">
+                        <div class="opcion"><a href="#">Reg&iacute;strate</a></div>
                     </div>
-                    <div id="menu_header">
+                    <div id="inicio_header">
+                        <ul class="drop_menu">
+                            <li>
+                                <a href='#'>
+                                    <img src="<?php echo HTTP_IMAGES_PATH; ?>Header/ico_usuario.png" />
+                                    <div>Iniciar Sesi&oacute;n</div>
+                                </a>
+                                <ul>
+                                    <li>
+                                        <div id="header_login">
+                                             <?php 
+                                                $attributes = array('id' => 'f_login', 'name' => 'f_login');
+                                                echo form_open('login/validar', $attributes);
+                                            ?>
+                                            <label>Usuario:</label>
+                                           
+                                            <?php
+                                                $data = array('name'=>'usuario', 'id'=>'usuario', 'value'=>set_value("usuario"), 'maxlength'=>'100', 'style'=>'width:100%', 'autocomplete'=>'off', 'type'=>'text');
+                                                echo form_input($data)."<br/>";
+                                            ?>
+                                            
+                                            Contrase&ntilde;a:<br/>
+                                            <?php
+                                                $data = array('name'=>'contrasena', 'id'=>'contrasena', 'value'=>set_value("contrasena"), 'maxlength'=>'100', 'style'=>'width:100%', 'type'=>'password');
+                                                echo form_input($data)."<br/>";
+                                                echo form_submit('login', 'Login');
+
+                                                echo form_close();
+                                            ?>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="menu_header">
                         <div class="opcion"><a href="#">Categor&iacute;as</a></div>
                         <div class="opcion"><a href="#">Cursos</a></div>
                     </div>
@@ -35,61 +69,66 @@
                     <div class="filas">
                         <div id="buscador">
                             <input class="input_buscador" type="text" value="" placeholder="Busca un curso aqu&iacute;" />
-                            <img class="img_buscador" src="<?php echo HTTP_IMAGES_PATH; ?>Header/btn_buscador.png" />
+                            <img class="img_buscador" src="<?php echo HTTP_IMAGES_PATH; ?>Main/Superior/btn_buscador.png" />
                         </div>
                     </div>
                     <div class="filas">
                         <div style="float: right;">
-                            <img src="<?php echo HTTP_IMAGES_PATH; ?>Main/Superior/txt_curso_online.png" />
+                            <img height="160px" src="<?php echo HTTP_IMAGES_PATH; ?>Main/Superior/txt_curso_online.png" />
                         </div>
                     </div>
                 </div>
             </div>
             <div id="seccion_inferior">
-                <div id="tema_inferior">
-                    <h4>CURSOS DESTACADOS DEL D&Iacute;A</h4>
-                </div>
-                <div id="cursos">
-                    <div class="cursos_destacados">
-                        <div class="titulo_curso_destacados">
-                            T&eacute;cnicas en Ventas
-                        </div>
-                        <div class="cuerpo_curso_destacados">
-                            <img src="<?php echo HTTP_IMAGES_PATH; ?>Noticias/1.jpg" />
-                            <div>
-                                Desarrollo de ideas innovadoras para crear estrategias y mejorar las ventas. 
-                            </div>
-                        </div>
-                        <div class="footer_curso_destacados">&nbsp;</div>
-                        <div class="boton_curso_destacados">Entrar al curso</div>
+                <div id="seccion_inferior_contenido" >
+                    <div class="filas">
+                        <h4>CURSOS DESTACADOS DEL D&Iacute;A</h4>
                     </div>
-                    <div class="espacio_cursos_destacados">&nbsp;</div>
-                    <div class="cursos_destacados">
-                        <div class="titulo_curso_destacados">
-                            Navegaci&oacute;n por Datos
-                        </div>
-                        <div class="cuerpo_curso_destacados">
-                            <img src="<?php echo HTTP_IMAGES_PATH; ?>Noticias/2.jpg" />
-                            <div>
-                                Importancia de la seguridad inform&aacute;tica y las nuevas tecnolog&iacute;as de la informaci&oacute;n. 
+                    <div class="filas">
+                        <div class="cursos_destacados">
+                            <div class="titulo_curso_destacados">
+                                T&eacute;cnicas en Ventas
                             </div>
-                        </div>
-                        <div class="footer_curso_destacados">&nbsp;</div>
-                        <div class="boton_curso_destacados">Entrar al curso</div>
-                    </div>
-                    <div class="espacio_cursos_destacados">&nbsp;</div>
-                    <div class="cursos_destacados">
-                        <div class="titulo_curso_destacados">
-                            E-Commerce
-                        </div>
-                        <div class="cuerpo_curso_destacados">
-                            <img src="<?php echo HTTP_IMAGES_PATH; ?>Noticias/3.jpg" />
-                            <div>
-                                An&aacute;lisis sobre su crecimiento y t&eacute;cnicas estrat&eacute;gicas para emprendedores.
+                            <div class="cuerpo_curso_destacados">
+                                <div class="fecha">24 de Junio del 2014</div>
+                                <img src="<?php echo HTTP_IMAGES_PATH; ?>Noticias/1.jpg" />
+                                <div class="descripcion">
+                                    Desarrollo de ideas innovadoras para crear estrategias y mejorar las ventas. 
+                                </div>
                             </div>
+                            <div class="footer_curso_destacados">&nbsp;</div>
+                            <div class="boton_curso_destacados">Registrarse</div>
                         </div>
-                        <div class="footer_curso_destacados">&nbsp;</div>
-                        <div class="boton_curso_destacados">Entrar al curso</div>
+                        <div class="espacio_cursos_destacados">&nbsp;</div>
+                        <div class="cursos_destacados">
+                            <div class="titulo_curso_destacados">
+                                Navegaci&oacute;n por Datos
+                            </div>
+                            <div class="cuerpo_curso_destacados">
+                                <div class="fecha">25 de Junio del 2014</div>
+                                <img src="<?php echo HTTP_IMAGES_PATH; ?>Noticias/2.jpg" />
+                                <div class="descripcion">
+                                    Importancia de la seguridad inform&aacute;tica y las nuevas tecnolog&iacute;as de la informaci&oacute;n. 
+                                </div>
+                            </div>
+                            <div class="footer_curso_destacados">&nbsp;</div>
+                            <div class="boton_curso_destacados">Registrarse</div>
+                        </div>
+                        <div class="espacio_cursos_destacados">&nbsp;</div>
+                        <div class="cursos_destacados">
+                            <div class="titulo_curso_destacados">
+                                E-Commerce
+                            </div>
+                            <div class="cuerpo_curso_destacados">
+                                <div class="fecha">26 de Junio del 2014</div>
+                                <img src="<?php echo HTTP_IMAGES_PATH; ?>Noticias/3.jpg" />
+                                <div class="descripcion">
+                                    An&aacute;lisis sobre su crecimiento y t&eacute;cnicas estrat&eacute;gicas para emprendedores.
+                                </div>
+                            </div>
+                            <div class="footer_curso_destacados">&nbsp;</div>
+                            <div class="boton_curso_destacados">Registrarse</div>
+                        </div>
                     </div>
                 </div>
             </div>
