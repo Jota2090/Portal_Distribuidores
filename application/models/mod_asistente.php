@@ -10,29 +10,31 @@
      * @version      1.0
     */
     
-    class mod_usuario extends CI_Model {
+    class mod_asistente extends CI_Model {
         
         /**
-         * @var integer     $_id                id del usuario
-         * @var string      $_nombre            nombre del usuario
-         * @var string      $_apellido          apellido del usuario
-         * @var string      $_cedula            cédula del usuario
-         * @var string      $_correo            correo del usuario
-         * @var string      $_usuario           nick del usuario
-         * @var string      $_contrasena        contraseña del usuario
-         * @var string      $_tipo              tipo de usuario (S=SuperAdministrador, V=Vendedores, U=Asistente(Administrador))
-         * @var datetime    $_fecha_modificado  fecha en que es modificado el usuario
-         * @var string      $_estado            estado del usuario
+         * @var integer     $_id                id del asistente
+         * @var string      $_nombre            nombre del asistente
+         * @var string      $_cedula            cédula del asistente
+         * @var string      $_correo            correo del asistente
+         * @var string      $_telefono          telefono del asistente
+         * @var string      $_antiguedad        contraseña del asistente
+         * @var integer     $_distribuidor      id del distribuidor del asistente
+         * @var integer     $_cargo             id del cargo del asistente
+         * @var integer     $_tipo              id del tipo del asistente
+         * @var datetime    $_fecha_modificado  fecha en que es modificado el asistente
+         * @var string      $_estado            estado del asistente
          *
         */
         var $_id                = 0;
         var $_nombre            = "";
-        var $_apellido          = "";
         var $_cedula            = "";
         var $_correo            = "";
-        var $_usuario           = "";
-        var $_contrasena        = "";
-        var $_tipo              = "";
+        var $_telefono          = "";
+        var $_antiguedad        = "";
+        var $_distribuidor      = 0;
+        var $_cargo             = 0;
+        var $_tipo              = 0;
         var $_fecha_modificado  = "";
         var $_estado            = "";
         
@@ -72,23 +74,6 @@
         }
         
         /**
-        * get_apellido() retorna el apellido
-        * @return string _apellido
-        */
-        public function get_apellido() {
-            return $this->_apellido;
-        }
-
-        /**
-        * set_apellido() setea un valor en el parámetro de _apellido
-        * @param string $_apellido 
-        * @return void
-        */
-        public function set_apellido($_apellido) {
-            $this->_apellido = $_apellido;
-        }
-        
-        /**
         * get_cedula() retorna el numero de cedula
         * @return string _cedula
         */
@@ -123,42 +108,76 @@
         }
 
         /**
-        * get_usuario() retorna el nick
-        * @return string _usuario
+        * get_telefono() retorna el telefono
+        * @return string _telefono
         */
-        public function get_usuario() {
-            return $this->_usuario;
+        public function get_telefono() {
+            return $this->_telefono;
         }
 
         /**
-        * set_usuario() setea un valor en el parámetro de _usuario
-        * @param string $_usuario 
+        * set_telefono() setea un valor en el parámetro de _telefono
+        * @param string $_telefono 
         * @return void
         */
-        public function set_usuario($_usuario) {
-            $this->_usuario = $_usuario;
+        public function set_telefono($_telefono) {
+            $this->_telefono = $_telefono;
         }
 
         /**
-        * get_contrasena() retorna la contrasena
-        * @return string _contrasena
+        * get_antiguedad() retorna la antiguedad
+        * @return string _antiguedad
         */
-        public function get_contrasena() {
-            return $this->_contrasena;
+        public function get_antiguedad() {
+            return $this->_antiguedad;
         }
 
         /**
-        * set_contrasena() setea un valor en el parámetro de _contrasena
-        * @param string $_contrasena 
+        * set_antiguedad() setea un valor en el parámetro de _antiguedad
+        * @param string $_antiguedad 
         * @return void
         */
-        public function set_contrasena($_contrasena) {
-            $this->_contrasena = $_contrasena;
+        public function set_antiguedad($_antiguedad) {
+            $this->_antiguedad = $_antiguedad;
         }
 
+        /**
+        * get_distribuidor() retorna el id del distribuidor
+        * @return integer _distribuidor
+        */
+        public function get_distribuidor() {
+            return $this->_distribuidor;
+        }
+
+        /**
+        * set_distribuidor() setea un valor en el parámetro de _distribuidor
+        * @param integer $_distribuidor 
+        * @return void
+        */
+        public function set_distribuidor($_distribuidor) {
+            $this->_distribuidor = $_distribuidor;
+        }
+        
+        /**
+        * get_cargo() retorna el id del cargo
+        * @return integer _cargo
+        */
+        public function get_cargo() {
+            return $this->_cargo;
+        }
+
+        /**
+        * set_cargo() setea un valor en el parámetro de _cargo
+        * @param integer $_cargo 
+        * @return void
+        */
+        public function set_cargo($_cargo) {
+            $this->_cargo = $_cargo;
+        }
+        
         /**
         * get_tipo() retorna el tipo
-        * @return string _tipo
+        * @return integer _tipo
         */
         public function get_tipo() {
             return $this->_tipo;
@@ -166,7 +185,7 @@
 
         /**
         * set_tipo() setea un valor en el parámetro de _tipo
-        * @param string $_tipo 
+        * @param integer $_tipo 
         * @return void
         */
         public function set_tipo($_tipo) {
@@ -213,30 +232,5 @@
         }
         
         
-        /**
-         * Initialize crear_usuario()
-         * 
-         * Esta función crea un usuario nuevo en el portal
-         * 
-         * @access public
-         * @return void
-        */
-        public function guardar_usuario(){
-            
-            $data = array(
-               'usu_nombre'             => $this->_nombre,
-               'usu_apellido'           => $this->_apellido ,
-               'usu_cedula'             => $this->_cedula ,
-               'usu_correo'             => $this->_correo ,
-               'usu_usuario'            => $this->_usuario ,
-               'usu_contrasena'         => $this->_contrasena,
-               'usu_tipo'               => $this->_tipo ,
-               'usu_fecha_modificado'   => $this->_fecha_modificado
-            );
-
-            $result = $this->db->insert('tbl_usuario', $data);
-            
-            return $result;
-        }
     }
 ?>

@@ -23,25 +23,6 @@
         }
         
         
-        function crear_usuario(){
-
-            if ($this->form_validation->run() == FALSE)
-            {
-                $this->load->view("administrador/vw_crear_usuario");
-            }
-            else
-            {
-                $this->usuario->guardar_usuario();
-                $resultado = $this->db->_error_message();
- 
-                if(empty($resultado))
-                    $this->load->view("administrador/vw_login");
-                else
-                    $this->load->view("administrador/vw_crear_usuario");
-            }
-        }
-        
-        
         function validar(){
             if ($this->form_validation->run() == FALSE)
             {
@@ -49,7 +30,7 @@
             }
             else
             {
-                if($this->clslogin->login($this->input->post("usuario"), $this->input->post("contrasena")))
+                if($this->clslogin->login($this->input->post("user"), $this->input->post("password")))
                     $this->load->view("administrador/vw_crear_usuario");
                 else{
                     $this->load->view("administrador/vw_login");
@@ -61,6 +42,36 @@
         function logout(){
             $this->clslogin->logout();
             redirect(site_url("main/menu"));
+        }
+        
+        
+        function crear_usuario(){
+
+            if ($this->form_validation->run() == FALSE)
+            {
+                $this->load->view("administrador/vw_crear_usuario");
+            }
+            else
+            {
+                $salt = '6&KTTmxa$Tej|y6uH%OhSrK@caXbNNo%I23tQmJ20Sid';
+                $this->usuario->set_contrasena(sha1(md5($salt.$this->input->post("contrasena"))));
+                
+                $this->usuario->set_nombre($this->input->post("nombre"));
+                $this->usuario->set_apellido($this->input->post("apellido"));
+                $this->usuario->set_cedula($this->input->post("cedula"));
+                $this->usuario->set_correo($this->input->post("correo"));
+                $this->usuario->set_usuario($this->input->post("usuario"));
+                $this->usuario->set_tipo($this->input->post("tipo"));
+                $this->usuario->set_fecha_modificado(date('Y-m-d H:i:s'));
+                
+                $this->usuario->guardar_usuario();
+                $resultado = $this->db->_error_message();
+ 
+                if(empty($resultado))
+                    $this->load->view("administrador/vw_login");
+                else
+                    $this->load->view("administrador/vw_crear_usuario");
+            }
         }
         
      }

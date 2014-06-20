@@ -10,8 +10,8 @@
         ),
         
         'login/validar'=>array(
-            array('field'=>'usuario', 'label'=>"usuario", 'rules'=>'required|trim'),
-            array('field'=>'contrasena', 'label'=>"contrasena", 'rules'=>'required|trim')
+            array('field'=>'user', 'label'=>"user", 'rules'=>'required|trim'),
+            array('field'=>'password', 'label'=>"password", 'rules'=>'required|trim')
         )
     );
 ?>

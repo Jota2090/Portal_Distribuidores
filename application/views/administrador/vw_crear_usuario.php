@@ -3,7 +3,8 @@
     echo validation_errors();
 
     $attributes = array('id' => 'f_nuevo_usuario', 'name' => 'f_nuevo_usuario');
-    echo form_open('login/crear_usuario', $attributes);
+    $hidden = array('tipo' => 'U');
+    echo form_open('login/crear_usuario', $attributes, $hidden);
     
     $data = array('name'=>'nombre', 'id'=>'nombre', 'value'=>set_value("nombre"), 'maxlength'=>'100', 'style'=>'width:50%', 'type'=>'text');
     echo "Nombres:".form_input($data)."<br/>";
@@ -23,8 +24,8 @@
     $data = array('name'=>'contrasena', 'id'=>'contrasena', 'value'=>set_value("contrasena"), 'maxlength'=>'100', 'style'=>'width:50%', 'type'=>'password');
     echo "Contrase&ntilde;a:".form_input($data)."<br/>";
     
-    $options = array('S'=>'Super Administrador', 'V'=>'Vendedores', 'U'=>'Asistente (Administrador)');
-    echo "Tipo:".form_dropdown('tipo', $options, 'U')."<br/>";
+    /*$options = array('S'=>'Super Administrador', 'V'=>'Vendedores', 'U'=>'Asistente (Administrador)');
+    echo "Tipo:".form_dropdown('tipo', $options, 'U')."<br/>";*/
     
     echo form_submit('crear', 'Crear Usuario');
     
