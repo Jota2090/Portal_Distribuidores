@@ -1,6 +1,6 @@
 /* 
     Document   : estilo
-    Created on : 18/06/2014, 09:33:07 AM
+    Created on : 18/06/2014
     Author     : Edson Jonathan Franco Borja
     Description: Estilo de la estructura principal del portal
 */
@@ -90,6 +90,12 @@ body{
                     float:left;
                 }
                 
+                #inicio_header #usuario{
+                    float:left;
+                    width: auto;
+                    text-align: left;
+                }
+                
                 .drop_menu {
                     padding:0;
                     margin:0;
@@ -127,12 +133,13 @@ body{
                 .drop_menu li:hover ul {
                     left:0px;
                     top:30px;
-                    background:#ffffff;
+                    background: url('../images/Header/fondo_login.png') no-repeat;
+                    width: 195px;
+                    height: 190px;
                     padding:0px;
                 }
 
                 .drop_menu li:hover ul li a {
-                    padding:5px;
                     display:block;
                     width:168px;
                     text-indent:15px;
@@ -140,16 +147,16 @@ body{
                 }
 
                 .drop_menu li:hover ul li a:hover { 
-                    background:#ffffff; 
+                    height: 150px;
                 }
-                
+               
                 #header_login{
-                    background: url('../images/Header/pixel_login.png') repeat-x;
-                    width: 150px;
-                    height: 170px;
+                    width: auto;
+                    height: auto;
                     padding: 10px;
                     overflow: hidden;
                     text-align: left;
+                    border: 0px;
                 }
                 
                 #header_login label{
@@ -161,7 +168,47 @@ body{
                     position: relative;
                     top: -10px;
                 }
-
+         
+                .input_login{
+                    background: url('../images/Header/fondo_input_login.png') no-repeat;
+                    width: 165px;
+                    height: 30px;
+                    border: 0px;
+                    padding: 1px 5px;
+                }
+                
+                .btn_ingresar{
+                    background: url('../images/Header/btn_ingresar.png') no-repeat;
+                    width: 120px;
+                    height: 30px;
+                    border: 0px;
+                    float: right;
+                    margin-right: 3px;
+                    text-align: center;
+                    color: #666666;
+                    font-weight: bold;
+                    font-family: Arial;
+                    font-size: 12px;
+                    cursor: pointer;
+                    position: relative; 
+                    top: -5px; 
+                }
+                
+                #olvido_contrasena{
+                    font-size: 11px; 
+                    cursor: pointer; 
+                    position: relative; 
+                    top: -10px; 
+                    margin-right: 5px;
+                }
+                
+                #olvido_contrasena p:hover{
+                    color: #ff0000;
+                }
+                
+                
+                
+               
             .menu_header{
                 float: right;
                 width: auto;
@@ -227,6 +274,7 @@ body{
                 width: 100%;
                 height: auto;
                 overflow: hidden;
+                padding-top: 20px;
             }
             
                 #slogan_publicidad{

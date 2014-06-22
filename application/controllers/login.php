@@ -24,24 +24,18 @@
         
         
         function validar(){
-            if ($this->form_validation->run() == FALSE)
-            {
-                $this->load->view("administrador/vw_login");
-            }
-            else
-            {
-                if($this->clslogin->login($this->input->post("user"), $this->input->post("password")))
-                    $this->load->view("administrador/vw_crear_usuario");
-                else{
-                    $this->load->view("administrador/vw_login");
-                }
+            if($this->clslogin->login($this->input->post("user"), $this->input->post("password"))){
+                echo "<div id='success'>true</div>";
+            }else{
+                $data['auth'] = $this->clslogin->check();
+                echo $this->load->view("main/vw_header", $data);
             }
         }
         
         
         function logout(){
             $this->clslogin->logout();
-            redirect(site_url("main/menu"));
+            redirect(site_url("main"));
         }
         
         

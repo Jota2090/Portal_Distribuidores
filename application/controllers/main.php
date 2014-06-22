@@ -17,7 +17,16 @@
         
         
         function index(){
-            $this->load->view("main/vw_inicio");
+            if(!$this->clslogin->check()){
+                $data['header'] = '';
+            }else{
+                $data['header']['auth'] = $this->clslogin->check();
+                $data['header']['nombre'] = $this->clslogin->getNombre();
+                $data['header']['apellido'] = $this->clslogin->getApellido();
+            }
+            
+            $this->load->view("main/vw_inicio", $data);
+            
         }
     }
     

@@ -185,11 +185,13 @@
                     $this->_auth            = true;
 
                     $info_session = array(
-                                            'id'        => $this->_id, 
-                                            'nombre'    => $this->_nombre,
-                                            'apellido'  => $this->_apellido,
-                                            'tipo'      => $this->_tipo_usuario,
-                                            'estado'    => $this->_estado
+                                            'id'            => $this->_id, 
+                                            'nombre'        => $this->_nombre,
+                                            'apellido'      => $this->_apellido,
+                                            'tipo'          => $this->_tipo_usuario,
+                                            'estado'        => $this->_estado,
+                                            'usuario'       => $user,
+                                            'contrasena'    => $clave
                                          );
 
                     $CI->session->set_userdata($info_session);
