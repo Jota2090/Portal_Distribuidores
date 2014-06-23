@@ -39,7 +39,7 @@
         * @var integer $_id id del usuario logoneado
         * @var string $_nombre nombre del usuario
         * @var string $_apellido apellido del usuario
-        * @var string $_tipo_user tipo de usuario (S=SuperAdministrador, V=Vendedores, U=Asistente(Administrador))
+        * @var string $_tipo_user tipo de usuario (S=SuperAdministrador, A=Administradores, U=Usuarios(Asistente))
         * @var string $_estado estado del usuario
         * @var boolean $_auth indica si esta logoneado el usuario o no
         *
@@ -243,12 +243,27 @@
         * el usuario, en caso de que sea estricto
         * miraremos que coincida exactamente (==), sino lo es, miraremos que sea mayor o igual (>=).
         */
-            function check()
+            function check($tipo)
             {
-                if (!$this->_auth)
-                    return false;
-                else
-                    return true;
+                switch ($tipo) {
+                    
+                    case 0:
+                        if ($this->_auth && ($this->_tipo_usuario == 'U' || $this->_tipo_usuario == 'S')){
+                            return true;
+                        }else{
+                            return false;
+                        }
+                        break;
+                        
+                    case 1:
+                        if ($this->_auth && ($this->_tipo_usuario == 'A' || $this->_tipo_usuario == 'S')){
+                            return true;
+                        }else{
+                            return false;
+                        }
+                        break;
+                        
+                }
             }
 
     }

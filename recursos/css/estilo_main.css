@@ -1,5 +1,5 @@
 /* 
-    Document   : estilo
+    Document   : estilo_main
     Created on : 18/06/2014
     Author     : Edson Jonathan Franco Borja
     Description: Estilo de la estructura principal del portal
@@ -21,7 +21,7 @@ body{
 
 /* Header (Cabecera) */
 #header{
-    background: url('../images/Header/background.png') repeat-x;
+    background: url('../images/Main/Header/background.png') repeat-x;
     width: 100%;
     height: 50px;
     padding: 0px;
@@ -133,7 +133,7 @@ body{
                 .drop_menu li:hover ul {
                     left:0px;
                     top:30px;
-                    background: url('../images/Header/fondo_login.png') no-repeat;
+                    background: url('../images/Main/Header/fondo_login.png') no-repeat;
                     width: 195px;
                     height: 190px;
                     padding:0px;
@@ -170,7 +170,7 @@ body{
                 }
          
                 .input_login{
-                    background: url('../images/Header/fondo_input_login.png') no-repeat;
+                    background: url('../images/Main/Header/fondo_input_login.png') no-repeat;
                     width: 165px;
                     height: 30px;
                     border: 0px;
@@ -178,7 +178,7 @@ body{
                 }
                 
                 .btn_ingresar{
-                    background: url('../images/Header/btn_ingresar.png') no-repeat;
+                    background: url('../images/Main/Header/btn_ingresar.png') no-repeat;
                     width: 120px;
                     height: 30px;
                     border: 0px;
@@ -255,7 +255,7 @@ body{
 
     /* Seccion Superior */
     #seccion_superior{
-        background: url('../images/Main/Superior/cursos_slider.jpg') no-repeat;
+        background: url('../images/Main/Contenido/Superior/cursos_slider.jpg') no-repeat;
         width: 100%;
         height: 600px;
         padding: 0px; 
@@ -291,7 +291,7 @@ body{
                 }
 
                 .input_buscador{
-                    background: url('../images/Main/Superior/buscador.png') no-repeat;
+                    background: url('../images/Main/Contenido/Superior/buscador.png') no-repeat;
                     border: 0px;
                     width: 190px;
                     height: 32px;
@@ -314,7 +314,7 @@ body{
 
     /* Seccion Inferior */
     #seccion_inferior{
-        background: url('../images/Main/Inferior/background.png') repeat-x;
+        background: url('../images/Main/Contenido/Inferior/background.png') repeat-x;
         width: 100%;
         height: auto;
         overflow: hidden;
@@ -341,7 +341,7 @@ body{
             }
     
                 .titulo_curso_destacados{
-                   background: url('../images/Main/Inferior/titulo_curso.png') no-repeat;
+                   background: url('../images/Main/Contenido/Inferior/titulo_curso.png') no-repeat;
                    float: left;
                    width: 300px;
                    height: 50px;
@@ -354,7 +354,7 @@ body{
                 }
 
                 .cuerpo_curso_destacados{
-                    background: url('../images/Main/Inferior/gradiente_recuadro.png') repeat-x;
+                    background: url('../images/Main/Contenido/Inferior/gradiente_recuadro.png') repeat-x;
                     border-left: 1px solid #cccccc;
                     border-right: 1px solid #cccccc;
                     padding-top: 35px;
@@ -365,7 +365,7 @@ body{
                 }
 
                     .footer_curso_destacados{
-                        background: url('../images/Main/Inferior/footer_recuadro.png') repeat-x;
+                        background: url('../images/Main/Contenido/Inferior/footer_recuadro.png') repeat-x;
                         border: 0px;
                         width: 290px;
                         height: 6px;
@@ -373,7 +373,7 @@ body{
                     }
 
                     .boton_curso_destacados{
-                        background: url('../images/Main/Inferior/bg_boton.png') repeat;
+                        background: url('../images/Main/Contenido/Inferior/bg_boton.png') repeat;
                         border: 0px;
                         width: 289px;
                         height: 20px;
@@ -411,7 +411,7 @@ body{
 
 /* Footer */
 #footer{
-    background: url('../images/Footer/background.png') repeat-x;
+    background: url('../images/Main/Footer/background.png') repeat-x;
     width: 100%;
     height: 30px;
 }

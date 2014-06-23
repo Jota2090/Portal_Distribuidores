@@ -17,14 +17,14 @@
         
         
         function index(){
-            if(!$this->clslogin->check()){
+            /*if(!$this->clslogin->check(1)){
                 $data['header'] = '';
-            }else{
+            }else if($this->clslogin->getTipoUsuario() === "A" || $this->clslogin->getTipoUsuario() == "S"){
                 $data['header']['auth'] = $this->clslogin->check();
                 $data['header']['nombre'] = $this->clslogin->getNombre();
                 $data['header']['apellido'] = $this->clslogin->getApellido();
-            }
-            
+            }*/
+            $data['header'] = '';
             $this->load->view("portal/administrador/vw_pa_inicio", $data);
             
         }

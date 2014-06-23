@@ -9,7 +9,7 @@
         <script type="text/javascript" src="<?php echo HTTP_JS_PATH; ?>ext-lang-es.js"></script>
         <link rel="stylesheet" type="text/css" media="all" href="<?php echo HTTP_CSS_PATH; ?>ext-all.css" />
         <link rel="stylesheet" type="text/css" media="all" href="<?php echo HTTP_CSS_PATH; ?>porta.css" />
-        <link rel="stylesheet" type="text/css" media="all" href="<?php echo HTTP_CSS_PATH; ?>estilo.css" />
+        <link rel="stylesheet" type="text/css" media="all" href="<?php echo HTTP_CSS_PATH; ?>estilo_main.css" />
     </head>
    
     <body>
@@ -27,12 +27,12 @@
                     <div class="filas">
                         <div id="buscador">
                             <input class="input_buscador" type="text" value="" placeholder="Busca un curso aqu&iacute;" />
-                            <img class="img_buscador" src="<?php echo HTTP_IMAGES_PATH; ?>Main/Superior/btn_buscador.png" />
+                            <img class="img_buscador" src="<?php echo HTTP_IMAGES_PATH; ?>Main/Contenido/Superior/btn_buscador.png" />
                         </div>
                     </div>
                     <div class="filas">
                         <div style="float: right;">
-                            <img height="160px" src="<?php echo HTTP_IMAGES_PATH; ?>Main/Superior/txt_curso_online.png" />
+                            <img height="160px" src="<?php echo HTTP_IMAGES_PATH; ?>Main/Contenido/Superior/txt_curso_online.png" />
                         </div>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
                             </div>
                             <div class="cuerpo_curso_destacados">
                                 <div class="fecha">24 de Junio del 2014</div>
-                                <img src="<?php echo HTTP_IMAGES_PATH; ?>Noticias/1.jpg" />
+                                <img src="<?php echo HTTP_IMAGES_PATH; ?>Cursos/1.jpg" />
                                 <div class="descripcion">
                                     Desarrollo de ideas innovadoras para crear estrategias y mejorar las ventas. 
                                 </div>
@@ -64,7 +64,7 @@
                             </div>
                             <div class="cuerpo_curso_destacados">
                                 <div class="fecha">25 de Junio del 2014</div>
-                                <img src="<?php echo HTTP_IMAGES_PATH; ?>Noticias/2.jpg" />
+                                <img src="<?php echo HTTP_IMAGES_PATH; ?>Cursos/2.jpg" />
                                 <div class="descripcion">
                                     Importancia de la seguridad inform&aacute;tica y las nuevas tecnolog&iacute;as de la informaci&oacute;n. 
                                 </div>
@@ -79,7 +79,7 @@
                             </div>
                             <div class="cuerpo_curso_destacados">
                                 <div class="fecha">26 de Junio del 2014</div>
-                                <img src="<?php echo HTTP_IMAGES_PATH; ?>Noticias/3.jpg" />
+                                <img src="<?php echo HTTP_IMAGES_PATH; ?>Cursos/3.jpg" />
                                 <div class="descripcion">
                                     An&aacute;lisis sobre su crecimiento y t&eacute;cnicas estrat&eacute;gicas para emprendedores.
                                 </div>

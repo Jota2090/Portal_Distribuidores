@@ -20,7 +20,7 @@
          * @var string      $_correo            correo del usuario
          * @var string      $_usuario           nick del usuario
          * @var string      $_contrasena        contraseña del usuario
-         * @var string      $_tipo              tipo de usuario (S=SuperAdministrador, V=Vendedores, U=Asistente(Administrador))
+         * @var string      $_tipo              tipo de usuario (S=SuperAdministrador, A=Administradores, U=Usuarios(Asistente))
          * @var datetime    $_fecha_modificado  fecha en que es modificado el usuario
          * @var string      $_estado            estado del usuario
          *

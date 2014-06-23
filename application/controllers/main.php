@@ -17,10 +17,10 @@
         
         
         function index(){
-            if(!$this->clslogin->check()){
+            if(!$this->clslogin->check(0)){
                 $data['header'] = '';
             }else{
-                $data['header']['auth'] = $this->clslogin->check();
+                $data['header']['auth'] = $this->clslogin->check(0);
                 $data['header']['nombre'] = $this->clslogin->getNombre();
                 $data['header']['apellido'] = $this->clslogin->getApellido();
             }

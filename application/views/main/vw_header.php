@@ -1,7 +1,7 @@
 <div id="header_contenido">
     <div id="header_titulo">
         <div>Cursos de Capacitaci&oacute;n</div>
-        <img src="<?php echo HTTP_IMAGES_PATH; ?>Header/logo_claro.png" />
+        <img src="<?php echo HTTP_IMAGES_PATH; ?>Main/Header/logo_claro.png" />
     </div>
     <div id="header_opciones">
         <?php
@@ -10,7 +10,7 @@
             <div class="opcion"><a href="login/logout">Cerrar Sesi&oacute;n</a></div>
         </div>
         <div id="inicio_header">
-            <img src="<?php echo HTTP_IMAGES_PATH; ?>Header/ico_usuario.png" />
+            <img src="<?php echo HTTP_IMAGES_PATH; ?>Main/Header/ico_usuario.png" />
             <div id="usuario">Bienvenido, <?php echo $nombre." ".$apellido;?></div>
         </div>
         <div class="menu_header">
@@ -24,7 +24,7 @@
             <ul class="drop_menu">
                 <li>
                     <a href='#'>
-                        <img src="<?php echo HTTP_IMAGES_PATH; ?>Header/ico_usuario.png" />
+                        <img src="<?php echo HTTP_IMAGES_PATH; ?>Main/Header/ico_usuario.png" />
                         <div>Iniciar Sesi&oacute;n</div>
                     </a>
                     <ul>

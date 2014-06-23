@@ -27,7 +27,7 @@
             if($this->clslogin->login($this->input->post("user"), $this->input->post("password"))){
                 echo "<div id='success'>true</div>";
             }else{
-                $data['auth'] = $this->clslogin->check();
+                $data['auth'] = $this->clslogin->check(0);
                 echo $this->load->view("main/vw_header", $data);
             }
         }

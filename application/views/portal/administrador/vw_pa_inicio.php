@@ -7,88 +7,122 @@
         <script type="text/javascript" src="<?php echo HTTP_JS_PATH; ?>ext-base.js"></script>
         <script type="text/javascript" src="<?php echo HTTP_JS_PATH; ?>ext-all.js"></script>
         <script type="text/javascript" src="<?php echo HTTP_JS_PATH; ?>ext-lang-es.js"></script>
+        <script type="text/javascript" src="<?php echo HTTP_JS_PATH; ?>jquery.dataTables.js"></script>
         <link rel="stylesheet" type="text/css" media="all" href="<?php echo HTTP_CSS_PATH; ?>ext-all.css" />
         <link rel="stylesheet" type="text/css" media="all" href="<?php echo HTTP_CSS_PATH; ?>porta.css" />
-        <link rel="stylesheet" type="text/css" media="all" href="<?php echo HTTP_CSS_PATH; ?>estilo.css" />
+        <link rel="stylesheet" type="text/css" media="all" href="<?php echo HTTP_CSS_PATH; ?>estilo_portal.css" />
+        <link rel="stylesheet" type="text/css" media="all" href="<?php echo HTTP_CSS_PATH; ?>jquery.dataTables.css" />
+    
+        
     </head>
+    <script>
+        $(document).ready(function() {
+            $('#example').dataTable({
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ cursos por p&aacute;gina",
+                    "zeroRecords": "No tiene cursos registrados",
+                    "info": "Mostrando del _START_ al _END_ de _TOTAL_ cursos",
+                    "infoEmpty": "No tiene cursos registrados",
+                    "infoFiltered": "(Filtrado de _MAX_ cursos)"
+                }
+            });
+        } );
+    </script>
    
     <body>
         <div id="header">
-            <?php  $this->load->view("main/vw_header",$header);    ?>
+            <?php  $this->load->view("portal/vw_pa_header",$header);    ?>
         </div>
         <div id="main">
-            <div id="seccion_superior">
-                <div id="seccion_superior_contenido" >
-                    <div class="filas">
-                        <div id="slogan_publicidad">
-                            CAPAC&Iacute;TATE
-                        </div>
+            <div id="seccion_titulo_tabs">
+                <div id="titulo" >
+                    <img src="<?php echo HTTP_IMAGES_PATH?>Main/Header/logo_claro.png" />
+                    <div>PORTAL DE CAPACITACI&Oacute;N</div>
+                </div>
+                <div id="menu">
+                    <div class="tabs">
+                        <div id="menu_tab_1" class="tab_selected">&nbsp;</div>
+                        <div class="tab_texto">Cursos</div>
                     </div>
-                    <div class="filas">
-                        <div id="buscador">
-                            <input class="input_buscador" type="text" value="" placeholder="Busca un curso aqu&iacute;" />
-                            <img class="img_buscador" src="<?php echo HTTP_IMAGES_PATH; ?>Main/Superior/btn_buscador.png" />
-                        </div>
-                    </div>
-                    <div class="filas">
-                        <div style="float: right;">
-                            <img height="160px" src="<?php echo HTTP_IMAGES_PATH; ?>Main/Superior/txt_curso_online.png" />
-                        </div>
+                    <div class="tabs_last">
+                        <div id="menu_tab_2" class="tab_no_selected">&nbsp;</div>
+                        <div class="tab_texto">Reportes</div>
                     </div>
                 </div>
             </div>
-            <div id="seccion_inferior">
-                <div id="seccion_inferior_contenido" >
-                    <div class="filas">
-                        <h4>CURSOS DESTACADOS DEL D&Iacute;A</h4>
-                    </div>
-                    <div class="filas">
-                        <div class="cursos_destacados">
-                            <div class="titulo_curso_destacados">
-                                T&eacute;cnicas en Ventas
-                            </div>
-                            <div class="cuerpo_curso_destacados">
-                                <div class="fecha">24 de Junio del 2014</div>
-                                <img src="<?php echo HTTP_IMAGES_PATH; ?>Noticias/1.jpg" />
-                                <div class="descripcion">
-                                    Desarrollo de ideas innovadoras para crear estrategias y mejorar las ventas. 
-                                </div>
-                            </div>
-                            <div class="footer_curso_destacados">&nbsp;</div>
-                            <div class="boton_curso_destacados">Registrarse</div>
-                        </div>
-                        <div class="espacio_cursos_destacados">&nbsp;</div>
-                        <div class="cursos_destacados">
-                            <div class="titulo_curso_destacados">
-                                Navegaci&oacute;n por Datos
-                            </div>
-                            <div class="cuerpo_curso_destacados">
-                                <div class="fecha">25 de Junio del 2014</div>
-                                <img src="<?php echo HTTP_IMAGES_PATH; ?>Noticias/2.jpg" />
-                                <div class="descripcion">
-                                    Importancia de la seguridad inform&aacute;tica y las nuevas tecnolog&iacute;as de la informaci&oacute;n. 
-                                </div>
-                            </div>
-                            <div class="footer_curso_destacados">&nbsp;</div>
-                            <div class="boton_curso_destacados">Registrarse</div>
-                        </div>
-                        <div class="espacio_cursos_destacados">&nbsp;</div>
-                        <div class="cursos_destacados">
-                            <div class="titulo_curso_destacados">
-                                E-Commerce
-                            </div>
-                            <div class="cuerpo_curso_destacados">
-                                <div class="fecha">26 de Junio del 2014</div>
-                                <img src="<?php echo HTTP_IMAGES_PATH; ?>Noticias/3.jpg" />
-                                <div class="descripcion">
-                                    An&aacute;lisis sobre su crecimiento y t&eacute;cnicas estrat&eacute;gicas para emprendedores.
-                                </div>
-                            </div>
-                            <div class="footer_curso_destacados">&nbsp;</div>
-                            <div class="boton_curso_destacados">Registrarse</div>
-                        </div>
-                    </div>
+            <div id="seccion_contenido">
+                <div id="contenido_izq">
+                    <div>Listado de Cursos Agregados</div>
                 </div>
+                <div id="contenido_der">
+                    <div class="borde_izq_boton_rojo">&nbsp;</div>
+                    <div class="borde_centro_boton_rojo">
+                        <img src="<?php echo HTTP_IMAGES_PATH?>Administrador/Contenido/ico_agregar_curso.png" />
+                        <div>Agregar Curso Nuevo</div>
+                    </div>
+                    <div class="borde_der_boton_rojo">&nbsp;</div>
+                </div>
+                <table id="example" class="row-border hover" cellspacing="0" width="100%" >
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nombre</th>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Ciudad</th>
+                            <th>Instructor</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tfoot>
+                        <tr>
+                            <th>#</th>
+                            <th>Nombre</th>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Ciudad</th>
+                            <th>Instructor</th>
+                            <th width="260px"></th>
+                        </tr>
+                    </tfoot>
+                    
+                    <tbody>
+                        <tr>
+                            <td>CP00129</td>
+                            <td>Capacitacion de Redes de Computadores Capacitacion de Redes de Computadores</td>
+                            <td>23/05/2014</td>
+                            <td>8:30</td>
+                            <td>Guayaquil</td>
+                            <td>Jose Avellano Quiroz</td>
+                            <td>
+                                <div class="acciones">
+                                    <div class="borde_izq_boton_blanco">&nbsp;</div>
+                                    <div class="borde_centro_boton_blanco">
+                                        <img src="<?php echo HTTP_IMAGES_PATH?>Administrador/Contenido/ico_buscar.png" />
+                                        <div><a href="#">Ver Detalles</a></div>
+                                    </div>
+                                    <div class="borde_der_boton_blanco">&nbsp;</div>
+                                </div>
+                                <div class="acciones">
+                                    <div class="borde_izq_boton_blanco">&nbsp;</div>
+                                    <div class="borde_centro_boton_blanco">
+                                        <img src="<?php echo HTTP_IMAGES_PATH?>Administrador/Contenido/ico_editar.png" />
+                                        <div><a href="#">Editar</a></div>
+                                    </div>
+                                    <div class="borde_der_boton_blanco">&nbsp;</div>
+                                </div>
+                                <div class="acciones">
+                                    <div class="borde_izq_boton_blanco">&nbsp;</div>
+                                    <div class="borde_centro_boton_blanco">
+                                        <div><a href="#">Eliminar</a></div>
+                                    </div>
+                                    <div class="borde_der_boton_blanco">&nbsp;</div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
         <div id="footer">&nbsp;</div>
