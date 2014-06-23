@@ -3,27 +3,26 @@
         exit ('No se puede ejecutar directamente este SCRIPT');
 
     /**
-     * mod_distribuidor
+     * mod_provincia
      *
      * @package      models
      * @author       Edson Jonathan Franco Borja
      * @version      1.0
     */
     
-    class mod_distribuidor extends CI_Model {
+    class mod_provincia extends CI_Model {
         
         /**
          * @var string      $_name_table        nombre de la tabla en nuestra base de datos
-         * @var integer     $_id                id del cargo del distribuidor
-         * @var string      $_nombre            nombre del distribuidor
-         * @var string      $_razon_social      razon social del distribuidor
-         * @var string      $_estado            estado del distribuidor (A=Activo, E=Eliminado)
+         * @var integer     $_id                id de la provincia
+         * @var string      $_nombre            nombre de la provincia
+         * @var string      $_estado            estado de la provincia (D=Disponible, E=Eliminado)
         */
-        var $_name_table    = "tbl_distribuidor";
+        var $_name_table    = "tbl_provincia";
         var $_id            = 0;
         var $_nombre        = "";
-        var $_razon_social  = "";
         var $_estado        = "";
+        
         
         /**
         * get_name_table() retorna el nombre de la tabla
@@ -74,23 +73,6 @@
         */
         public function set_nombre($_nombre) {
             $this->_nombre = $_nombre;
-        }
-        
-        /**
-        * get_razon_social() retorna el nombre
-        * @return string _razon_social
-        */
-        public function get_razon_social() {
-            return $this->_nombre;
-        }
-        
-        /**
-        * set_razon_social() setea un valor en el parámetro de _razon_social
-        * @param string $_razon_social 
-        * @return void
-        */
-        public function set_razon_social($_razon_social) {
-            $this->_nombre = $_razon_social;
         }
         
         /**

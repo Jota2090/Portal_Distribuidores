@@ -13,14 +13,33 @@
     class mod_cargo_asistente extends CI_Model {
         
         /**
+         * @var string      $_name_table        nombre de la tabla en nuestra base de datos
          * @var integer     $_id                id del cargo del asistente
          * @var string      $_nombre            nombre del cargo del asistente
-         * @var string      $_estado            estado del cargo del asistente
+         * @var string      $_estado            estado del cargo del asistente (D=Disponible, E=Eliminado)
         */
-        var $_id        = 0;
-        var $_nombre    = "";
-        var $_estado    = "";
+        var $_name_table    = "tbl_cargo_asistente";
+        var $_id            = 0;
+        var $_nombre        = "";
+        var $_estado        = "";
         
+        
+        /**
+        * get_name_table() retorna el nombre de la tabla
+        * @return string _name_table
+        */
+        public function get_name_table() {
+            return $this->_name_table;
+        }
+        
+        /**
+        * set_name_table() setea un valor en el parámetro de _name_table
+        * @param string $_name_table 
+        * @return void
+        */
+        public function set_name_table($_name_table) {
+            $this->_name_table = $_name_table;
+        }
         
         /**
         * get_id() retorna el id

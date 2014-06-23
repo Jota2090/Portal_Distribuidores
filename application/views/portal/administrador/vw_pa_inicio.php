@@ -18,6 +18,7 @@
     <script>
         $(document).ready(function() {
             $('#example').dataTable({
+                "ajax": "cursos/listar_cursos",
                 "language": {
                     "lengthMenu": "Mostrar _MENU_ cursos por p&aacute;gina",
                     "zeroRecords": "No tiene cursos registrados",

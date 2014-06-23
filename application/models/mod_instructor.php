@@ -3,27 +3,32 @@
         exit ('No se puede ejecutar directamente este SCRIPT');
 
     /**
-     * mod_distribuidor
+     * mod_instructor
      *
      * @package      models
      * @author       Edson Jonathan Franco Borja
      * @version      1.0
     */
     
-    class mod_distribuidor extends CI_Model {
+    class mod_instructor extends CI_Model {
         
         /**
          * @var string      $_name_table        nombre de la tabla en nuestra base de datos
-         * @var integer     $_id                id del cargo del distribuidor
-         * @var string      $_nombre            nombre del distribuidor
-         * @var string      $_razon_social      razon social del distribuidor
-         * @var string      $_estado            estado del distribuidor (A=Activo, E=Eliminado)
+         * @var integer     $_id                id del instructor
+         * @var string      $_nombre            nombre del instructor
+         * @var string      $_apellido          apellido del instructor
+         * @var string      $_cedula            cédula del instructor
+         * @var string      $_correo            correo del instructor
+         * @var string      $_estado            estado del instructor (A=Activo, E=Eliminado)
         */
-        var $_name_table    = "tbl_distribuidor";
+        var $_name_table    = "tbl_instructor";
         var $_id            = 0;
         var $_nombre        = "";
-        var $_razon_social  = "";
+        var $_apellido      = "";
+        var $_cedula        = "";
+        var $_correo        = "";
         var $_estado        = "";
+        
         
         /**
         * get_name_table() retorna el nombre de la tabla
@@ -77,22 +82,56 @@
         }
         
         /**
-        * get_razon_social() retorna el nombre
-        * @return string _razon_social
+        * get_apellido() retorna el apellido
+        * @return string _apellido
         */
-        public function get_razon_social() {
-            return $this->_nombre;
+        public function get_apellido() {
+            return $this->_apellido;
+        }
+
+        /**
+        * set_apellido() setea un valor en el parámetro de _apellido
+        * @param string $_apellido 
+        * @return void
+        */
+        public function set_apellido($_apellido) {
+            $this->_apellido = $_apellido;
         }
         
         /**
-        * set_razon_social() setea un valor en el parámetro de _razon_social
-        * @param string $_razon_social 
+        * get_cedula() retorna el numero de cedula
+        * @return string _cedula
+        */
+        public function get_cedula() {
+            return $this->_cedula;
+        }
+
+        /**
+        * set_cedula() setea un valor en el parámetro de _cedula
+        * @param string $_cedula 
         * @return void
         */
-        public function set_razon_social($_razon_social) {
-            $this->_nombre = $_razon_social;
+        public function set_cedula($_cedula) {
+            $this->_cedula = $_cedula;
         }
-        
+
+        /**
+        * get_correo() retorna el correo
+        * @return string _correo
+        */
+        public function get_correo() {
+            return $this->_correo;
+        }
+
+        /**
+        * set_correo() setea un valor en el parámetro de _correo
+        * @param string $_correo 
+        * @return void
+        */
+        public function set_correo($_correo) {
+            $this->_correo = $_correo;
+        }
+
         /**
         * get_estado() retorna el estado
         * @return string _estado
