@@ -513,7 +513,6 @@
         public function get_cursos($select = "*", $where = array(), $or_where = array(), $join = array()){
             
             $this->db->select($select);
-            $this->db->from($this->get_name_table());
             
             if(count($where) > 0){
                 foreach ($where as $key => $value) {
@@ -536,14 +535,9 @@
             
             $this->db->order_by("cur_fecha_inicio", "asc"); 
             
-            $resultado = $this->db->get();
+            $resultado = $this->db->get($this->get_name_table());
             
-            $cursos = array(
-                                "filas" => $resultado->num_rows(),
-                                "resultado" => $resultado
-                            );
-            
-            return $cursos;
+            return $resultado;
         }
     }
 ?>

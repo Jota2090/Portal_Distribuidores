@@ -28,25 +28,34 @@
                     
                     $resultado = $this->curso->get_cursos($select, array(), $or_where, $join);
                     
-                    if($resultado['filas'] > 0){
+                    $items = array();
+                    $data = array();
+                    
+                    if($resultado){
                         foreach ($resultado->result() as $row) {
-                            $data['data'][] = $row->cur_id;
-                            $data['data'][] = $row->cur_nombre;
-                            $data['data'][] = $row->cur_fecha_inicio;
-                            $data['data'][] = $row->cur_hora_inicio;
-                            $data['data'][] = $row->ciu_nombre;
-                            $data['data'][] = $row->ins_nombre." ".$row->ins_apellido;
-                            $data['data'][] = $row->par_nombre;
+                            $fila = array();
+                            $fila[] = $row->cur_id;
+                            $fila[] = $row->cur_nombre;
+                            $fila[] = $row->cur_fecha_inicio;
+                            $fila[] = $row->cur_hora_inicio;
+                            $fila[] = $row->ciu_nombre;
+                            $fila[] = $row->ins_nombre." ".$row->ins_apellido;
+                            $fila[] = $row->par_nombre;
+                            $items[] = $fila;
                         }
+                        
+                        $data['data'] = $items;
+                    }else{
+                        $data['draw'] = 1;
+                        $data['recordsTotal'] = 0;
+                        $data['recordsFiltered'] = 0;
+                        $data['data'] = $items;
                     }
-                    else{
-                        
-                    }
-                        
-                        
+                    
                     break;
             }
             
+            echo json_encode($data);
         }
     }
     

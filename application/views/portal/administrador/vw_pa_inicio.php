@@ -72,7 +72,8 @@
                             <th>Hora</th>
                             <th>Ciudad</th>
                             <th>Instructor</th>
-                            <th></th>
+                            <th>Estado</th>
+                            <th width="260px"></th>
                         </tr>
                     </thead>
 
@@ -84,45 +85,12 @@
                             <th>Hora</th>
                             <th>Ciudad</th>
                             <th>Instructor</th>
+                            <th>Estado</th>
                             <th width="260px"></th>
                         </tr>
                     </tfoot>
                     
-                    <tbody>
-                        <tr>
-                            <td>CP00129</td>
-                            <td>Capacitacion de Redes de Computadores Capacitacion de Redes de Computadores</td>
-                            <td>23/05/2014</td>
-                            <td>8:30</td>
-                            <td>Guayaquil</td>
-                            <td>Jose Avellano Quiroz</td>
-                            <td>
-                                <div class="acciones">
-                                    <div class="borde_izq_boton_blanco">&nbsp;</div>
-                                    <div class="borde_centro_boton_blanco">
-                                        <img src="<?php echo HTTP_IMAGES_PATH?>Administrador/Contenido/ico_buscar.png" />
-                                        <div><a href="#">Ver Detalles</a></div>
-                                    </div>
-                                    <div class="borde_der_boton_blanco">&nbsp;</div>
-                                </div>
-                                <div class="acciones">
-                                    <div class="borde_izq_boton_blanco">&nbsp;</div>
-                                    <div class="borde_centro_boton_blanco">
-                                        <img src="<?php echo HTTP_IMAGES_PATH?>Administrador/Contenido/ico_editar.png" />
-                                        <div><a href="#">Editar</a></div>
-                                    </div>
-                                    <div class="borde_der_boton_blanco">&nbsp;</div>
-                                </div>
-                                <div class="acciones">
-                                    <div class="borde_izq_boton_blanco">&nbsp;</div>
-                                    <div class="borde_centro_boton_blanco">
-                                        <div><a href="#">Eliminar</a></div>
-                                    </div>
-                                    <div class="borde_der_boton_blanco">&nbsp;</div>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
+                    
                 </table>
             </div>
         </div>
