@@ -28,6 +28,11 @@
             $this->load->view("portal/administrador/vw_pa_inicio", $data);
             
         }
+        
+        function form_crear_curso(){
+            $this->load->view("portal/administrador/vw_crear_curso");
+        }
+        
     }
     
 ?>

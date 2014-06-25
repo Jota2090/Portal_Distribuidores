@@ -19,7 +19,7 @@
         
         
         function index(){
-            $this->load->view("administrador/vw_login");
+            $this->load->view("portal/administrador/vw_login");
         }
         
         

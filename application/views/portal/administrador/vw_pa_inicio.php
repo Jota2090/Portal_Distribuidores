@@ -8,16 +8,18 @@
         <script type="text/javascript" src="<?php echo HTTP_JS_PATH; ?>ext-all.js"></script>
         <script type="text/javascript" src="<?php echo HTTP_JS_PATH; ?>ext-lang-es.js"></script>
         <script type="text/javascript" src="<?php echo HTTP_JS_PATH; ?>jquery.dataTables.js"></script>
+        <script type="text/javascript" src="<?php echo HTTP_JS_PATH; ?>jquery.modal.js"></script>
+        <script type="text/javascript" src="<?php echo HTTP_JS_PATH; ?>jquery.timepicker.js"></script>
         <link rel="stylesheet" type="text/css" media="all" href="<?php echo HTTP_CSS_PATH; ?>ext-all.css" />
         <link rel="stylesheet" type="text/css" media="all" href="<?php echo HTTP_CSS_PATH; ?>porta.css" />
         <link rel="stylesheet" type="text/css" media="all" href="<?php echo HTTP_CSS_PATH; ?>estilo_portal.css" />
         <link rel="stylesheet" type="text/css" media="all" href="<?php echo HTTP_CSS_PATH; ?>jquery.dataTables.css" />
-    
-        
+        <link rel="stylesheet" type="text/css" media="all" href="<?php echo HTTP_CSS_PATH; ?>jquery.modal.css" />
+        <link rel="stylesheet" type="text/css" media="all" href="<?php echo HTTP_CSS_PATH; ?>jquery.timepicker.css" />
     </head>
     <script>
         $(document).ready(function() {
-            $('#example').dataTable({
+            $('#cursos').dataTable({
                 "ajax": "cursos/listar_cursos",
                 "language": {
                     "lengthMenu": "Mostrar _MENU_ cursos por p&aacute;gina",
@@ -28,6 +30,11 @@
                 }
             });
         } );
+        
+        $(document).ready(function(){
+            $('input.timepicker').timepicker({ timeFormat: 'h:mm:ss p' });
+        });
+
     </script>
    
     <body>
@@ -35,6 +42,7 @@
             <?php  $this->load->view("portal/vw_pa_header",$header);    ?>
         </div>
         <div id="main">
+            <div id="modal" style="display:none;"></div>
             <div id="seccion_titulo_tabs">
                 <div id="titulo" >
                     <img src="<?php echo HTTP_IMAGES_PATH?>Main/Header/logo_claro.png" />
@@ -56,14 +64,16 @@
                     <div>Listado de Cursos Agregados</div>
                 </div>
                 <div id="contenido_der">
-                    <div class="borde_izq_boton_rojo">&nbsp;</div>
-                    <div class="borde_centro_boton_rojo">
-                        <img src="<?php echo HTTP_IMAGES_PATH?>Administrador/Contenido/ico_agregar_curso.png" />
-                        <div>Agregar Curso Nuevo</div>
-                    </div>
-                    <div class="borde_der_boton_rojo">&nbsp;</div>
+                    <a href="administrador/form_crear_curso" rel="modal:open">
+                        <div class="borde_izq_boton_rojo">&nbsp;</div>
+                        <div class="borde_centro_boton_rojo">
+                            <img src="<?php echo HTTP_IMAGES_PATH?>Administrador/Contenido/ico_agregar_curso.png" />
+                            <div>Agregar Curso Nuevo</div>
+                        </div>
+                        <div class="borde_der_boton_rojo">&nbsp;</div>
+                    </a>
                 </div>
-                <table id="example" class="row-border hover" cellspacing="0" width="100%" >
+                <table id="cursos" class="row-border hover" cellspacing="0" width="100%" >
                     <thead>
                         <tr>
                             <th>#</th>
@@ -89,8 +99,6 @@
                             <th width="260px"></th>
                         </tr>
                     </tfoot>
-                    
-                    
                 </table>
             </div>
         </div>
