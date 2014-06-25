@@ -53,3 +53,15 @@ function validar_formulario(form){
 }
 
 
+function crear_formulario(form){
+    $( "#modal" ).modal();
+    
+    Ext.get('contenido_modal').load({
+            url: 'administrador/form_crear_'+form,
+            scripts:true,
+            nocache: true,
+            text: "<div style='width:300px; height:50px;' align='center'><img src='"+servidor+"recursos/images/loading.gif'></div>"
+    });
+}
+
+

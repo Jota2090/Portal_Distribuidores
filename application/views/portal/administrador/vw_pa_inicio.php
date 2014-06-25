@@ -30,11 +30,6 @@
                 }
             });
         } );
-        
-        $(document).ready(function(){
-            $('input.timepicker').timepicker({ timeFormat: 'h:mm:ss p' });
-        });
-
     </script>
    
     <body>
@@ -42,7 +37,9 @@
             <?php  $this->load->view("portal/vw_pa_header",$header);    ?>
         </div>
         <div id="main">
-            <div id="modal" style="display:none;"></div>
+            <div id="modal" style="display:none;">
+                <div id="contenido_modal"></div>
+            </div>
             <div id="seccion_titulo_tabs">
                 <div id="titulo" >
                     <img src="<?php echo HTTP_IMAGES_PATH?>Main/Header/logo_claro.png" />
@@ -64,7 +61,7 @@
                     <div>Listado de Cursos Agregados</div>
                 </div>
                 <div id="contenido_der">
-                    <a href="administrador/form_crear_curso" rel="modal:open">
+                    <a href="#" onclick="crear_formulario('curso');">
                         <div class="borde_izq_boton_rojo">&nbsp;</div>
                         <div class="borde_centro_boton_rojo">
                             <img src="<?php echo HTTP_IMAGES_PATH?>Administrador/Contenido/ico_agregar_curso.png" />
