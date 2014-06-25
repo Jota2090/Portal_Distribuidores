@@ -37,13 +37,13 @@
                                 <label>Usuario:</label>
 
                                 <?php
-                                    $data1 = array('class'=>'input_login', 'name'=>'user', 'id'=>'user', 'value'=>set_value("usuario"), 'maxlength'=>'100', 'style'=>'width:165px', 'autocomplete'=>'off', 'type'=>'text');
+                                    $data1 = array('class'=>'input_login', 'name'=>'user', 'id'=>'user', 'value'=>set_value("usuario"), 'maxlength'=>'100', 'autocomplete'=>'off', 'type'=>'text');
                                     echo form_input($data1)."<br/>";
                                 ?>
 
                                 <label>Contrase&ntilde;a:</label>
                                 <?php
-                                    $data2 = array('class'=>'input_login', 'name'=>'password', 'id'=>'password', 'value'=>set_value("contrasena"), 'maxlength'=>'100', 'style'=>'width:165px', 'type'=>'password');
+                                    $data2 = array('class'=>'input_login', 'name'=>'password', 'id'=>'password', 'value'=>set_value("contrasena"), 'maxlength'=>'100', 'type'=>'password');
                                     echo form_input($data2)."<br/>";
 
                                     $data3 = array('class'=>'btn_ingresar', 'name'=>'ingresar', 'style'=>'width:120px', 'content'=>'Ingresar', 'onClick' => 'validar_formulario(\'f_login\')');

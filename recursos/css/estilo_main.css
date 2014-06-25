@@ -164,14 +164,14 @@ body{
                 }
                 
                 #header_login input{
-                    width: 150px;
+                    width: 170px;
                     position: relative;
                     top: -10px;
                 }
          
                 .input_login{
                     background: url('../images/Main/Header/fondo_input_login.png') no-repeat;
-                    width: 165px;
+                    width: 170px;
                     height: 30px;
                     border: 0px;
                     padding: 1px 5px;
@@ -258,9 +258,10 @@ body{
     #seccion_superior{
         background: url('../images/Main/Contenido/Superior/cursos_slider.jpg') no-repeat;
         width: 100%;
-        height: 600px;
+        height: auto;
         padding: 0px; 
-        margin: auto; 
+        margin: auto;
+        overflow: hidden;
     }
     
         #seccion_superior_contenido{

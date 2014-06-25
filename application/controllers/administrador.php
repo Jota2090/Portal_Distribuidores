@@ -17,15 +17,21 @@
         
         
         function index(){
-            /*if(!$this->clslogin->check(1)){
-                $data['header'] = '';
-            }else if($this->clslogin->getTipoUsuario() === "A" || $this->clslogin->getTipoUsuario() == "S"){
-                $data['header']['auth'] = $this->clslogin->check();
-                $data['header']['nombre'] = $this->clslogin->getNombre();
-                $data['header']['apellido'] = $this->clslogin->getApellido();
-            }*/
-            $data['header'] = '';
-            $this->load->view("portal/administrador/vw_pa_inicio", $data);
+            if(!$this->clslogin->check(1)){
+                $data['header'] = $this->load->view("main/vw_header");
+                $data['main'] = $this->load->view("main/contenido/superior/vw_inicio_superior").
+                                $this->load->view("main/contenido/inferior/vw_inicio_inferior");
+            }else{
+                $data_header['auth'] = $this->clslogin->check(0);
+                $data_header['nombre'] = $this->clslogin->getNombre();
+                $data_header['apellido'] = $this->clslogin->getApellido();
+                
+                $data['header'] = $this->load->view("main/vw_header", $data_header);
+                $data['main'] = $this->load->view("main/contenido/superior/vw_inicio_superior").
+                                $this->load->view("main/contenido/inferior/vw_inicio_inferior");
+            }
+            
+            $this->load->view("main/vw_plantilla", $data);
             
         }
         
