@@ -15,7 +15,14 @@
   box-shadow: 0 0 10px #000;
 }
 
-.modal a.close-modal {
+.curso {
+    background: url(../images/Modals/fondo_curso.png) no-repeat;
+    display: none;
+    width: 700px;
+    height: 500px;
+}
+
+a.close-modal {
   position: absolute;
   top: -12.5px;
   right: -12.5px;

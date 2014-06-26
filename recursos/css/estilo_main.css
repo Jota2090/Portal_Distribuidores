@@ -72,7 +72,7 @@ body{
                 height: 30px;
                 margin-left: 15px;
                 line-height: 32px;
-                text-align: center;
+                text-align: left;
                 font-weight: bold;
                 font-size: 12px;
                 margin-top: 3px;
@@ -94,8 +94,9 @@ body{
                 
                 #inicio_header #usuario{
                     float:left;
-                    width: auto;
+                    max-width: 350px;
                     text-align: left;
+                    line-height: 32px;
                 }
                 
                 .drop_menu {
@@ -256,6 +257,46 @@ body{
     margin: auto; 
 }
 
+    /* Modals */
+    #contenido_modal{
+        padding: 30px;
+        width: 100%;
+        height: 100%;
+    }
+        
+    .titulo_modal{
+        width:700px;
+        height:50px;
+    }
+    
+        .titulo_modal_izquierdo{
+            width: 25%;
+            text-align: left;
+            margin: auto;
+            float: left;
+        }
+        
+        .titulo_modal_cuerpo{
+            width: 40%;
+            text-align: center;
+            margin: auto;
+            float: left;
+            position: relative;
+            left: 10%;
+        }
+        
+        .titulo_modal_derecho{
+            width: 25%;
+            text-align: right;
+            margin: auto;
+            float: left;
+        }
+    
+    .cuerpo_modal{
+        clear: both;
+    }
+    
+    
     /* Seccion Superior */
     #seccion_superior{
         background: url('../images/Main/Contenido/Superior/cursos_slider.jpg') no-repeat;
@@ -278,7 +319,7 @@ body{
                 width: 100%;
                 height: auto;
                 overflow: hidden;
-                padding-top: 20px;
+                margin-top: 20px;
             }
             
                 #slogan_publicidad{
@@ -313,7 +354,7 @@ body{
                     position: relative;
                     top: 11px;
                     left: 10px;
-                    z-index: 99;
+                    z-index: 1;
                 }                    
 
     /* Seccion Inferior */
@@ -413,67 +454,51 @@ body{
                         font-weight: bold;
                     }
     
-            /* Cursos */        
-            #contenido_izq{
+            /* Estilos De Los Listados de Cursos y Asistentes */ 
+            .titulo_tabla{
+                font-size: 18px;
                 float: left;
-                width: 250px;
-                height: 48px;
-                overflow: hidden;
+                padding-top: 15px;
             }
-
-            #contenido_izq div{
-                color: white;
-                background-color: #b22511;
-                text-align: center;
-                margin: auto;
-                height: 30px;
-                padding: 15px 0px;
-            }
-
-            #contenido_der{
+            
+            .boton_agregar{
                 float: right;
-                width: auto;
-                height: 30px;
-                text-align: right;
+                padding-top: 5px;
+            }
+            
+            .borde_izq_boton_agregar{
+                background: url(../images/Administrador/Contenido/border_izq_btn_rojo.png) no-repeat;
+                width: 10px;
+                height: 40px;
             }
 
-                .borde_izq_boton_rojo{
-                    background: url(../images/Administrador/Contenido/border_izq_btn_rojo.png) no-repeat;
-                    float: left;
-                    width: 10px;
-                    height: 40px;
-                }
+            .borde_centro_boton_agregar{
+                background: url(../images/Administrador/Contenido/cuerpo_btn_rojo.png) repeat-x;
+                width: auto;
+                color: white;
+                padding: 11px;
+                text-align: center;
+            }
 
-                .borde_centro_boton_rojo{
-                    background: url(../images/Administrador/Contenido/cuerpo_btn_rojo.png) repeat-x;
-                    float: left;
-                    width: auto;
-                    height: 40px;
-                    color: white;
-                    padding: 11px;
-                    text-align: center;
-                }
+            .borde_centro_boton_agregar:hover{
+                color: orange;
+            }
 
-                .borde_centro_boton_rojo:hover{
-                    color: orange;
-                }
+            .borde_centro_boton_agregar img{
+                float: left;
+                margin-right: 10px;
+            }
 
-                .borde_centro_boton_rojo img{
-                    float: left;
-                    margin-right: 10px;
-                }
-
-                .borde_centro_boton_rojo div{
-                    float: left;
-                }
+            .borde_centro_boton_agregar div{
+                float: left;
+            }
 
 
-                .borde_der_boton_rojo{
-                    background: url(../images/Administrador/Contenido/border_der_btn_rojo.png) no-repeat;
-                    float: left;
-                    width: 10px;
-                    height: 40px;
-                }
+            .borde_der_boton_agregar{
+                background: url(../images/Administrador/Contenido/border_der_btn_rojo.png) no-repeat;
+                width: 10px;
+                height: 40px;
+            }
 
                 .borde_izq_boton_blanco{
                     background: url(../images/Administrador/Contenido/border_izq_btn_blanco.png) no-repeat;

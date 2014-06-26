@@ -55,7 +55,7 @@ function validar_formulario(form){
 
 
 function crear_formulario(form){
-    $( "#modal" ).modal();
+    $( "#modal" ).modal('', form);
     
     $.ajax({
         type:"post",

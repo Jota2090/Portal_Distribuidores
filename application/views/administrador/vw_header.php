@@ -6,15 +6,13 @@
     <div id="header_opciones">
         <?php
         if(isset($auth) && $auth){  ?>
-        <div class="menu_header" style="float: right;">
-            <div class="opcion"><a href="<?php echo base_url()?>login/logout">Cerrar Sesi&oacute;n</a></div>
-        </div>
         <div id="inicio_header">
-            <img src="<?php echo HTTP_IMAGES_PATH; ?>Main/Header/ico_usuario.png" />
+            <div><img src="<?php echo HTTP_IMAGES_PATH; ?>Main/Header/ico_usuario.png" /></div>
             <div id="usuario">Bienvenido, <?php echo $nombre." ".$apellido;?></div>
         </div>
         <div class="menu_header">
-            <div class="opcion"><a href="administrador/cursos">Cursos</a></div>
+            <div class="opcion"><a href="<?php echo base_url()?>login/logout/administrador">Cerrar Sesi&oacute;n</a></div>
+            <div class="opcion"><a href="<?php echo base_url()?>administrador/cursos">Cursos</a></div>
         </div>
         <?php }else{    ?>
         <div id="inicio_header">

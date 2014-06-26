@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <title>Cursos de Capacitacion</title>
-        <script type="text/javascript" src="<?php echo HTTP_JS_PATH; ?>jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="<?php echo HTTP_JS_PATH; ?>jquery-1.11.1.min.js"></script>
         <script type="text/javascript" src="<?php echo HTTP_JS_PATH; ?>mis_funciones.js"></script>
         <script type="text/javascript" src="<?php echo HTTP_JS_PATH; ?>ext-base.js"></script>
         <script type="text/javascript" src="<?php echo HTTP_JS_PATH; ?>ext-all.js"></script>
@@ -23,13 +23,8 @@
             <?php $this->load->view($header, $header_data); ?>
         </div>
         <div id="main">
-            <div id="modal" style="display:none;">
-                <div id="contenido_modal"></div>
-            </div>
             <?php $this->load->view($superior); ?>
             <?php $this->load->view($inferior); ?>
-                </div>
-            </div>
         </div>
         <div id="footer">&nbsp;</div>
     </body>

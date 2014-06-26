@@ -6,12 +6,13 @@
 
   var current = null;
 
-  $.modal = function(el, options) {
+  $.modal = function(el, options, className) {
     $.modal.close(); // Close any open modals.
     var remove, target;
     this.$body = $('body');
     this.options = $.extend({}, $.modal.defaults, options);
     this.options.doFade = !isNaN(parseInt(this.options.fadeDuration, 10));
+    
     if (el.is('a')) {
       target = el.attr('href');
       //Select element by id from href
@@ -41,14 +42,14 @@
       }
     } else {
       this.$elm = el;
-      this.open();
+      this.open(className);
     }
   };
 
   $.modal.prototype = {
     constructor: $.modal,
 
-    open: function() {
+    open: function(className) {
       var m = this;
       if(this.options.doFade) {
         this.block();
@@ -57,7 +58,7 @@
         }, this.options.fadeDuration * this.options.fadeDelay);
       } else {
         this.block();
-        this.show();
+        this.show(className);
       }
       if (this.options.escapeClose) {
         $(document).on('keydown.modal', function(event) {
@@ -101,13 +102,13 @@
       }
     },
 
-    show: function() {
+    show: function(className) {
       this.$elm.trigger($.modal.BEFORE_OPEN, [this._ctx()]);
       if (this.options.showClose) {
         this.closeButton = $('<a href="#close-modal" rel="modal:close" class="close-modal ' + this.options.closeClass + '">' + this.options.closeText + '</a>');
         this.$elm.append(this.closeButton);
       }
-      this.$elm.addClass(this.options.modalClass + ' current');
+      this.$elm.addClass(className + ' current');
       this.center();
       if(this.options.doFade) {
         this.$elm.fadeIn(this.options.fadeDuration);
@@ -209,9 +210,9 @@
   $.modal.AJAX_FAIL = 'modal:ajax:fail';
   $.modal.AJAX_COMPLETE = 'modal:ajax:complete';
 
-  $.fn.modal = function(options){
+  $.fn.modal = function(options, className){
     if (this.length === 1) {
-      current = new $.modal(this, options);
+      current = new $.modal(this, options, className);
     }
     return this;
   };

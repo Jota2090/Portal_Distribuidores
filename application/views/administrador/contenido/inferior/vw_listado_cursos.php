@@ -1,19 +1,22 @@
 <div id="seccion_inferior">
     <div id="seccion_inferior_contenido" >
+        <div id="modal" style="display:none;">
+            <div id="contenido_modal"></div>
+        </div>
         <div class="filas">
-            <div id="contenido_izq">
-                <div>Listado de Cursos Agregados</div>
-            </div>
-            <div id="contenido_der">
-                <a href="#" onclick="crear_formulario('curso');">
-                    <div class="borde_izq_boton_rojo">&nbsp;</div>
-                    <div class="borde_centro_boton_rojo">
+            <div class="titulo_tabla">LISTA DE CURSOS AGREGADOS</div>
+            <div class="boton_agregar">
+                <a href="javascript:" onclick="crear_formulario('curso');">
+                    <div class="borde_izq_boton_agregar">&nbsp;</div>
+                    <div class="borde_centro_boton_agregar">
                         <img src="<?php echo HTTP_IMAGES_PATH?>Administrador/Contenido/ico_agregar_curso.png" />
                         <div>Agregar Curso Nuevo</div>
                     </div>
-                    <div class="borde_der_boton_rojo">&nbsp;</div>
+                    <div class="borde_der_boton_agregar">&nbsp;</div>
                 </a>
             </div>
+        </div>
+        <div class="filas">
             <table id="cursos" class="row-border hover" cellspacing="0" width="100%" >
                 <thead>
                     <tr>

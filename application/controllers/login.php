@@ -42,9 +42,14 @@
         }
         
         
-        function logout(){
+        function logout($portal){
             $this->clslogin->logout();
-            redirect(site_url("main"));
+            
+            if($portal != ""  && $portal != null && ($portal == "main" || $portal == "administrador")){
+                redirect(site_url($portal));
+            }else{
+                redirect(site_url("main"));
+            }
         }
         
         

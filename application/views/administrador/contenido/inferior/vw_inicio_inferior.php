@@ -1,7 +1,7 @@
 <div id="seccion_inferior">
     <div id="seccion_inferior_contenido" >
         <div class="filas">
-            <h4>CURSOS DESTACADOS DEL D&Iacute;A</h4>
+            <div class="titulo_tabla">CURSOS DESTACADOS DEL D&Iacute;A</div>
         </div>
         <div class="filas">
             <div class="cursos_destacados">
