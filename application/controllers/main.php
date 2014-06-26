@@ -15,24 +15,23 @@
             parent::__construct();        
         }
         
-        
         function index(){
             if(!$this->clslogin->check(0)){
-                $data['header'] = $this->load->view("main/vw_header");
-                $data['main'] = $this->load->view("main/contenido/superior/vw_inicio_superior").
-                                $this->load->view("main/contenido/inferior/vw_inicio_inferior");
+                $data['header'] = 'main/vw_header';
+                $data['header_data']['form_login'] = '';
+                $data['superior'] = 'main/contenido/superior/vw_inicio_superior';
+                $data['inferior'] = 'main/contenido/inferior/vw_inicio_inferior';
             }else{
-                $data_header['auth'] = $this->clslogin->check(0);
-                $data_header['nombre'] = $this->clslogin->getNombre();
-                $data_header['apellido'] = $this->clslogin->getApellido();
+                $data['header'] = 'main/vw_header';
+                $data['header_data']['auth'] = $this->clslogin->check(0);
+                $data['header_data']['nombre'] = $this->clslogin->getNombre();
+                $data['header_data']['apellido'] = $this->clslogin->getApellido();
                 
-                $data['header'] = $this->load->view("main/vw_header", $data_header);
-                $data['main'] = $this->load->view("main/contenido/superior/vw_inicio_superior").
-                                $this->load->view("main/contenido/inferior/vw_inicio_inferior");
+                $data['superior'] = 'main/contenido/superior/vw_inicio_superior';
+                $data['inferior'] = 'main/contenido/inferior/vw_inicio_inferior';
             }
             
-            $this->load->view("main/vw_plantilla", $data);
-            
+            $this->load->view("vw_plantilla_inicio", $data);
         }
     }
     

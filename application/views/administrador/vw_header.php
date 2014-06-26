@@ -7,19 +7,16 @@
         <?php
         if(isset($auth) && $auth){  ?>
         <div class="menu_header" style="float: right;">
-            <div class="opcion"><a href="<?php echo base_url()?>/login/logout">Cerrar Sesi&oacute;n</a></div>
+            <div class="opcion"><a href="<?php echo base_url()?>login/logout">Cerrar Sesi&oacute;n</a></div>
         </div>
         <div id="inicio_header">
             <img src="<?php echo HTTP_IMAGES_PATH; ?>Main/Header/ico_usuario.png" />
             <div id="usuario">Bienvenido, <?php echo $nombre." ".$apellido;?></div>
         </div>
         <div class="menu_header">
-            <div class="opcion"><a href="#">Mis Cursos</a></div>
+            <div class="opcion"><a href="administrador/cursos">Cursos</a></div>
         </div>
         <?php }else{    ?>
-        <div class="menu_header" style="float: right;">
-            <div class="opcion"><a href="#">Reg&iacute;strate</a></div>
-        </div>
         <div id="inicio_header">
             <ul class="drop_menu">
                 <li>
@@ -32,9 +29,9 @@
                             <div id="header_login">
                                  <?php 
                                     $attributes = array('id' => 'f_login', 'name' => 'f_login');
-                                    echo form_open(base_url().'login/validar', $attributes);
+                                    echo form_open(base_url().'/login/validar', $attributes);
                                     
-                                    $data = array('name'=>'tipo', 'id'=>'tipo', 'value'=>'main', 'type'=>'hidden');
+                                    $data = array('name'=>'tipo', 'id'=>'tipo', 'value'=>'administrador', 'type'=>'hidden');
                                     echo form_input($data);
                                 ?>
                                 <label>Usuario:</label>

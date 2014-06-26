@@ -20,10 +20,16 @@
    
     <body>
         <div id="header">
-            <?php  $header; ?>
+            <?php $this->load->view($header, $header_data); ?>
         </div>
         <div id="main">
-            <?php  $main; ?>
+            <div id="modal" style="display:none;">
+                <div id="contenido_modal"></div>
+            </div>
+            <?php $this->load->view($superior); ?>
+            <?php $this->load->view($inferior); ?>
+                </div>
+            </div>
         </div>
         <div id="footer">&nbsp;</div>
     </body>

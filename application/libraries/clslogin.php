@@ -245,6 +245,9 @@
         */
             function check($tipo)
             {
+                if($tipo == "main"){ $tipo = 0; }
+                elseif($tipo == "administrador") { $tipo = 1; }
+                
                 switch ($tipo) {
                     
                     case 0:
@@ -262,7 +265,14 @@
                             return false;
                         }
                         break;
-                        
+                    
+                    default :
+                        if ($this->_auth && ($this->_tipo_usuario == 'U' || $this->_tipo_usuario == 'S')){
+                            return true;
+                        }else{
+                            return false;
+                        }
+                        break;
                 }
             }
 

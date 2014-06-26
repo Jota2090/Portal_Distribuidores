@@ -24,11 +24,20 @@
         
         
         function validar(){
-            if($this->clslogin->login($this->input->post("user"), $this->input->post("password"))){
+            if($this->clslogin->login($this->input->post("user"), $this->input->post("password")) 
+                    && $this->clslogin->check($this->input->post("tipo"))){
                 echo "<div id='success'>true</div>";
             }else{
-                $data['auth'] = $this->clslogin->check(0);
-                echo $this->load->view("main/vw_header", $data);
+                if($this->input->post("tipo")=="main"){
+                    $data['auth'] = $this->clslogin->check(0);
+                    echo $this->load->view("main/vw_header", $data);
+                }elseif($this->input->post("tipo")=="administrador"){
+                    $data['auth'] = $this->clslogin->check(1);
+                    echo $this->load->view("administrador/vw_header", $data);
+                }else{
+                    $data['auth'] = $this->clslogin->check(0);
+                    echo $this->load->view("main/vw_header", $data);
+                }
             }
         }
         

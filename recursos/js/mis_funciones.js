@@ -31,18 +31,19 @@ function validar_formulario(form){
         if(form == 'f_login'){
             var user = document.getElementById('user').value;
             var password = document.getElementById('password').value;
+            var tipo = document.getElementById('tipo').value;
             
             $.ajax({
                 type:"post",
-                url: "login/validar",
-                data:"user="+user+"&password="+password,
+                url: servidor+"login/validar",
+                data:"user="+user+"&password="+password+"&tipo="+tipo,
                 beforeSend: function () {
-                    $( "#header" ).html( "<table><tr><td valign='center' height='40px' width='100%' align='center'>Cargando... <img src='recursos/images/loading.gif'><td></tr><table>" );
+                    $( "#header" ).html( "<div style='width: 100%; text-align: center;'>Cargando... <img src='"+servidor+"recursos/images/loading.gif'></div>" );
                 },
                 success:function(info){
                     var success = info.indexOf("true");
                     if(success > 0){
-                        document.location = servidor+"main";
+                        document.location = servidor+tipo;
                     }else{
                         $( "#header" ).html( info );
                     }
@@ -56,12 +57,22 @@ function validar_formulario(form){
 function crear_formulario(form){
     $( "#modal" ).modal();
     
-    Ext.get('contenido_modal').load({
+    $.ajax({
+        type:"post",
+        url: servidor+"administrador/form_crear_"+form,
+        beforeSend: function () {
+            $( "#contenido_modal" ).html( "<div style='width: 100%; text-align: center;'>Cargando... <img src='"+servidor+"recursos/images/loading.gif'></div>" );
+        },
+        success:function(info){
+            $( "#contenido_modal" ).html( info );
+        }
+    });
+    /*Ext.get('contenido_modal').load({
             url: 'administrador/form_crear_'+form,
             scripts:true,
             nocache: true,
             text: "<div style='width:300px; height:50px;' align='center'><img src='"+servidor+"recursos/images/loading.gif'></div>"
-    });
+    });*/
 }
 
 

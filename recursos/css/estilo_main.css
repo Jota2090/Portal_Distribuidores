@@ -12,6 +12,7 @@ body{
     margin: 0px; 
     color: #666666; 
     font-family: Arial;
+    font-size: 12px;
 }
 
 @font-face {
@@ -42,6 +43,7 @@ body{
             padding-top: 10px;
             color: #000000;
             margin: auto;
+            font-size: 15px;
         }
 
             #header_titulo div{
@@ -164,7 +166,7 @@ body{
                 }
                 
                 #header_login input{
-                    width: 170px;
+                    width: 160px;
                     position: relative;
                     top: -10px;
                 }
@@ -331,6 +333,8 @@ body{
             margin: auto;
         }
     
+        
+            /* Inicio */
             .cursos_destacados{
                 width: 300px;
                 float: left;
@@ -409,7 +413,110 @@ body{
                         font-weight: bold;
                     }
     
-    
+            /* Cursos */        
+            #contenido_izq{
+                float: left;
+                width: 250px;
+                height: 48px;
+                overflow: hidden;
+            }
+
+            #contenido_izq div{
+                color: white;
+                background-color: #b22511;
+                text-align: center;
+                margin: auto;
+                height: 30px;
+                padding: 15px 0px;
+            }
+
+            #contenido_der{
+                float: right;
+                width: auto;
+                height: 30px;
+                text-align: right;
+            }
+
+                .borde_izq_boton_rojo{
+                    background: url(../images/Administrador/Contenido/border_izq_btn_rojo.png) no-repeat;
+                    float: left;
+                    width: 10px;
+                    height: 40px;
+                }
+
+                .borde_centro_boton_rojo{
+                    background: url(../images/Administrador/Contenido/cuerpo_btn_rojo.png) repeat-x;
+                    float: left;
+                    width: auto;
+                    height: 40px;
+                    color: white;
+                    padding: 11px;
+                    text-align: center;
+                }
+
+                .borde_centro_boton_rojo:hover{
+                    color: orange;
+                }
+
+                .borde_centro_boton_rojo img{
+                    float: left;
+                    margin-right: 10px;
+                }
+
+                .borde_centro_boton_rojo div{
+                    float: left;
+                }
+
+
+                .borde_der_boton_rojo{
+                    background: url(../images/Administrador/Contenido/border_der_btn_rojo.png) no-repeat;
+                    float: left;
+                    width: 10px;
+                    height: 40px;
+                }
+
+                .borde_izq_boton_blanco{
+                    background: url(../images/Administrador/Contenido/border_izq_btn_blanco.png) no-repeat;
+                    float: left;
+                    width: 10px;
+                    height: 30px;
+                }
+
+                .borde_centro_boton_blanco{
+                    background: url(../images/Administrador/Contenido/cuerpo_btn_blanco.png) repeat-x;
+                    float: left;
+                    width: auto;
+                    height: 30px;
+                    color: red;
+                    padding-top: 8px;
+                    text-align: center;
+                }
+
+                .borde_centro_boton_blanco a:hover{
+                    text-decoration: underline;
+                }
+
+                .borde_centro_boton_blanco img{
+                    float: left;
+                    margin-right: 10px;
+                }
+
+                .borde_centro_boton_blanco div{
+                    float: left;
+                }
+
+                .borde_der_boton_blanco{
+                    background: url(../images/Administrador/Contenido/border_der_btn_blanco.png) no-repeat;
+                    float: left;
+                    width: 10px;
+                    height: 30px;
+                }
+
+                .acciones{
+                    float: left;
+                    margin-left: 10px;
+                }        
+            
 
 /* Footer */
 #footer{
