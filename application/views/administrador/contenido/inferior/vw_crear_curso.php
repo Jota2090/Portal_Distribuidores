@@ -44,22 +44,42 @@
         $data = array('class'=>'form_modal_input', 'name'=>'cupos', 'id'=>'cupos', 'value'=>set_value("cupos"), 'style'=>'width:50px; margin-right: 10px;');
         echo "<div class='form_div'><div class='form_modal_label'>Cupos Disponibles:</div>".form_input($data)."</div>";
     
-        
+       
     ?>
     </div>
     <div class="form_modal_contenido">
-    <?php  
-        $data = array('class'=>'form_modal_input', 'name'=>'cedula', 'id'=>'cedula', 'value'=>set_value("cedula"), 'maxlength'=>'100', 'style'=>'width:50%', 'type'=>'text');
-        echo "<div class='form_div'><div class='form_modal_label'>C&eacute;dula:</div>".form_input($data)."</div>";
+    <?php
+        $js = "id='instructor' class='form_modal_input'";
+        echo "<div class='form_div'><div class='form_modal_label'>Instructor:</div>".form_dropdown('instructor', $instructores, '', $js)."</div>";
 
-        $data = array('class'=>'form_modal_input', 'name'=>'usuario', 'id'=>'usuario', 'value'=>set_value("usuario"), 'maxlength'=>'100', 'style'=>'width:50%', 'autocomplete'=>'off', 'type'=>'text');
-        echo "<div class='form_div'><div class='form_modal_label'>Usuario:</div>".form_input($data)."</div>";
+        $js = "id='tema' class='form_modal_input'";
+        echo "<div class='form_div'><div class='form_modal_label'>Tema:</div>".form_dropdown('tema', $temas, '', $js)."</div>";
 
-        $data = array('class'=>'form_modal_input', 'name'=>'contrasena', 'id'=>'contrasena', 'value'=>set_value("contrasena"), 'maxlength'=>'100', 'style'=>'width:50%', 'type'=>'password');
-        echo "<div class='form_div'><div class='form_modal_label'>Contrase&ntilde;a:</div>".form_input($data)."</div>";
+        $data = array('class'=>'form_modal_input', 'name'=>'subtema', 'id'=>'subtema', 'value'=>set_value("subtema"), 'type'=>'text');
+        echo "<div class='form_div'><div class='form_modal_label'>Subtema:</div>".form_input($data)."</div>";
+
+        $js = "id='provincia' class='form_modal_input' onchange='cambiar_ciudad(this.value);'";
+        echo "<div class='form_div'><div class='form_modal_label'>Provincia:</div>".form_dropdown('provincia', $provincias, '', $js)."</div>";
+
+        $js = "id='ciudad' class='form_modal_input'";
+        echo "<div class='form_div'><div class='form_modal_label'>Ciudad:</div><div id='contenido_ciudad'>".form_dropdown('ciudad', $ciudades, '', $js)."</div></div>";
         
-        /*$options = array('S'=>'Super Administrador', 'V'=>'Vendedores', 'U'=>'Asistente (Administrador)');
-        echo "Tipo:".form_dropdown('tipo', $options, 'U')."<br/>";*/
+        $data = array('class'=>'form_modal_input', 'name'=>'direccion_curso', 'id'=>'direccion_curso', 'value'=>set_value("direccion_curso"), 'type'=>'text');
+        echo "<div class='form_div'><div class='form_modal_label'>Dirección:</div>".form_input($data)."</div>";
+
+        $data = array('class'=>'form_modal_input', 'name'=>'latitud', 'id'=>'latitud', 'value'=>set_value("latitud"), 'style'=>'width:70px', 'type'=>'text', 'autocomplete'=>'false');
+        $data2 = array('class'=>'form_modal_input', 'name'=>'longitud', 'id'=>'longitud', 'value'=>set_value("longitud"), 'style'=>'width:70px', 'type'=>'text',  'autocomplete'=>'false');
+        echo "<div class='form_div' style='height: 50px;'>
+                <div class='form_modal_label'>Mapa:</div>
+                <div style='float: left; padding: 2px 5px 0px 0px;'> Lat </div>".form_input($data).
+                "<div style='float: left; padding: 2px 5px;'> Lon </div>".form_input($data2).
+                "<div style='clear: both; padding-top: 5px; text-align: right; width: 318px;'> 
+                   <a style='color: red' href='javascript:' onclick='ver_mapa();'> Abrir GoogleMaps </a> 
+                 </div>
+             </div>";
+        
+        $data = array('class'=>'form_modal_input', 'name'=>'comentarios', 'id'=>'comentarios', 'value'=>set_value("comentarios"), 'rows'=>'3', 'cols'=>'3');
+        echo "<div class='form_div'><div class='form_modal_label'>Comentarios:</div>".form_textarea($data)."</div>";
 
         echo form_submit('crear', 'Crear Usuario');
 

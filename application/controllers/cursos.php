@@ -23,10 +23,11 @@
                 case 0:
                     
                     $select = "cur_id, cur_estado, cur_nombre, cur_fecha_inicio, cur_hora_inicio, ins_nombre, ins_apellido, ciu_nombre";
-                    $or_where = array("cur_estado" => "D", "cur_estado" => "C", "cur_estado" => "T");
+                    $where = array("cur_estado" => "D");
+                    $or_where = array("cur_estado" => "C", "cur_estado" => "T");
                     $join = array( "tbl_curso" => "cur_ciudad_id=ciu_id", "tbl_instructor" => "cur_instructor_id=ins_cedula", "tbl_parametros" => "cur_estado=par_sigla"  );
                     
-                    $resultado = $this->curso->get_cursos($select, array(), $or_where, $join);
+                    $resultado = $this->curso->get_cursos($select, $where, $or_where, $join);
                     
                     $items = array();
                     $data = array();
@@ -52,10 +53,12 @@
                         $data['data'] = $items;
                     }
                     
+                    $data = json_encode($data);
+                    
                     break;
             }
             
-            echo json_encode($data);
+            echo $data;
         }
     }
     

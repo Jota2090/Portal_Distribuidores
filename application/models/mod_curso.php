@@ -501,14 +501,14 @@
         /**
          * Initialize get_cursos()
          * 
-         * Esta función retorna el listado de cursos creados según los parámetros enviados
+         * Esta función retorna el listado de cursos o un curso específico según los parámetros enviados
          * 
          * @access public
          * @param string $select 
          * @param array $where 
          * @param array $or_where 
          * @param array $join 
-         * @return array $cursos
+         * @return array $resultado
         */
         public function get_cursos($select = "*", $where = array(), $or_where = array(), $join = array()){
             
@@ -533,7 +533,7 @@
             }
             
             
-            $this->db->order_by("cur_fecha_inicio", "asc"); 
+            $this->db->order_by("cur_fecha_inicio", "desc"); 
             
             $resultado = $this->db->get($this->get_name_table());
             

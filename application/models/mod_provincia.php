@@ -97,5 +97,46 @@
             parent::__construct();
         }
         
+        
+        /**
+         * Initialize get_provincias()
+         * 
+         * Esta función retorna un listado de provincias o una provincia específica según los parámetros enviados
+         * 
+         * @access public
+         * @param string $select 
+         * @param array $where 
+         * @param array $or_where 
+         * @param array $join 
+         * @return array $resultado
+        */
+        public function get_provincias($select = "*", $where = array(), $or_where = array(), $join = array()){
+            
+            $this->db->select($select);
+            
+            if(count($where) > 0){
+                foreach ($where as $key => $value) {
+                    $this->db->where($key, $value);
+                }
+            }
+            
+            if(count($or_where) > 0){
+                foreach ($or_where as $key => $value) {
+                    $this->db->or_where($key, $value);
+                }
+            }
+            
+            if(count($join) > 0){
+                foreach ($join as $key => $value) {
+                    $this->db->join($key, $value);
+                }
+            }
+            
+            $this->db->order_by("pro_nombre", "asc"); 
+            
+            $resultado = $this->db->get($this->get_name_table());
+            
+            return $resultado;
+        }
     }
 ?>
