@@ -91,7 +91,9 @@
         <i class="icono-agregar-curso">&nbsp;</i>
         <span>
         <?php
-            echo form_submit('crear', 'Agregar Curso');
+            $imagenes = array('0' => true, '1' => 'imagen');
+            $js = 'onclick="enviar_formulario(\'f_nuevo_curso\', \'cursos/crear_curso\', \'tabla_listado_cursos\', \'listado_curso\', '.$imagenes.')"';
+            echo form_submit('crear', 'Agregar Curso', $js);
         ?>
         </span>
     </span>
@@ -146,38 +148,4 @@
             stepMinute: 5,
         });
     });
-    
-    $(document).ready(function() {
-        $('#f_nuevo_curso').submit(function() {
-
-            var imagenes = document.getElementById("imagen").files;
-            var formData = new FormData($('#f_nuevo_curso')[0]);
-            
-            formData.append('imagen', imagenes);
-
-            $.ajax({
-                    type:"post",          
-                    url: servidor+"cursos/crear_curso",
-                    data:formData,
-                    dataType: 'json',
-                    contentType:false,
-                    processData:false,
-                    cache:false,
-                    success: function(result){
-                        if(result.st == 0)
-                        {
-                            Ext.Msg.alert('Error',result.msg);
-                        }
-                        else if(result.st == 1)
-                        {
-                            Ext.Msg.alert('Informaci\xf3n',result.msg);
-                        }
-                    } 
-                  });
-                  
-            return false;
-        });
-    });
-    
-    
 </script>

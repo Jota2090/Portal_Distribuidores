@@ -111,7 +111,9 @@
         <i class="icono-guardar"></i>
         <span>
         <?php
-            echo form_submit('editar', 'Guardar cambios');
+            $imagenes = array('0' => true, '1' => 'imagen');
+            $js = 'onclick="enviar_formulario(\'f_curso\', \'cursos/editar_curso\', \'tabla_listado_cursos\', \'listado_curso\', '.$imagenes.')"';
+            echo form_submit('editar', 'Guardar cambios', $js);
         ?>
         </span>
     </span>
@@ -164,38 +166,6 @@
             minuteGrid: 15,
             stepHour: 1,
             stepMinute: 5,
-        });
-    });
-    
-    $(document).ready(function() {
-        $('#f_curso').submit(function() {
-
-            var imagenes = document.getElementById("imagen").files;
-            var formData = new FormData($('#f_curso')[0]);
-            
-            formData.append('imagen', imagenes);
-
-            $.ajax({
-                    type:"post",          
-                    url: servidor+"cursos/editar_curso",
-                    data:formData,
-                    dataType: 'json',
-                    contentType:false,
-                    processData:false,
-                    cache:false,
-                    success: function(result){
-                        if(result.st == 0)
-                        {
-                            Ext.Msg.alert('Error',result.msg);
-                        }
-                        else if(result.st == 1)
-                        {
-                            Ext.Msg.alert('Informaci\xf3n',result.msg, function(){ refrescar_seccion('tabla_listado_cursos', 'listado_curso') });
-                        }
-                    } 
-                  });
-                  
-            return false;
         });
     });
 </script>

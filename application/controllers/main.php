@@ -11,27 +11,27 @@
     */
     class main extends CI_Controller {
     
+        var $data = array(
+                            "scripts" => "main/vw_scripts_css",
+                            "header" => "main/vw_header",
+                            "superior" => "main/contenido/superior/vw_inicio_superior",
+                            "inferior" => "main/contenido/inferior/vw_inicio_inferior"
+                        );
+        
         function __construct(){
             parent::__construct();        
         }
         
         function index(){
             if(!$this->clslogin->check(0)){
-                $data['header'] = 'main/vw_header';
-                $data['header_data']['form_login'] = '';
-                $data['superior'] = 'main/contenido/superior/vw_inicio_superior';
-                $data['inferior'] = 'main/contenido/inferior/vw_inicio_inferior';
+                $this->data['header_data']['form_login'] = '';
             }else{
-                $data['header'] = 'main/vw_header';
-                $data['header_data']['auth'] = $this->clslogin->check(0);
-                $data['header_data']['nombre'] = $this->clslogin->getNombre();
-                $data['header_data']['apellido'] = $this->clslogin->getApellido();
-                
-                $data['superior'] = 'main/contenido/superior/vw_inicio_superior';
-                $data['inferior'] = 'main/contenido/inferior/vw_inicio_inferior';
+                $this->data['header_data']['auth'] = $this->clslogin->check(0);
+                $this->data['header_data']['nombre'] = $this->clslogin->getNombre();
+                $this->data['header_data']['apellido'] = $this->clslogin->getApellido();
             }
             
-            $this->load->view("vw_plantilla_inicio", $data);
+            $this->load->view("vw_plantilla_inicio", $this->data);
         }
     }
     

@@ -17,7 +17,7 @@
             </div>
         </div>
         <div id="listado_curso" class="filas">
-            <?php   $this->load->view("administrador/contenido/inferior/ajax/vw_tabla_listado_cursos"); ?>
+            <?php   $this->load->view("administrador/contenido/inferior/ajax/vw_tabla_listado_curso"); ?>
         </div>
     </div>
 </div>

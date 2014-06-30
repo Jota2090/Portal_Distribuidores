@@ -1,6 +1,6 @@
 /* 
-    Document   : mis_funciones
-    Created on : 21/06/2014
+    Document   : funciones_main
+    Created on : 30/06/2014
     Author     : Edson Jonathan Franco Borja
     Description: Funciones sobre procesos del portal 
 */

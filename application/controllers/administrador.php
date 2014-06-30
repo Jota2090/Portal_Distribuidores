@@ -11,6 +11,13 @@
     */
     class administrador extends CI_Controller {
     
+        var $data = array(
+                            "scripts" => "administrador/vw_scripts_css",
+                            "header" => "administrador/vw_header",
+                            "superior" => "administrador/contenido/superior/vw_inicio_superior",
+                            "inferior" => "administrador/contenido/inferior/vw_inicio_inferior"
+                        );
+            
         function __construct(){
             parent::__construct();
             
@@ -24,34 +31,25 @@
         
         function index(){
             if(!$this->clslogin->check(1)){
-                $data['header'] = 'administrador/vw_header';
-                $data['header_data'] = '';
-                $data['superior'] = 'administrador/contenido/superior/vw_inicio_superior';
-                $data['inferior'] = 'administrador/contenido/inferior/vw_inicio_inferior';
+                $this->data['header_data'] = '';
             }else{
-                $data['header'] = 'administrador/vw_header';
-                $data['header_data']['auth'] = $this->clslogin->check(1);
-                $data['header_data']['nombre'] = $this->clslogin->getNombre();
-                $data['header_data']['apellido'] = $this->clslogin->getApellido();
-                
-                $data['superior'] = 'main/contenido/superior/vw_inicio_superior';
-                $data['inferior'] = 'main/contenido/inferior/vw_inicio_inferior';
+                $this->data['header_data']['auth'] = $this->clslogin->check(1);
+                $this->data['header_data']['nombre'] = $this->clslogin->getNombre();
+                $this->data['header_data']['apellido'] = $this->clslogin->getApellido();  
             }
             
-            $this->load->view("vw_plantilla_inicio", $data);
+            $this->load->view("vw_plantilla_inicio", $this->data);
         }
         
         
         function cursos(){
-            $data['header'] = 'administrador/vw_header';
-            $data['header_data']['auth'] = $this->clslogin->check(1);
-            $data['header_data']['nombre'] = $this->clslogin->getNombre();
-            $data['header_data']['apellido'] = $this->clslogin->getApellido();
+            $this->data['header_data']['auth'] = $this->clslogin->check(1);
+            $this->data['header_data']['nombre'] = $this->clslogin->getNombre();
+            $this->data['header_data']['apellido'] = $this->clslogin->getApellido();
 
-            $data['superior'] = 'administrador/contenido/superior/vw_inicio_superior';
-            $data['inferior'] = 'administrador/contenido/inferior/vw_listado_cursos';
+            $this->data['inferior'] = 'administrador/contenido/inferior/vw_listado_curso';
             
-            $this->load->view("vw_plantilla_inicio", $data);
+            $this->load->view("vw_plantilla_inicio", $this->data);
         }
         
         
@@ -101,7 +99,7 @@
         }
         
         function tabla_listado_cursos(){
-            $this->load->view("administrador/contenido/inferior/ajax/vw_tabla_listado_cursos");
+            $this->load->view("administrador/contenido/inferior/ajax/vw_tabla_listado_curso");
         }
                 
         
@@ -129,9 +127,7 @@
             
             $select = "*";
             $where = array("cur_id" => $this->input->post('id'));
-            
             $resultado = $this->curso->get_cursos($select, $where, array(), array());
-            
             $data['resultado'] = $resultado;
             
             $resultado = $this->instructor->get_instructores('*', array('ins_estado'=>'A'));
