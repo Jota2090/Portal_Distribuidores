@@ -20,6 +20,18 @@ body{
     src: url('../fonts/Lego.ttf');
 }
 
+img{
+    border: 0;
+}
+
+.right{
+    text-align: right;
+}
+
+.left{
+    text-align: left;
+}
+
 /* Header (Cabecera) */
 #header{
     background: url('../images/Main/Header/background.png') repeat-x;
@@ -289,9 +301,12 @@ body{
     }
     
     .cuerpo_modal{
+        width: 100%;
         clear: both;
         margin-top: 10px;
         margin-left: 50px;
+        overflow: hidden;
+        height: 360px;
     }
     
         .form_modal_contenido{
@@ -307,7 +322,7 @@ body{
                 width: auto;
                 height: 30px;
                 clear: both;
-                padding-top: 5px;
+                padding-top: 2px;
             }
                 
                 .form_div img{
@@ -325,7 +340,39 @@ body{
                     width: 195px;
                     float: left;
                 }
+                
+    .boton_modal{
+        clear: both;
+        width: 100%;
+        height:30px;
+        padding: 10px 0px;
+        text-align: center;
+        cursor: pointer;
+    }
     
+        .boton_modal_fondo{
+            background: url(../images/Administrador/Contenido/cuerpo_btn_rojo.png) repeat-x transparent;
+            width: auto;
+            color: white;
+            height: 30px;
+            padding: 12px 40px;
+            text-align: center;
+            border: 0px;
+            min-width: 150px;
+        }
+        
+        .boton_modal_fondo input{
+            background: transparent;
+            border: 0px;
+            color: #ffffff;
+            padding: 10px;
+            cursor: pointer;
+        }
+        
+        .boton_modal_fondo input:hover {
+            color: orange;
+        }
+        
     
     /* Seccion Superior */
     #seccion_superior{
@@ -549,6 +596,11 @@ body{
                     padding-top: 8px;
                     text-align: center;
                 }
+                
+                .borde_centro_boton_blanco a{
+                    color: red;
+                    text-decoration: none;
+                }
 
                 .borde_centro_boton_blanco a:hover{
                     text-decoration: underline;
@@ -581,4 +633,26 @@ body{
     background: url('../images/Main/Footer/background.png') repeat-x;
     width: 100%;
     height: 30px;
+}
+
+
+/* Iconografia */
+i{
+    display: inline-block;
+    vertical-align: middle;
+    background: url('../images/iconografia.png') no-repeat left top;
+    width: 20px;
+    height: 20px;
+}
+
+.icono-agregar-curso{
+    background-position: -20px 0px;
+}
+
+.icono-editar{
+    background-position: -126px -3px;
+}
+
+.icono-guardar{
+    background-position: 0px 0px;
 }

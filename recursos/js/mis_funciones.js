@@ -2,7 +2,7 @@
     Document   : mis_funciones
     Created on : 21/06/2014
     Author     : Edson Jonathan Franco Borja
-    Description: Funciones sobre procesos de validación del portal 
+    Description: Funciones sobre procesos del portal 
 */
 
     var servidor = ((location.href.split('/'))[0])+'//'+((location.href.split('/'))[2])+'/'+((location.href.split('/'))[3])+'/';
@@ -61,10 +61,79 @@
             type:"post",
             url: servidor+"administrador/form_crear_"+form,
             beforeSend: function () {
-                $( "#contenido_modal" ).html( "<div style='width: 100%; text-align: center;'>Cargando... <img src='"+servidor+"recursos/images/loading.gif'></div>" );
+                $( "#contenido_modal" ).html( "<div style='width: 100%; height: 100%; vertical-align: middle; text-align: center;'>Cargando... <img src='"+servidor+"recursos/images/loading.gif'></div>" );
             },
             success:function(info){
                 $( "#contenido_modal" ).html( info );
+            }
+        });
+    }
+    
+    
+    function ver_detalles(form,parametros){
+        $( "#modal" ).modal('', form);
+
+        $.ajax({
+            type:"post",
+            url: servidor+"administrador/ver_"+form,
+            data: parametros,
+            beforeSend: function () {
+                $( "#contenido_modal" ).html( "<div style='width: 100%;  vertical-align: middle; text-align: center;'>Cargando... <img src='"+servidor+"recursos/images/loading.gif'></div>" );
+            },
+            success:function(info){
+                $( "#contenido_modal" ).html( info );
+            }
+        });
+    }
+    
+    
+    function editar(form,parametros){
+        $( "#modal" ).modal('', form);
+
+        $.ajax({
+            type:"post",
+            url: servidor+"administrador/editar_"+form,
+            data: parametros,
+            beforeSend: function () {
+                $( "#contenido_modal" ).html( "<div style='width: 100%;  vertical-align: middle; text-align: center;'>Cargando... <img src='"+servidor+"recursos/images/loading.gif'></div>" );
+            },
+            success:function(info){
+                $( "#contenido_modal" ).html( info );
+            }
+        });
+    }
+
+
+    function eliminar(form,parametros){
+        Ext.Msg.confirm('Confirmaci\xF3n', 'Confirma que desea eliminar el '+form+' seleccionado?', function(buttonText) {
+            if (buttonText == "yes"){
+                $.ajax({
+                    type:"post",
+                    url: servidor+"administrador/eliminar_"+form,
+                    data: parametros,
+                    beforeSend: function () {
+                        $( "#listado_"+form ).html( "<div style='width: 100%;  vertical-align: middle; text-align: center;'>Cargando... <img src='"+servidor+"recursos/images/loading.gif'></div>" );
+                    },
+                    success:function(info){
+                        $( "#listado_"+form ).html( info );
+                    }
+                });
+            }
+	});
+					
+	return false;
+    }
+    
+    
+    function refrescar_seccion(funcion, seccion){
+        $.ajax({
+            type:"post",
+            url: servidor+"administrador/"+funcion,
+            beforeSend: function () {
+                $( "#"+seccion ).html( "<div style='width: 100%;  vertical-align: middle; text-align: center;'>Cargando... <img src='"+servidor+"recursos/images/loading.gif'></div>" );
+            },
+            success:function(info){
+                $( "#"+seccion ).html( info );
             }
         });
     }
@@ -96,12 +165,12 @@
         }
         
         if(latitud === "" || longitud === ""){
-            Ext.Msg.alert("Atención","Debe ingresar Latitud y Longitud");
+            Ext.Msg.alert("Atenci\xf3n","Debe ingresar Latitud y Longitud");
             return ;
         }
         
         if(direccion === ""){
-            Ext.Msg.alert("Atención","Debe ingresar la Dirección del Curso");
+            Ext.Msg.alert("Atenci\xf3n","Debe ingresar la Direcci\xf3n del Curso");
             return ;
         }
         
@@ -111,3 +180,21 @@
     }
 
 
+    function validarSoloNumeros(e) {
+        tecla = (document.all) ? e.keyCode : e.which;
+        if (tecla==8) return true;
+        else if (tecla==0||tecla==9) return true;
+        patron =/[0-9\\]/;
+        te = String.fromCharCode(tecla);
+        return patron.test(te);
+    }
+    
+    
+    function validarSoloLetras(e) {
+        tecla = (document.all) ? e.keyCode : e.which;
+        if (tecla==8) return true;
+        else if (tecla==0||tecla==9) return true;
+        patron =/[A-Za-z\s\xf1\xd1\xe1\xe9\xed\xf3\xfa\xc1\xc9\xcd\xd3\xda\xfc\xdc]/;
+        te = String.fromCharCode(tecla);
+        return patron.test(te);
+    } 

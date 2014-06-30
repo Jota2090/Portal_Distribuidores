@@ -522,7 +522,7 @@
             
             if(count($or_where) > 0){
                 foreach ($or_where as $key => $value) {
-                    $this->db->or_where($key, $value);
+                    $this->db->or_where($value, $key);
                 }
             }
             
@@ -536,6 +536,79 @@
             $this->db->order_by("cur_fecha_inicio", "desc"); 
             
             $resultado = $this->db->get($this->get_name_table());
+            
+            return $resultado;
+        }
+        
+        
+        /**
+         * Initialize guardar_curso()
+         * 
+         * Esta función crea un curso nuevo en el portal
+         * 
+         * @access public
+         * @return void
+        */
+        public function guardar_curso(){
+            
+            $data = array(
+               'cur_nombre'             => $this->_nombre,
+               'cur_descripcion'        => $this->_descripcion ,
+               'cur_url_imagen'         => $this->_url_imagen ,
+               'cur_fecha_inicio'       => $this->_fecha_inicio ,
+               'cur_fecha_fin'          => $this->_fecha_fin ,
+               'cur_hora_inicio'        => $this->_hora_inicio,
+               'cur_hora_fin'           => $this->_hora_fin ,
+               'cur_jornada'            => $this->_jornada,
+               'cur_direccion'          => $this->_direccion ,
+               'cur_latitud'            => $this->_latitud ,
+               'cur_longitud'           => $this->_longitud ,
+               'cur_duracion'           => $this->_duracion ,
+               'cur_cupos_total'        => $this->_cupos_total,
+               'cur_cupos_disponibles'  => $this->_cupos_disponibles ,
+               'cur_costo'              => $this->_costo ,
+               'cur_comentarios'        => $this->_comentarios ,
+               'cur_provincia_id'       => $this->_provincia ,
+               'cur_ciudad_id'          => $this->_ciudad ,
+               'cur_tema_id'            => $this->_tema ,
+               'cur_subtema'            => $this->_subtema ,
+               'cur_instructor_id'      => $this->_instructor ,
+               'cur_fecha_modificado'   => $this->_fecha_modificado
+            );
+
+            $resultado = $this->db->insert($this->get_name_table(), $data);
+            
+            return $resultado;
+        }
+        
+        
+        /**
+         * Initialize update_cursos()
+         * 
+         * Esta función actualiza la información de un curso específico según los parámetros enviados
+         * 
+         * @access public
+         * @param array $data 
+         * @param array $where 
+         * @return array $resultado
+        */
+        public function update_cursos($data = array(), $where = array()){
+            
+            $datos_act = array();
+            
+            if(count($data) > 0){
+                foreach ($data as $key => $value) {
+                    $datos_act[$key] = $value;
+                }
+            }
+            
+            if(count($where) > 0){
+                foreach ($where as $key => $value) {
+                    $this->db->where($key, $value);
+                }
+            }
+            
+            $resultado = $this->db->update($this->get_name_table(), $datos_act);
             
             return $resultado;
         }

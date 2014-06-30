@@ -72,7 +72,7 @@
 <?php
     if(isset($auth) && !$auth){ ?>
     <script>
-        Ext.Msg.alert("Atención","Usuario y/o Contraseña incorrectos");
+        Ext.Msg.alert("Atenci\xf3n","Usuario y/o Contrase\xf1a incorrectos");
     </script>
 <?php
     }

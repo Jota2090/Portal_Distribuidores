@@ -233,7 +233,7 @@
         
         
         /**
-         * Initialize crear_usuario()
+         * Initialize guardar_usuario()
          * 
          * Esta función crea un usuario nuevo en el portal
          * 
@@ -253,7 +253,7 @@
                'usu_fecha_modificado'   => $this->_fecha_modificado
             );
 
-            $result = $this->db->insert('tbl_usuario', $data);
+            $result = $this->db->insert($this->get_name_table(), $data);
             
             return $result;
         }
