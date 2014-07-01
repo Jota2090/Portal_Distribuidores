@@ -52,6 +52,50 @@
            }
         }
     }
+    
+    
+    function enviar_formulario(form, action, funcion, seccion, existen_imagenes){
+        $('#'+form).submit(function() {
+            
+            var formData = new FormData($('#'+form)[0]);
+            var do_ajax = true;
+            
+            if(existen_imagenes[0] === true){
+                for(i=1; i<existen_imagenes.length; i++){
+                    do_ajax = false;
+                    var imagenes = document.getElementById(existen_imagenes[i]).files;
+                    formData.append(existen_imagenes[i], imagenes);
+                }
+                do_ajax = true;
+            }
+
+            if(do_ajax){
+                
+                $.ajax({
+                    type:"post",          
+                    url: servidor+action,
+                    data:formData,
+                    dataType: 'json',
+                    contentType:false,
+                    processData:false,
+                    cache:false,
+                    success: function(result){
+                        if(result.st == 0)
+                        {
+                            Ext.Msg.alert('Error',result.msg);
+                        }
+                        else if(result.st == 1)
+                        {
+                            Ext.Msg.alert('Informaci\xf3n',result.msg, function(){ $.modal.close(); refrescar_seccion(funcion, seccion); });
+                        }
+                    } 
+                });
+                
+            }
+            
+            return false;
+        });
+    }
 
 
     function crear_formulario(form){
@@ -59,7 +103,7 @@
 
         $.ajax({
             type:"post",
-            url: servidor+"administrador/form_crear_"+form,
+            url: servidor+"main/form_crear_"+form,
             beforeSend: function () {
                 $( "#contenido_modal" ).html( "<div style='width: 100%; height: 100%; vertical-align: middle; text-align: center;'>Cargando... <img src='"+servidor+"recursos/images/loading.gif'></div>" );
             },
@@ -75,7 +119,7 @@
 
         $.ajax({
             type:"post",
-            url: servidor+"administrador/ver_"+form,
+            url: servidor+"main/ver_"+form,
             data: parametros,
             beforeSend: function () {
                 $( "#contenido_modal" ).html( "<div style='width: 100%;  vertical-align: middle; text-align: center;'>Cargando... <img src='"+servidor+"recursos/images/loading.gif'></div>" );
@@ -92,7 +136,7 @@
 
         $.ajax({
             type:"post",
-            url: servidor+"administrador/editar_"+form,
+            url: servidor+"main/editar_"+form,
             data: parametros,
             beforeSend: function () {
                 $( "#contenido_modal" ).html( "<div style='width: 100%;  vertical-align: middle; text-align: center;'>Cargando... <img src='"+servidor+"recursos/images/loading.gif'></div>" );
@@ -109,7 +153,7 @@
             if (buttonText == "yes"){
                 $.ajax({
                     type:"post",
-                    url: servidor+"administrador/eliminar_"+form,
+                    url: servidor+"main/eliminar_"+form,
                     data: parametros,
                     beforeSend: function () {
                         $( "#listado_"+form ).html( "<div style='width: 100%;  vertical-align: middle; text-align: center;'>Cargando... <img src='"+servidor+"recursos/images/loading.gif'></div>" );
@@ -128,7 +172,7 @@
     function refrescar_seccion(funcion, seccion){
         $.ajax({
             type:"post",
-            url: servidor+"administrador/"+funcion,
+            url: servidor+"main/"+funcion,
             beforeSend: function () {
                 $( "#"+seccion ).html( "<div style='width: 100%;  vertical-align: middle; text-align: center;'>Cargando... <img src='"+servidor+"recursos/images/loading.gif'></div>" );
             },

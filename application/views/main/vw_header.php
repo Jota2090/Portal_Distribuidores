@@ -11,8 +11,9 @@
             <div id="usuario">Bienvenido, <?php echo $nombre." ".$apellido;?></div>
         </div>
         <div class="menu_header">
-            <div class="opcion"><a href="<?php echo base_url()?>/login/logout/main">Cerrar Sesi&oacute;n</a></div>
-            <div class="opcion"><a href="#">Mis Cursos</a></div>
+            <div class="opcion"><a href="<?php echo base_url()?>login/logout/main">Cerrar Sesi&oacute;n</a></div>
+            <div class="opcion"><a href="<?php echo base_url()?>main/listas_predeterminadas">Listas Predeterminadas</a></div>
+            <div class="opcion"><a href="#">Cursos</a></div>
         </div>
         <?php }else{    ?>
         <div class="menu_header" style="float: right;">

@@ -4,14 +4,14 @@
 ?>
     <div class="titulo_modal">
         <span>
-            <img src="<?php echo HTTP_IMAGES_PATH?>Administrador/Contenido/border_izq_btn_rojo.png" />
+            <img src="<?php echo HTTP_IMAGES_PATH?>Administrador/Contenido/btn_blanco_izq.png" />
             <span class="titulo_modal_cuerpo">
                 <?php echo $row->cur_nombre; ?>
             </span>
-            <img class="titulo_modal_imagen_izq" src="<?php echo HTTP_IMAGES_PATH?>Administrador/Contenido/border_der_btn_rojo.png" />
+            <img class="titulo_modal_imagen_izq" src="<?php echo HTTP_IMAGES_PATH?>Administrador/Contenido/btn_blanco_der.png" />
         </span>
     </div>
-    <div class="cuerpo_modal">
+    <div class="cuerpo_modal" style="height: 330px;">
         <div class="form_modal_contenido">
             <div class="form_div">
                 <div class="form_modal_label">

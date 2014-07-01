@@ -19,30 +19,30 @@
 ?>
 <div class="titulo_modal">
     <span>
-        <img src="<?php echo HTTP_IMAGES_PATH?>Administrador/Contenido/border_izq_btn_rojo.png" />
+        <img src="<?php echo HTTP_IMAGES_PATH?>Administrador/Contenido/btn_blanco_izq.png" />
         <span class="titulo_modal_cuerpo">
             Editar Curso
         </span>
-        <img class="titulo_modal_imagen_izq" src="<?php echo HTTP_IMAGES_PATH?>Administrador/Contenido/border_der_btn_rojo.png" />
+        <img class="titulo_modal_imagen_izq" src="<?php echo HTTP_IMAGES_PATH?>Administrador/Contenido/btn_blanco_der.png" />
     </span>
 </div>
-<div class="cuerpo_modal">
+<div class="cuerpo_modal" style="height: 330px;">
     <div class="form_modal_contenido">
     <?php  
         $js = "id='estado' class='form_modal_input'";
         echo "<div class='form_div'><div class='form_modal_label'>Estado del Curso:</div>".form_dropdown('estado', $estados, $row->cur_estado, $js)."</div>";
 
-        $data = array('class'=>'form_modal_input', 'name'=>'nombre_curso', 'id'=>'nombre_curso', 'value'=>set_value("nombre_curso", $row->cur_nombre), 'type'=>'text');
+        $data = array('autocomplete'=>'off', 'class'=>'form_modal_input', 'name'=>'nombre_curso', 'id'=>'nombre_curso', 'value'=>set_value("nombre_curso", $row->cur_nombre), 'type'=>'text');
         echo "<div class='form_div'><div class='form_modal_label'>Nombre del Curso:</div>".form_input($data)."</div>";
 
-        $data = array('class'=>'form_modal_input', 'name'=>'descripcion', 'id'=>'descripcion', 'value'=>set_value("descripcion", $row->cur_descripcion), 'rows'=>'2', 'cols'=>'3');
+        $data = array('autocomplete'=>'off', 'class'=>'form_modal_input', 'name'=>'descripcion', 'id'=>'descripcion', 'value'=>set_value("descripcion", $row->cur_descripcion), 'rows'=>'2', 'cols'=>'3');
         echo "<div class='form_div'><div class='form_modal_label'>Descripci&oacute;n:</div>".form_textarea($data)."</div>";
 
         $data = array('class'=>'form_modal_input', 'name'=>'imagen', 'id'=>'imagen', 'value'=>set_value("imagen"));
         echo "<div class='form_div'><div class='form_modal_label'>Imagen:</div>".form_upload($data)."</div>";
 
-        $data = array('class'=>'form_modal_input', 'name'=>'fecha_inicio', 'id'=>'fecha_inicio', 'value'=>set_value("fecha_inicio", $row->cur_fecha_inicio), 'style'=>'width:70px; margin-right: 2px;', 'type'=>'text', 'autocomplete'=>'false', 'maxlength'=>'10');
-        $data2 = array('class'=>'form_modal_input', 'name'=>'fecha_fin', 'id'=>'fecha_fin', 'value'=>set_value("fecha_fin", $row->cur_fecha_fin), 'style'=>'width:70px; margin-right: 2px;', 'type'=>'text', 'autocomplete'=>'false', 'maxlength'=>'10');
+        $data = array('class'=>'form_modal_input', 'name'=>'fecha_inicio', 'id'=>'fecha_inicio', 'value'=>set_value("fecha_inicio", $row->cur_fecha_inicio), 'style'=>'width:70px; margin-right: 2px;', 'type'=>'text', 'autocomplete'=>'off', 'maxlength'=>'10');
+        $data2 = array('class'=>'form_modal_input', 'name'=>'fecha_fin', 'id'=>'fecha_fin', 'value'=>set_value("fecha_fin", $row->cur_fecha_fin), 'style'=>'width:70px; margin-right: 2px;', 'type'=>'text', 'autocomplete'=>'off', 'maxlength'=>'10');
         echo "<div class='form_div'><div class='form_modal_label'>Fecha del Curso:</div>".form_input($data)."<div style='float: left; padding: 2px 5px;'> al </div>".form_input($data2)."</div>";
 
         if($row->cur_jornada === "1"){ $jornada = true; }
@@ -50,19 +50,19 @@
         $data = array('class'=>'form_modal_input', 'name'=>'jornada', 'id'=>'jornada', 'value'=>'1', 'style'=>'width:10px; margin-right: 10px;');
         echo "<div class='form_div'><div class='form_modal_label'>&nbsp;</div>".form_checkbox($data, "1", $jornada)." 2 Jornadas</div>";
     
-        $data = array('class'=>'form_modal_input', 'name'=>'hora_inicio', 'id'=>'hora_inicio', 'value'=>set_value("hora_inicio", $row->cur_hora_inicio), 'style'=>'width:70px', 'type'=>'text', 'autocomplete'=>'false', 'maxlength'=>'8');
-        $data2 = array('class'=>'form_modal_input', 'name'=>'hora_fin', 'id'=>'hora_fin', 'value'=>set_value("hora_fin", $row->cur_hora_fin), 'style'=>'width:70px', 'type'=>'text',  'autocomplete'=>'false', 'maxlength'=>'8');
+        $data = array('class'=>'form_modal_input', 'name'=>'hora_inicio', 'id'=>'hora_inicio', 'value'=>set_value("hora_inicio", $row->cur_hora_inicio), 'style'=>'width:70px', 'type'=>'text', 'autocomplete'=>'off', 'maxlength'=>'8');
+        $data2 = array('class'=>'form_modal_input', 'name'=>'hora_fin', 'id'=>'hora_fin', 'value'=>set_value("hora_fin", $row->cur_hora_fin), 'style'=>'width:70px', 'type'=>'text',  'autocomplete'=>'off', 'maxlength'=>'8');
         echo "<div class='form_div'><div class='form_modal_label'>Hora del Curso:</div>".form_input($data)."<div style='float: left; padding: 2px 5px;'> hasta las </div>".form_input($data2)."</div>";
 
         $js = 'onkeypress="return validarSoloNumeros(event);"';
-        $data = array('class'=>'form_modal_input', 'name'=>'duracion', 'id'=>'duracion', 'value'=>set_value("duracion", $row->cur_duracion), 'style'=>'width:50px; margin-right: 10px;', 'maxlength'=>'3');
+        $data = array('class'=>'form_modal_input', 'name'=>'duracion', 'id'=>'duracion', 'value'=>set_value("duracion", $row->cur_duracion), 'style'=>'width:50px; margin-right: 10px;', 'autocomplete'=>'off', 'maxlength'=>'3');
         echo "<div class='form_div'><div class='form_modal_label'>Tiempo de duraci&oacute;n:</div>".form_input($data, '', $js)." <div style='float: left; padding: 3px 5px;'> (Horas) </div></div>";
     
         $js = 'onkeypress="return validarSoloNumeros(event);"';
-        $data = array('class'=>'form_modal_input', 'name'=>'cupos', 'id'=>'cupos', 'value'=>set_value("cupos", $row->cur_cupos_total), 'style'=>'width:50px; margin-right: 10px;','maxlength'=>'3');
+        $data = array('class'=>'form_modal_input', 'name'=>'cupos', 'id'=>'cupos', 'value'=>set_value("cupos", $row->cur_cupos_total), 'style'=>'width:50px; margin-right: 10px;', 'autocomplete'=>'off', 'maxlength'=>'3');
         echo "<div class='form_div'><div class='form_modal_label'>Cupos Disponibles:</div>".form_input($data, '', $js)."</div>";
     
-        $data = array('class'=>'form_modal_input', 'name'=>'costo', 'id'=>'costo', 'value'=>set_value("costo", $row->cur_costo), 'style'=>'width:39px', 'type'=>'text', 'autocomplete'=>'false');
+        $data = array('class'=>'form_modal_input', 'name'=>'costo', 'id'=>'costo', 'value'=>set_value("costo", $row->cur_costo), 'style'=>'width:39px', 'type'=>'text', 'autocomplete'=>'off');
         echo "<div class='form_div'>
                 <div class='form_modal_label'>Costo:</div>
                 <div style='float: left; padding: 2px 5px 0px 0px;'> $ </div>".form_input($data).
@@ -78,7 +78,7 @@
         $js = "id='tema' class='form_modal_input'";
         echo "<div class='form_div'><div class='form_modal_label'>Tema:</div>".form_dropdown('tema', $temas, $row->cur_tema_id, $js)."</div>";
 
-        $data = array('class'=>'form_modal_input', 'name'=>'subtema', 'id'=>'subtema', 'value'=>set_value("subtema", $row->cur_subtema), 'type'=>'text');
+        $data = array('class'=>'form_modal_input', 'name'=>'subtema', 'id'=>'subtema', 'value'=>set_value("subtema", $row->cur_subtema), 'autocomplete'=>'off', 'type'=>'text');
         echo "<div class='form_div'><div class='form_modal_label'>Subtema:</div>".form_input($data)."</div>";
 
         $js = "id='provincia' class='form_modal_input' onchange='cambiar_ciudad(this.value);'";
@@ -87,11 +87,11 @@
         $js = "id='ciudad' class='form_modal_input'";
         echo "<div class='form_div'><div class='form_modal_label'>Ciudad:</div><div id='contenido_ciudad'>".form_dropdown('ciudad', $ciudades, $row->cur_ciudad_id, $js)."</div></div>";
         
-        $data = array('class'=>'form_modal_input', 'name'=>'direccion_curso', 'id'=>'direccion_curso', 'value'=>set_value("direccion_curso", $row->cur_direccion), 'type'=>'text');
+        $data = array('class'=>'form_modal_input', 'name'=>'direccion_curso', 'id'=>'direccion_curso', 'value'=>set_value("direccion_curso", $row->cur_direccion), 'autocomplete'=>'off', 'type'=>'text');
         echo "<div class='form_div'><div class='form_modal_label'>Dirección:</div>".form_input($data)."</div>";
 
-        $data = array('class'=>'form_modal_input', 'name'=>'latitud', 'id'=>'latitud', 'value'=>set_value("latitud", $row->cur_latitud), 'style'=>'width:70px', 'type'=>'text', 'autocomplete'=>'false');
-        $data2 = array('class'=>'form_modal_input', 'name'=>'longitud', 'id'=>'longitud', 'value'=>set_value("longitud", $row->cur_longitud), 'style'=>'width:70px', 'type'=>'text',  'autocomplete'=>'false');
+        $data = array('class'=>'form_modal_input', 'name'=>'latitud', 'id'=>'latitud', 'value'=>set_value("latitud", $row->cur_latitud), 'style'=>'width:70px', 'type'=>'text', 'autocomplete'=>'off');
+        $data2 = array('class'=>'form_modal_input', 'name'=>'longitud', 'id'=>'longitud', 'value'=>set_value("longitud", $row->cur_longitud), 'style'=>'width:70px', 'type'=>'text',  'autocomplete'=>'off');
         echo "<div class='form_div' style='height: 50px;'>
                 <div class='form_modal_label'>Mapa:</div>
                 <div style='float: left; padding: 2px 5px 0px 0px;'> Lat </div>".form_input($data).
@@ -101,7 +101,7 @@
                  </div>
              </div>";
         
-        $data = array('class'=>'form_modal_input', 'name'=>'comentarios', 'id'=>'comentarios', 'value'=>set_value("comentarios", $row->cur_comentarios), 'rows'=>'3', 'cols'=>'3');
+        $data = array('class'=>'form_modal_input', 'name'=>'comentarios', 'id'=>'comentarios', 'value'=>set_value("comentarios", $row->cur_comentarios), 'rows'=>'3', 'autocomplete'=>'off', 'cols'=>'3');
         echo "<div class='form_div'><div class='form_modal_label'>Comentarios:</div>".form_textarea($data)."</div>";
     ?>
     </div>

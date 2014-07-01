@@ -30,6 +30,10 @@
             array('field'=>'provincia', 'label'=>"Provincia", 'rules'=>'required|trim|xss_clean'),
             array('field'=>'ciudad', 'label'=>"Ciudad", 'rules'=>'required|trim|xss_clean'),
             array('field'=>'direccion_curso', 'label'=>"Direcci&oacute;n", 'rules'=>'required|trim|xss_clean')
-        )
+        ),
+        
+        'asistentes/crear_lista_asistente'=>array(
+            array('field'=>'nombre_lista', 'label'=>"Nombre", 'rules'=>'required|trim|xss_clean')
+        ),
     );
 ?>
