@@ -1,6 +1,6 @@
 <?php
     $attributes = array('id' => 'f_nueva_lista_asistente', 'name' => 'f_nueva_lista_asistente');
-    echo form_open_multipart('asistentes/crear_lista_asistente', $attributes);
+    echo form_open('asistentes/crear_lista_asistente', $attributes);
 ?>
 <div class="titulo_modal">
     <span>
@@ -24,7 +24,7 @@
         <?php
             $imagenes = array('0' => false);
             $js = 'onclick="enviar_formulario(\'f_nueva_lista_asistente\', \'asistentes/crear_lista_asistente\', \'tabla_listas_predeterminadas\', \'listas_predeterminadas\', '.$imagenes.')"';
-            echo form_submit('crear', 'Agregar Lista', $js);
+            echo form_button('crear', 'Agregar Lista', $js);
         ?>
         </span>
     </span>

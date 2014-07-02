@@ -20,6 +20,20 @@ body{
     src: url('../fonts/Lego.ttf');
 }
 
+
+button{
+    background: transparent;
+    border: 0px;
+    position: relative;
+    top:3px;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover{
+    color: orange;
+}
+
 img{
     border: 0;
 }
@@ -343,6 +357,17 @@ a{
                     float: left;
                 }
                 
+                .input_file{
+                    border: 0px;
+                    background: #cccccc;
+                    height: 60px;
+                    padding: 10px 0;
+                    width: 150px;
+                    z-index: 9999;
+                    font-size: 50px;
+                    opacity: 0;
+                }
+                
     .boton_modal{
         clear: both;
         width: 100%;
@@ -560,7 +585,7 @@ a{
                 width: auto;
                 height: 30px;
                 color: red;
-                padding-top: 8px;
+                padding-top: 6px;
                 text-align: center;
             }
 
@@ -592,6 +617,7 @@ a{
             .acciones{
                 float: left;
                 margin-left: 5px;
+                cursor: pointer;
             }        
             
 
@@ -617,7 +643,7 @@ i{
 }
 
 .icono-editar{
-    background-position: -126px -3px;
+    background-position: -125px -3px;
 }
 
 .icono-guardar{
@@ -635,4 +661,8 @@ i{
 .icono-agregar-lista{
     background-position: -60px 0px;
     width: 19px;
+}
+
+.icono-agregar-asistente{
+    background-position: -104px -3px;
 }

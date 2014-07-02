@@ -15,12 +15,22 @@
     <div class="form_modal_contenido">
     <?php    
         $data = array('class'=>'form_modal_input', 'name'=>'nombre_curso', 'id'=>'nombre_curso', 'value'=>set_value("nombre_curso"), 'autocomplete'=>'off', 'type'=>'text');
-        echo "<div class='form_div'><div class='form_modal_label'>Nombre del Curso:</div>".form_input($data)."</div>";
+        echo "<div class='form_div'>
+                <div class='form_modal_label'>
+                    Nombre del Curso:
+                </div>
+                ".form_input($data)."
+              </div>";
 
-        $data = array('class'=>'form_modal_input', 'name'=>'descripcion', 'id'=>'descripcion', 'value'=>set_value("descripcion"), 'autocomplete'=>'off', 'rows'=>'2', 'cols'=>'3');
-        echo "<div class='form_div'><div class='form_modal_label'>Descripci&oacute;n:</div>".form_textarea($data)."</div>";
+        $data = array('class'=>'form_modal_input', 'name'=>'descripcion', 'id'=>'descripcion', 'value'=>set_value("descripcion"), 'autocomplete'=>'off', 'rows'=>'2', 'cols'=>'3', 'style' => 'margin-bottom: 10px;');
+        echo "<div class='form_div'>
+                <div class='form_modal_label'>
+                    Descripci&oacute;n:
+                </div>
+                ".form_textarea($data)."
+              </div>";
 
-        $data = array('class'=>'form_modal_input', 'name'=>'imagen', 'id'=>'imagen', 'value'=>set_value("imagen"));
+        $data = array('class'=>'form_modal_input', 'name'=>'imagen', 'id'=>'imagen', 'value'=>set_value("imagen"), 'style' => 'margin-bottom: 10px;');
         echo "<div class='form_div'><div class='form_modal_label'>Imagen:</div>".form_upload($data)."</div>";
 
         $data = array('class'=>'form_modal_input', 'name'=>'fecha_inicio', 'id'=>'fecha_inicio', 'value'=>set_value("fecha_inicio"), 'style'=>'width:70px; margin-right: 2px;', 'type'=>'text', 'autocomplete'=>'off', 'maxlength'=>'10');
@@ -93,7 +103,7 @@
         <?php
             $imagenes = array('0' => true, '1' => 'imagen');
             $js = 'onclick="enviar_formulario(\'f_nuevo_curso\', \'cursos/crear_curso\', \'tabla_listado_cursos\', \'listado_curso\', '.$imagenes.')"';
-            echo form_submit('crear', 'Agregar Curso', $js);
+            echo form_button('crear', 'Agregar Curso', $js);
         ?>
         </span>
     </span>

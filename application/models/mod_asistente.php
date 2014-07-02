@@ -23,6 +23,7 @@
          * @var integer     $_distribuidor      id del distribuidor del asistente
          * @var integer     $_cargo             id del cargo del asistente
          * @var integer     $_tipo              id del tipo del asistente
+         * @var string      $_usuario           cedula del usuario al que pertenece el asistente
          * @var datetime    $_fecha_modificado  fecha en que es modificado el asistente
          * @var string      $_estado            estado del asistente (A=Activo, B=Bloqueado, I=Inactivo, E=Eliminado)
          *
@@ -37,6 +38,7 @@
         var $_distribuidor      = 0;
         var $_cargo             = 0;
         var $_tipo              = 0;
+        var $_usuario           = "";
         var $_fecha_modificado  = "";
         var $_estado            = "";
         
@@ -209,6 +211,23 @@
         */
         public function set_tipo($_tipo) {
             $this->_tipo = $_tipo;
+        }
+        
+        /**
+        * get_usuario() retorna el numero de cédula
+        * @return string _usuario
+        */
+        public function get_usuario() {
+            return $this->_usuario;
+        }
+
+        /**
+        * set_usuario() setea un valor en el parámetro de _usuario
+        * @param string $_usuario 
+        * @return void
+        */
+        public function set_usuario($_usuario) {
+            $this->_cedula = $_usuario;
         }
 
         /**

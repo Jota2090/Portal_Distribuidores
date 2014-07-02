@@ -107,6 +107,31 @@
             
         }
         
+        
+        function editar_lista_asistente(){
+            
+            if ($this->form_validation->run('asistentes/crear_lista_asistente') == FALSE)
+            {
+                echo json_encode(array('st'=>0, 'msg' => validation_errors()));
+            }
+            else
+            {
+                $data["la_nombre"] = $this->input->post("nombre_lista");
+                $where = array("la_id" => $this->input->post('id'));
+
+                $resultado = $this->lista_asistente->update_listas_asistente($data, $where);
+                
+                $resultado = $this->db->_error_message();
+
+                if(empty($resultado)){
+                    echo json_encode(array('st'=>1, 'msg' => 'Cambios guardados con Exito'));
+                }else{
+                    echo json_encode(array('st'=>0, 'msg' => 'Hubo un problema con el servidor, por favor vuelva a intentar'.$resultado));
+                }
+            }
+            
+        }
+        
     }
     
 ?>

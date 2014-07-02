@@ -123,7 +123,7 @@
          * Esta función retorna un listado de los asistentes registrados en los cursos o un asistente de un curso específico según los parámetros enviados
          * 
          * @access public
-         * @param string $select 
+         * @param array $select 
          * @param array $where 
          * @param array $or_where 
          * @param array $join 

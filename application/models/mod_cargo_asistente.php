@@ -97,5 +97,71 @@
             parent::__construct();
         }
         
+        
+        /**
+         * Initialize get_cargos_asistente()
+         * 
+         * Esta función retorna el listado de cargos o un cargo específico de los asistentes según los parámetros enviados
+         * 
+         * @access public
+         * @param array $select 
+         * @param array $where 
+         * @param array $or_where 
+         * @param array $join 
+         * @return array $resultado
+        */
+        public function get_cargos_asistente($select = array("0" => "*"), $where = array(), $or_where = array(), $join = array()){
+            
+            if(count($select) > 0){
+                foreach ($select as $key => $value) {
+                    switch ($key) {    
+                        case "0":
+                            $this->db->select($value);
+                            break;
+                        
+                        case "1":
+                            $this->db->select_max($value);
+                            break;
+                        
+                        case "2":
+                            $this->db->select_min($value);
+                            break;
+                        
+                        case "3":
+                            $this->db->select_avg($value);
+                            break;
+                        
+                        case "4":
+                            $this->db->select_sum($value);
+                            break;
+                    }
+                }
+            }
+            
+            if(count($where) > 0){
+                foreach ($where as $key => $value) {
+                    $this->db->where($key, $value);
+                }
+            }
+            
+            if(count($or_where) > 0){
+                foreach ($or_where as $key => $value) {
+                    $this->db->or_where($key, $value);
+                }
+            }
+            
+            if(count($join) > 0){
+                foreach ($join as $key => $value) {
+                    $this->db->join($key, $value);
+                }
+            }
+            
+            $this->db->order_by("ca_nombre", "asc"); 
+            
+            $resultado = $this->db->get($this->get_name_table());
+            
+            return $resultado;
+        }
+        
     }
 ?>

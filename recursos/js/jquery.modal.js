@@ -72,6 +72,10 @@
       this.unblock();
       this.hide();
       $(document).off('keydown.modal');
+      
+      if(typeof(document.getElementById('curso')) != "undefined" && document.getElementById('curso') !== null) {
+        document.getElementById('curso').value="";
+      }
     },
 
     block: function() {

@@ -178,5 +178,29 @@
             
             return $resultado;
         }
+        
+        
+        /**
+         * Initialize update_listas_asistente()
+         * 
+         * Esta función actualiza la información de una lista específica según los parámetros enviados
+         * 
+         * @access public
+         * @param array $data 
+         * @param array $where 
+         * @return array $resultado
+        */
+        public function update_listas_asistente($data = array(), $where = array()){
+            
+            if(count($where) > 0){
+                foreach ($where as $key => $value) {
+                    $this->db->where($key, $value);
+                }
+            }
+            
+            $resultado = $this->db->update($this->get_name_table(), $data);
+            
+            return $resultado;
+        }
     }
 ?>

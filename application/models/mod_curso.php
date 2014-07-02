@@ -594,21 +594,13 @@
         */
         public function update_cursos($data = array(), $where = array()){
             
-            $datos_act = array();
-            
-            if(count($data) > 0){
-                foreach ($data as $key => $value) {
-                    $datos_act[$key] = $value;
-                }
-            }
-            
             if(count($where) > 0){
                 foreach ($where as $key => $value) {
                     $this->db->where($key, $value);
                 }
             }
             
-            $resultado = $this->db->update($this->get_name_table(), $datos_act);
+            $resultado = $this->db->update($this->get_name_table(), $data);
             
             return $resultado;
         }

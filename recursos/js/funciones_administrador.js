@@ -55,46 +55,44 @@
     
     
     function enviar_formulario(form, action, funcion, seccion, existen_imagenes){
-        $('#'+form).submit(function() {
-            
-            var formData = new FormData($('#'+form)[0]);
-            var do_ajax = true;
-            
-            if(existen_imagenes[0] === true){
-                for(i=1; i<existen_imagenes.length; i++){
-                    do_ajax = false;
-                    var imagenes = document.getElementById(existen_imagenes[i]).files;
-                    formData.append(existen_imagenes[i], imagenes);
-                }
-                do_ajax = true;
-            }
+       
+        var formData = new FormData($('#'+form)[0]);
+        var do_ajax = true;
 
-            if(do_ajax){
-                
-                $.ajax({
-                    type:"post",          
-                    url: servidor+action,
-                    data:formData,
-                    dataType: 'json',
-                    contentType:false,
-                    processData:false,
-                    cache:false,
-                    success: function(result){
-                        if(result.st == 0)
-                        {
-                            Ext.Msg.alert('Error',result.msg);
-                        }
-                        else if(result.st == 1)
-                        {
-                            Ext.Msg.alert('Informaci\xf3n',result.msg, function(){ $.modal.close(); refrescar_seccion(funcion, seccion); });
-                        }
-                    } 
-                });
-                
+        if(existen_imagenes[0] === true){
+            for(i=1; i<existen_imagenes.length; i++){
+                do_ajax = false;
+                var imagenes = document.getElementById(existen_imagenes[i]).files;
+                formData.append(existen_imagenes[i], imagenes);
             }
+            do_ajax = true;
+        }
+
+        if(do_ajax){
+
+            $.ajax({
+                type:"post",          
+                url: servidor+action,
+                data:formData,
+                dataType: 'json',
+                contentType:false,
+                processData:false,
+                cache:false,
+                success: function(result){
+                    if(result.st == 0)
+                    {
+                        Ext.Msg.alert('Error',result.msg);
+                    }
+                    else if(result.st == 1)
+                    {
+                        Ext.Msg.alert('Informaci\xf3n',result.msg, function(){ $.modal.close(); refrescar_seccion(funcion, seccion); });
+                    }
+                } 
+            });
+
+        }
             
-            return false;
-        });
+        return false;
     }
 
 

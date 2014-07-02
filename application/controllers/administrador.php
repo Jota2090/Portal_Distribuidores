@@ -61,7 +61,6 @@
             $resultado = $this->instructor->get_instructores('*', array('ins_estado'=>'A'));
             $data['instructores'] = array('' => 'Seleccione');
             if($resultado){
-                $data['instructores'][''] = 'Seleccione';
                 foreach ($resultado->result() as $row) {
                     $data['instructores'][$row->ins_cedula] = $row->ins_apellido." ".$row->ins_nombre;
                 }
@@ -70,7 +69,6 @@
             $resultado = $this->provincia->get_provincias('*', array('pro_estado'=>'A'));
             $data['provincias'] = array('' => 'Seleccione');
             if($resultado){
-                $data['provincias'][''] = 'Seleccione';
                 foreach ($resultado->result() as $row) {
                     $data['provincias'][$row->pro_id] = $row->pro_nombre;
                 }

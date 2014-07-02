@@ -4,7 +4,7 @@
             <th>Nombre de Lista</th>
             <th>Asistentes Agregados</th>
             <th>&Uacute;ltimo Curso Agregado</th>
-            <th></th>
+            <th width="290px"></th>
         </tr>
     </thead>
 
@@ -13,7 +13,7 @@
             <th>Nombre de Lista</th>
             <th>Asistentes Agregados</th>
             <th>&Uacute;ltimo Curso Agregado</th>
-            <th></th>
+            <th width="290px"></th>
         </tr>
     </tfoot>
 </table>
@@ -29,10 +29,24 @@
                 {
                     "data": "id",
                     "render": function ( data, type, full, meta ) {
-                                return '<div class="acciones">'+
+                                return '<div class="acciones" onclick="crear_formulario(\'asistente\',\'id='+data+'\');">'+
                                         '<div class="borde_izq_boton_blanco">&nbsp;</div>'+
                                         '<div class="borde_centro_boton_blanco">'+
-                                            '<i class="icono-editar"></i><a href="javascript:" onclick="editar(\'curso\',\'id='+data+'\');">Editar</a>'+
+                                            '<i class="icono-agregar-asistente"></i><a href="javascript:">Agregar Asistente</a>'+
+                                        '</div>'+
+                                        '<div class="borde_der_boton_blanco">&nbsp;</div>'+
+                                       '</div>'+
+                                       '<div class="acciones" onclick="editar(\'lista_asistente\',\'id='+data+'\');">'+
+                                        '<div class="borde_izq_boton_blanco">&nbsp;</div>'+
+                                        '<div class="borde_centro_boton_blanco">'+
+                                            '<i class="icono-editar"></i><a href="javascript:">Editar</a>'+
+                                        '</div>'+
+                                        '<div class="borde_der_boton_blanco">&nbsp;</div>'+
+                                       '</div>'+
+                                       '<div class="acciones" onclick="eliminar(\'lista_asistente\',\'id='+data+'\');">'+
+                                        '<div class="borde_izq_boton_blanco">&nbsp;</div>'+
+                                        '<div class="borde_centro_boton_blanco">'+
+                                            '<div><a href="javascript:">Eliminar</a></div>'+
                                         '</div>'+
                                         '<div class="borde_der_boton_blanco">&nbsp;</div>'+
                                        '</div>';

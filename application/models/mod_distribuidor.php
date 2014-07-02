@@ -122,15 +122,39 @@
          * Esta función retorna el listado de distribuidores o un distribuidor específico según los parámetros enviados
          * 
          * @access public
-         * @param string $select 
+         * @param array $select 
          * @param array $where 
          * @param array $or_where 
          * @param array $join 
          * @return array $resultado
         */
-        public function get_distribuidores($select = "*", $where = array(), $or_where = array(), $join = array()){
+        public function get_distribuidores($select = array("0" => "*"), $where = array(), $or_where = array(), $join = array()){
             
-            $this->db->select($select);
+            if(count($select) > 0){
+                foreach ($select as $key => $value) {
+                    switch ($key) {    
+                        case "0":
+                            $this->db->select($value);
+                            break;
+                        
+                        case "1":
+                            $this->db->select_max($value);
+                            break;
+                        
+                        case "2":
+                            $this->db->select_min($value);
+                            break;
+                        
+                        case "3":
+                            $this->db->select_avg($value);
+                            break;
+                        
+                        case "4":
+                            $this->db->select_sum($value);
+                            break;
+                    }
+                }
+            }
             
             if(count($where) > 0){
                 foreach ($where as $key => $value) {
