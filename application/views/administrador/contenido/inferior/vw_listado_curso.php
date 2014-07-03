@@ -8,12 +8,12 @@
             <div class="boton_agregar">
                 <a href="javascript:" onclick="crear_formulario('curso');">
                     <span>
-                        <img src="<?php echo HTTP_IMAGES_PATH?>Administrador/Contenido/btn_blanco_izq.png" />
-                        <span class="titulo_modal_cuerpo">
+                        <span class="boton_blanco_izq">&nbsp;</span>
+                        <span class="boton_blanco_centro">
                             <i class="icono-cuadritos"></i>
                             Agregar Curso
                         </span>
-                        <img class="titulo_modal_imagen_izq" src="<?php echo HTTP_IMAGES_PATH?>Administrador/Contenido/btn_blanco_der.png" />
+                        <span class="boton_blanco_der" >&nbsp;</span>
                     </span>
                 </a>
             </div>

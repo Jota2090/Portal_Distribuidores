@@ -59,7 +59,14 @@
         
         
         function form_crear_lista_asistente(){
-            $this->load->view("main/contenido/inferior/vw_crear_lista_asistente");
+            $this->load->model("mod_asistente","asistente");
+            
+            $select = array("0" => "*");
+            $where = array("asi_estado" => "A", "asi_usuario_id" => $this->clslogin->getId());
+            $resultado = $this->asistente->get_asistentes($select, $where);
+            $data['resultado'] = $resultado;
+            
+            $this->load->view("main/contenido/inferior/vw_crear_lista_asistente", $data);
         }
         
         

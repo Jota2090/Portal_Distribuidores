@@ -39,6 +39,7 @@
                             $fila['id'] = $row->la_id;
                             $fila['nombre'] = $row->la_nombre;
                             
+                            $select = "*";
                             $where = array("ral_lista_asistente_id" => $row->la_id);
                             $resultado2 = $this->registro_asistente_lista->get_registro_asistente_lista($select, $where);
                             
@@ -97,9 +98,27 @@
 
                 $this->lista_asistente->guardar_lista_asistente();
                 $resultado = $this->db->_error_message();
-
+                
                 if(empty($resultado)){
-                    echo json_encode(array('st'=>1, 'msg' => 'Lista Guardada con Exito'));
+                    
+                    $id_lista_insertado = $this->db->insert_id();
+                    
+                    $asistentes = $this->input->post("asistente");
+                    
+                    if($asistentes){
+                        
+                        foreach ($asistentes as $row) {
+                            $this->registro_asistente_lista->set_lista_asistente($id_lista_insertado);
+                            $this->registro_asistente_lista->set_asistente($row);
+
+                            $this->registro_asistente_lista->guardar_asistente_lista();
+                        }
+                        
+                        echo json_encode(array('st'=>1, 'msg' => 'Lista Guardada con Exito'));
+                        
+                    }else{
+                        echo json_encode(array('st'=>1, 'msg' => 'Lista Guardada con Exito'));
+                    }
                 }else{
                     echo json_encode(array('st'=>0, 'msg' => 'Hubo un problema con el servidor, por favor vuelva a intentar'.$resultado));
                 }

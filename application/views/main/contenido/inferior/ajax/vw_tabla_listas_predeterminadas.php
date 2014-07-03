@@ -4,7 +4,7 @@
             <th>Nombre de Lista</th>
             <th>Asistentes Agregados</th>
             <th>&Uacute;ltimo Curso Agregado</th>
-            <th width="290px"></th>
+            <th width="150px"></th>
         </tr>
     </thead>
 
@@ -13,7 +13,7 @@
             <th>Nombre de Lista</th>
             <th>Asistentes Agregados</th>
             <th>&Uacute;ltimo Curso Agregado</th>
-            <th width="290px"></th>
+            <th width="150px"></th>
         </tr>
     </tfoot>
 </table>
@@ -29,26 +29,19 @@
                 {
                     "data": "id",
                     "render": function ( data, type, full, meta ) {
-                                return '<div class="acciones" onclick="crear_formulario(\'asistente\',\'id='+data+'\');">'+
-                                        '<div class="borde_izq_boton_blanco">&nbsp;</div>'+
-                                        '<div class="borde_centro_boton_blanco">'+
-                                            '<i class="icono-agregar-asistente"></i><a href="javascript:">Agregar Asistente</a>'+
-                                        '</div>'+
-                                        '<div class="borde_der_boton_blanco">&nbsp;</div>'+
-                                       '</div>'+
-                                       '<div class="acciones" onclick="editar(\'lista_asistente\',\'id='+data+'\');">'+
-                                        '<div class="borde_izq_boton_blanco">&nbsp;</div>'+
-                                        '<div class="borde_centro_boton_blanco">'+
+                                return '<div class="acciones" onclick="editar(\'lista_asistente\',\'id='+data+'\');">'+
+                                        '<span class="boton_blanco_izq">&nbsp;</span>'+
+                                        '<span class="boton_blanco_centro">'+
                                             '<i class="icono-editar"></i><a href="javascript:">Editar</a>'+
-                                        '</div>'+
-                                        '<div class="borde_der_boton_blanco">&nbsp;</div>'+
+                                        '</span>'+
+                                        '<span class="boton_blanco_der" >&nbsp;</span>'+
                                        '</div>'+
                                        '<div class="acciones" onclick="eliminar(\'lista_asistente\',\'id='+data+'\');">'+
-                                        '<div class="borde_izq_boton_blanco">&nbsp;</div>'+
-                                        '<div class="borde_centro_boton_blanco">'+
+                                        '<span class="boton_blanco_izq">&nbsp;</span>'+
+                                        '<span class="boton_blanco_centro">'+
                                             '<div><a href="javascript:">Eliminar</a></div>'+
-                                        '</div>'+
-                                        '<div class="borde_der_boton_blanco">&nbsp;</div>'+
+                                        '</span>'+
+                                        '<span class="boton_blanco_der" >&nbsp;</span>'+
                                        '</div>';
                               }
                 }

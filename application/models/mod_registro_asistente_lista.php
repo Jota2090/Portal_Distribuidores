@@ -137,5 +137,26 @@
             return $resultado;
         }
         
+        
+        /**
+         * Initialize guardar_asistente_lista()
+         * 
+         * Esta función crea un registro relacionando un asistente con una lista
+         * 
+         * @access public
+         * @return void
+        */
+        public function guardar_asistente_lista(){
+            
+            $data = array(
+               'ral_lista_asistente_id'  => $this->_lista_asistente,
+               'ral_asistente_id'        => $this->_asistente 
+            );
+
+            $resultado = $this->db->insert($this->get_name_table(), $data);
+            
+            return $resultado;
+        }
+        
     }
 ?>

@@ -40,26 +40,26 @@
                     "data": "id",
                     "render": function ( data, type, full, meta ) {
                                 return '<div class="acciones" onclick="ver_detalles(\'curso\',\'id='+data+'\');">'+
-                                        '<div class="borde_izq_boton_blanco">&nbsp;</div>'+
-                                        '<div class="borde_centro_boton_blanco">'+
-                                            '<img src="<?php echo HTTP_IMAGES_PATH?>Administrador/Contenido/ico_buscar.png" />'+
-                                            '<div><a href="javascript:">Ver Detalles</a></div>'+
-                                        '</div>'+
-                                        '<div class="borde_der_boton_blanco">&nbsp;</div>'+
+                                        '<span class="boton_blanco_izq">&nbsp;</span>'+
+                                        '<span class="boton_blanco_centro">'+
+                                            '<i class="icono-ver_detalles"></i>'+
+                                            '<a href="javascript:">Ver Detalles</a>'+
+                                        '</span>'+
+                                        '<span class="boton_blanco_der" >&nbsp;</span>'+
                                        '</div>'+
                                        '<div class="acciones" onclick="editar(\'curso\',\'id='+data+'\');">'+
-                                        '<div class="borde_izq_boton_blanco">&nbsp;</div>'+
-                                        '<div class="borde_centro_boton_blanco">'+
+                                        '<span class="boton_blanco_izq">&nbsp;</span>'+
+                                        '<span class="boton_blanco_centro">'+
                                             '<i class="icono-editar"></i><a href="javascript:">Editar</a>'+
-                                        '</div>'+
-                                        '<div class="borde_der_boton_blanco">&nbsp;</div>'+
+                                        '</span>'+
+                                        '<span class="boton_blanco_der" >&nbsp;</span>'+
                                        '</div>'+
                                        '<div class="acciones" onclick="eliminar(\'curso\',\'id='+data+'\');">'+
-                                        '<div class="borde_izq_boton_blanco">&nbsp;</div>'+
-                                        '<div class="borde_centro_boton_blanco">'+
+                                        '<span class="boton_blanco_izq">&nbsp;</span>'+
+                                        '<span class="boton_blanco_centro">'+
                                             '<div><a href="javascript:">Eliminar</a></div>'+
-                                        '</div>'+
-                                        '<div class="borde_der_boton_blanco">&nbsp;</div>'+
+                                        '</span>'+
+                                        '<span class="boton_blanco_der" >&nbsp;</span>'+
                                        '</div>';
                               }
                 }

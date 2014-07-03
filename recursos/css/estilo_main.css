@@ -40,6 +40,7 @@ img{
 
 a{
     text-decoration: none;
+    color: red;
 }
 
 .right{
@@ -294,31 +295,48 @@ a{
     }
         
     .titulo_modal{
-        width: 100%;
         height:30px;
-        padding: 20px 0px;
-        text-align: center
+        padding-top: 30px;
+        padding-bottom: 10px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 13px;
+    }
+    
+    .titulo_modal_flecha{
+        background: url(../images/Administrador/Contenido/cuerpo_titulo_flecha.png) no-repeat;
+        background-position: center;
+        height:35px;
+        padding: 10px 5px;
+        position: relative;
+        top: 2px;
     }
     
     .titulo_modal_cuerpo{
-        background: url(../images/Administrador/Contenido/cuerpo_btn_blanco.png) repeat-x;
+        background: url(../images/Administrador/Contenido/cuerpo_titulo.png) repeat-x;
         width: auto;
         color: #666666;
-        padding: 8px 5px;
         text-align: center;
-        position: relative;
-        top: -16px;
-        top: -15px\9;
-        left: -3px;
+        padding: 8px 5px;
     }
     
     .titulo_modal_imagen_izq{
+        background: url('../images/Administrador/Contenido/cuerpo_titulo_izq.png') no-repeat;
+        left: 12px;
+        padding: 8px;
         position: relative;
+        width: 15px;
+        
+    }
+    
+    .titulo_modal_imagen_der{
+        background: url('../images/Administrador/Contenido/cuerpo_titulo_der.png') no-repeat;
         left: -3px;
+        width: 15px;
+        padding: 8px 5px;
     }
     
     .cuerpo_modal{
-        width: 100%;
         clear: both;
         margin-top: 10px;
         margin-left: 50px;
@@ -326,10 +344,25 @@ a{
         height: auto;
     }
     
+        .titulo_cuerpo_modal{
+            margin-top:30px;
+            margin-bottom:20px;
+            margin-right: 50px;
+            border-bottom: 1px #cccccc solid;
+            font-weight: bold;
+            font-size: 13px;
+            overflow: hidden;
+            height: auto;
+        }
+        
         .cuerpo_modal_tab{
             margin-top: 15px;
         }
         
+        .contenido_cuerpo_modal{
+            margin-left: 10px;
+            margin-right: 60px;
+        }
     
         .form_modal_contenido{
             width: 49%;
@@ -355,6 +388,7 @@ a{
                     width: 120px;
                     float: left;
                     padding-top: 2px;
+                    font-weight: bold;
                 }
 
                 .form_modal_input{
@@ -569,6 +603,7 @@ a{
             }
             
             .boton_agregar{
+                float: right;
                 text-align: right;
                 padding-top: 5px;
             }
@@ -577,46 +612,41 @@ a{
                 color: orange;
             }
             
-            .borde_izq_boton_blanco{
-                background: url(../images/Administrador/Contenido/btn_blanco_izq.png) no-repeat;
+            .boton_blanco_izq{
+                background: url(../images/Administrador/Contenido/borde_btn_izq_blanco.png) no-repeat;
                 float: left;
                 width: 10px;
                 height: 30px;
             }
-
-            .borde_centro_boton_blanco{
-                background: url(../images/Administrador/Contenido/cuerpo_btn_blanco.png) repeat-x;
+            
+            .selected_boton_blanco_izq{
+                background: url(../images/Administrador/Contenido/borde_btn_izq_blanco_over.png) no-repeat;
+            }
+            
+            .boton_blanco_centro{
+                background: url(../images/Administrador/Contenido/borde_btn_centro_blanco.png) repeat-x;
                 float: left;
                 width: auto;
                 height: 30px;
-                color: red;
                 padding-top: 6px;
                 text-align: center;
+                color: #666666;
             }
-
-            .borde_centro_boton_blanco a{
-                color: red;
-                text-decoration: none;
+            
+            .selected_boton_blanco_centro{
+                background: url(../images/Administrador/Contenido/borde_btn_centro_blanco_over.png) repeat-x;
+                color: black;
             }
-
-            .borde_centro_boton_blanco a:hover{
-                text-decoration: underline;
-            }
-
-            .borde_centro_boton_blanco img{
-                float: left;
-                margin-right: 10px;
-            }
-
-            .borde_centro_boton_blanco div{
-                float: left;
-            }
-
-            .borde_der_boton_blanco{
-                background: url(../images/Administrador/Contenido/btn_blanco_der.png) no-repeat;
+            
+            .boton_blanco_der{
+                background: url(../images/Administrador/Contenido/borde_btn_der_blanco.png) no-repeat;
                 float: left;
                 width: 12px;
                 height: 30px;
+            }
+            
+            .selected_boton_blanco_der{
+                background: url(../images/Administrador/Contenido/borde_btn_der_blanco_over.png) no-repeat;
             }
 
             .acciones{
@@ -625,6 +655,9 @@ a{
                 cursor: pointer;
             }        
             
+            .acciones a:hover{
+                text-decoration: underline;
+            }
 
 /* Footer */
 #footer{
@@ -674,4 +707,9 @@ i{
 
 .icono-agregar-asistente_blanco{
     background-position: -40px 0px;
+}
+
+.icono-ver_detalles{
+    background: url('../images/Administrador/Contenido/ico_buscar.png') no-repeat left top;
+    background-position: 0px 2px;
 }

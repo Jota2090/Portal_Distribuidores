@@ -7,11 +7,13 @@
 ?>
 <div class="titulo_modal">
     <span>
-        <img src="<?php echo HTTP_IMAGES_PATH?>Administrador/Contenido/btn_blanco_izq.png" />
+        <span class="titulo_modal_imagen_izq">&nbsp;</span>
         <span class="titulo_modal_cuerpo">
-            Editar Lista
-        </span>
-        <img class="titulo_modal_imagen_izq" src="<?php echo HTTP_IMAGES_PATH?>Administrador/Contenido/btn_blanco_der.png" />
+            <span class="titulo_modal_flecha">
+                Editar Lista
+            </span>
+        </span> 
+        <span class="titulo_modal_imagen_der" >&nbsp;</span>
     </span>
 </div>
 <div class="cuerpo_modal">
@@ -19,6 +21,46 @@
         $data = array('autocomplete'=>'off', 'class'=>'form_modal_input', 'name'=>'nombre_lista', 'id'=>'nombre_lista', 'value'=>set_value("nombre_lista", $row->la_nombre), 'type'=>'text');
         echo "<div class='form_div'><div class='form_modal_label' style='width:100px'>Nombre:</div>".form_input($data)."</div>";
     ?>
+</div>
+<div class="cuerpo_modal">
+    <div class="titulo_cuerpo_modal">
+        <div style="float: left;">
+            Asistentes Asignados
+        </div>
+        <div style="float: right;">
+            Total: <?php if($resultado){ echo $resultado->num_rows(); }else{ echo "0"; } ?>
+        </div>
+    </div> 
+    <div class="contenido_cuerpo_modal">
+        <div style="overflow-y: scroll; height: 230px;">
+            <?php 
+                if($resultado){
+                    if($resultado->num_rows() > 0){
+            ?>
+            <table class="row-border hover dataTable">
+            <?php       foreach($resultado->result() as $row){ ?>
+                <tr>
+                    <td width="290px">
+                        <?php echo $row->asi_nombre_completo; ?>
+                    </td>
+                    <td>
+                        <?php
+                            $data = array('name'=>'asistente[]', 'id'=>'asistente', 'value'=>$row->asi_cedula, 'style'=>'width:10px; margin-left: 10px; valign: center;');
+                            echo form_checkbox($data);
+                        ?>
+                    </td>
+                </tr>
+                
+            <?php       } ?>
+            </table>
+            <?php
+                    }else{
+                        echo "No tiene asistentes disponibles";
+                    } 
+                }
+            ?>
+        </div>
+    </div>
 </div>
 <div class="boton_modal">
     <span class="boton_modal_fondo">

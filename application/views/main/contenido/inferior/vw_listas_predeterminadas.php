@@ -6,16 +6,23 @@
         <div class="filas">
             <div class="titulo_tabla">LISTA DE ASISTENTES</div>
             <div class="boton_agregar">
-                <a href="javascript:" onclick="crear_formulario('lista_asistente');">
-                    <span>
-                        <img src="<?php echo HTTP_IMAGES_PATH?>Administrador/Contenido/btn_blanco_izq.png" />
-                        <span class="titulo_modal_cuerpo">
+                <span>
+                    <a href="javascript:" onclick="crear_formulario('lista_asistente');">
+                        <span class="boton_blanco_izq">&nbsp;</span>
+                        <span class="boton_blanco_centro" style="padding-right: 10px;">
                             <i class="icono-lista"></i>
                             Agregar Lista Nueva
                         </span>
-                        <img class="titulo_modal_imagen_izq" src="<?php echo HTTP_IMAGES_PATH?>Administrador/Contenido/btn_blanco_der.png" />
-                    </span>
-                </a>
+                    </a>
+                    <span class="boton_blanco_centro" style="border-left: 3px #cccccc solid; height: 24px; "></span>
+                    <a href="javascript:" onclick="crear_formulario('asistente');">
+                        <span class="boton_blanco_centro" style="padding-left: 10px;">
+                            <i class="icono-agregar-asistente"></i>
+                            Asistentes
+                        </span>
+                        <span class="boton_blanco_der" >&nbsp;</span>
+                    </a>
+               </span>
             </div>
         </div>
         <div id="listas_predeterminadas" class="filas">
