@@ -304,11 +304,11 @@ a{
         background: url(../images/Administrador/Contenido/cuerpo_btn_blanco.png) repeat-x;
         width: auto;
         color: #666666;
-        padding: 9px 5px;
+        padding: 8px 5px;
         text-align: center;
         position: relative;
-        top: -15px;
-        top: -14px\9;
+        top: -16px;
+        top: -15px\9;
         left: -3px;
     }
     
@@ -325,6 +325,11 @@ a{
         overflow: hidden;
         height: auto;
     }
+    
+        .cuerpo_modal_tab{
+            margin-top: 15px;
+        }
+        
     
         .form_modal_contenido{
             width: 49%;
@@ -665,4 +670,8 @@ i{
 
 .icono-agregar-asistente{
     background-position: -104px -3px;
+}
+
+.icono-agregar-asistente_blanco{
+    background-position: -40px 0px;
 }

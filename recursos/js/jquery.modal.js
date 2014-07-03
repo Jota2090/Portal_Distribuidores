@@ -112,6 +112,7 @@
         this.closeButton = $('<a href="#close-modal" rel="modal:close" class="close-modal ' + this.options.closeClass + '">' + this.options.closeText + '</a>');
         this.$elm.append(this.closeButton);
       }
+      this.$elm.removeAttr( "class" );
       this.$elm.addClass(className + ' current');
       this.center();
       if(this.options.doFade) {
