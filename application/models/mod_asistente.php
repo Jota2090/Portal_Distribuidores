@@ -328,6 +328,8 @@
                 }
             }
             
+            $this->db->order_by("asi_nombre_completo", "asc"); 
+            
             $resultado = $this->db->get($this->get_name_table());
             return $resultado;
         }

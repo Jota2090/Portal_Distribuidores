@@ -110,7 +110,7 @@
          * @param array $join 
          * @return array $resultado
         */
-        public function get_registro_asistente_lista($select = "*", $where = array(), $or_where = array(), $join = array()){
+        public function get_registro_asistente_lista($select = "*", $where = array(), $or_where = array(), $join = array(), $order_by = array()){
             
             $this->db->select($select);
             
@@ -129,6 +129,12 @@
             if(count($join) > 0){
                 foreach ($join as $key => $value) {
                     $this->db->join($key, $value);
+                }
+            }
+            
+            if(count($order_by) > 0){
+                foreach ($order_by as $key => $value) {
+                    $this->db->order_by($key, $value);
                 }
             }
             
@@ -158,5 +164,27 @@
             return $resultado;
         }
         
+        
+        /**
+         * Initialize delete_asistente_lista()
+         * 
+         * Esta función elimina enlace entre las listas y los asistentes
+         * 
+         * @access public
+         * @param array $where 
+         * @return array $resultado
+        */
+        public function delete_asistente_lista($where = array()){
+            
+            if(count($where) > 0){
+                foreach ($where as $key => $value) {
+                    $this->db->where($key, $value);
+                }
+            }
+            
+            $resultado = $this->db->delete($this->get_name_table());
+            
+            return $resultado;
+        }
     }
 ?>

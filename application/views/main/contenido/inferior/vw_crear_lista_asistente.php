@@ -53,8 +53,11 @@
             <?php
                     }else{
                         echo "No tiene asistentes disponibles";
-                    } 
-                }
+                    }
+                    
+                }else{
+                    echo "No tiene asistentes disponibles";
+                } 
             ?>
         </div>
     </div>

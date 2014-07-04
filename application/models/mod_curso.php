@@ -532,7 +532,6 @@
                 }
             }
             
-            
             $this->db->order_by("cur_fecha_inicio", "desc"); 
             
             $resultado = $this->db->get($this->get_name_table());

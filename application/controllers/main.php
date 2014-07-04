@@ -72,11 +72,19 @@
         
         function editar_lista_asistente(){
             $this->load->model("mod_lista_asistente","lista_asistente");
+            $this->load->model("mod_registro_asistente_lista","registro_asistente_lista");
             
             $select = "*";
             $where = array("la_estado" => "D", "la_asistente_id" => $this->clslogin->getId(), "la_id" => $this->input->post("id"));
             $resultado = $this->lista_asistente->get_listas_asitentes($select, $where);
-            $data['resultado'] = $resultado;
+            $data['lista'] = $resultado;
+            
+            $select = "*";
+            $where = array("asi_estado" => "A", "asi_usuario_id" => $this->clslogin->getId(), "ral_lista_asistente_id" => $this->input->post("id"));
+            $join = array( "tbl_asistente" => "ral_asistente_id=asi_cedula" );
+            $order_by = array("asi_nombre_completo" => "asc");
+            $resultado = $this->registro_asistente_lista->get_registro_asistente_lista($select, $where, array(), $join, $order_by);
+            $data['lista_asistentes']['asistentes'] = $resultado;
             
             $this->load->view("main/contenido/inferior/vw_editar_lista_asistente", $data);
         }
@@ -116,6 +124,51 @@
             }
             
             $this->load->view("main/contenido/inferior/vw_crear_asistente", $data);
+        }
+        
+        
+        function quitar_asistente_lista(){
+            $this->load->model("mod_registro_asistente_lista","registro_asistente_lista");
+            
+            $where = array("ral_lista_asistente_id" => $this->input->post("id_lista"), "ral_asistente_id" => $this->input->post("id_asistente"));
+            $resultado = $this->registro_asistente_lista->delete_asistente_lista($where);
+            
+            $select = "*";
+            $where = array("asi_estado" => "A", "asi_usuario_id" => $this->clslogin->getId(), "ral_lista_asistente_id" => $this->input->post("id_lista"));
+            $join = array( "tbl_asistente" => "ral_asistente_id=asi_cedula" );
+            $order_by = array("asi_nombre_completo" => "asc");
+            $resultado = $this->registro_asistente_lista->get_registro_asistente_lista($select, $where, array(), $join, $order_by);
+            $data['asistentes'] = $resultado;
+            
+            $this->load->view("main/contenido/inferior/ajax/vw_tabla_asistentes_agregados_listas", $data);
+        }
+        
+        
+        function listado_asistentes_agregados($id_lista){
+            $this->load->model("mod_registro_asistente_lista","registro_asistente_lista");
+            
+            $select = "*";
+            $where = array("asi_estado" => "A", "asi_usuario_id" => $this->clslogin->getId(), "ral_lista_asistente_id" => $id_lista);
+            $join = array( "tbl_asistente" => "ral_asistente_id=asi_cedula" );
+            $order_by = array("asi_nombre_completo" => "asc");
+            $resultado = $this->registro_asistente_lista->get_registro_asistente_lista($select, $where, array(), $join, $order_by);
+            $data['asistentes'] = $resultado;
+            
+            $this->load->view("main/contenido/inferior/ajax/vw_tabla_asistentes_agregados_listas", $data);
+        }
+        
+        
+        function listado_asistentes_disponibles($id_lista){
+            $this->load->model("mod_registro_asistente_lista","registro_asistente_lista");
+            
+            $select = "*";
+            $where = array("asi_estado" => "A", "asi_usuario_id" => $this->clslogin->getId(), "ral_lista_asistente_id" => $id_lista);
+            $join = array( "tbl_asistente" => "ral_asistente_id=asi_cedula" );
+            $order_by = array("asi_nombre_completo" => "asc");
+            $resultado = $this->registro_asistente_lista->get_registro_asistente_lista($select, $where, array(), $join, $order_by);
+            $data['asistentes'] = $resultado;
+            
+            $this->load->view("main/contenido/inferior/ajax/vw_tabla_asistentes_disponibles_listas", $data);
         }
     }
     

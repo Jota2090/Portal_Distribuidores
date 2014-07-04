@@ -163,6 +163,34 @@
 	return false;
     }
     
+    function quitar(form, parametros, funcion, seccion){
+        
+        var recurso = form.split('_');
+        
+        Ext.Msg.confirm('Confirmaci\xF3n', 'Confirma que desea quitar el '+recurso[0]+' seleccionado?', function(buttonText) {
+            if (buttonText == "yes"){
+                $.ajax({
+                    type:"post",
+                    url: servidor+"main/quitar_"+form,
+                    data: parametros,
+                    beforeSend: function () {
+                        $( "#listado_"+form ).html( "<div style='width: 100%;  vertical-align: middle; text-align: center;'>Cargando... <img src='"+servidor+"recursos/images/loading.gif'></div>" );
+                    },
+                    success:function(info){
+                        $( "#listado_"+form ).html( info );
+                        
+                        if(funcion !== "" && funcion !== null){
+                            refrescar_seccion(funcion, seccion);
+                        }
+                    }
+                });
+            }
+	});
+					
+	return false;
+        
+    }
+    
     
     function refrescar_seccion(funcion, seccion){
         $.ajax({
@@ -237,3 +265,33 @@
         te = String.fromCharCode(tecla);
         return patron.test(te);
     } 
+    
+    
+    function tabs(id, position, opcion, color, funcion, seccion){
+        
+        var esquinas = ["izq", "der"];
+        
+        switch(opcion) {
+            case "0":
+                var tabs = ["agregados", "disponibles"];
+                break;
+        } 
+        
+        for(i=0; i<esquinas.length; i++){
+            if(position === esquinas[i]){
+                document.getElementById("tab_"+esquinas[i]).className = "selected_boton_"+color+"_"+esquinas[i];
+            }else{
+                document.getElementById("tab_"+esquinas[i]).className = "boton_"+color+"_"+esquinas[i];
+            }
+        }
+        
+        for(i=0; i<tabs.length; i++){
+            if(id === tabs[i]){
+                document.getElementById("tab_menu_"+tabs[i]).className = "tabs_content selected_boton_"+color+"_centro";
+            }else{
+                document.getElementById("tab_menu_"+tabs[i]).className = "tabs_content boton_"+color+"_centro";
+            }
+        }
+        
+        refrescar_seccion(funcion, seccion);
+    }

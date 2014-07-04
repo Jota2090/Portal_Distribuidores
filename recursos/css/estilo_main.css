@@ -355,6 +355,15 @@ a{
             height: auto;
         }
         
+        .tabs{
+            cursor: pointer;
+        }
+        
+        .tabs_content{
+            padding-left: 4px;
+            padding-right: 4px;
+        }
+        
         .cuerpo_modal_tab{
             margin-top: 15px;
         }
@@ -621,6 +630,9 @@ a{
             
             .selected_boton_blanco_izq{
                 background: url(../images/Administrador/Contenido/borde_btn_izq_blanco_over.png) no-repeat;
+                float: left;
+                width: 10px;
+                height: 30px;
             }
             
             .boton_blanco_centro{
@@ -635,7 +647,12 @@ a{
             
             .selected_boton_blanco_centro{
                 background: url(../images/Administrador/Contenido/borde_btn_centro_blanco_over.png) repeat-x;
-                color: black;
+                color: #585858;
+                float: left;
+                width: auto;
+                height: 30px;
+                padding-top: 6px;
+                text-align: center;
             }
             
             .boton_blanco_der{
@@ -647,11 +664,14 @@ a{
             
             .selected_boton_blanco_der{
                 background: url(../images/Administrador/Contenido/borde_btn_der_blanco_over.png) no-repeat;
+                float: left;
+                width: 13px;
+                height: 30px;
             }
 
             .acciones{
                 float: left;
-                margin-left: 5px;
+                margin-right: 5px;
                 cursor: pointer;
             }        
             
