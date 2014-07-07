@@ -23,12 +23,20 @@
         $('#listas').dataTable({
             "ajax": '<?php echo base_url()."asistentes/get_listas_predeterminadas";?>',
             "columns": [
-                { "data": "nombre" },
-                { "data": "num_asistentes" },
-                { "data": "curso" },
+                {   "data": "nombre"    },
+                {   "data": "num_asistentes",
+                    "render": function ( data ) {
+                                return '<div style="text-align: center;">'+data+'</div>';
+                              }
+                },
+                {   "data": "curso",
+                    "render": function ( data ) {
+                                return '<div style="text-align: center;">'+data+'</div>';
+                              }
+                },
                 {
                     "data": "id",
-                    "render": function ( data, type, full, meta ) {
+                    "render": function ( data ) {
                                 return '<div class="acciones" onclick="editar(\'lista_asistente\',\'id='+data+'\');">'+
                                         '<span class="boton_blanco_izq">&nbsp;</span>'+
                                         '<span class="boton_blanco_centro">'+

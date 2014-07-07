@@ -35,5 +35,16 @@
         'asistentes/crear_lista_asistente'=>array(
             array('field'=>'nombre_lista', 'label'=>"Nombre", 'rules'=>'required|trim|xss_clean')
         ),
+        
+        'asistentes/crear_asistente'=>array(
+            array('field'=>'nombre_asistente', 'label'=>"Nombres y Apellidos", 'rules'=>'required|trim|xss_clean'),
+            array('field'=>'cedula', 'label'=>"C&eacute;dula", 'rules'=>'required|trim|numeric|xss_clean|min_length[10]'),
+            array('field'=>'distribuidor', 'label'=>"Distribuidor", 'rules'=>'required|trim|xss_clean'),
+            array('field'=>'correo', 'label'=>"E-mail", 'rules'=>'required|valid_email|trim|xss_clean'),
+            array('field'=>'telefono', 'label'=>"Tel&eacute;fono", 'rules'=>'required|numeric|trim|xss_clean'),
+            array('field'=>'cargo', 'label'=>"Cargo", 'rules'=>'required|trim|xss_clean'),
+            array('field'=>'tipo_asistente', 'label'=>"Tipo", 'rules'=>'required|trim|xss_clean'),
+            array('field'=>'antiguedad', 'label'=>"Antiguedad", 'rules'=>'required|trim|numeric|max_length[4]|xss_clean')
+        ),
     );
 ?>

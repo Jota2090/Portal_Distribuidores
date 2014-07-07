@@ -143,7 +143,24 @@
                 $resultado = $this->db->_error_message();
 
                 if(empty($resultado)){
-                    echo json_encode(array('st'=>1, 'msg' => 'Cambios guardados con Exito'));
+                    
+                    $asistentes = $this->input->post("asistente");
+                    
+                    if($asistentes){
+                        
+                        foreach ($asistentes as $row) {
+                            $this->registro_asistente_lista->set_lista_asistente($this->input->post('id'));
+                            $this->registro_asistente_lista->set_asistente($row);
+
+                            $this->registro_asistente_lista->guardar_asistente_lista();
+                        }
+                        
+                        echo json_encode(array('st'=>1, 'msg' => 'Cambios guardados con Exito'));
+                        
+                    }else{
+                        echo json_encode(array('st'=>1, 'msg' => 'Cambios guardados con Exito'));
+                    }
+                    
                 }else{
                     echo json_encode(array('st'=>0, 'msg' => 'Hubo un problema con el servidor, por favor vuelva a intentar'.$resultado));
                 }
@@ -151,6 +168,71 @@
             
         }
         
+        
+        function crear_asistente(){
+            
+            if ($this->form_validation->run() == FALSE)
+            {
+                echo json_encode(array('st'=>0, 'msg' => validation_errors()));
+            }
+            else
+            {
+                $this->asistente->set_nombre($this->input->post("nombre_asistente"));
+                $this->asistente->set_cedula($this->input->post("cedula"));
+                $this->asistente->set_correo($this->input->post("correo"));
+                $this->asistente->set_telefono($this->input->post("telefono"));
+                $this->asistente->set_antiguedad($this->input->post("antiguedad"));
+                $this->asistente->set_distribuidor($this->input->post("distribuidor"));
+                $this->asistente->set_cargo($this->input->post("cargo"));
+                $this->asistente->set_tipo($this->input->post("tipo_asistente"));
+                $this->asistente->set_usuario($this->clslogin->getId());
+                $this->asistente->set_fecha_modificado(date('Y-m-d H:i:s'));
+
+                $this->asistente->guardar_asistente();
+                $resultado = $this->db->_error_message();
+                
+                if(empty($resultado)){
+                    echo json_encode(array('st'=>2, 'msg' => 'Asistente guardado con Exito'));
+                }else{
+                    echo json_encode(array('st'=>0, 'msg' => 'Hubo un problema con el servidor, por favor vuelva a intentar'.$resultado));
+                }
+            }
+            
+        }
+        
+        
+        function editar_asistente(){
+            
+            if ($this->form_validation->run('asistentes/crear_asistente') == FALSE)
+            {
+                echo json_encode(array('st'=>0, 'msg' => validation_errors()));
+            }
+            else
+            {
+                $data["asi_nombre_completo"] = $this->input->post("nombre_asistente");
+                $data["asi_cedula"] = $this->input->post("cedula");
+                $data["asi_correo"] = $this->input->post("correo");
+                $data["asi_telefono"] = $this->input->post("telefono");
+                $data["asi_antiguedad"] = $this->input->post("antiguedad");
+                $data["asi_distribuidor_id"] = $this->input->post("distribuidor");
+                $data["asi_cargo_asistente_id"] = $this->input->post("cargo");
+                $data["asi_tipo_asistente_id"] = $this->input->post("tipo_asistente");
+                $data["asi_fecha_modificado"] = date('Y-m-d H:i:s');
+                
+                $where = array("asi_cedula" => $this->input->post('id_asistente'), "asi_usuario_id" => $this->clslogin->getId());
+
+                $resultado = $this->asistente->update_asistente($data, $where);
+                
+                $resultado = $this->db->_error_message();
+
+                if(empty($resultado)){
+                    echo json_encode(array('st'=>2, 'msg' => 'Cambios guardados con Exito'));
+                }else{
+                    echo json_encode(array('st'=>0, 'msg' => 'Hubo un problema con el servidor, por favor vuelva a intentar'.$resultado));
+                }
+            }
+            
+        }
     }
     
 ?>

@@ -12,7 +12,7 @@
         </div>
         <div class="menu_header">
             <div class="opcion"><a href="<?php echo base_url()?>login/logout/main">Cerrar Sesi&oacute;n</a></div>
-            <div class="opcion"><a href="<?php echo base_url()?>main/listas_predeterminadas">Listas Predeterminadas</a></div>
+            <div class="opcion"><a href="<?php echo base_url()?>main/lista_asistente">Listas Predeterminadas</a></div>
             <div class="opcion"><a href="#">Cursos</a></div>
         </div>
         <?php }else{    ?>

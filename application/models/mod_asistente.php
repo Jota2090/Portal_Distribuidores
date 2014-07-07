@@ -3,7 +3,7 @@
         exit ('No se puede ejecutar directamente este SCRIPT');
 
     /**
-     * mod_usuario
+     * mod_asistente
      *
      * @package      models
      * @author       Edson Jonathan Franco Borja
@@ -227,7 +227,7 @@
         * @return void
         */
         public function set_usuario($_usuario) {
-            $this->_cedula = $_usuario;
+            $this->_usuario = $_usuario;
         }
 
         /**
@@ -334,5 +334,57 @@
             return $resultado;
         }
         
+        
+        /**
+         * Initialize guardar_asistente()
+         * 
+         * Esta función crea un asistente nuevo en el portal
+         * 
+         * @access public
+         * @return void
+        */
+        public function guardar_asistente(){
+            
+            $data = array(
+               'asi_nombre_completo'        => $this->_nombre,
+               'asi_cedula'                 => $this->_cedula ,
+               'asi_correo'                 => $this->_correo ,
+               'asi_telefono'               => $this->_telefono ,
+               'asi_antiguedad'             => $this->_antiguedad ,
+               'asi_distribuidor_id'        => $this->_distribuidor,
+               'asi_cargo_asistente_id'     => $this->_cargo ,
+               'asi_tipo_asistente_id'      => $this->_tipo,
+               'asi_usuario_id'             => $this->_usuario ,
+               'asi_fecha_modificado'       => $this->_fecha_modificado
+            );
+
+            $resultado = $this->db->insert($this->get_name_table(), $data);
+            
+            return $resultado;
+        }
+        
+        
+        /**
+         * Initialize update_asistente()
+         * 
+         * Esta función actualiza la información de un asistente específico según los parámetros enviados
+         * 
+         * @access public
+         * @param array $data 
+         * @param array $where 
+         * @return array $resultado
+        */
+        public function update_asistente($data = array(), $where = array()){
+            
+            if(count($where) > 0){
+                foreach ($where as $key => $value) {
+                    $this->db->where($key, $value);
+                }
+            }
+            
+            $resultado = $this->db->update($this->get_name_table(), $data);
+            
+            return $resultado;
+        }
     }
 ?>

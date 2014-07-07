@@ -83,7 +83,16 @@
                     }
                     else if(result.st == 1)
                     {
-                        Ext.Msg.alert('Informaci\xf3n',result.msg, function(){ $.modal.close(); refrescar_seccion(funcion, seccion); });
+                        Ext.Msg.alert('Informaci\xf3n',result.msg, function(){ 
+                            $.modal.close(); 
+                            refrescar_seccion(funcion, seccion); 
+                        });
+                    }
+                    else if(result.st == 2)
+                    {
+                        Ext.Msg.alert('Informaci\xf3n',result.msg, function(){ 
+                            refrescar_seccion(funcion, seccion); 
+                        });
                     }
                 } 
             });
@@ -144,17 +153,26 @@
 
 
     function eliminar(form,parametros){
-        Ext.Msg.confirm('Confirmaci\xF3n', 'Confirma que desea eliminar el '+form+' seleccionado?', function(buttonText) {
+        
+        var recurso = form.split('_');
+        
+        if(recurso[0] === 'lista'){
+            recurso[0] = "la "+recurso[0];
+        }else{
+            recurso[0] = "el "+recurso[0];
+        }
+        
+        Ext.Msg.confirm('Confirmaci\xF3n', 'Confirma que desea eliminar '+recurso[0]+' seleccionado?', function(buttonText) {
             if (buttonText == "yes"){
                 $.ajax({
                     type:"post",
                     url: servidor+"main/eliminar_"+form,
                     data: parametros,
                     beforeSend: function () {
-                        $( "#listado_"+form ).html( "<div style='width: 100%;  vertical-align: middle; text-align: center;'>Cargando... <img src='"+servidor+"recursos/images/loading.gif'></div>" );
+                        $( "#"+form ).html( "<div style='width: 100%;  vertical-align: middle; text-align: center;'>Cargando... <img src='"+servidor+"recursos/images/loading.gif'></div>" );
                     },
                     success:function(info){
-                        $( "#listado_"+form ).html( info );
+                        $( "#"+form ).html( info );
                     }
                 });
             }
@@ -174,10 +192,10 @@
                     url: servidor+"main/quitar_"+form,
                     data: parametros,
                     beforeSend: function () {
-                        $( "#listado_"+form ).html( "<div style='width: 100%;  vertical-align: middle; text-align: center;'>Cargando... <img src='"+servidor+"recursos/images/loading.gif'></div>" );
+                        $( "#"+form ).html( "<div style='width: 100%;  vertical-align: middle; text-align: center;'>Cargando... <img src='"+servidor+"recursos/images/loading.gif'></div>" );
                     },
                     success:function(info){
-                        $( "#listado_"+form ).html( info );
+                        $( "#"+form ).html( info );
                         
                         if(funcion !== "" && funcion !== null){
                             refrescar_seccion(funcion, seccion);
@@ -192,10 +210,16 @@
     }
     
     
-    function refrescar_seccion(funcion, seccion){
+    function refrescar_seccion(funcion, seccion, parametros){
+        
+        if(parametros == undefined || parametros == null){
+            parametros = "";
+        }
+        
         $.ajax({
             type:"post",
             url: servidor+"main/"+funcion,
+            data: parametros,
             beforeSend: function () {
                 $( "#"+seccion ).html( "<div style='width: 100%;  vertical-align: middle; text-align: center;'>Cargando... <img src='"+servidor+"recursos/images/loading.gif'></div>" );
             },
@@ -274,6 +298,10 @@
         switch(opcion) {
             case "0":
                 var tabs = ["agregados", "disponibles"];
+                break;
+                
+            case "1":
+                var tabs = ["disponibles", "nuevo"];
                 break;
         } 
         

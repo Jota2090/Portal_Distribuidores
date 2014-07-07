@@ -60,14 +60,14 @@ a{
 }
 
     #header_contenido{
-        width: 69%;
+        width: 72%;
         height: 50px;
         margin: auto;
     }
 
     
         #header_titulo{
-            width: 35%;
+            width: 30%;
             height: 50px;
             float: left;
             font-family: Lego;
@@ -90,7 +90,7 @@ a{
 
             
         #header_opciones{
-            width: 65%;
+            width: 70%;
             height: 50px;
             float: right;
             margin: auto;
@@ -339,7 +339,7 @@ a{
     .cuerpo_modal{
         clear: both;
         margin-top: 10px;
-        margin-left: 50px;
+        margin-left: 40px;
         overflow: hidden;
         height: auto;
     }
@@ -347,7 +347,7 @@ a{
         .titulo_cuerpo_modal{
             margin-top:30px;
             margin-bottom:20px;
-            margin-right: 50px;
+            margin-right: 40px;
             border-bottom: 1px #cccccc solid;
             font-weight: bold;
             font-size: 13px;
@@ -364,12 +364,8 @@ a{
             padding-right: 4px;
         }
         
-        .cuerpo_modal_tab{
-            margin-top: 15px;
-        }
-        
         .contenido_cuerpo_modal{
-            margin-left: 10px;
+            margin-left: 20px;
             margin-right: 60px;
         }
     
@@ -394,7 +390,7 @@ a{
                 }
         
                 .form_modal_label{
-                    width: 120px;
+                    width: 130px;
                     float: left;
                     padding-top: 2px;
                     font-weight: bold;
@@ -458,7 +454,7 @@ a{
     }
     
         #seccion_superior_contenido{
-            width: 69%;
+            width: 72%;
             height: auto;
             overflow: hidden;
             margin: auto;
@@ -518,7 +514,7 @@ a{
     }
     
         #seccion_inferior_contenido{
-            width: 69%;
+            width: 72%;
             height: auto;
             overflow: hidden;
             margin: auto;

@@ -25,8 +25,8 @@
                </span>
             </div>
         </div>
-        <div id="listas_predeterminadas" class="filas">
-            <?php   $this->load->view("main/contenido/inferior/ajax/vw_tabla_listas_predeterminadas"); ?>
+        <div id="lista_asistente" class="filas">
+            <?php   $this->load->view("main/contenido/inferior/ajax/vw_tabla_lista_asistente"); ?>
         </div>
     </div>
 </div>
