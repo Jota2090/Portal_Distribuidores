@@ -442,6 +442,13 @@ a{
             color: orange;
         }
         
+        .boton_modal_fondo a{
+            color: #ffffff;
+        }
+        
+        .boton_modal_fondo a:hover{
+            color: orange;
+        }
     
     /* Seccion Superior */
     #seccion_superior{

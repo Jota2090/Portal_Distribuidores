@@ -17,6 +17,7 @@
          * @var integer     $_id                    id del curso
          * @var string      $_nombre                nombre del curso
          * @var string      $_descripcion           descripcion del curso
+         * @var string      $_nombre_imagen         nombre de la imagen del curso
          * @var string      $_url_imagen            url de la imagen del curso
          * @var string      $_fecha_inicio          fecha de incio del curso
          * @var string      $_fecha_fin             fecha en que finaliza el curso
@@ -44,6 +45,7 @@
         var $_id                    = 0;
         var $_nombre                = "";
         var $_descripcion           = "";
+        var $_nombre_imagen         = "";
         var $_url_imagen            = "";
         var $_fecha_inicio          = "";
         var $_fecha_fin             = "";
@@ -133,6 +135,23 @@
         */
         public function set_descripcion($_descripcion) {
             $this->_descripcion = $_descripcion;
+        }
+        
+        /**
+        * get_nombre_imagen() retorna el nombre de la imagen
+        * @return string _nombre_imagen
+        */
+        public function get_nombre_imagen() {
+            return $this->_nombre_imagen;
+        }
+
+        /**
+        * set_nombre_imagen() setea un valor en el parámetro de _nombre_imagen
+        * @param string $_nombre_imagen 
+        * @return void
+        */
+        public function set_nombre_imagen($_nombre_imagen) {
+            $this->_nombre_imagen = $_nombre_imagen;
         }
         
         /**
@@ -553,6 +572,7 @@
             $data = array(
                'cur_nombre'             => $this->_nombre,
                'cur_descripcion'        => $this->_descripcion ,
+               'cur_nombre_imagen'      => $this->_nombre_imagen ,
                'cur_url_imagen'         => $this->_url_imagen ,
                'cur_fecha_inicio'       => $this->_fecha_inicio ,
                'cur_fecha_fin'          => $this->_fecha_fin ,

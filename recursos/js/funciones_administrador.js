@@ -181,20 +181,32 @@
     }
 
 
-    function cambiar_ciudad(provincia){
+    function cambiar(funcion, parametros, seccion){
+        
+        var parametros_string = "";
+        var parametros_array = parametros.split(",");
+        
+        if(parametros_array.length > 0){
+            for(i=0; i<parametros_array.length; i++){
+                parametros_string = parametros_string + parametros_array[i]+"="+document.getElementById(parametros_array[i]).value+"&";
+            }
+        }else{
+            parametros_string = "";
+        }
+        
         $.ajax({
             type:"post",
-            url: servidor+"ciudad/listar_ciudades",
-            data:"provincia="+provincia,
+            url: servidor+funcion,
+            data:parametros_string,
             beforeSend: function () {
-                $( "#contenido_ciudad" ).html( "<div class='form_modal_input' style='text-align: left;'>Cargando... <img src='"+servidor+"recursos/images/loading_small.gif'></div>" );
+                $( "#"+seccion ).html( "<div class='form_modal_input' style='text-align: left;'>Cargando... <img src='"+servidor+"recursos/images/loading_small.gif'></div>" );
             },
             success:function(info){
-                $( "#contenido_ciudad" ).html( info );
+                $( "#"+seccion ).html( info );
             }
         });
     }
-
+    
 
     function ver_mapa(latitud, longitud, direccion){
         if(latitud === "" || longitud === "" || latitud === undefined || longitud === undefined){

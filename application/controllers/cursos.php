@@ -15,6 +15,7 @@
             parent::__construct();
             $this->load->library("form_validation");
             $this->load->model("mod_curso","curso");
+            $this->load->model("mod_registro_asistente_curso","registro_asistente_curso");
         }
         
         
@@ -31,17 +32,71 @@
                     
                     $items = array();
                     $data = array();
-                    //var_dump($resultado);
+                    
                     if($resultado){
                         foreach ($resultado->result() as $row) {
                             $fila = array();
                             $fila['id'] = $row->cur_id;
+                            $fila['cupos'] = $row->cur_cupos_disponibles;
                             $fila['nombre'] = $row->cur_nombre;
                             $fila['fecha_inicio'] = $row->cur_fecha_inicio;
                             $fila['hora_inicio'] = $row->cur_hora_inicio;
                             $fila['ciudad'] = $row->ciu_nombre;
                             $fila['instructor'] = $row->ins_nombre." ".$row->ins_apellido;
                             $fila['estado'] = $row->par_nombre;
+                            $items[] = $fila;
+                        }
+                        
+                        $data['draw'] = 1;
+                        $data['recordsTotal'] = count($items);
+                        $data['recordsFiltered'] = count($items);
+                        $data['data'] = $items;
+                    }else{
+                        $data['draw'] = 1;
+                        $data['recordsTotal'] = 0;
+                        $data['recordsFiltered'] = 0;
+                        $data['data'] = $items;
+                    }
+                    
+                    $data = json_encode($data);
+                    
+                    break;
+                    
+                    
+               case 1:
+                    
+                    $select = "*";
+                    $or_where = array("D" => "cur_estado", "C" => "cur_estado", "T" => "cur_estado");
+                    $join = array( "tbl_ciudad" => "cur_ciudad_id=ciu_id", "tbl_instructor" => "cur_instructor_id=ins_cedula", "tbl_parametros" => "cur_estado=par_sigla"  );
+                    
+                    $resultado = $this->curso->get_cursos($select, array(), $or_where, $join);
+                    
+                    $items = array();
+                    $data = array();
+                    
+                    if($resultado){
+                        foreach ($resultado->result() as $row) {
+                            $fila = array();
+                            $fila['id'] = $row->cur_id;
+                            $fila['cupos'] = $row->cur_cupos_disponibles;
+                            $fila['nombre'] = $row->cur_nombre;
+                            $fila['fecha_inicio'] = $row->cur_fecha_inicio;
+                            $fila['hora_inicio'] = $row->cur_hora_inicio;
+                            $fila['ciudad'] = $row->ciu_nombre;
+                            
+                            $where = array("rac_curso_id" => $row->cur_id, "rac_asistente_id" => $this->clslogin->getId());
+                            $rac_resultado = $this->registro_asistente_curso->get_registro_asistente_curso(array(),$where);
+                            
+                            if($rac_resultado){
+                                if($rac_resultado->num_rows() == 1){
+                                    $fila['estado'] = 'Registrado';
+                                }else{
+                                    $fila['estado'] = 'No Registrado';
+                                }
+                            }else{
+                                $fila['estado'] = 'No Registrado';
+                            }
+                            
                             $items[] = $fila;
                         }
                         
@@ -103,6 +158,7 @@
                         
                         $this->curso->set_nombre($this->input->post("nombre_curso"));
                         $this->curso->set_descripcion($this->input->post("descripcion"));
+                        $this->curso->set_nombre_imagen($imagen_cargada['file_name']);
                         $this->curso->set_url_imagen($imagen_cargada['full_path']);
                         $this->curso->set_fecha_inicio($this->input->post("fecha_inicio"));
                         $this->curso->set_fecha_fin($this->input->post("fecha_fin"));
@@ -192,6 +248,13 @@
                 $data["cur_subtema"] = $this->input->post("subtema");
                 $data["cur_instructor_id"] = $this->input->post("instructor");
                 if(count($imagen_cargada)>0){
+                    $this->load->helper('file');
+                    
+                    /*$archivo_antiguo = './recursos/images/Cursos/'.$this->input->post("nombre_imagen");
+                    chown($archivo_antiguo, 0777);
+                    unlink($archivo_antiguo);*/
+                    
+                    $data["cur_nombre_imagen"] = $imagen_cargada['file_name'];
                     $data["cur_url_imagen"] = $imagen_cargada['full_path'];
                 }
                 $data["cur_fecha_modificado"] = date('Y-m-d H:i:s');

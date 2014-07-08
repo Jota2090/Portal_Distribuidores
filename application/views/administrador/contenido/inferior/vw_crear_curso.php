@@ -73,7 +73,7 @@
         $data = array('class'=>'form_modal_input', 'name'=>'subtema', 'id'=>'subtema', 'value'=>set_value("subtema"), 'autocomplete'=>'off', 'type'=>'text');
         echo "<div class='form_div'><div class='form_modal_label'>Subtema:</div>".form_input($data)."</div>";
 
-        $js = "id='provincia' class='form_modal_input' onchange='cambiar_ciudad(this.value);'";
+        $js = "id='provincia' class='form_modal_input' onchange='cambiar(\"ciudad/listar_ciudades\",\"provincia\", \"contenido_ciudad\");'";
         echo "<div class='form_div'><div class='form_modal_label'>Provincia:</div>".form_dropdown('provincia', $provincias, '', $js)."</div>";
 
         $js = "id='ciudad' class='form_modal_input'";

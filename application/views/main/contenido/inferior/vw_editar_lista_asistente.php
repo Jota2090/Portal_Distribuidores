@@ -26,17 +26,17 @@
                     <div class="titulo_cuerpo_modal" style="margin-bottom: 0px;">
                         <span class="tabs">
                             <span id="tab_izq" class="selected_boton_blanco_izq">&nbsp;</span>
-                            <span id="tab_menu_agregados" class="tabs_content selected_boton_blanco_centro" onclick="tabs('agregados','izq','0','blanco','listado_asistentes_agregados/<?php echo $row->la_id;  ?>','listado_asistente_lista');">
+                            <span id="tab_menu_agregados" class="tabs_content selected_boton_blanco_centro" onclick="tabs('agregados','izq','0','blanco','listado_asistentes_agregados/<?php echo $row->la_id;  ?>','asistente_lista');">
                                 Asistentes Agregados
                             </span>
                             <span class="boton_blanco_centro" style="border-left: 3px #cccccc solid; height: 24px; "></span>
-                            <span id="tab_menu_disponibles" class="tabs_content boton_blanco_centro" onclick="tabs('disponibles','der','0','blanco','listado_asistentes_disponibles/<?php echo $row->la_id;  ?>','listado_asistente_lista');">
+                            <span id="tab_menu_disponibles" class="tabs_content boton_blanco_centro" onclick="tabs('disponibles','der','0','blanco','listado_asistentes_disponibles/<?php echo $row->la_id;  ?>','asistente_lista');">
                                 Asistentes Disponibles
                             </span>
                             <span id="tab_der" class="boton_blanco_der" >&nbsp;</span>
                         </span>
                     </div>
-                    <div id="listado_asistente_lista" class="contenido_cuerpo_modal">
+                    <div id="asistente_lista" class="contenido_cuerpo_modal">
                         <?php   $this->load->view("main/contenido/inferior/ajax/vw_tabla_asistentes_agregados_listas", $lista_asistentes);  ?>
                     </div>
                 </div>

@@ -30,8 +30,11 @@
                 <div class="form_modal_input right">
                     <?php echo $row->cur_fecha_inicio." al ".$row->cur_fecha_fin; ?>
                 </div>
+                <div class="form_modal_input right">
+                    Jornadas
+                </div>
             </div>
-            <div class="form_div">
+            <div class="form_div" style="margin-top:10px;">
                 <div class="form_modal_label">
                     Hora:
                 </div>

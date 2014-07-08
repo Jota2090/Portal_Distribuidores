@@ -273,6 +273,48 @@
               
             $this->load->view("main/contenido/inferior/ajax/vw_tabla_asistentes_disponibles_listas", $data);
         }
+        
+        
+        function cursos(){
+            $this->_data['header_data']['auth'] = $this->clslogin->check(0);
+            $this->_data['header_data']['nombre'] = $this->clslogin->getNombre();
+            $this->_data['header_data']['apellido'] = $this->clslogin->getApellido();
+
+            $this->_data['inferior'] = 'main/contenido/inferior/vw_listado_cursos';
+            
+            $this->load->view("vw_plantilla_inicio", $this->_data);
+        }
+        
+        
+        function ver_curso(){
+            $this->load->model("mod_curso","curso");
+            
+            $select = "*";
+            $where = array("cur_id" => $this->input->post('id'));
+            $join = array( "tbl_tema" => "cur_tema_id=tem_id", "tbl_ciudad" => "cur_ciudad_id=ciu_id", "tbl_instructor" => "cur_instructor_id=ins_cedula", "tbl_provincia" => "cur_provincia_id=pro_id" );
+
+            $resultado = $this->curso->get_cursos($select, $where, array(), $join);
+            
+            $data['resultado'] = $resultado;
+            
+            $this->load->view("main/contenido/inferior/ajax/vw_ver_detalles_curso", $data);
+        }
+        
+        
+        function form_crear_asistente_curso(){
+            $select = "*";
+            $where = array("la_estado" => "D", "la_asistente_id" => $this->clslogin->getId());
+            $resultado = $this->lista_asistente->get_listas_asitentes($select, $where);
+            
+            $data['listas_asistente'] = array('' => 'Listas de Asistentes');
+            if($resultado){
+                foreach ($resultado->result() as $row) {
+                    $data['listas_asistente'][$row->la_id] = $row->la_nombre;
+                }
+            }
+            
+            $this->load->view("main/contenido/inferior/vw_registrar_asistencia", $data);
+        }
     }
     
 ?>

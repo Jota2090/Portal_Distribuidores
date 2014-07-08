@@ -29,6 +29,13 @@
     height: 500px;
 }
 
+.asistente_curso {
+    background: url(../images/Modals/fondo_asistente.png) no-repeat;
+    display: none;
+    width: 500px;
+    height: 500px;
+}
+
 .lista_asistente {
     background: url(../images/Modals/fondo_lista_asistente.png) no-repeat;
     display: none;

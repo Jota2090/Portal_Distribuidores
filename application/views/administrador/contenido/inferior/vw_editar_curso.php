@@ -2,7 +2,7 @@
     if($resultado){
         foreach ($resultado->result() as $row) {
             $attributes = array('id' => 'f_curso', 'name' => 'f_curso');
-            $hidden = array('id' => $row->cur_id);
+            $hidden = array('id' => $row->cur_id, 'url_imagen' => $row->cur_nombre_imagen);
             echo form_open_multipart('cursos/editar_curso', $attributes, $hidden);
             
             $select = "*";
@@ -82,8 +82,8 @@
 
         $data = array('class'=>'form_modal_input', 'name'=>'subtema', 'id'=>'subtema', 'value'=>set_value("subtema", $row->cur_subtema), 'autocomplete'=>'off', 'type'=>'text');
         echo "<div class='form_div'><div class='form_modal_label'>Subtema:</div>".form_input($data)."</div>";
-
-        $js = "id='provincia' class='form_modal_input' onchange='cambiar_ciudad(this.value);'";
+        
+        $js = "id='provincia' class='form_modal_input' onchange='cambiar(\"ciudad/listar_ciudades\",\"provincia\", \"contenido_ciudad\");'";
         echo "<div class='form_div'><div class='form_modal_label'>Provincia:</div>".form_dropdown('provincia', $provincias, $row->cur_provincia_id, $js)."</div>";
 
         $js = "id='ciudad' class='form_modal_input'";
