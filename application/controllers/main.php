@@ -21,7 +21,8 @@
         function __construct(){
             parent::__construct();
             
-            if($this->uri->segment(2) != "" && $this->uri->segment(2) != "index"){
+            if($this->uri->segment(2) != "" && $this->uri->segment(2) != "index" 
+                && $this->uri->segment(2) != "form_crear_registro_usuario" && $this->uri->segment(2) != "form_crear_olvido_contrasena"){
                 if(!$this->clslogin->check(0)){
                     redirect('main');
                 }
@@ -44,8 +45,18 @@
             
             $this->load->view("vw_plantilla_inicio", $this->_data);
         }
-        
-        
+ 
+
+        function form_crear_registro_usuario(){
+            $this->load->view("main/vw_crear_usuario");
+        }
+
+
+        function form_crear_olvido_contrasena(){
+            $this->load->view("main/vw_olvido_contrasena");
+        }
+
+       
         function lista_asistente(){
             $this->_data['header_data']['auth'] = $this->clslogin->check(0);
             $this->_data['header_data']['nombre'] = $this->clslogin->getNombre();

@@ -167,7 +167,7 @@
 
                 $sql = "SELECT usu_cedula, usu_nombre, usu_apellido, usu_tipo, usu_estado
                         FROM tbl_usuario
-                        WHERE usu_usuario=? AND usu_contrasena=?";
+                        WHERE usu_usuario=? AND usu_contrasena=? AND usu_estado='A'";
                 
                 $salt = '6&KTTmxa$Tej|y6uH%OhSrK@caXbNNo%I23tQmJ20Sid';
                 $enc_pass = sha1(md5($salt.$clave));

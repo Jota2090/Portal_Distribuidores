@@ -94,6 +94,12 @@
                             refrescar_seccion(funcion, seccion); 
                         });
                     }
+                    else if(result.st == 3)
+                    {
+                        Ext.Msg.alert('Informaci\xf3n',result.msg, function(){ 
+                            $.modal.close(); 
+                        });
+                    }
                 } 
             });
         }

@@ -43,6 +43,20 @@
     height: 500px;
 }
 
+.registro_usuario{
+    background: url(../images/Modals/fondo_lista_asistente.png) no-repeat;
+    display: none;
+    width: 420px;
+    height: 370px;
+}
+
+.olvido_contrasena{
+    background: url(../images/Modals/fondo_lista_asistente.png) no-repeat;
+    display: none;
+    width: 420px;
+    height: 200px;
+}
+
 a.close-modal {
   position: absolute;
   top: 10px;

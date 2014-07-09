@@ -88,6 +88,10 @@ a{
                 padding-left: 30px;
             }
 
+            #header_titulo a{
+                color: #000000;
+            }
+
             
         #header_opciones{
             width: 70%;

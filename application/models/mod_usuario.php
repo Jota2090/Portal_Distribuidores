@@ -232,6 +232,71 @@
         }
         
         
+        
+        /**
+         * Initialize get_usuario()
+         * 
+         * Esta función retorna un listado de los usuarios o un usuario específico según los parámetros enviados
+         * 
+         * @access public
+         * @param array $select 
+         * @param array $where 
+         * @param array $or_where 
+         * @param array $join 
+         * @return array $resultado
+        */
+        public function get_usuarios($select = array("0" => "*"), $where = array(), $or_where = array(), $join = array()){
+            
+            if(count($select) > 0){
+                foreach ($select as $key => $value) {
+                    switch ($key) {    
+                        case "0":
+                            $this->db->select($value);
+                            break;
+                        
+                        case "1":
+                            $this->db->select_max($value);
+                            break;
+                        
+                        case "2":
+                            $this->db->select_min($value);
+                            break;
+                        
+                        case "3":
+                            $this->db->select_avg($value);
+                            break;
+                        
+                        case "4":
+                            $this->db->select_sum($value);
+                            break;
+                    }
+                }
+            }
+            
+            if(count($where) > 0){
+                foreach ($where as $key => $value) {
+                    $this->db->where($key, $value);
+                }
+            }
+            
+            if(count($or_where) > 0){
+                foreach ($or_where as $key => $value) {
+                    $this->db->or_where($value, $key);
+                }
+            }
+            
+            if(count($join) > 0){
+                foreach ($join as $key => $value) {
+                    $this->db->join($key, $value);
+                }
+            }
+            
+            $resultado = $this->db->get($this->get_name_table());
+
+            return $resultado;
+        }
+        
+
         /**
          * Initialize guardar_usuario()
          * 
@@ -256,6 +321,30 @@
             $result = $this->db->insert($this->get_name_table(), $data);
             
             return $result;
+        }
+        
+        
+        /**
+         * Initialize update_usuarios()
+         * 
+         * Esta función actualiza la información de un usuario específico según los parámetros enviados
+         * 
+         * @access public
+         * @param array $data 
+         * @param array $where 
+         * @return array $resultado
+        */
+        public function update_usuarios($data = array(), $where = array()){
+            
+            if(count($where) > 0){
+                foreach ($where as $key => $value) {
+                    $this->db->where($key, $value);
+                }
+            }
+            
+            $resultado = $this->db->update($this->get_name_table(), $data);
+            
+            return $resultado;
         }
     }
 ?>

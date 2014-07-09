@@ -1,6 +1,9 @@
 <div id="header_contenido">
+    <div id="modal" style="display:none;">
+            <div id="contenido_modal"></div>
+        </div>
     <div id="header_titulo">
-        <div>Cursos de Capacitaci&oacute;n</div>
+        <div><a href="<?php echo base_url()?>main">Cursos de Capacitaci&oacute;n</a></div>
         <img src="<?php echo HTTP_IMAGES_PATH; ?>Main/Header/logo_claro.png" />
     </div>
     <div id="header_opciones">
@@ -17,7 +20,7 @@
         </div>
         <?php }else{    ?>
         <div class="menu_header" style="float: right;">
-            <div class="opcion"><a href="#">Reg&iacute;strate</a></div>
+            <div class="opcion"><a href="javascript:" onclick="crear_formulario('registro_usuario');">Reg&iacute;strate</a></div>
         </div>
         <div id="inicio_header">
             <ul class="drop_menu">
@@ -53,7 +56,7 @@
 
                                     echo form_close();
                                 ?>
-                                <div id="olvido_contrasena" style="float:right;">
+                                <div id="olvido_contrasena" style="float:right;" onclick="crear_formulario('olvido_contrasena');">
                                     <p>Olvidaste tu contrase&ntilde;a</p>
                                 </div>
                             </div>

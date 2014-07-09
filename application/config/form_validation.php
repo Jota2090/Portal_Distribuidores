@@ -1,17 +1,16 @@
 <?php
     $config = array(
-        'login/crear_usuario'=>array(
-            array('field'=>'nombre', 'label'=>"Nombre", 'rules'=>'required|trim|xss_clean'),
-            array('field'=>'apellido', 'label'=>"Apellido", 'rules'=>'required|trim|xss_clean'),
-            array('field'=>'correo', 'label'=>"Correo", 'rules'=>'required|valid_email|trim|xss_clean'),
-            array('field'=>'cedula', 'label'=>"C&eacute;dula", 'rules'=>'required|trim|min_length[10]|max_length[13]|xss_clean'),
+        'usuarios/crear_usuario'=>array(
+            array('field'=>'nombre_usuario', 'label'=>"Nombres", 'rules'=>'required|trim|xss_clean'),
+            array('field'=>'apellido_usuario', 'label'=>"Apellidos", 'rules'=>'required|trim|xss_clean'),
+            array('field'=>'correo_usuario', 'label'=>"Correo", 'rules'=>'required|valid_email|trim|xss_clean'),
+            array('field'=>'cedula_usuario', 'label'=>"C&eacute;dula", 'rules'=>'required|trim|min_length[10]|max_length[13]|xss_clean'),
             array('field'=>'usuario', 'label'=>"Usuario", 'rules'=>'required|trim|xss_clean'),
             array('field'=>'contrasena', 'label'=>"Contrase&ntilde;a", 'rules'=>'required|trim|xss_clean')
         ),
         
-        'login/validar'=>array(
-            array('field'=>'user', 'label'=>"Usuario", 'rules'=>'required|trim|xss_clean'),
-            array('field'=>'password', 'label'=>"Contrase&ntilde;a", 'rules'=>'required|trim|xss_clean')
+        'usuarios/olvido_contrasena'=>array(
+            array('field'=>'usuario_correo', 'label'=>"Usuario / Correo", 'rules'=>'required|trim|xss_clean')
         ),
         
         'cursos/crear_curso'=>array(
