@@ -159,7 +159,7 @@
                         $this->curso->set_nombre($this->input->post("nombre_curso"));
                         $this->curso->set_descripcion($this->input->post("descripcion"));
                         $this->curso->set_nombre_imagen($imagen_cargada['file_name']);
-                        $this->curso->set_url_imagen($imagen_cargada['full_path']);
+                        $this->curso->set_url_imagen(base_url().'recursos/images/Cursos/'.$imagen_cargada['file_name']);
                         $this->curso->set_fecha_inicio($this->input->post("fecha_inicio"));
                         $this->curso->set_fecha_fin($this->input->post("fecha_fin"));
                         $this->curso->set_hora_inicio($this->input->post("hora_inicio"));
@@ -248,14 +248,13 @@
                 $data["cur_subtema"] = $this->input->post("subtema");
                 $data["cur_instructor_id"] = $this->input->post("instructor");
                 if(count($imagen_cargada)>0){
-                    $this->load->helper('file');
                     
                     /*$archivo_antiguo = './recursos/images/Cursos/'.$this->input->post("nombre_imagen");
                     chown($archivo_antiguo, 0777);
                     unlink($archivo_antiguo);*/
                     
                     $data["cur_nombre_imagen"] = $imagen_cargada['file_name'];
-                    $data["cur_url_imagen"] = $imagen_cargada['full_path'];
+                    $data["cur_url_imagen"] = base_url().'recursos/images/Cursos/'.$imagen_cargada['file_name'];
                 }
                 $data["cur_fecha_modificado"] = date('Y-m-d H:i:s');
                 

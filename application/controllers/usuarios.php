@@ -15,6 +15,7 @@
             parent::__construct();
             $this->load->library("form_validation");
             $this->load->model("mod_usuario","usuario");
+            $this->load->helper('string');
             /* $configs = array(
                                 'protocol'  =>  'smtp',
                                 'smtp_host' =>  'ssl://smtp.gmail.com',
@@ -162,28 +163,67 @@
             }
             else
             {
-
-                $or_where = array($this->input->post("usuario_correo") => 'usu_usuario', $this->input->post("usuario_correo") => 'usu_correo');
-                $usuario = $this->usuario->get_usuarios(array(), array(), $or_where);
-
+                $where = array( 'usu_usuario' => $this->input->post("usuario_correo") );
+                $or_where = array( $this->input->post("usuario_correo") => 'usu_correo' );
+                $usuario = $this->usuario->get_usuarios(array(), $where, $or_where);
                 if($usuario){
-                    if($usuario->num_rows() == 1){    
-                        /*$this->email->from('your@example.com', 'Your Name');
-                        $this->email->to('someone@example.com');
-                        $this->email->cc('another@another-example.com');
-                        $this->email->bcc('them@their-example.com');
+                    if($usuario->num_rows() == 1){
+                        $row = $usuario->row();
 
-                        $this->email->subject('Email Test');
-                        $this->email->message('Testing the email class.');
+                        $contrasena = random_string('alnum', 16);
+                        
+                        $this->email->from('miclaro@iclaro.com.ec', 'Mi Claro');
+                        $this->email->to($row->usu_correo);
+                        $this->email->cc('jfranco@dayscript.com');
+                        $this->email->subject('Portal de Distribuidores :: Contraseña Nueva');
 
-                        $this->email->send();
+                        $contenido  = "";
+                        $contenido  .= "<div style = 'width:798px;min-height:200px;height:auto;' align='left'>";
+                        $contenido  .=      "<div style = 'width:100%;height:100px;'>
+                                                <img src = '".base_url()."recursos/images/cabecera_correo.png'>
+                                            </div>";
+                        $contenido  .=      "<div style='border:black thin solid; width:798px; height: auto; overflow: hidden;' align='left'>";
+                        $contenido  .=          "<div style='width: 600px; margin: 15px;'>
+                                                    Estimado(a) ".$row->usu_nombre." ".$row->usu_apellido." su contrase&ntilde;a nueva es:
+                                                 </div>
+                                                 <div style='width: 600px; padding: 30px;'>
+                                                    <div style='float:left; width: 150px;'>
+                                                        <b>Contrase&ntilde;a Nueva:</b>
+                                                    </div>
+                                                    <div style='float:left; width: 400px;'>
+                                                        ".$contrasena."
+                                                    </div>
+                                                 </div>";           
+                        $contenido  .=      "</div>";
+                        $contenido  .=      "<div style='width:100%;height:92px;' align='center'>
+                                                <img src = '".base_url()."recursos/images/footer_correo.png'>
+                                            </div>";
+                        $contenido  .= "</div>";
+                        
+                        $this->email->message($contenido);    
 
                         if ( ! $this->email->send() ){
-                            echo json_encode(array('st'=>0, 'msg' => 'Hubo un problema al enviar el correo de activacion de la cuenta, por favor vuelva a intentar'));
+                            echo json_encode(array('st'=>0, 'msg' => 'Hubo un problema al enviar el correo con su contrasena nueva, por favor vuelva a intentar'));
                         }
                         else{
-                            echo json_encode(array('st'=>3, 'msg' => 'Se ha enviado una nueva contrasena a su correo registrado'));
-                        }*/
+
+                            $salt = '6&KTTmxa$Tej|y6uH%OhSrK@caXbNNo%I23tQmJ20Sid';
+                            $nueva_contrasena= sha1(md5($salt.$contrasena));
+
+                            $data["usu_contrasena"] = $nueva_contrasena;
+                            $data["usu_fecha_modificado"] = date('Y-m-d H:i:s');
+                            $where = array("usu_cedula" => $row->usu_cedula);
+                            
+                            $resultado = $this->usuario->update_usuarios($data, $where);
+                            $resultado = $this->db->_error_message();
+
+                            if(empty($resultado)){
+                                echo json_encode(array('st'=>3, 'msg' => 'Se ha enviado una nueva contrasena a su correo registrado'));
+                            }else{
+                                echo json_encode(array('st'=>0, 'msg' => 'Hubo un problema al actualizar su contrase&ntilde;a por favor vuelva a intentarlo'));
+                            }
+                        }
+                        
                     }else{
                         echo json_encode(array('st'=>0, 'msg' => 'No se encontro usuario'));
                     }
@@ -195,11 +235,10 @@
         
         
         function activar($id){
-            
             $cedula = $this->decrypt($id, 'YtRsZq@PlMnsuTydF--90HyetrRdf');
             $where = array("usu_cedula" => $cedula);
             $usuario = $this->usuario->get_usuarios(array(), $where);
-            
+			
             if($usuario){
                 if($usuario->num_rows() == 1){
                     $data["usu_estado"] = "A";

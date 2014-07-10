@@ -324,7 +324,25 @@
                 }
             }
             
+            $data['id_curso'] = $this->input->post('id');
+            
             $this->load->view("main/contenido/inferior/vw_registrar_asistencia", $data);
+        }
+
+
+        function listado_asistentes_agregados_cursos($id_curso){
+            $where = array("asi_estado" => "A", "asi_usuario_id" => $this->clslogin->getId(),
+                            "rac_lista_asistente_id" => $this->input->post('lista_asistente'),
+                            "rac_curso_id" => $id_curso );
+            $join = array( "tbl_asistente" => "rac_asistente_id=asi_cedula" );
+            $order_by = array("asi_nombre_completo" => "asc");
+            $resultado = $this->registro_asistente_curso->get_registro_asistente_curso(array(), $where, array(), $join, $order_by);
+            $data['lista_asistentes']['asistentes'] = $resultado;
+            $data['existe_lista'] = true;
+            $data['lista_id'] = $this->input->post('lista_asistente');
+            $data['view'] = 'main/contenido/inferior/ajax/vw_tabla_asistentes_agregados_listas';
+
+            $this->load->view('main/contenido/inferior/vw_opciones_registrar_asistencia', $data);
         }
     }
     

@@ -44,14 +44,14 @@
 }
 
 .registro_usuario{
-    background: url(../images/Modals/fondo_lista_asistente.png) no-repeat;
+    background: url(../images/Modals/fondo_registro_usuario.png) no-repeat;
     display: none;
     width: 420px;
     height: 370px;
 }
 
 .olvido_contrasena{
-    background: url(../images/Modals/fondo_lista_asistente.png) no-repeat;
+    background: url(../images/Modals/fondo_olvido_contrasena.png) no-repeat;
     display: none;
     width: 420px;
     height: 200px;

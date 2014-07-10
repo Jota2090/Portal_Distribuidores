@@ -108,12 +108,17 @@
     }
 
 
-    function crear_formulario(form){
+    function crear_formulario(form, parametros){
         $( "#modal" ).modal('', form);
+
+        if(parametros == undefined || parametros == null){
+            parametros = "";
+        }
 
         $.ajax({
             type:"post",
             url: servidor+"main/form_crear_"+form,
+            data: parametros,
             beforeSend: function () {
                 $( "#contenido_modal" ).html( "<div style='width: 100%; height: 100%; vertical-align: middle; text-align: center;'>Cargando... <img src='"+servidor+"recursos/images/loading.gif'></div>" );
             },
