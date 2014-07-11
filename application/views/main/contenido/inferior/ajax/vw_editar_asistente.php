@@ -10,7 +10,7 @@
                 $data = array('class'=>'form_modal_input', 'name'=>'nombre_asistente', 'id'=>'nombre_asistente', 'value'=>set_value("nombre_asistente", $row->asi_nombre_completo), 'autocomplete'=>'off', 'type'=>'text');
                 echo "<div class='form_div'>
                         <div class='form_modal_label'>
-                            Nombres y Apellidos:
+                            Nombres y Apellidos *
                         </div>
                         ".form_input($data)."
                       </div>";
@@ -19,7 +19,7 @@
                 $data = array('class'=>'form_modal_input', 'name'=>'cedula', 'id'=>'cedula', 'value'=>set_value("cedula", $row->asi_cedula), 'autocomplete'=>'off', 'maxlength'=>'10');
                 echo "<div class='form_div'>
                         <div class='form_modal_label'>
-                            C&eacute;dula:
+                            C&eacute;dula *
                         </div>
                         ".form_input($data, '', $js)."
                       </div>";
@@ -27,7 +27,7 @@
                 $js = "id='distribuidor' class='form_modal_input'";
                 echo "<div class='form_div'>
                         <div class='form_modal_label'>
-                            Distribuidor:
+                            Distribuidor *
                         </div>
                         ".form_dropdown('distribuidor', $distribuidores, $row->asi_distribuidor_id, $js)."
                       </div>";
@@ -35,7 +35,7 @@
                 $data = array('class'=>'form_modal_input', 'name'=>'correo', 'id'=>'correo', 'value'=>set_value("correo", $row->asi_correo), 'autocomplete'=>'off', 'type'=>'text');
                 echo "<div class='form_div'>
                         <div class='form_modal_label'>
-                            E-mail:
+                            E-mail *
                         </div>
                         ".form_input($data)."
                       </div>";
@@ -44,7 +44,7 @@
                 $data = array('class'=>'form_modal_input', 'name'=>'telefono', 'id'=>'telefono', 'value'=>set_value("telefono", $row->asi_telefono), 'autocomplete'=>'off', 'maxlength'=>'10');
                 echo "<div class='form_div'>
                         <div class='form_modal_label'>
-                            Tel&eacute;fono:
+                            Tel&eacute;fono *
                         </div>
                         ".form_input($data, '', $js)."
                       </div>";
@@ -52,14 +52,14 @@
                 $js = "id='cargo' class='form_modal_input'";
                 echo "<div class='form_div'>
                         <div class='form_modal_label'>
-                            Cargo:
+                            Cargo *
                         </div>
                         ".form_dropdown('cargo', $cargos_asistente, $row->asi_cargo_asistente_id, $js)."
                       </div>";
 
                 echo "<div class='form_div'>
                         <div class='form_modal_label'>
-                            Tipo:
+                            Tipo *
                         </div>
                         <div class='form_modal_input'>";
                 
@@ -88,7 +88,7 @@
                 $data = array('class'=>'form_modal_input', 'name'=>'antiguedad', 'id'=>'antiguedad', 'value'=>set_value("antiguedad", $row->asi_antiguedad), 'autocomplete'=>'off', 'maxlength'=>'4', 'style'=>'width:50px;');
                 echo "<div class='form_div'>
                         <div class='form_modal_label'>
-                           Antiguedad:
+                           Antiguedad (a&ntilde;os) *
                         </div>
                         ".form_input($data, '', $js)."
                       </div>";

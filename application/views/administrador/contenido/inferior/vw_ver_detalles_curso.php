@@ -13,7 +13,7 @@
             <span class="titulo_modal_imagen_der" >&nbsp;</span>
         </span>
     </div>
-    <div class="cuerpo_modal" style="height: 315px; margin-top:30px;">
+    <div class="cuerpo_modal" style="height: 325px; margin-top:20px;">
         <div class="form_modal_contenido">
             <div class="form_div">
                 <div class="form_modal_label">
@@ -79,15 +79,23 @@
                     <?php echo "$".$row->cur_costo; ?> 
                 </div>
             </div>
+            <div class="form_div">
+                <div class="form_modal_label">
+                    Comentarios:
+                </div>
+                <div class="form_modal_input right">
+                    <textarea cols="18" rows="2" style="background: transparent; border: 0px;" readonly="true"><?php echo $row->cur_comentarios; ?></textarea>
+                </div>
+            </div>
         </div>
         <div class="form_modal_contenido">
             <div class="form_div">
                 <div class="form_modal_label">
                     Imagen:
                 </div>
-                <div class="form_modal_input">
+                <div class="form_modal_input" style="width: 150px; height: 100px; margin-bottom: 10px;">
                     <a href="<?php echo $row->cur_url_imagen; ?>" data-lightbox="<?php echo $row->cur_nombre_imagen; ?>" >
-                        <?php echo $row->cur_nombre_imagen; ?>
+                        <img src="<?php echo base_url()?>recursos/images/Cursos/Miniaturas/<?php echo $row->cur_nombre_imagen; ?>" />
                     </a>
                 </div>
             </div>
@@ -151,14 +159,6 @@
             <?php
                 }
             ?>
-            <div class="form_div">
-                <div class="form_modal_label">
-                    Comentarios:
-                </div>
-                <div class="form_modal_input">
-                    <?php echo $row->cur_comentarios; ?>
-                </div>
-            </div>
         </div>
     </div>
     <div class="boton_modal">

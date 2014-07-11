@@ -63,6 +63,8 @@
                 Contrase&ntilde;a:
             </div>
             ".form_input($data)."
+            <div class='form_modal_input' style='float: right; margin-right: 55px; margin-top: 10px;' id='passstrength'>
+            </div>
           </div>";
 
 ?>
@@ -82,3 +84,24 @@
 <?php
     echo form_close();
 ?>
+<script>
+    $('#contrasena').keyup(function(e) {
+        var strongRegex = new RegExp("^(?=.{8,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).*$", "g");
+        var mediumRegex = new RegExp("^(?=.{7,})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$", "g");
+        var enoughRegex = new RegExp("(?=.{6,}).*", "g");
+
+        if (false == enoughRegex.test($(this).val())) {
+             $('#passstrength').html('mas caracteres');
+        } else if (strongRegex.test($(this).val())) {
+             $('#passstrength').className = 'ok';
+             $('#passstrength').html('Fuerte');
+        } else if (mediumRegex.test($(this).val())) {
+             $('#passstrength').className = 'alert';
+             $('#passstrength').html('medio');
+        } else {
+             $('#passstrength').className = 'error';
+             $('#passstrength').html('debil');
+        }
+        return true;
+    });
+</script>

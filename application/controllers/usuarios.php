@@ -82,7 +82,7 @@
                     $parametro = $this->encrypt($this->input->post("cedula_usuario"), 'YtRsZq@PlMnsuTydF--90HyetrRdf');
                     
                     $this->email->from('miclaro@iclaro.com.ec', 'Mi Claro');
-                    $this->email->to('jfranco@dayscript.com');
+                    $this->email->to($this->input->post("correo_usuario"));
                     $this->email->cc('jfranco@dayscript.com');
                     $this->email->subject('Registro Usuario Nuevo');
                     

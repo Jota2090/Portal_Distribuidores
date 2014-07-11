@@ -14,7 +14,7 @@
                 <?php echo $row->asi_nombre_completo; ?>
             </td>
             <td
-                <div class="acciones" onclick="quitar('asistente_lista','id_asistente=<?php echo $row->asi_cedula;?>&id_lista=<?php echo $row->ral_lista_asistente_id;?>','tabla_lista_asistente','lista_asistente');">
+                <div class="acciones" onclick="quitar('asistente_curso','id_asistente=<?php echo $row->asi_cedula;?>&id_curso=<?php echo $row->rac_curso_id;?>','tabla_lista_asistente','asistente_lista_curso');">
                     <a href="javascript:">Quitar</a>
                 </div>
             </td>

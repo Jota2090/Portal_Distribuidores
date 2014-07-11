@@ -38,18 +38,10 @@
                     "data": "id",
                     "render": function ( data ) {
                                 return '<div class="acciones" onclick="editar(\'lista_asistente\',\'id='+data+'\');">'+
-                                        '<span class="boton_blanco_izq">&nbsp;</span>'+
-                                        '<span class="boton_blanco_centro">'+
-                                            '<i class="icono-editar"></i><a href="javascript:">Editar</a>'+
-                                        '</span>'+
-                                        '<span class="boton_blanco_der" >&nbsp;</span>'+
+                                         '<i class="icono-editar"></i><a href="javascript:">Editar</a>'+
                                        '</div>'+
                                        '<div class="acciones" onclick="eliminar(\'lista_asistente\',\'id='+data+'\');">'+
-                                        '<span class="boton_blanco_izq">&nbsp;</span>'+
-                                        '<span class="boton_blanco_centro">'+
-                                            '<div><a href="javascript:">Eliminar</a></div>'+
-                                        '</span>'+
-                                        '<span class="boton_blanco_der" >&nbsp;</span>'+
+                                         '<div style="margin-top: 1px;"><a href="javascript:">Eliminar</a></div>'+
                                        '</div>';
                               }
                 }

@@ -156,6 +156,8 @@
                     {
                         $imagen_cargada = $this->upload->data();
                         
+                        $this->crear_miniaturas($imagen_cargada['file_name']);
+                        
                         $this->curso->set_nombre($this->input->post("nombre_curso"));
                         $this->curso->set_descripcion($this->input->post("descripcion"));
                         $this->curso->set_nombre_imagen($imagen_cargada['file_name']);
@@ -224,6 +226,7 @@
                     else
                     {
                         $imagen_cargada = $this->upload->data();
+                        $this->crear_miniaturas($imagen_cargada['file_name']);
                     }
                 }
                 
@@ -271,6 +274,19 @@
                 }
             }
             
+        }
+        
+        
+        function crear_miniaturas($filename){
+            $config['image_library'] = 'gd2';
+            $config['source_image'] = './recursos/images/Cursos/'.$filename;
+            $config['create_thumb'] = TRUE;
+            $config['maintain_ratio'] = TRUE;
+            $config['new_image']='./recursos/images/Cursos/Miniaturas';
+            $config['width'] = 150;
+            $config['height'] = 100;
+            $this->load->library('image_lib', $config);
+            $this->image_lib->resize();
         }
     }
     

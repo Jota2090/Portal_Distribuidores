@@ -78,7 +78,14 @@
                 contentType:false,
                 processData:false,
                 cache:false,
+                beforeSend: function () {
+                    $( "#contenido_modal" ).hide();
+                    $( "#cargando" ).show();
+                },
                 success: function(result){
+                    $( "#cargando" ).hide();
+                    $( "#contenido_modal" ).show();
+
                     if(result.st == 0)
                     {
                         Ext.Msg.alert('Error',result.msg);
@@ -103,7 +110,7 @@
             type:"post",
             url: servidor+"administrador/form_crear_"+form,
             beforeSend: function () {
-                $( "#contenido_modal" ).html( "<div style='width: 100%; height: 100%; vertical-align: middle; text-align: center;'>Cargando... <img src='"+servidor+"recursos/images/loading.gif'></div>" );
+                $( "#contenido_modal" ).html( "<div style='position: relative; top: 40%; vertical-align: middle; text-align: center;'>Cargando... <img src='"+servidor+"recursos/images/loading.gif'></div>" );
             },
             success:function(info){
                 $( "#contenido_modal" ).html( info );
@@ -120,7 +127,7 @@
             url: servidor+"administrador/ver_"+form,
             data: parametros,
             beforeSend: function () {
-                $( "#contenido_modal" ).html( "<div style='width: 100%;  vertical-align: middle; text-align: center;'>Cargando... <img src='"+servidor+"recursos/images/loading.gif'></div>" );
+                $( "#contenido_modal" ).html( "<div style='position: relative; top: 40%; vertical-align: middle; text-align: center;'>Cargando... <img src='"+servidor+"recursos/images/loading.gif'></div>" );
             },
             success:function(info){
                 $( "#contenido_modal" ).html( info );
@@ -137,7 +144,7 @@
             url: servidor+"administrador/editar_"+form,
             data: parametros,
             beforeSend: function () {
-                $( "#contenido_modal" ).html( "<div style='width: 100%;  vertical-align: middle; text-align: center;'>Cargando... <img src='"+servidor+"recursos/images/loading.gif'></div>" );
+                $( "#contenido_modal" ).html( "<div style='position: relative; top: 40%; vertical-align: middle; text-align: center;'>Cargando... <img src='"+servidor+"recursos/images/loading.gif'></div>" );
             },
             success:function(info){
                 $( "#contenido_modal" ).html( info );
@@ -154,7 +161,7 @@
                     url: servidor+"administrador/eliminar_"+form,
                     data: parametros,
                     beforeSend: function () {
-                        $( "#listado_"+form ).html( "<div style='width: 100%;  vertical-align: middle; text-align: center;'>Cargando... <img src='"+servidor+"recursos/images/loading.gif'></div>" );
+                        $( "#listado_"+form ).html( "<div style='position: relative; top: 40%; vertical-align: middle; text-align: center;'>Cargando... <img src='"+servidor+"recursos/images/loading.gif'></div>" );
                     },
                     success:function(info){
                         $( "#listado_"+form ).html( info );
@@ -172,7 +179,7 @@
             type:"post",
             url: servidor+"administrador/"+funcion,
             beforeSend: function () {
-                $( "#"+seccion ).html( "<div style='width: 100%;  vertical-align: middle; text-align: center;'>Cargando... <img src='"+servidor+"recursos/images/loading.gif'></div>" );
+                $( "#"+seccion ).html( "<div style='position: relative; top: 40%; vertical-align: middle; text-align: center;'>Cargando... <img src='"+servidor+"recursos/images/loading.gif'></div>" );
             },
             success:function(info){
                 $( "#"+seccion ).html( info );
@@ -252,3 +259,11 @@
         te = String.fromCharCode(tecla);
         return patron.test(te);
     }
+
+
+    function desplegar(menu){
+        $("#"+menu).toggle();
+    }
+
+
+    

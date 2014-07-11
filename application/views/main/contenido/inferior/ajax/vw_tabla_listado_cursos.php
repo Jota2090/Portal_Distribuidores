@@ -7,7 +7,7 @@
             <th>Hora</th>
             <th>Ciudad</th>
             <th>Estado</th>
-            <th width="270px"></th>
+            <th width="280px"></th>
         </tr>
     </thead>
 
@@ -19,7 +19,7 @@
             <th>Hora</th>
             <th>Ciudad</th>
             <th>Estado</th>
-            <th width="270px"></th>
+            <th width="280px"></th>
         </tr>
     </tfoot>
 </table>
@@ -56,20 +56,16 @@
                     "data": "id",
                     "render": function ( data ) {
                                 return '<div class="acciones" onclick="ver_detalles(\'curso\',\'id='+data+'\');">'+
-                                        '<span class="boton_blanco_izq">&nbsp;</span>'+
-                                        '<span class="boton_blanco_centro">'+
-                                            '<i class="icono-ver_detalles"></i>'+
-                                            '<a href="javascript:">Ver Detalles</a>'+
-                                        '</span>'+
-                                        '<span class="boton_blanco_der" >&nbsp;</span>'+
+                                        '<i class="icono-ver_detalles"></i>'+
+                                        '<a href="javascript:">Ver Detalles</a>'+
                                        '</div>'+
                                        '<div class="acciones" onclick="crear_formulario(\'asistente_curso\',\'id='+data+'\');">'+
-                                        '<span class="boton_blanco_izq">&nbsp;</span>'+
-                                        '<span class="boton_blanco_centro">'+
-                                            '<i class="icono-agregar-asistente"></i>'+
-                                            '<a href="javascript:">Registrar Asistencia</a>'+
-                                        '</span>'+
-                                        '<span class="boton_blanco_der" >&nbsp;</span>'+
+                                        '<i class="icono-agregar-asistente"></i>'+
+                                        '<a href="javascript:">Asistencia</a>'+
+                                       '</div>'+
+                                       '<div class="acciones" onclick="ver_detalles(\'curso\',\'id='+data+'\');">'+
+                                        '<i class="icono-ver_detalles"></i>'+
+                                        '<a href="javascript:">Imprimir</a>'+
                                        '</div>';
                               }
                 }

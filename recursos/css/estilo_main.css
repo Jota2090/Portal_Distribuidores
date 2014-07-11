@@ -164,11 +164,11 @@ a{
                     list-style-type:none;
                 }
 
-                .drop_menu li:hover { 
+                .drop_menu li { 
                     position:relative;
                 }
 
-                .drop_menu li:hover ul {
+                .drop_menu li ul {
                     left:0px;
                     top:30px;
                     background: url('../images/Main/Header/fondo_login.png') no-repeat;
@@ -177,14 +177,14 @@ a{
                     padding:0px;
                 }
 
-                .drop_menu li:hover ul li a {
+                .drop_menu li ul li a {
                     display:block;
                     width:168px;
                     text-indent:15px;
                     background-color: #ffffff;
                 }
 
-                .drop_menu li:hover ul li a:hover { 
+                .drop_menu li ul li a{ 
                     height: 150px;
                 }
                
@@ -678,7 +678,7 @@ a{
 
             .acciones{
                 float: left;
-                margin-right: 5px;
+                margin-right: 20px;
                 cursor: pointer;
             }        
             

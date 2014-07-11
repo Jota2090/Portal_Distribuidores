@@ -31,33 +31,33 @@ class CI_Image_lib {
 	var $dynamic_output		= FALSE;	// Whether to send to browser or write to disk
 	var $source_image		= '';
 	var $new_image			= '';
-	var $width				= '';
-	var $height				= '';
+	var $width			= '';
+	var $height			= '';
 	var $quality			= '90';
 	var $create_thumb		= FALSE;
-	var $thumb_marker		= '_thumb';
+	var $thumb_marker		= '';
 	var $maintain_ratio		= TRUE;		// Whether to maintain aspect ratio when resizing or use hard values
 	var $master_dim			= 'auto';	// auto, height, or width.  Determines what to use as the master dimension
 	var $rotation_angle		= '';
-	var $x_axis				= '';
-	var	$y_axis				= '';
+	var $x_axis			= '';
+	var $y_axis			= '';
 
 	// Watermark Vars
 	var $wm_text			= '';			// Watermark text if graphic is not used
 	var $wm_type			= 'text';		// Type of watermarking.  Options:  text/overlay
 	var $wm_x_transp		= 4;
 	var $wm_y_transp		= 4;
-	var $wm_overlay_path	= '';			// Watermark image path
+	var $wm_overlay_path            = '';			// Watermark image path
 	var $wm_font_path		= '';			// TT font
 	var $wm_font_size		= 17;			// Font size (different versions of GD will either use points or pixels)
-	var $wm_vrt_alignment	= 'B';			// Vertical alignment:   T M B
-	var $wm_hor_alignment	= 'C';			// Horizontal alignment: L R C
+	var $wm_vrt_alignment           = 'B';			// Vertical alignment:   T M B
+	var $wm_hor_alignment           = 'C';			// Horizontal alignment: L R C
 	var $wm_padding			= 0;			// Padding around text
 	var $wm_hor_offset		= 0;			// Lets you push text to the right
 	var $wm_vrt_offset		= 0;			// Lets you push  text down
-	var $wm_font_color		= '#ffffff';	// Text color
-	var $wm_shadow_color	= '';			// Dropshadow color
-	var $wm_shadow_distance	= 2;			// Dropshadow distance
+	var $wm_font_color		= '#ffffff';            // Text color
+	var $wm_shadow_color            = '';			// Dropshadow color
+	var $wm_shadow_distance         = 2;			// Dropshadow distance
 	var $wm_opacity			= 50;			// Image opacity: 1 - 100  Only works with image
 
 	// Private Vars
@@ -73,8 +73,8 @@ class CI_Image_lib {
 	var $create_fnc			= 'imagecreatetruecolor';
 	var $copy_fnc			= 'imagecopyresampled';
 	var $error_msg			= array();
-	var $wm_use_drop_shadow	= FALSE;
-	var $wm_use_truetype	= FALSE;
+	var $wm_use_drop_shadow         = FALSE;
+	var $wm_use_truetype            = FALSE;
 
 	/**
 	 * Constructor

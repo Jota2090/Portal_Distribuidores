@@ -1,7 +1,10 @@
 <div id="header_contenido">
     <div id="modal" style="display:none;">
-            <div id="contenido_modal"></div>
+        <div id="cargando" style="display: none; position: relative; top: 40%; vertical-align: middle; text-align: center;">
+            Enviando... <img src='<?php echo HTTP_IMAGES_PATH; ?>loading.gif'>
         </div>
+        <div id="contenido_modal"></div>
+    </div>
     <div id="header_titulo">
         <div><a href="<?php echo base_url()?>main">Cursos de Capacitaci&oacute;n</a></div>
         <img src="<?php echo HTTP_IMAGES_PATH; ?>Main/Header/logo_claro.png" />
@@ -15,7 +18,7 @@
         </div>
         <div class="menu_header">
             <div class="opcion"><a href="<?php echo base_url()?>login/logout/main">Cerrar Sesi&oacute;n</a></div>
-            <div class="opcion"><a href="<?php echo base_url()?>main/lista_asistente">Listas Predeterminadas</a></div>
+            <div class="opcion"><a href="<?php echo base_url()?>main/lista_asistente">Asistentes</a></div>
             <div class="opcion"><a href="<?php echo base_url()?>main/cursos">Cursos</a></div>
         </div>
         <?php }else{    ?>
@@ -25,11 +28,11 @@
         <div id="inicio_header">
             <ul class="drop_menu">
                 <li>
-                    <a href='#'>
+                    <a href='javascript:' onclick='desplegar("iniciar_sesion");' >
                         <img src="<?php echo HTTP_IMAGES_PATH; ?>Main/Header/ico_usuario.png" />
                         <div>Iniciar Sesi&oacute;n</div>
                     </a>
-                    <ul>
+                    <ul id="iniciar_sesion" style="display: none;">
                         <li>
                             <div id="header_login">
                                  <?php 

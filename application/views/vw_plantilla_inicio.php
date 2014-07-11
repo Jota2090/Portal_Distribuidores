@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <title>Cursos de Capacitacion</title>
+        <meta charset="UTF-8">
         <?php $this->load->view($scripts); ?>
     </head>
    

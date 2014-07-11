@@ -1,6 +1,7 @@
 <?php
     $attributes = array('id' => 'f_registro_asistente', 'name' => 'f_registro_asistente');
-    echo form_open('asistentes/registrar_asistencia', $attributes);
+    $hidden = array('id' => $id_curso);
+    echo form_open('asistentes/registrar_asistencia', $attributes, $hidden);
 ?>
         <div class="titulo_modal">
             <span>
@@ -14,20 +15,34 @@
             </span>
         </div>
         <div class="cuerpo_modal">
+             <div class="form_div">
+                <div class="form_modal_label" style="width:150px;">
+                    Curso:
+                </div>
+                <div class="form_modal_input">
+                    <textarea cols="28" rows="2" style="background: transparent; border: 0px; text-align: left;" readonly="true"><?php if(isset($curso_nombre)){   echo $curso_nombre;   }else{  echo "No existe informaci&oacute;n para este curso";    } ?></textarea>
+                </div>
+            </div>
+             <div class="form_div" style="padding-top: 10px;">
+                <div class="form_modal_label" style="width:150px">
+                    Cupos Disponibles:
+                </div>
+                <div class="form_modal_input">
+                    <?php if(isset($curso_cupos)){   echo $curso_cupos;   }else{  echo "No existe informaci&oacute;n para este curso";    } ?>
+                </div>
+            </div>
             <?php    
-                $js = "id='lista_asistente' class='form_modal_input' style='width:65%' onchange='cambiar(\"main/listado_asistentes_agregados_cursos/$id_curso\",\"lista_asistente\", \"asistente_listado\");'";
+                $js = "id='lista_asistente' class='form_modal_input' style='width:55%' onchange='cambiar(\"main/listado_asistentes_agregados_cursos/$id_curso/0\",\"lista_asistente\", \"asistente_listado\");'";
                 echo "<div class='form_div'>
-                        <div class='form_modal_label' style='width:100px'>
-                            Seleccione:
+                        <div class='form_modal_label' style='width:150px'>
+                            Listas Predeterminadas:
                         </div>
                         ".form_dropdown('lista_asistente', $listas_asistente, '', $js)."
                       </div>";
             ?>
         </div>
-        <div class="cuerpo_modal">
-            <div id="asistente_listado" class="contenido_cuerpo_modal" style="height: 300px;">
-                <?php  $this->load->view('main/contenido/inferior/vw_opciones_registrar_asistencia'); ?>
-            </div>
+        <div id="asistente_listado" class="cuerpo_modal" style="height: 290px;">
+            <?php  $this->load->view('main/contenido/inferior/vw_opciones_registrar_asistencia'); ?>
         </div>
         <div class="boton_modal">
             <span class="boton_modal_fondo">

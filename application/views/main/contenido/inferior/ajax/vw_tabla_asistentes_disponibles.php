@@ -10,23 +10,15 @@
     <table class="row-border hover dataTable">
     <?php       foreach($asistentes_disponibles->result() as $row){ ?>
         <tr>
-            <td width="170px">
+            <td width="185px">
                 <?php echo $row->asi_nombre_completo; ?>
             </td>
             <td>
                 <div class="acciones" onclick="refrescar_seccion('editar_asistente','asistente_listado','id_asistente=<?php echo $row->asi_cedula;?>');" >
-                    <span class="boton_blanco_izq">&nbsp;</span>
-                    <span class="boton_blanco_centro">
-                        <i class="icono-editar"></i><a href="javascript:">Editar</a>
-                    </span>
-                    <span class="boton_blanco_der" >&nbsp;</span>
+                    <i class="icono-editar"></i><a href="javascript:">Editar</a>
                 </div>
                 <div class="acciones" onclick="eliminar('asistente_listado','id_asistente=<?php echo $row->asi_cedula;?>');" >
-                    <span class="boton_blanco_izq">&nbsp;</span>
-                    <span class="boton_blanco_centro">
-                        <a href="javascript:">Eliminar</a>
-                    </span>
-                    <span class="boton_blanco_der" >&nbsp;</span>
+                    <div style="margin-top: 1px;"><a href="javascript:">Eliminar</a></div>
                 </div>
             </td>
         </tr>
