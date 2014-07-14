@@ -20,7 +20,7 @@
                     Curso:
                 </div>
                 <div class="form_modal_input">
-                    <textarea cols="28" rows="2" style="background: transparent; border: 0px; text-align: left;" readonly="true"><?php if(isset($curso_nombre)){   echo $curso_nombre;   }else{  echo "No existe informaci&oacute;n para este curso";    } ?></textarea>
+                    <textarea class="textarea-detalle" cols="42" rows="2" readonly="true"><?php if(isset($curso_nombre)){   echo $curso_nombre;   }else{  echo "No existe informaci&oacute;n para este curso";    } ?></textarea>
                 </div>
             </div>
              <div class="form_div" style="padding-top: 10px;">
@@ -32,7 +32,7 @@
                 </div>
             </div>
             <?php    
-                $js = "id='lista_asistente' class='form_modal_input' style='width:55%' onchange='cambiar(\"main/listado_asistentes_agregados_cursos/$id_curso/0\",\"lista_asistente\", \"asistente_listado\");'";
+                $js = "id='lista_asistente' class='form_modal_input' style='width:55%' onchange='cambiar(\"main/asistentes_agregados_cursos/$id_curso/0\",\"lista_asistente\", \"asistente_listado\");'";
                 echo "<div class='form_div'>
                         <div class='form_modal_label' style='width:150px'>
                             Listas Predeterminadas:
@@ -46,12 +46,12 @@
         </div>
         <div class="boton_modal">
             <span class="boton_modal_fondo">
-                <i class="icono-agregar-lista">&nbsp;</i>
+                <i class="icono-agregar-asistente_blanco">&nbsp;</i>
                 <span>
                 <?php
                     $imagenes = array('0' => false);
-                    $js = 'onclick="enviar_formulario(\'f_registro_asistente\', \'asistentes/registrar_asistencia\', \'tabla_lista_asistente\', \'lista_asistente\', '.$imagenes.')"';
-                    echo form_button('crear', 'Agregar Lista', $js);
+                    $js = 'onclick="enviar_formulario(\'f_registro_asistente\', \'asistentes/registrar_asistencia\', \'tabla_cursos\', \'listado_curso\', '.$imagenes.')"';
+                    echo form_button('crear', 'Registrar Asistencia', $js);
                 ?>
                 </span>
             </span>

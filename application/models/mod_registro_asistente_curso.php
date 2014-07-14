@@ -74,7 +74,7 @@
         * @return void
         */
         public function set_curso($_curso) {
-            $this->_asistente = $_curso;
+            $this->_curso = $_curso;
         }
         
         /**
@@ -129,7 +129,7 @@
          * @param array $join 
          * @return array $resultado
         */
-        public function get_registro_asistente_curso($select = array("0" => "*"), $where = array(), $or_where = array(), $join = array(), $order_by = array()){
+        public function get_registro_asistente_curso($select = array("0" => "*"), $where = array(), $or_where = array(), $join = array()){
             
             if(count($select) > 0){
                 foreach ($select as $key => $value) {
@@ -175,14 +175,53 @@
                 }
             }
             
-            if(count($order_by) > 0){
-                foreach ($order_by as $key => $value) {
-                    $this->db->order_by($key, $value);
+            $resultado = $this->db->get($this->get_name_table());
+            //var_dump($this->db->last_query());
+            return $resultado;
+        }
+        
+        
+        /**
+         * Initialize guardar_asistente_curso()
+         * 
+         * Esta función crea un registro relacionando un asistente con un curso
+         * 
+         * @access public
+         * @return void
+        */
+        public function guardar_asistente_curso(){
+            
+            $data = array(
+                'rac_curso_id'            => $this->_curso,
+                'rac_asistente_id'        => $this->_asistente,
+                'rac_lista_asistente_id'  => $this->_lista_asistente
+            );
+
+            $resultado = $this->db->insert($this->get_name_table(), $data);
+            
+            return $resultado;
+        }
+        
+        
+        /**
+         * Initialize delete_asistente_curso()
+         * 
+         * Esta función elimina enlace entre un curso y un asistente
+         * 
+         * @access public
+         * @param array $where 
+         * @return array $resultado
+        */
+        public function delete_asistente_curso($where = array()){
+            
+            if(count($where) > 0){
+                foreach ($where as $key => $value) {
+                    $this->db->where($key, $value);
                 }
             }
             
-            $resultado = $this->db->get($this->get_name_table());
-            //var_dump($this->db->last_query());
+            $resultado = $this->db->delete($this->get_name_table());
+            
             return $resultado;
         }
         

@@ -24,7 +24,7 @@
         }
 
         if(validador > 0){
-            alert("Debe llenar los campos requeridos");
+            Ext.Msg.alert("Error","Debe llenar los campos requeridos");
             return false;
 
         }else{
@@ -360,11 +360,11 @@
     }
 
 
-    function marcartodos(table){
-	var TABLE = document.getElementById(table);
-	for (var i=0; i<TABLE.rows.length; i++) {
-		var chk = TABLE.rows[i].cells[1].childNodes[1];
-		chk.checked = true;
-	}
+    function marcar_todos(table){
+        var TABLE = document.getElementById(table);
+        for (var i=0; i<TABLE.rows.length; i++) {
+            var chk = TABLE.rows[i].cells[1].childNodes[1];
+            chk.checked = true;
+        }
     }
 

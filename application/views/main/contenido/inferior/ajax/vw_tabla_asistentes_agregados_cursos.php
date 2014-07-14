@@ -13,8 +13,8 @@
             <td width="300px">
                 <?php echo $row->asi_nombre_completo; ?>
             </td>
-            <td
-                <div class="acciones" onclick="quitar('asistente_curso','id_asistente=<?php echo $row->asi_cedula;?>&id_curso=<?php echo $row->rac_curso_id;?>','tabla_lista_asistente','asistente_lista_curso');">
+            <td>
+                <div class="acciones" onclick="quitar('asistente_lista_curso','id_asistente=<?php echo $row->asi_cedula;?>&id_curso=<?php echo $row->rac_curso_id;?>&id_lista=<?php echo $row->rac_lista_asistente_id;?>','tabla_cursos','listado_curso');">
                     <a href="javascript:">Quitar</a>
                 </div>
             </td>

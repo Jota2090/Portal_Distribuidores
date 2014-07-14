@@ -29,12 +29,15 @@
         </div>
     </div> 
     <div class="contenido_cuerpo_modal">
-        <div style="overflow-y: scroll; height: 230px;">
+        <div style="float: right; padding: 5px 28px;">
+            <a href="javascript:" onclick="marcar_todos('asistentes');" >Marcar Todos</a>
+        </div>
+        <div style="overflow-y: scroll; height: 230px; clear: both;">
             <?php 
                 if($resultado){
                     if($resultado->num_rows() > 0){
             ?>
-            <table class="row-border hover dataTable">
+            <table id="asistentes"  class="row-border hover dataTable">
             <?php       foreach($resultado->result() as $row){ ?>
                 <tr>
                     <td width="290px">
@@ -54,7 +57,6 @@
                     }else{
                         echo "No tiene asistentes disponibles";
                     }
-                    
                 }else{
                     echo "No tiene asistentes disponibles";
                 } 

@@ -68,7 +68,10 @@
                     Cupos Disponibles:
                 </div>
                 <div class="form_modal_input right">
-                    <?php echo $row->cur_cupos_disponibles; ?> 
+                    <?php
+                        $cupos_disponibles = $row->cur_cupos_total - $row->cur_cupos_usados;
+                        echo $cupos_disponibles; 
+                    ?> 
                 </div>
             </div>
             <div class="form_div">
@@ -84,7 +87,7 @@
                     Comentarios:
                 </div>
                 <div class="form_modal_input right">
-                    <textarea cols="18" rows="2" style="background: transparent; border: 0px;" readonly="true"><?php echo $row->cur_comentarios; ?></textarea>
+                    <textarea  class="textarea-detalle" cols="18" rows="2" readonly="true"><?php echo $row->cur_comentarios; ?></textarea>
                 </div>
             </div>
         </div>

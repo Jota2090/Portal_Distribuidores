@@ -1,7 +1,7 @@
 <div style="float: right; padding: 5px 0px;">
     <b>Total: &nbsp;<?php if($asistentes){ echo $asistentes->num_rows(); }else{ echo "0"; } ?></b>
 </div>
-<div style="overflow-y: scroll; height: 210px; clear: both;">
+<div style="overflow-y: scroll; height: 220px; clear: both;">
     <?php 
         if($asistentes){
             if($asistentes->num_rows() > 0){

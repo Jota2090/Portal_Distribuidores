@@ -30,10 +30,10 @@
 }
 
 .asistente_curso {
-    background: url(../images/Modals/fondo_asistente.png) no-repeat;
+    background: url(../images/Modals/fondo_asistente_curso.png) no-repeat;
     display: none;
     width: 500px;
-    height: 500px;
+    height: 590px;
 }
 
 .lista_asistente {
@@ -47,7 +47,7 @@
     background: url(../images/Modals/fondo_registro_usuario.png) no-repeat;
     display: none;
     width: 420px;
-    height: 370px;
+    height: 390px;
 }
 
 .olvido_contrasena{

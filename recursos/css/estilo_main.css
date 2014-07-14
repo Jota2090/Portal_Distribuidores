@@ -11,7 +11,7 @@ body{
     padding: 0px; 
     margin: 0px; 
     color: #666666; 
-    font-family: Arial;
+    font-family: Arial, Verdana;
     font-size: 12px;
 }
 
@@ -49,6 +49,15 @@ a{
 
 .left{
     text-align: left;
+}
+
+.textarea-detalle{
+    font-family: Arial, Verdana; 
+    font-size: 12px;  
+    background: transparent; 
+    border: 0px; 
+    text-align: left; 
+    color: #666666;
 }
 
 /* Header (Cabecera) */
@@ -349,8 +358,8 @@ a{
     }
     
         .titulo_cuerpo_modal{
-            margin-top:30px;
-            margin-bottom:20px;
+            margin-top:20px;
+            margin-bottom:5px;
             margin-right: 40px;
             border-bottom: 1px #cccccc solid;
             font-weight: bold;

@@ -28,9 +28,11 @@
                 }
             }
             
+            $this->load->model("mod_curso","curso");
             $this->load->model("mod_asistente","asistente");
             $this->load->model("mod_lista_asistente","lista_asistente");
             $this->load->model("mod_registro_asistente_lista","registro_asistente_lista");
+            $this->load->model("mod_registro_asistente_curso","registro_asistente_curso");
         }
         
         
@@ -297,11 +299,14 @@
             
             $this->load->view("vw_plantilla_inicio", $this->_data);
         }
+
+
+        function tabla_cursos(){
+            $this->load->view("main/contenido/inferior/ajax/vw_tabla_listado_cursos");
+        }
         
         
         function ver_curso(){
-            $this->load->model("mod_curso","curso");
-            
             $select = "*";
             $where = array("cur_id" => $this->input->post('id'));
             $join = array( "tbl_tema" => "cur_tema_id=tem_id", "tbl_ciudad" => "cur_ciudad_id=ciu_id", "tbl_instructor" => "cur_instructor_id=ins_cedula", "tbl_provincia" => "cur_provincia_id=pro_id" );
@@ -318,14 +323,16 @@
             
             $this->load->model("mod_curso","curso");
             
-            $select = "cur_nombre, cur_cupos_disponibles";
+            $select = "cur_nombre, cur_cupos_usados, cur_cupos_total";
             $where = array("cur_estado" => "D", "cur_id" => $this->input->post('id'));
             $resultado = $this->curso->get_cursos($select, $where);
             if($resultado){
                 if ($resultado->num_rows() == 1) {
                     $row = $resultado->row();
                     $data['curso_nombre'] = $row->cur_nombre;
-                    $data['curso_cupos'] = $row->cur_cupos_disponibles;
+
+                    $cupos_disponibles = $row->cur_cupos_total - $row->cur_cupos_usados;
+                    $data['curso_cupos'] = $cupos_disponibles;
                 }
             }
             
@@ -346,7 +353,7 @@
         }
 
 
-        function listado_asistentes_agregados_cursos($id_curso,$id_lista){
+        function asistentes_agregados_cursos($id_curso,$id_lista){
             
             $this->load->model("mod_registro_asistente_curso","registro_asistente_curso");
             
@@ -364,19 +371,27 @@
                 $order_by = array("asi_nombre_completo" => "asc");
                 $resultado = $this->registro_asistente_curso->get_registro_asistente_curso(array(), $where, array(), $join, $order_by);
 
-                $data['lista_asistentes']['asistentes'] = $resultado;
+                $asistentes = $resultado;
                 $data['existe_lista'] = true;
             }
             
-            $data['curso_id'] = $id_curso;
-            $data['lista_id'] = $id_lista;
-            $data['view'] = 'main/contenido/inferior/ajax/vw_tabla_asistentes_agregados_cursos';
+            if($post_lista){
+                $data['lista_asistentes']['asistentes'] = $asistentes;
+                $data['curso_id'] = $id_curso;
+                $data['lista_id'] = $id_lista;
+                $data['view'] = 'main/contenido/inferior/ajax/vw_tabla_asistentes_agregados_cursos';
 
-            $this->load->view('main/contenido/inferior/vw_opciones_registrar_asistencia', $data);
+                $this->load->view('main/contenido/inferior/vw_opciones_registrar_asistencia', $data);
+            }
+            else{
+                $data['asistentes'] = $asistentes;
+                $this->load->view('main/contenido/inferior/ajax/vw_tabla_asistentes_agregados_cursos', $data);
+            }
+            
         }
         
         
-        function listado_asistentes_disponibles_cursos($id_curso,$id_lista){
+        function asistentes_disponibles_cursos($id_curso,$id_lista){
             
             $this->load->model("mod_registro_asistente_curso","registro_asistente_curso");
             
@@ -420,6 +435,47 @@
             }
 
             $this->load->view('main/contenido/inferior/ajax/vw_tabla_asistentes_disponibles_cursos', $data);
+        }
+        
+        
+        function quitar_asistente_lista_curso()
+        {
+            $id_curso = $this->input->post("id_curso");
+            $id_lista = $this->input->post("id_lista");
+            $id_asistente = $this->input->post("id_asistente");
+            
+            $where = array("rac_curso_id" => $id_curso, "rac_asistente_id" => $id_asistente);
+            $resultado = $this->registro_asistente_curso->delete_asistente_curso($where);
+            $resultado = $this->db->_error_message();
+                
+            if(empty($resultado))
+            {
+                $select = "cur_cupos_usados";
+                $where = array("cur_id" => $id_curso);
+                $resultado = $this->curso->get_cursos($select, $where);
+
+                if($resultado)
+                {
+                    if($resultado->num_rows() == 1)
+                    {
+                        $row = $resultado->row();
+                        $cupos_usados = $row->cur_cupos_usados - 1;
+
+                        $data["cur_cupos_usados"] = $cupos_usados;
+                        $data["cur_fecha_modificado"] = date('Y-m-d H:i:s');
+                            
+                        $where = array("cur_id" => $id_curso);
+
+                        $resultado = $this->curso->update_cursos($data, $where);
+                    }
+                }        
+            }
+            else
+            {
+                echo 'Hubo un problema con el servidor, por favor vuelva a intentar';
+            }
+            
+            $this->asistentes_agregados_cursos($id_curso,$id_lista);
         }
     }
     

@@ -6,7 +6,7 @@
             array('field'=>'correo_usuario', 'label'=>"Correo", 'rules'=>'required|valid_email|trim|xss_clean'),
             array('field'=>'cedula_usuario', 'label'=>"C&eacute;dula", 'rules'=>'required|trim|min_length[10]|max_length[13]|xss_clean'),
             array('field'=>'usuario', 'label'=>"Usuario", 'rules'=>'required|trim|xss_clean'),
-            array('field'=>'contrasena', 'label'=>"Contrase&ntilde;a", 'rules'=>'required|trim|xss_clean')
+            array('field'=>'contrasena', 'label'=>"Contrase&ntilde;a", 'rules'=>'required|trim|xss_clean|min_length[8]')
         ),
         
         'usuarios/olvido_contrasena'=>array(
@@ -44,6 +44,10 @@
             array('field'=>'cargo', 'label'=>"Cargo", 'rules'=>'required|trim|xss_clean'),
             array('field'=>'tipo_asistente', 'label'=>"Tipo", 'rules'=>'required|trim|xss_clean'),
             array('field'=>'antiguedad', 'label'=>"Antiguedad", 'rules'=>'required|trim|numeric|max_length[4]|xss_clean')
+        ),
+
+        'asistentes/registrar_asistencia'=>array(
+            array('field'=>'asistente', 'label'=>"Asistente", 'rules'=>'required|xss_clean')
         ),
     );
 ?>

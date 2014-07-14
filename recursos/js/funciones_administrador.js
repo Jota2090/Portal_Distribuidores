@@ -24,7 +24,7 @@
         }
 
         if(validador > 0){
-            alert("Debe llenar los campos requeridos");
+            Ext.Msg.alert("Error","Debe llenar los campos requeridos");
             return false;
 
         }else{

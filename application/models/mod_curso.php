@@ -29,7 +29,6 @@
          * @var string      $_longitud              longitutd del curso (Usado por el API de Google Maps)
          * @var string      $_duracion              duración del curso (Número de horas)
          * @var string      $_cupos_total           cupos totales del curso
-         * @var string      $_cupos_disponibles     cupos disponibles del curso
          * @var string      $_costo                 costo del curso (Valor monetario)
          * @var string      $_comentarios           comentarios u observaciones del curso
          * @var integer     $_provincia             id de la provincia en que se dictará curso
@@ -57,7 +56,6 @@
         var $_longitud              = "";
         var $_duracion              = "";
         var $_cupos_total           = "";
-        var $_cupos_disponibles     = "";
         var $_costo                 = "";
         var $_comentarios           = "";
         var $_provincia             = 0;
@@ -342,23 +340,6 @@
         }
 
         /**
-        * get_cupos_disponibles() retorna los cupos disponibles
-        * @return string _cupos_disponibles
-        */
-        public function get_cupos_disponibles() {
-            return $this->_cupos_disponibles;
-        }
-
-        /**
-        * set_cupos_disponibles() setea un valor en el parámetro de _cupos_disponibles
-        * @param string $_cupos_disponibles 
-        * @return void
-        */
-        public function set_cupos_disponibles($_cupos_disponibles) {
-            $this->_cupos_disponibles = $_cupos_disponibles;
-        }
-
-        /**
         * get_costo() retorna el costo
         * @return string _costo
         */
@@ -584,7 +565,6 @@
                'cur_longitud'           => $this->_longitud ,
                'cur_duracion'           => $this->_duracion ,
                'cur_cupos_total'        => $this->_cupos_total,
-               'cur_cupos_disponibles'  => $this->_cupos_disponibles ,
                'cur_costo'              => $this->_costo ,
                'cur_comentarios'        => $this->_comentarios ,
                'cur_provincia_id'       => $this->_provincia ,

@@ -2,18 +2,21 @@
     <b>Total: &nbsp;<?php if($asistentes){ echo count($asistentes); }else{ echo "0"; } ?></b>
 </div>
 <div style="float: right; padding: 5px 28px;">
-    <a href="" >Marcar Todos</a>
+    <a href="javascript:" onclick="marcar_todos('asistentes_agregados_cursos');" >Marcar Todos</a>
 </div>
 <div style="overflow-y: scroll; height: 210px; clear: both;">
     <?php 
         if($asistentes){
             if(count($asistentes) > 0){
     ?>
-                <table class="row-border hover dataTable">
+                <table id="asistentes_agregados_cursos" class="row-border hover dataTable">
                 <?php   foreach($asistentes as $row){ ?>
                     <tr>
                         <td width="300px">
-                            <?php echo $row['asi_nombre_completo']; ?>
+                            <?php 
+                                echo $row['asi_nombre_completo']; 
+                                echo form_hidden('nombre[]', $row['asi_nombre_completo']);
+                            ?>
                         </td>
                         <td>
                             <?php

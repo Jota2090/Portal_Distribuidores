@@ -57,13 +57,14 @@
             ".form_input($data)."
           </div>";
 
-    $data = array('class'=>'form_modal_input', 'name'=>'contrasena', 'id'=>'contrasena', 'value'=>set_value("contrasena"), 'autocomplete'=>'off', 'type'=>'password');
+    $data = array('class'=>'form_modal_input', 'name'=>'contrasena', 'id'=>'contrasena', 'value'=>set_value("contrasena"), 'autocomplete'=>'off', 'type'=>'password', 'placeholder' => '8 caracteres m&iacute;nimo');
     echo "<div class='form_div'>
             <div class='form_modal_label'>
                 Contrase&ntilde;a:
             </div>
             ".form_input($data)."
-            <div class='form_modal_input' style='float: right; margin-right: 55px; margin-top: 10px;' id='passstrength'>
+            <div class='form_modal_input' style='height: 35px; text-align: right; float: right; margin-right: 55px; margin-top: 10px;' id='validador_contrasena'>
+                <img src='".  base_url()."recursos/images/Main/Header/barra_gris_contrasena.png' />
             </div>
           </div>";
 
@@ -86,21 +87,18 @@
 ?>
 <script>
     $('#contrasena').keyup(function(e) {
-        var strongRegex = new RegExp("^(?=.{8,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).*$", "g");
-        var mediumRegex = new RegExp("^(?=.{7,})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$", "g");
-        var enoughRegex = new RegExp("(?=.{6,}).*", "g");
+        var strongRegex = new RegExp("^(?=.{10,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).*$", "g");
+        var mediumRegex = new RegExp("^(?=.{9,})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$", "g");
+        var enoughRegex = new RegExp("(?=.{8,}).*", "g");
 
         if (false == enoughRegex.test($(this).val())) {
-             $('#passstrength').html('mas caracteres');
+             $('#validador_contrasena').html("<img src='<?php echo base_url() ?>recursos/images/Main/Header/barra_gris_contrasena.png' /><div>8 caracteres m&iacute;nimo</div>");
         } else if (strongRegex.test($(this).val())) {
-             $('#passstrength').className = 'ok';
-             $('#passstrength').html('Fuerte');
+             $('#validador_contrasena').html("<img src='<?php echo base_url() ?>recursos/images/Main/Header/barra_fuerte_contrasena.png' /><div>Segura</div>");
         } else if (mediumRegex.test($(this).val())) {
-             $('#passstrength').className = 'alert';
-             $('#passstrength').html('medio');
+             $('#validador_contrasena').html("<img src='<?php echo base_url() ?>recursos/images/Main/Header/barra_medio_contrasena.png' /><div>Medio</div>");
         } else {
-             $('#passstrength').className = 'error';
-             $('#passstrength').html('debil');
+             $('#validador_contrasena').html("<img src='<?php echo base_url() ?>recursos/images/Main/Header/barra_debil_contrasena.png' /><div>D&eacute;bil</div>");
         }
         return true;
     });

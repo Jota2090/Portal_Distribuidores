@@ -35,9 +35,11 @@
                     
                     if($resultado){
                         foreach ($resultado->result() as $row) {
+                            $cupos_disponibles = $row->cur_cupos_total - $row->cur_cupos_usados;
+                            
                             $fila = array();
                             $fila['id'] = $row->cur_id;
-                            $fila['cupos'] = $row->cur_cupos_disponibles;
+                            $fila['cupos'] = $cupos_disponibles;
                             $fila['nombre'] = $row->cur_nombre;
                             $fila['fecha_inicio'] = $row->cur_fecha_inicio;
                             $fila['hora_inicio'] = $row->cur_hora_inicio;
@@ -76,9 +78,11 @@
                     
                     if($resultado){
                         foreach ($resultado->result() as $row) {
+                            $cupos_disponibles = $row->cur_cupos_total - $row->cur_cupos_usados;
+
                             $fila = array();
                             $fila['id'] = $row->cur_id;
-                            $fila['cupos'] = $row->cur_cupos_disponibles;
+                            $fila['cupos'] = $cupos_disponibles;
                             $fila['nombre'] = $row->cur_nombre;
                             $fila['fecha_inicio'] = $row->cur_fecha_inicio;
                             $fila['hora_inicio'] = $row->cur_hora_inicio;
@@ -172,7 +176,6 @@
                         $this->curso->set_longitud($this->input->post("longitud"));
                         $this->curso->set_duracion($this->input->post("duracion"));
                         $this->curso->set_cupos_total($this->input->post("cupos"));
-                        $this->curso->set_cupos_disponibles($this->input->post("cupos"));
                         $this->curso->set_costo($this->input->post("costo"));
                         $this->curso->set_comentarios($this->input->post("comentarios"));
                         $this->curso->set_provincia($this->input->post("provincia"));
