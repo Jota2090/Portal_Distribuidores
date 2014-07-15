@@ -11,8 +11,17 @@
             <?php $this->load->view($header, $header_data); ?>
         </div>
         <div id="main">
-            <?php $this->load->view($superior); ?>
-            <?php $this->load->view($inferior); ?>
+            <?php 
+                if(!isset($interna))
+                {
+                    $this->load->view($superior);
+                    $this->load->view($inferior); 
+                }
+                else
+                {
+                    $this->load->view($interna, $interna_data);
+                }
+            ?>
         </div>
         <div id="footer">&nbsp;</div>
     </body>

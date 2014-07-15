@@ -9,7 +9,8 @@
      * @author       Edson Jonathan Franco Borja
      * @version      1.0
     */
-    class main extends CI_Controller {
+    class main extends CI_Controller
+    {
     
         var $_data = array(
                             "scripts" => "main/vw_scripts_css",
@@ -18,12 +19,18 @@
                             "inferior" => "main/contenido/inferior/vw_inicio_inferior"
                         );
         
-        function __construct(){
+        function __construct()
+        {
             parent::__construct();
             
             if($this->uri->segment(2) != "" && $this->uri->segment(2) != "index" 
-                && $this->uri->segment(2) != "form_crear_registro_usuario" && $this->uri->segment(2) != "form_crear_olvido_contrasena"){
-                if(!$this->clslogin->check(0)){
+                && $this->uri->segment(2) != "form_crear_registro_usuario"
+                && $this->uri->segment(2) != "form_crear_olvido_contrasena"
+                && $this->uri->segment(2) != "buscador_cursos"
+                && $this->uri->segment(2) != "ver_informacion_cursos")
+            {
+                if(!$this->clslogin->check(0))
+                {
                     redirect('main');
                 }
             }
@@ -36,10 +43,14 @@
         }
         
         
-        function index(){
-            if(!$this->clslogin->check(0)){
+        function index()
+        {
+            if(!$this->clslogin->check(0))
+            {
                 $this->_data['header_data']['form_login'] = '';
-            }else{
+            }
+            else
+            {
                 $this->_data['header_data']['auth'] = $this->clslogin->check(0);
                 $this->_data['header_data']['nombre'] = $this->clslogin->getNombre();
                 $this->_data['header_data']['apellido'] = $this->clslogin->getApellido();
@@ -49,17 +60,20 @@
         }
  
 
-        function form_crear_registro_usuario(){
+        function form_crear_registro_usuario()
+        {
             $this->load->view("main/vw_crear_usuario");
         }
 
 
-        function form_crear_olvido_contrasena(){
+        function form_crear_olvido_contrasena()
+        {
             $this->load->view("main/vw_olvido_contrasena");
         }
 
        
-        function lista_asistente(){
+        function lista_asistente()
+        {
             $this->_data['header_data']['auth'] = $this->clslogin->check(0);
             $this->_data['header_data']['nombre'] = $this->clslogin->getNombre();
             $this->_data['header_data']['apellido'] = $this->clslogin->getApellido();
@@ -70,12 +84,14 @@
         }
         
         
-        function tabla_lista_asistente(){
+        function tabla_lista_asistente()
+        {
             $this->load->view("main/contenido/inferior/ajax/vw_tabla_lista_asistente");
         }
         
         
-        function form_crear_lista_asistente(){
+        function form_crear_lista_asistente()
+        {
             $select = array("0" => "*");
             $where = array("asi_estado" => "A", "asi_usuario_id" => $this->clslogin->getId());
             $resultado = $this->asistente->get_asistentes($select, $where);
@@ -85,7 +101,8 @@
         }
         
         
-        function editar_lista_asistente(){
+        function editar_lista_asistente()
+        {
             $select = "*";
             $where = array("la_estado" => "D", "la_asistente_id" => $this->clslogin->getId(), "la_id" => $this->input->post("id"));
             $resultado = $this->lista_asistente->get_listas_asitentes($select, $where);
@@ -102,7 +119,8 @@
         }
         
         
-        function eliminar_lista_asistente(){
+        function eliminar_lista_asistente()
+        {
             $data["la_estado"] = "E";
             $where = array("la_id" => $this->input->post('id'));
 
@@ -113,7 +131,8 @@
         }
         
         
-        function form_crear_asistente(){
+        function form_crear_asistente()
+        {
             $where = array("asi_estado" => "A", "asi_usuario_id" => $this->clslogin->getId());
             $order_by = array("asi_nombre_completo" => "asc");
             $resultado = $this->asistente->get_asistentes(array(), $where, array(), array(), $order_by);
@@ -123,7 +142,8 @@
         }
         
         
-        function asistentes_disponibles(){
+        function asistentes_disponibles()
+        {
             $select = array("0" => "*");
             $where = array("asi_estado" => "A", "asi_usuario_id" => $this->clslogin->getId());
             $resultado = $this->asistente->get_asistentes($select, $where);
@@ -133,7 +153,8 @@
         }
 
         
-        function asistente_nuevo(){
+        function asistente_nuevo()
+        {
             $this->load->model("mod_distribuidor","distribuidor");
             $this->load->model("mod_cargo_asistente","cargo_asistente");
             $this->load->model("mod_tipo_asistente","tipo_asistente");
@@ -142,8 +163,10 @@
             $where = array("dis_estado" => "A");
             $resultado = $this->distribuidor->get_distribuidores($select, $where);
             $data['distribuidores'] = array('' => 'Seleccione');
-            if($resultado){
-                foreach ($resultado->result() as $row) {
+            if($resultado)
+            {
+                foreach ($resultado->result() as $row)
+                {
                     $data['distribuidores'][$row->dis_razon_social] = $row->dis_nombre;
                 }
             }
@@ -151,8 +174,10 @@
             $where = array("ca_estado" => "D");
             $resultado = $this->cargo_asistente->get_cargos_asistente($select, $where);
             $data['cargos_asistente'] = array('' => 'Seleccione');
-            if($resultado){
-                foreach ($resultado->result() as $row) {
+            if($resultado)
+            {
+                foreach ($resultado->result() as $row)
+                {
                     $data['cargos_asistente'][$row->ca_id] = $row->ca_nombre;
                 }
             }
@@ -160,8 +185,10 @@
             $where = array("ta_estado" => "D");
             $resultado = $this->tipo_asistente->get_tipos_asistente($select, $where);
             $data['tipos_asistente'] = array();
-            if($resultado){
-                foreach ($resultado->result() as $row) {
+            if($resultado)
+            {
+                foreach ($resultado->result() as $row)
+                {
                     $data['tipos_asistente'][$row->ta_id] = $row->ta_nombre;
                 }
             }
@@ -170,7 +197,8 @@
         }
         
         
-        function editar_asistente(){
+        function editar_asistente()
+        {
             $this->load->model("mod_distribuidor","distribuidor");
             $this->load->model("mod_cargo_asistente","cargo_asistente");
             $this->load->model("mod_tipo_asistente","tipo_asistente");
@@ -183,8 +211,10 @@
             $where = array("dis_estado" => "A");
             $resultado = $this->distribuidor->get_distribuidores($select, $where);
             $data['distribuidores'] = array('' => 'Seleccione');
-            if($resultado){
-                foreach ($resultado->result() as $row) {
+            if($resultado)
+            {
+                foreach ($resultado->result() as $row)
+                {
                     $data['distribuidores'][$row->dis_razon_social] = $row->dis_nombre;
                 }
             }
@@ -192,8 +222,10 @@
             $where = array("ca_estado" => "D");
             $resultado = $this->cargo_asistente->get_cargos_asistente($select, $where);
             $data['cargos_asistente'] = array('' => 'Seleccione');
-            if($resultado){
-                foreach ($resultado->result() as $row) {
+            if($resultado)
+            {
+                foreach ($resultado->result() as $row)
+                {
                     $data['cargos_asistente'][$row->ca_id] = $row->ca_nombre;
                 }
             }
@@ -201,8 +233,10 @@
             $where = array("ta_estado" => "D");
             $resultado = $this->tipo_asistente->get_tipos_asistente($select, $where);
             $data['tipos_asistente'] = array();
-            if($resultado){
-                foreach ($resultado->result() as $row) {
+            if($resultado)
+            {
+                foreach ($resultado->result() as $row)
+                {
                     $data['tipos_asistente'][$row->ta_id] = $row->ta_nombre;
                 }
             }
@@ -211,7 +245,8 @@
         }
         
         
-        function eliminar_asistente_listado(){
+        function eliminar_asistente_listado()
+        {
             $data["asi_estado"] = "E";
             $data["asi_fecha_modificado"] = date('Y-m-d H:i:s');
 
@@ -224,7 +259,8 @@
         }
         
         
-        function quitar_asistente_lista(){
+        function quitar_asistente_lista()
+        {
             $where = array("ral_lista_asistente_id" => $this->input->post("id_lista"), "ral_asistente_id" => $this->input->post("id_asistente"));
             $resultado = $this->registro_asistente_lista->delete_asistente_lista($where);
             
@@ -239,7 +275,8 @@
         }
         
         
-        function listado_asistentes_agregados($id_lista){
+        function listado_asistentes_agregados($id_lista)
+        {
             $select = "*";
             $where = array("asi_estado" => "A", "asi_usuario_id" => $this->clslogin->getId(), "ral_lista_asistente_id" => $id_lista);
             $join = array( "tbl_asistente" => "ral_asistente_id=asi_cedula" );
@@ -251,7 +288,8 @@
         }
         
         
-        function listado_asistentes_disponibles($id_lista){
+        function listado_asistentes_disponibles($id_lista)
+        {
             $select = "*";
             $where = array("asi_estado" => "A", "asi_usuario_id" => $this->clslogin->getId(), "ral_lista_asistente_id" => $id_lista);
             $join = array( "tbl_asistente" => "ral_asistente_id=asi_cedula" );
@@ -262,25 +300,35 @@
             $where = array("asi_estado" => "A", "asi_usuario_id" => $this->clslogin->getId());
             $resultado_disponibles = $this->asistente->get_asistentes($select, $where);
             
-            if($resultado_agregados && $resultado_disponibles){
-                if($resultado_agregados->num_rows() > 0){
-                    foreach($resultado_disponibles->result_array() as $row_d){
+            if($resultado_agregados && $resultado_disponibles)
+            {
+                if($resultado_agregados->num_rows() > 0)
+                {
+                    foreach($resultado_disponibles->result_array() as $row_d)
+                    {
                         $no_existe = true;
                         
-                        foreach($resultado_agregados->result_array() as $row_a){
-                            if($row_a['asi_cedula'] == $row_d['asi_cedula']){
+                        foreach($resultado_agregados->result_array() as $row_a)
+                        {
+                            if($row_a['asi_cedula'] == $row_d['asi_cedula'])
+                            {
                                 $no_existe = false;
                             }
                         }
                         
-                        if($no_existe){
+                        if($no_existe)
+                        {
                             $data['asistentes'][] = $row_d;
                         }
                     }
-                }else{
+                }
+                else
+                {
                     $data['asistentes'] = $resultado_disponibles->result_array();
                 }
-            }else{
+            }
+            else
+            {
                 $data['asistentes'] = '';
             }
             
@@ -290,7 +338,8 @@
         }
         
         
-        function cursos(){
+        function cursos_usuarios()
+        {
             $this->_data['header_data']['auth'] = $this->clslogin->check(0);
             $this->_data['header_data']['nombre'] = $this->clslogin->getNombre();
             $this->_data['header_data']['apellido'] = $this->clslogin->getApellido();
@@ -301,12 +350,14 @@
         }
 
 
-        function tabla_cursos(){
+        function tabla_cursos_usuarios()
+        {
             $this->load->view("main/contenido/inferior/ajax/vw_tabla_listado_cursos");
         }
         
         
-        function ver_curso(){
+        function ver_curso()
+        {
             $select = "*";
             $where = array("cur_id" => $this->input->post('id'));
             $join = array( "tbl_tema" => "cur_tema_id=tem_id", "tbl_ciudad" => "cur_ciudad_id=ciu_id", "tbl_instructor" => "cur_instructor_id=ins_cedula", "tbl_provincia" => "cur_provincia_id=pro_id" );
@@ -319,15 +370,17 @@
         }
         
         
-        function form_crear_asistente_curso(){
-            
+        function form_crear_asistente_curso()
+        {
             $this->load->model("mod_curso","curso");
             
             $select = "cur_nombre, cur_cupos_usados, cur_cupos_total";
             $where = array("cur_estado" => "D", "cur_id" => $this->input->post('id'));
             $resultado = $this->curso->get_cursos($select, $where);
-            if($resultado){
-                if ($resultado->num_rows() == 1) {
+            if($resultado)
+            {
+                if ($resultado->num_rows() == 1)
+                {
                     $row = $resultado->row();
                     $data['curso_nombre'] = $row->cur_nombre;
 
@@ -341,8 +394,10 @@
             $resultado = $this->lista_asistente->get_listas_asitentes($select, $where);
             
             $data['listas_asistente'] = array('' => 'Seleccione');
-            if($resultado){
-                foreach ($resultado->result() as $row) {
+            if($resultado)
+            {
+                foreach ($resultado->result() as $row)
+                {
                     $data['listas_asistente'][$row->la_id] = $row->la_nombre;
                 }
             }
@@ -353,17 +408,19 @@
         }
 
 
-        function asistentes_agregados_cursos($id_curso,$id_lista){
-            
+        function asistentes_agregados_cursos($id_curso,$id_lista)
+        {
             $this->load->model("mod_registro_asistente_curso","registro_asistente_curso");
             
             $post_lista = $this->input->post('lista_asistente');
             
-            if(($id_lista == 0 || $id_lista == null || $id_lista == "") && $post_lista){   
+            if(($id_lista == 0 || $id_lista == null || $id_lista == "") && $post_lista)
+            {   
                 $id_lista = $this->input->post('lista_asistente');
             }
             
-            if($id_lista != 0 && $id_lista != null && $id_lista != ""){
+            if($id_lista != 0 && $id_lista != null && $id_lista != "")
+            {
                 $where = array("asi_estado" => "A", "asi_usuario_id" => $this->clslogin->getId(),
                             "rac_lista_asistente_id" => $id_lista,
                             "rac_curso_id" => $id_curso );
@@ -375,7 +432,8 @@
                 $data['existe_lista'] = true;
             }
             
-            if($post_lista){
+            if($post_lista)
+            {
                 $data['lista_asistentes']['asistentes'] = $asistentes;
                 $data['curso_id'] = $id_curso;
                 $data['lista_id'] = $id_lista;
@@ -383,7 +441,8 @@
 
                 $this->load->view('main/contenido/inferior/vw_opciones_registrar_asistencia', $data);
             }
-            else{
+            else
+            {
                 $data['asistentes'] = $asistentes;
                 $this->load->view('main/contenido/inferior/ajax/vw_tabla_asistentes_agregados_cursos', $data);
             }
@@ -391,11 +450,12 @@
         }
         
         
-        function asistentes_disponibles_cursos($id_curso,$id_lista){
-            
+        function asistentes_disponibles_cursos($id_curso,$id_lista)
+        {
             $this->load->model("mod_registro_asistente_curso","registro_asistente_curso");
             
-            if($id_lista != 0 && $id_lista != null && $id_lista != ""){
+            if($id_lista != 0 && $id_lista != null && $id_lista != "")
+            {
                 $where = array("asi_estado" => "A", "asi_usuario_id" => $this->clslogin->getId(),
                                 "rac_lista_asistente_id" => $id_lista,
                                 "rac_curso_id" => $id_curso );
@@ -409,25 +469,35 @@
                 $order_by = array("asi_nombre_completo" => "asc");
                 $resultado_disponibles = $this->registro_asistente_lista->get_registro_asistente_lista($select, $where, array(), $join, $order_by);
 
-                if($resultado_agregados && $resultado_disponibles){
-                    if($resultado_agregados->num_rows() > 0){
-                        foreach($resultado_disponibles->result_array() as $row_d){
+                if($resultado_agregados && $resultado_disponibles)
+                {
+                    if($resultado_agregados->num_rows() > 0)
+                    {
+                        foreach($resultado_disponibles->result_array() as $row_d)
+                        {
                             $no_existe = true;
 
-                            foreach($resultado_agregados->result_array() as $row_a){
-                                if($row_a['asi_cedula'] == $row_d['asi_cedula']){
+                            foreach($resultado_agregados->result_array() as $row_a)
+                            {
+                                if($row_a['asi_cedula'] == $row_d['asi_cedula'])
+                                {
                                     $no_existe = false;
                                 }
                             }
 
-                            if($no_existe){
+                            if($no_existe)
+                            {
                                 $data['asistentes'][] = $row_d;
                             }
                         }
-                    }else{
+                    }
+                    else
+                    {
                         $data['asistentes'] = $resultado_disponibles->result_array();
                     }
-                }else{
+                }
+                else
+                {
                     $data['asistentes'] = '';
                 }
 
@@ -476,6 +546,76 @@
             }
             
             $this->asistentes_agregados_cursos($id_curso,$id_lista);
+        }
+        
+        
+        function buscador_cursos()
+        {
+            if(!$this->clslogin->check(0))
+            {
+                $this->_data['header_data']['form_login'] = '';
+            }
+            else
+            {
+                $this->_data['header_data']['auth'] = $this->clslogin->check(0);
+                $this->_data['header_data']['nombre'] = $this->clslogin->getNombre();
+                $this->_data['header_data']['apellido'] = $this->clslogin->getApellido();
+            }
+
+            $this->_data['interna'] = 'main/contenido/vw_buscador_cursos';
+            
+            $string = $this->input->post('nombre_curso');
+            
+            if($string != "" && $string != null)
+            {
+                $query = "  SELECT `cur_id`, `cur_nombre`, `cur_descripcion`, `cur_url_imagen`, `cur_nombre_imagen`
+                            FROM (`tbl_curso`)
+                            JOIN `tbl_tema` ON `cur_tema_id`=`tem_id`
+                            WHERE `cur_nombre`  LIKE '%".$string."%'
+                            OR  `cur_descripcion`  LIKE '%".$string."%'
+                            OR  `tem_nombre`  LIKE '%".$string."%'
+                            OR  `cur_subtema`  LIKE '%".$string."%'
+                            AND `cur_estado` IN ( 
+                                                  SELECT `cur_id`
+                                                  FROM (`tbl_curso`)
+                                                  WHERE `cur_estado`  = 'D'
+                                                 )
+                            ORDER BY `cur_fecha_inicio` desc
+                          ";
+            }
+            else
+            {
+                $query = "  SELECT `cur_id`, `cur_nombre`, `cur_descripcion`, `cur_url_imagen`, `cur_nombre_imagen`
+                            FROM (`tbl_curso`)
+                            JOIN `tbl_tema` ON `cur_tema_id`=`tem_id`
+                            WHERE `cur_estado`  = 'D'
+                            ORDER BY `cur_fecha_inicio` desc
+                         ";
+            }
+            
+            $this->_data['interna_data']['resultado'] = $this->db->query($query);
+            var_dump($this->db->last_query());
+            $this->load->view("vw_plantilla_inicio", $this->_data);
+        }
+        
+        
+        function ver_informacion_cursos()
+        {
+            if(!$this->clslogin->check(0))
+            {
+                $this->_data['header_data']['form_login'] = '';
+            }
+            else
+            {
+                $this->_data['header_data']['auth'] = $this->clslogin->check(0);
+                $this->_data['header_data']['nombre'] = $this->clslogin->getNombre();
+                $this->_data['header_data']['apellido'] = $this->clslogin->getApellido();
+            }
+
+            $this->_data['superior'] = 'main/contenido/superior/vw_inicio_superior';
+            $this->_data['inferior'] = '';
+            
+            $this->load->view("vw_plantilla_inicio", $this->_data);
         }
     }
     

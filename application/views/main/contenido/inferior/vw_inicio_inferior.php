@@ -51,3 +51,20 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(window).keypress(function(e) 
+    {
+        if(e.keyCode == 13) 
+        {
+            if( $('#header_login').is(":visible") )
+            {
+                validar_formulario('f_login');
+            }
+            else if( $('#buscador').is(":visible") )
+            {
+                alert('buscar');
+            }
+        }
+    });
+</script>

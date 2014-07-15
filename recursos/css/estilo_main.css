@@ -294,7 +294,7 @@ a{
 
 /* Main (Contenido) */
 #main{
-    background-color: #ffffff;
+    background: url('../images/Main/Contenido/background_interna.png') repeat;
     width: 100%;
     height: auto;
     overflow: hidden;
@@ -463,6 +463,55 @@ a{
             color: orange;
         }
     
+     /* Seccion Superior */
+    #seccion_interna{
+        width: 100%;
+        height: auto;
+        padding: 0px; 
+        margin: auto;
+        overflow: hidden;
+    }
+    
+        #seccion_interna_contenido{
+            background: #ffffff;
+            width: 72%;
+            min-height: 598px;
+            height: auto;
+            overflow: hidden;
+            margin: 20px auto;
+            padding: 20px 20px 40px 40px;
+        }
+        
+        .filas-cursos{
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+            margin-top: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px #cccccc solid;
+        }
+        
+        .imagen_buscador_curso{
+            float: left;
+            width: 18%;
+            height: auto;
+        }
+        
+        .caracteristicas_buscador_curso{
+            float: left;
+            width: 65%;
+            height: auto;
+            margin: 18px 0;
+            padding: auto;
+        }
+        
+        .boton_detalles_buscador_curso{
+            float: left;
+            width: 15%;
+            height: auto;
+            margin: 30px 0px;
+        }
+        
     /* Seccion Superior */
     #seccion_superior{
         background: url('../images/Main/Contenido/Superior/cursos_slider.jpg') no-repeat;
@@ -521,6 +570,7 @@ a{
                     top: 11px;
                     left: 10px;
                     z-index: 1;
+                    cursor: pointer;
                 }                    
 
     /* Seccion Inferior */

@@ -508,9 +508,10 @@
          * @param array $where 
          * @param array $or_where 
          * @param array $join 
+         * @param array $order_by
          * @return array $resultado
         */
-        public function get_cursos($select = "*", $where = array(), $or_where = array(), $join = array()){
+        public function get_cursos($select = "*", $where = array(), $or_where = array(), $join = array(), $order_by = array()){
             
             $this->db->select($select);
             
@@ -532,7 +533,11 @@
                 }
             }
             
-            $this->db->order_by("cur_fecha_inicio", "desc"); 
+            if(count($order_by) > 0){
+                foreach ($order_by as $key => $value) {
+                    $this->db->order_by($key, $value);
+                }
+            }
             
             $resultado = $this->db->get($this->get_name_table());
             

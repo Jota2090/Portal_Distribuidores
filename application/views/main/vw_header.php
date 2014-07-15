@@ -19,7 +19,7 @@
         <div class="menu_header">
             <div class="opcion"><a href="<?php echo base_url()?>login/logout/main">Cerrar Sesi&oacute;n</a></div>
             <div class="opcion"><a href="<?php echo base_url()?>main/lista_asistente">Asistentes</a></div>
-            <div class="opcion"><a href="<?php echo base_url()?>main/cursos">Cursos</a></div>
+            <div class="opcion"><a href="<?php echo base_url()?>main/cursos_usuarios">Cursos</a></div>
         </div>
         <?php }else{    ?>
         <div class="menu_header" style="float: right;">
@@ -70,21 +70,11 @@
         </div>
         <div class="menu_header">
             <div class="opcion"><a href="#">Categor&iacute;as</a></div>
-            <div class="opcion"><a href="#">Cursos</a></div>
+            <div class="opcion"><a href="<?php echo base_url()?>main/buscador_cursos">Cursos</a></div>
         </div>
         <?php }  ?>
     </div>
 </div>
-<script>
-    $(window).keypress(function(e) {
-        if(e.keyCode == 13) {
-            if( $('#header_login').is(":visible") ){
-                validar_formulario('f_login');
-            }
-        }
-    });
-</script>
-
 <?php
     if(isset($auth) && !$auth){ ?>
     <script>

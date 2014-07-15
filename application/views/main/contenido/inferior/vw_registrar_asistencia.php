@@ -50,7 +50,7 @@
                 <span>
                 <?php
                     $imagenes = array('0' => false);
-                    $js = 'onclick="enviar_formulario(\'f_registro_asistente\', \'asistentes/registrar_asistencia\', \'tabla_cursos\', \'listado_curso\', '.$imagenes.')"';
+                    $js = 'onclick="enviar_formulario(\'f_registro_asistente\', \'asistentes/registrar_asistencia\', \'tabla_cursos_usuarios\', \'listado_cursos_usuarios\', '.$imagenes.')"';
                     echo form_button('crear', 'Registrar Asistencia', $js);
                 ?>
                 </span>
