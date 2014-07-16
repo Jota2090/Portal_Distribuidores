@@ -14,7 +14,7 @@
                             Agregar Lista Nueva
                         </span>
                     </a>
-                    <span class="boton_blanco_centro" style="border-left: 3px #cccccc solid; height: 24px; "></span>
+                    <span class="boton_blanco_centro" style="border-left: 3px #cccccc solid; padding: 8px 0px 7px 0px;"></span>
                     <a href="javascript:" onclick="crear_formulario('asistente');">
                         <span class="boton_blanco_centro" style="padding-left: 10px;">
                             <i class="icono-agregar-asistente"></i>

@@ -365,16 +365,12 @@ a{
             font-weight: bold;
             font-size: 13px;
             overflow: hidden;
-            height: auto;
+            padding: 10px 0px;
+            width: auto;
         }
         
         .tabs{
             cursor: pointer;
-        }
-        
-        .tabs_content{
-            padding-left: 4px;
-            padding-right: 4px;
         }
         
         .contenido_cuerpo_modal{
@@ -507,7 +503,7 @@ a{
         
         .boton_detalles_buscador_curso{
             float: left;
-            width: 15%;
+            width: 17%;
             height: auto;
             margin: 30px 0px;
         }
@@ -535,6 +531,7 @@ a{
                 height: auto;
                 overflow: hidden;
                 margin-top: 20px;
+                text-align: justify;
             }
             
                 #slogan_publicidad{
@@ -559,7 +556,6 @@ a{
                     padding-right: 16px;
                     float: left;
                     margin-top: 10px;
-                    z-index: 1;
                     position: relative;
                     line-height: 30px;
                     left: 22px;
@@ -569,7 +565,6 @@ a{
                     position: relative;
                     top: 11px;
                     left: 10px;
-                    z-index: 1;
                     cursor: pointer;
                 }                    
 
@@ -689,24 +684,31 @@ a{
             
             .boton_blanco_izq{
                 background: url(../images/Administrador/Contenido/borde_btn_izq_blanco.png) no-repeat;
-                float: left;
-                width: 10px;
+                width: 13px;
                 height: 30px;
+                padding: 8px 5px;
+                top: 1px;
+                position: relative;
             }
             
             .selected_boton_blanco_izq{
                 background: url(../images/Administrador/Contenido/borde_btn_izq_blanco_over.png) no-repeat;
-                float: left;
-                width: 10px;
+                width: 12px;
                 height: 30px;
+                padding: 8px 5px;
+                top: 1px;
+                left: 1px;
+                position: relative;
             }
             
             .boton_blanco_centro{
                 background: url(../images/Administrador/Contenido/borde_btn_centro_blanco.png) repeat-x;
-                float: left;
                 width: auto;
                 height: 30px;
-                padding-top: 6px;
+                padding: 8px 5px;
+                left: -5px;
+                top: 1px;
+                position: relative;
                 text-align: center;
                 color: #666666;
             }
@@ -714,24 +716,34 @@ a{
             .selected_boton_blanco_centro{
                 background: url(../images/Administrador/Contenido/borde_btn_centro_blanco_over.png) repeat-x;
                 color: #585858;
-                float: left;
                 width: auto;
                 height: 30px;
-                padding-top: 6px;
+                padding: 8px 5px;
+                left: -5px;
+                top: 1px;
+                position: relative;
                 text-align: center;
             }
             
             .boton_blanco_der{
                 background: url(../images/Administrador/Contenido/borde_btn_der_blanco.png) no-repeat;
-                float: left;
                 width: 12px;
+                height: 30px;
+                padding: 8px 5px;
+                left: -5px;
+                top: 1px;
+                position: relative;
                 height: 30px;
             }
             
             .selected_boton_blanco_der{
                 background: url(../images/Administrador/Contenido/borde_btn_der_blanco_over.png) no-repeat;
-                float: left;
                 width: 13px;
+                height: 30px;
+                padding: 8px 5px;
+                left: -5px;
+                top: 1px;
+                position: relative;
                 height: 30px;
             }
 
@@ -779,7 +791,7 @@ i{
 }
 
 .icono-cuadritos{
-    background-position: -183px -3px;
+    background-position: -180px -3px;
 }
 
 .icono-agregar-lista{
@@ -798,4 +810,16 @@ i{
 .icono-ver_detalles{
     background: url('../images/Administrador/Contenido/ico_buscar.png') no-repeat left top;
     background-position: 0px 2px;
+}
+
+.icono-calendario{
+    background-position: -200px -2px;
+}
+
+.icono-tiempo{
+    background-position: -217px -2px;
+}
+
+.icono-sobre-gris{
+    background-position: -230px -2px;
 }

@@ -32,7 +32,7 @@
                         <img src="<?php echo HTTP_IMAGES_PATH; ?>Main/Header/ico_usuario.png" />
                         <div>Iniciar Sesi&oacute;n</div>
                     </a>
-                    <ul id="iniciar_sesion" style="display: none;">
+                    <ul id="iniciar_sesion" style="display: none; z-index: 1;">
                         <li>
                             <div id="header_login">
                                  <?php 

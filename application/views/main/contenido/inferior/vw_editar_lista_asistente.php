@@ -29,7 +29,7 @@
                             <span id="tab_menu_agregados" class="tabs_content selected_boton_blanco_centro" onclick="tabs('agregados','izq','0','blanco','listado_asistentes_agregados/<?php echo $row->la_id;  ?>','asistente_lista');">
                                 Asistentes Agregados
                             </span>
-                            <span class="boton_blanco_centro" style="border-left: 3px #cccccc solid; height: 24px; "></span>
+                            <span class="boton_blanco_centro" style="border-left: 3px #cccccc solid; padding: 8px 0px 7px 0px;"></span>
                             <span id="tab_menu_disponibles" class="tabs_content boton_blanco_centro" onclick="tabs('disponibles','der','0','blanco','listado_asistentes_disponibles/<?php echo $row->la_id;  ?>','asistente_lista');">
                                 Asistentes Disponibles
                             </span>

@@ -16,12 +16,12 @@
             <span id="tab_menu_disponibles" class="tabs_content selected_boton_blanco_centro" onclick="tabs('disponibles','izq','1','blanco','asistentes_disponibles','asistente_listado');">
                 Asistentes Disponibles
             </span>
-            <span class="boton_blanco_centro" style="border-left: 3px #cccccc solid; height: 24px; "></span>
+            <span class="boton_blanco_centro" style="border-left: 3px #cccccc solid; padding: 8px 0px 7px 0px;"></span>
             <span id="tab_menu_nuevo" class="tabs_content boton_blanco_centro" onclick="tabs('nuevo','der','1','blanco','asistente_nuevo','asistente_listado');">
                 Asistente Nuevo
             </span>
             <span id="tab_der" class="boton_blanco_der" >&nbsp;</span>
-        </span>
+       </span>
     </div>
     <div id="asistente_listado" class="contenido_cuerpo_modal">
         <?php   $this->load->view("main/contenido/inferior/ajax/vw_tabla_asistentes_disponibles", $lista_asistentes);  ?>

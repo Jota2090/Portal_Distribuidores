@@ -63,7 +63,12 @@
             }
             else if( $('#buscador').is(":visible") )
             {
-                alert('buscar');
+                var buscar = document.getElementById('nombre_curso').value;
+                
+                if(buscar != '' && buscar != null){
+                    document.forms.f_buscador_curso.submit();
+                    return false;
+                }
             }
         }
     });

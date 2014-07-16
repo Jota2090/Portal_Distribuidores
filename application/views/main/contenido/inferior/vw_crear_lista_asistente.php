@@ -20,7 +20,7 @@
     ?>
 </div>
 <div class="cuerpo_modal">
-    <div class="titulo_cuerpo_modal">
+    <div class="titulo_cuerpo_modal" style="padding: 0px;">
         <div style="float: left;">
             Asistentes Disponibles
         </div>

@@ -359,7 +359,7 @@
         function ver_curso()
         {
             $select = "*";
-            $where = array("cur_id" => $this->input->post('id'));
+            $where = array("cur_id" => $this->input->post('id'), "cur_estado" => "D");
             $join = array( "tbl_tema" => "cur_tema_id=tem_id", "tbl_ciudad" => "cur_ciudad_id=ciu_id", "tbl_instructor" => "cur_instructor_id=ins_cedula", "tbl_provincia" => "cur_provincia_id=pro_id" );
 
             $resultado = $this->curso->get_cursos($select, $where, array(), $join);
@@ -410,6 +410,8 @@
 
         function asistentes_agregados_cursos($id_curso,$id_lista)
         {
+            $data['existe_lista'] = false;
+            
             $this->load->model("mod_registro_asistente_curso","registro_asistente_curso");
             
             $post_lista = $this->input->post('lista_asistente');
@@ -443,10 +445,16 @@
             }
             else
             {
-                $data['asistentes'] = $asistentes;
-                $this->load->view('main/contenido/inferior/ajax/vw_tabla_asistentes_agregados_cursos', $data);
+                if($data['existe_lista'])
+                {
+                    $data['asistentes'] = $asistentes;
+                    $this->load->view('main/contenido/inferior/ajax/vw_tabla_asistentes_agregados_cursos', $data);
+                }
+                else
+                {
+                    $this->load->view('main/contenido/inferior/vw_opciones_registrar_asistencia', $data);
+                }
             }
-            
         }
         
         
@@ -571,15 +579,13 @@
                 $query = "  SELECT `cur_id`, `cur_nombre`, `cur_descripcion`, `cur_url_imagen`, `cur_nombre_imagen`
                             FROM (`tbl_curso`)
                             JOIN `tbl_tema` ON `cur_tema_id`=`tem_id`
-                            WHERE `cur_nombre`  LIKE '%".$string."%'
-                            OR  `cur_descripcion`  LIKE '%".$string."%'
-                            OR  `tem_nombre`  LIKE '%".$string."%'
-                            OR  `cur_subtema`  LIKE '%".$string."%'
-                            AND `cur_estado` IN ( 
-                                                  SELECT `cur_id`
-                                                  FROM (`tbl_curso`)
-                                                  WHERE `cur_estado`  = 'D'
-                                                 )
+                            WHERE `cur_estado`  = 'D'
+                            AND (
+                                    `cur_nombre`  LIKE '%".$string."%'
+                                    OR  `cur_descripcion`  LIKE '%".$string."%'
+                                    OR  `tem_nombre`  LIKE '%".$string."%'
+                                    OR  `cur_subtema`  LIKE '%".$string."%'
+                                )
                             ORDER BY `cur_fecha_inicio` desc
                           ";
             }
@@ -594,12 +600,13 @@
             }
             
             $this->_data['interna_data']['resultado'] = $this->db->query($query);
-            var_dump($this->db->last_query());
+            $this->_data['interna_data']['string_busqueda'] = $string;
+            
             $this->load->view("vw_plantilla_inicio", $this->_data);
         }
         
         
-        function ver_informacion_cursos()
+        function ver_informacion_cursos($id_curso)
         {
             if(!$this->clslogin->check(0))
             {
@@ -612,8 +619,15 @@
                 $this->_data['header_data']['apellido'] = $this->clslogin->getApellido();
             }
 
-            $this->_data['superior'] = 'main/contenido/superior/vw_inicio_superior';
-            $this->_data['inferior'] = '';
+            $this->_data['interna'] = 'main/contenido/vw_ver_informacion_curso';
+            
+            $select = "*";
+            $where = array("cur_id" => $id_curso, "cur_estado" => "D");
+            $join = array( "tbl_tema" => "cur_tema_id=tem_id", "tbl_ciudad" => "cur_ciudad_id=ciu_id", "tbl_instructor" => "cur_instructor_id=ins_cedula", "tbl_provincia" => "cur_provincia_id=pro_id" );
+
+            $resultado = $this->curso->get_cursos($select, $where, array(), $join);
+            
+            $this->_data['interna_data']['resultado'] = $resultado;
             
             $this->load->view("vw_plantilla_inicio", $this->_data);
         }

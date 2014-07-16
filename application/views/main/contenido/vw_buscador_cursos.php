@@ -1,10 +1,17 @@
 <div id="seccion_interna">
     <div id="seccion_interna_contenido" >
         <div class="filas" style="margin-top: 0px;">
-            <div id="buscador">
-                <input id="nombre_curso" name="nombre_curso" class="input_buscador" type="text" value="" placeholder="Busca un curso aqu&iacute;" />
-                <img class="img_buscador" src="<?php echo HTTP_IMAGES_PATH; ?>Main/Contenido/Superior/btn_buscador.png" />
-            </div>
+            <?php
+                $attributes = array('id' => 'f_buscador_curso', 'name' => 'f_buscador_curso');
+                echo form_open('main/buscador_cursos', $attributes);
+            ?>
+                <div id="buscador">
+                    <input id="nombre_curso" name="nombre_curso" class="input_buscador" type="text" placeholder="Busca un curso aqu&iacute;" value="<?php echo $string_busqueda; ?>" />
+                    <img class="img_buscador" src="<?php echo HTTP_IMAGES_PATH; ?>Main/Contenido/Superior/btn_buscador.png" onclick="document.forms.f_buscador_curso.submit(); return false;" />
+                </div>
+            <?php
+                echo form_close();
+            ?>
         </div>
         <div class="filas">
             <font size="5" weight="bold">
@@ -22,7 +29,9 @@
             ?>
                             <div class="filas-cursos">
                                 <div class="imagen_buscador_curso">
-                                    <img src="<?php echo HTTP_IMAGES_PATH ?>Cursos/Miniaturas/<?php echo $row->cur_nombre_imagen; ?>" />
+                                    <a href="<?php echo $row->cur_url_imagen; ?>" data-lightbox="<?php echo $row->cur_nombre_imagen; ?>" >
+                                        <img src="<?php echo base_url()?>recursos/images/Cursos/Miniaturas/<?php echo $row->cur_nombre_imagen; ?>" />
+                                    </a>
                                 </div>
                                 <div class="caracteristicas_buscador_curso">
                                     <div>
@@ -36,7 +45,7 @@
                                 </div>
                                 <div class="boton_detalles_buscador_curso">
                                     <span>
-                                        <a href="javascript:" onclick="crear_formulario('lista_asistente');">
+                                        <a href="<?php echo base_url().'main/ver_informacion_cursos/'.$row->cur_id; ?>" >
                                             <span class="boton_blanco_izq">&nbsp;</span>
                                             <span class="boton_blanco_centro">
                                                 Ver m&aacute;s detalles
@@ -70,3 +79,25 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(window).keypress(function(e) 
+    {
+        if(e.keyCode == 13) 
+        {
+            if( $('#header_login').is(":visible") )
+            {
+                validar_formulario('f_login');
+            }
+            else if( $('#buscador').is(":visible") )
+            {
+                var buscar = document.getElementById('nombre_curso').value;
+                
+                if(buscar != '' && buscar != null){
+                    document.forms.f_buscador_curso.submit();
+                    return false;
+                }
+            }
+        }
+    });
+</script>
