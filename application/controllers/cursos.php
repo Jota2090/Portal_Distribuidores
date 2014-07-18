@@ -16,6 +16,14 @@
             $this->load->library("form_validation");
             $this->load->model("mod_curso","curso");
             $this->load->model("mod_registro_asistente_curso","registro_asistente_curso");
+            
+            $configs = array(
+                                'protocol'  =>  'sendmail',
+                                'smtp_host' =>  'dedrelay.secureserver.net',
+                                'mailpath'  =>  '/usr/sbin/sendmail',
+                                'mailtype'  =>  'html'
+                            );
+            $this->load->library('email', $configs);
         }
         
         
@@ -290,6 +298,129 @@
             $config['height'] = 100;
             $this->load->library('image_lib', $config);
             $this->image_lib->resize();
+        }
+        
+        
+        function enviar_detalle()
+        {
+            if ($this->form_validation->run() == FALSE)
+            {
+                echo json_encode(array('st'=>0, 'msg' => validation_errors()));
+            }
+            else
+            {
+                $correos = explode(",", $this->input->post('correo'));
+                
+                $select = "*";
+                $where = array("cur_id" => $this->input->post('id'));
+                $join = array( "tbl_ciudad" => "cur_ciudad_id=ciu_id", "tbl_instructor" => "cur_instructor_id=ins_cedula", "tbl_parametros" => "cur_estado=par_sigla"  );
+
+                $resultado = $this->curso->get_cursos($select, $where, array(), $join);
+                
+                if($resultado)
+                {
+                    if($resultado->num_rows() == 1)
+                    {
+                        $row = $resultado->row();
+
+                        $this->email->from('miclaro@iclaro.com.ec', 'Portal De Distribuidores');
+                        $this->email->to($correos);
+                        $this->email->cc('jfranco@dayscript.com');
+                        $this->email->subject($row->cur_nombre);
+
+                        $contenido  = '';
+                        $contenido  .= '
+                            <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+                            <html xmlns="http://www.w3.org/1999/xhtml">
+                                <head>
+                                    <title>Cursos de Capacitacion</title>
+                                    <meta charset="UTF-8">
+                                    <link rel="stylesheet" type="text/css" media="all" href="'.HTTP_CSS_PATH.'ext-all.css" />
+                                    <link rel="stylesheet" type="text/css" media="all" href="'.HTTP_CSS_PATH.'porta.css" />
+                                    <link rel="stylesheet" type="text/css" media="all" href="'.HTTP_CSS_PATH.'estilo_main.css" />
+                                </head>
+                                <body>
+                                    <div id="main">
+                                        <div id="seccion_interna">
+                                            <div id="seccion_interna_contenido" >
+                                                <div class="cuerpo_modal" style="margin-top:20px; margin-left: 36px;">
+                                                    <div class="form_modal_contenido">
+                                                        <div class="filas" style="margin-top: 80px; width: 85%;">
+                                                            <font size="5" weight="bold">
+                                                                '.$row->cur_nombre.'
+                                                            </font>
+                                                        </div>
+                                                        <div class="filas" style="margin-top: 30px; width: 85%;">
+                                                            '.$row->cur_descripcion.'
+                                                        </div>
+                                                        <div class="filas" style="margin-top: 40px;">
+                                                            <font size="5" weight="bold">
+                                                                Un vistazo al curso
+                                                            </font>
+                                                        </div>
+                                                        <div class="filas" style="margin-top: 30px; width: 85%;">
+                                                            <div>
+                                                                <i class="icono-calendario"></i>
+                                                                Del '.$row->cur_fecha_inicio.' al '.$row->cur_fecha_fin.'
+                                                            </div>
+                                                            <div style="margin-top: 5px;">
+                                                                <i class="icono-tiempo"></i>
+                                                                Desde las '.$row->cur_hora_inicio.' hasta las '.$row->cur_hora_fin.'
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form_modal_contenido">
+                                                        <div class="filas">
+                                                            <img width="60%" align="center" src="'.base_url().'recursos/images/Cursos/'.$row->cur_nombre_imagen.'" />
+                                                        </div>
+                                                        <div class="filas" style="margin-top: 40px;">
+                                                            <font size="5" weight="bold">
+                                                                Acerca del Curso
+                                                            </font>
+                                                        </div>
+                                                        <div class="filas" style="margin-top: 30px; width: 85%;">
+                                                            '.$row->cur_descripcion.'
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="boton_modal" style="margin-top: 60px;">
+                                                    <span>
+                                                        <a href="'.base_url().'main/ver_informacion_cursos/'.$row->cur_id.'">
+                                                            <span class="boton_blanco_izq">&nbsp;</span>
+                                                            <span class="boton_blanco_centro">
+                                                                Ir al Portal de Distribuidores
+                                                            </span>
+                                                            <span class="boton_blanco_der" >&nbsp;</span>
+                                                        </a>
+                                                   </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </body>
+                            </html>';
+                        
+                        $this->email->message($contenido);    
+
+                        if (! $this->email->send())
+                        {
+                            echo json_encode(array('st'=>0, 'msg' => 'Hubo un problema al enviar el correo, por favor vuelva a intentar'));
+                        }
+                        else
+                        {
+                            echo json_encode(array('st'=>3, 'msg' => 'Se ha enviado la información solicitada de forma correcta'));
+                        }
+                    }
+                    else
+                    {
+                        echo json_encode(array('st'=>0, 'msg' => 'No se encontro información acerca del curso'));
+                    }
+                }
+                else
+                {
+                    echo json_encode(array('st'=>0, 'msg' => 'Hubo problemas al conectar con el servidor por favor vuelve a intentar.'));
+                }
+            }
         }
     }
     

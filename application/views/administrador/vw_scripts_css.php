@@ -1,4 +1,5 @@
 <script type="text/javascript" src="<?php echo HTTP_JS_PATH; ?>jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="<?php echo HTTP_JS_PATH; ?>jquery.form.min.js"></script>
 <script type="text/javascript" src="<?php echo HTTP_JS_PATH; ?>funciones_administrador.js"></script>
 <script type="text/javascript" src="<?php echo HTTP_JS_PATH; ?>ext-base.js"></script>
 <script type="text/javascript" src="<?php echo HTTP_JS_PATH; ?>ext-all.js"></script>

@@ -27,7 +27,8 @@
                 && $this->uri->segment(2) != "form_crear_registro_usuario"
                 && $this->uri->segment(2) != "form_crear_olvido_contrasena"
                 && $this->uri->segment(2) != "buscador_cursos"
-                && $this->uri->segment(2) != "ver_informacion_cursos")
+                && $this->uri->segment(2) != "ver_informacion_cursos"
+                && $this->uri->segment(2) != "form_crear_enviar_detalle_curso")
             {
                 if(!$this->clslogin->check(0))
                 {
@@ -630,6 +631,14 @@
             $this->_data['interna_data']['resultado'] = $resultado;
             
             $this->load->view("vw_plantilla_inicio", $this->_data);
+        }
+        
+        
+        function form_crear_enviar_detalle_curso()
+        {
+            $data['curso'] = $this->input->post('id');
+            
+            $this->load->view("main/contenido/vw_enviar_detalle_curso", $data);
         }
     }
     

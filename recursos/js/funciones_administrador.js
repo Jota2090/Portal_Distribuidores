@@ -54,51 +54,34 @@
     }
     
     
-    function enviar_formulario(form, action, funcion, seccion, existen_imagenes){
-       
-        var formData = new FormData($('#'+form)[0]);
-        var do_ajax = true;
+    function enviar_formulario(form, action, funcion, seccion, existen_imagenes)
+    {
+        $('#'+form).ajaxSubmit({ 
+            dataType:  'json',
+            beforeSubmit:  function beforeJson(){
+                $( "#contenido_modal" ).hide();
+                $( "#cargando" ).show();
+            },
+            success:   function processJson(result)
+            { 
+                $( "#cargando" ).hide();
+                $( "#contenido_modal" ).show();
 
-        if(existen_imagenes[0] === true){
-            for(i=1; i<existen_imagenes.length; i++){
-                do_ajax = false;
-                var imagenes = document.getElementById(existen_imagenes[i]).files;
-                formData.append(existen_imagenes[i], imagenes);
-            }
-            do_ajax = true;
-        }
-
-        if(do_ajax){
-
-            $.ajax({
-                type:"post",          
-                url: servidor+action,
-                data:formData,
-                dataType: 'json',
-                contentType:false,
-                processData:false,
-                cache:false,
-                beforeSend: function () {
-                    $( "#contenido_modal" ).hide();
-                    $( "#cargando" ).show();
-                },
-                success: function(result){
-                    $( "#cargando" ).hide();
-                    $( "#contenido_modal" ).show();
-
-                    if(result.st == 0)
-                    {
-                        Ext.Msg.alert('Error',result.msg);
-                    }
-                    else if(result.st == 1)
-                    {
-                        Ext.Msg.alert('Informaci\xf3n',result.msg, function(){ $.modal.close(); refrescar_seccion(funcion, seccion); });
-                    }
-                } 
-            });
-
-        }
-            
+                if(result.st == 0)
+                {
+                    Ext.Msg.alert('Error',result.msg);
+                }
+                else if(result.st == 1)
+                {
+                    Ext.Msg.alert('Informaci\xf3n',result.msg, function()
+                    { 
+                        $.modal.close(); 
+                        refrescar_seccion(funcion, seccion); 
+                    });
+                }
+            } 
+        });
+        
         return false;
     }
 

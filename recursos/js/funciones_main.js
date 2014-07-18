@@ -55,7 +55,7 @@
     
     
     function enviar_formulario(form, action, funcion, seccion, existen_imagenes){
-        var formData = new FormData($('#'+form)[0]);
+        var formData = $("#"+form).serialize();
         var do_ajax = true;
             
         if(existen_imagenes[0] === true){

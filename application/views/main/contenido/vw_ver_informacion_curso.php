@@ -43,12 +43,14 @@
                             Comparte
                         </font>
                     </div>
-                    <div class="filas" style="margin-top: 30px; width: 95%;">
+                    <div class="filas" style="margin-top: 20px; width: 95%;">
                         <div style="margin-bottom: 10px;">
-                            <a>
-                                <i class="icono-sobre-gris"></i>
-                                Enviar por correo electr&oacute;nico
-                            </a>
+                            <div class="opcion" style="float: left; margin-left: 0px;">
+                                <a href="javascript:" onclick="crear_formulario('enviar_detalle_curso', 'id=<?php echo $row->cur_id; ?>');">
+                                    <i class="icono-sobre-gris"></i>
+                                    Enviar por correo electr&oacute;nico
+                                </a>
+                            </div>
                         </div>
                         <div id="redes-sociales" style="clear:both;">
                             <div style="float: left; margin-right: 10px; margin-bottom: 10px;">
