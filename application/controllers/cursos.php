@@ -132,11 +132,11 @@
         }
         
         
-        function crear_curso(){
-            
+        function crear_curso()
+        {
             if ($this->form_validation->run() == FALSE)
             {
-                echo json_encode(array('st'=>0, 'msg' => validation_errors()));
+                echo "<div id='success'>false</div><div>".validation_errors()."</div>";
             }
             else
             {
@@ -147,7 +147,7 @@
                 
                 if ($this->form_validation->run() == FALSE)
                 {
-                    echo json_encode(array('st'=>0, 'msg' => validation_errors()));
+                    echo "<div id='success'>false</div><div>".validation_errors()."</div>";
                 }
                 else
                 {
@@ -162,7 +162,7 @@
                     
                     if ( ! $this->upload->do_upload('imagen'))
                     {
-                        echo json_encode(array('st'=>0, 'msg' => $this->upload->display_errors()));
+                        echo "<div id='success'>false</div><div>".$this->upload->display_errors()."</div>";
                     }
                     else
                     {
@@ -197,9 +197,9 @@
                         $resultado = $this->db->_error_message();
 
                         if(empty($resultado)){
-                            echo json_encode(array('st'=>1, 'msg' => 'Curso Guardado con Exito'));
+                            echo "Curso Guardado con Exito";
                         }else{
-                            echo json_encode(array('st'=>0, 'msg' => 'Hubo un problema con el servidor, por favor vuelva a intentar'.$resultado));
+                            echo "<div id='success'>false</div><div>Hubo un problema con el servidor, por favor vuelva a intentarlo</div>";
                         }
                     }
                     
@@ -213,7 +213,7 @@
             
             if ($this->form_validation->run('cursos/crear_curso') == FALSE)
             {
-                echo json_encode(array('st'=>0, 'msg' => validation_errors()));
+                echo "<div id='success'>false</div><div>".validation_errors()."</div>";
             }
             else
             {
@@ -232,7 +232,7 @@
                     
                     if ( ! $this->upload->do_upload('imagen'))
                     {
-                        echo json_encode(array('st'=>0, 'msg' => $this->upload->display_errors()));
+                        echo "<div id='success'>false</div><div>".$this->upload->display_errors()."</div>";
                     }
                     else
                     {
@@ -277,11 +277,11 @@
                 $resultado = $this->curso->update_cursos($data, $where);
                 
                 $resultado = $this->db->_error_message();
-
+                
                 if(empty($resultado)){
-                    echo json_encode(array('st'=>1, 'msg' => 'Cambios guardados con Exito'));
+                    echo "Cambios guardados con Exito";
                 }else{
-                    echo json_encode(array('st'=>0, 'msg' => 'Hubo un problema con el servidor, por favor vuelva a intentar'.$resultado));
+                    echo "<div id='success'>false</div><div>Hubo un problema con el servidor, por favor vuelva a intentarlo</div>";
                 }
             }
             
@@ -335,9 +335,6 @@
                                 <head>
                                     <title>Cursos de Capacitacion</title>
                                     <meta charset="UTF-8">
-                                    <link rel="stylesheet" type="text/css" media="all" href="'.HTTP_CSS_PATH.'ext-all.css" />
-                                    <link rel="stylesheet" type="text/css" media="all" href="'.HTTP_CSS_PATH.'porta.css" />
-                                    <link rel="stylesheet" type="text/css" media="all" href="'.HTTP_CSS_PATH.'estilo_main.css" />
                                 </head>
                                 <body>
                                     <div id="main">
@@ -345,10 +342,13 @@
                                             <div id="seccion_interna_contenido" >
                                                 <div class="cuerpo_modal" style="margin-top:20px; margin-left: 36px;">
                                                     <div class="form_modal_contenido">
-                                                        <div class="filas" style="margin-top: 80px; width: 85%;">
+                                                        <div class="filas" style="margin-top: 20px; width: 85%;">
                                                             <font size="5" weight="bold">
                                                                 '.$row->cur_nombre.'
                                                             </font>
+                                                        </div>
+                                                        <div class="filas" style="margin-top: 20px;">
+                                                            <img width="60%" align="center" src="'.base_url().'recursos/images/Cursos/'.$row->cur_nombre_imagen.'" />
                                                         </div>
                                                         <div class="filas" style="margin-top: 30px; width: 85%;">
                                                             '.$row->cur_descripcion.'
@@ -368,11 +368,6 @@
                                                                 Desde las '.$row->cur_hora_inicio.' hasta las '.$row->cur_hora_fin.'
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="form_modal_contenido">
-                                                        <div class="filas">
-                                                            <img width="60%" align="center" src="'.base_url().'recursos/images/Cursos/'.$row->cur_nombre_imagen.'" />
-                                                        </div>
                                                         <div class="filas" style="margin-top: 40px;">
                                                             <font size="5" weight="bold">
                                                                 Acerca del Curso
@@ -383,14 +378,14 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="boton_modal" style="margin-top: 60px;">
+                                                <div class="boton_modal" style="margin: 60px 40px;">
                                                     <span>
-                                                        <a href="'.base_url().'main/ver_informacion_cursos/'.$row->cur_id.'">
-                                                            <span class="boton_blanco_izq">&nbsp;</span>
-                                                            <span class="boton_blanco_centro">
+                                                        <a style="text-decoration: none;" href="'.base_url().'main/ver_informacion_cursos/'.$row->cur_id.'">
+                                                            <span style="background: url('.base_url().'recursos/images/Administrador/Contenido/borde_btn_izq_blanco.png) no-repeat; width: 13px; height: 30px; padding: 8px 5px; top: 1px; position: relative;"></span>
+                                                            <span style="background: url('.base_url().'recursos/images/Administrador/Contenido/borde_btn_centro_blanco.png) repeat-x; width: auto; height: 30px; padding: 8px 5px; top: 1px; position: relative; text-align: center; color: #666666;">
                                                                 Ir al Portal de Distribuidores
                                                             </span>
-                                                            <span class="boton_blanco_der" >&nbsp;</span>
+                                                            <span style="background: url('.base_url().'recursos/images/Administrador/Contenido/borde_btn_der_blanco.png) no-repeat; width: 12px; height: 30px; padding: 8px 5px; left: -5px; top: 1px; position: relative; height: 30px;" >&nbsp;</span>
                                                         </a>
                                                    </span>
                                                 </div>

@@ -390,7 +390,22 @@
                 }
             }
         }
+
         
+        public function imprimir_asistencia()
+        {
+            if ($this->form_validation->run() == FALSE)
+            {
+                echo 'No ha seleccionado ningún asistente';
+            }
+            else
+            {
+                $this->load->library('export_pdf');                 
+                $pdf = new export_pdf();
+                $pdf->registro_asistencia();
+            }
+        }
+            
     }
     
 ?>

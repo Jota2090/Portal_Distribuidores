@@ -1,8 +1,9 @@
 <script type="text/javascript" src="<?php echo HTTP_JS_PATH; ?>jquery-1.11.1.min.js"></script>
-<script type="text/javascript" src="<?php echo HTTP_JS_PATH; ?>funciones_main.js"></script>
+<script type="text/javascript" src="<?php echo HTTP_JS_PATH; ?>jquery.form.min.js"></script>
 <script type="text/javascript" src="<?php echo HTTP_JS_PATH; ?>ext-base.js"></script>
 <script type="text/javascript" src="<?php echo HTTP_JS_PATH; ?>ext-all.js"></script>
 <script type="text/javascript" src="<?php echo HTTP_JS_PATH; ?>ext-lang-es.js"></script>
+<script type="text/javascript" src="<?php echo HTTP_JS_PATH; ?>funciones_main.js"></script>
 <script type="text/javascript" src="<?php echo HTTP_JS_PATH; ?>jquery.dataTables.js"></script>
 <script type="text/javascript" src="<?php echo HTTP_JS_PATH; ?>jquery.modal.js"></script>
 <script type="text/javascript" src="<?php echo HTTP_JS_PATH; ?>jquery.timepicker.js"></script>

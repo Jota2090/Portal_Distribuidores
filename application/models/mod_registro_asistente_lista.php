@@ -108,6 +108,7 @@
          * @param array $where 
          * @param array $or_where 
          * @param array $join 
+         * @param array $order_by
          * @return array $resultado
         */
         public function get_registro_asistente_lista($select = "*", $where = array(), $or_where = array(), $join = array(), $order_by = array()){

@@ -18,9 +18,8 @@
     <span class="boton_modal_fondo">
         <span>
         <?php
-            $imagenes = array('0' => false);
-            $js = 'onclick="enviar_formulario(\'f_enviar_detalle_curso\', \'cursos/enviar_detalle\', \'\', \'\', '.$imagenes.')"';
-            echo form_button('enviar', 'Enviar', $js);
+            $js = 'onclick="enviar_formulario(\'f_enviar_detalle_curso\', \'\', \'\')"';
+            echo form_submit('enviar', 'Enviar', $js);
         ?>
         </span>
     </span>

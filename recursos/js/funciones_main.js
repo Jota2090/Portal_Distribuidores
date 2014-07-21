@@ -54,62 +54,83 @@
     }
     
     
-    function enviar_formulario(form, action, funcion, seccion, existen_imagenes){
-        var formData = $("#"+form).serialize();
-        var do_ajax = true;
-            
-        if(existen_imagenes[0] === true){
-            for(i=1; i<existen_imagenes.length; i++){
-                do_ajax = false;
-                var imagenes = document.getElementById(existen_imagenes[i]).files;
-                formData.append(existen_imagenes[i], imagenes);
-            }
-            do_ajax = true;
-        }
+    function enviar_formulario_multipart(form, funcion, seccion)
+    {
+        $('#'+form).ajaxForm({ 
+            beforeSubmit:  function beforeJson(){
+                $( "#contenido_modal" ).hide();
+                $( "#cargando" ).show();
+            },
+            success:   function processJson(result)
+            { 
+                $( "#cargando" ).hide();
+                $( "#contenido_modal" ).show();
+                
+                var success = result.indexOf("false");
+                
+                if(success > 0)
+                {
+                    result = result.replace(/false/gi, "");
+                    result = result.replace(/<\/p>\n/gi, "");
+                    
+                    Ext.Msg.alert('Error',result);
+                }
+                else
+                {
+                    result = result.replace(/st:1/gi, "");
+                    
+                    Ext.Msg.alert('Informaci\xf3n',result, function()
+                    { 
+                        $.modal.close(); 
+                        refrescar_seccion(funcion, seccion); 
+                    });
+                }
+            } 
+        });
+        
+        return false;
+    }
+    
+    
+    function enviar_formulario(form, funcion, seccion)
+    {
+        $('#'+form).ajaxForm({ 
+            dataType:  'json',
+            beforeSubmit:  function beforeJson(){
+                $( "#contenido_modal" ).hide();
+                $( "#cargando" ).show();
+            },
+            success:   function processJson(result)
+            { 
+                $( "#cargando" ).hide();
+                $( "#contenido_modal" ).show();
 
-        if(do_ajax){
-            $.ajax({
-                type:"post",          
-                url: servidor+action,
-                data:formData,
-                dataType: 'json',
-                contentType:false,
-                processData:false,
-                cache:false,
-                beforeSend: function () {
-                    $( "#contenido_modal" ).hide();
-                    $( "#cargando" ).show();
-                },
-                success: function(result){
-                    $( "#cargando" ).hide();
-                    $( "#contenido_modal" ).show();
-
-                    if(result.st == 0)
-                    {
-                        Ext.Msg.alert('Error',result.msg);
-                    }
-                    else if(result.st == 1)
-                    {
-                        Ext.Msg.alert('Informaci\xf3n',result.msg, function(){ 
-                            $.modal.close(); 
-                            refrescar_seccion(funcion, seccion); 
-                        });
-                    }
-                    else if(result.st == 2)
-                    {
-                        Ext.Msg.alert('Informaci\xf3n',result.msg, function(){ 
-                            refrescar_seccion(funcion, seccion); 
-                        });
-                    }
-                    else if(result.st == 3)
-                    {
-                        Ext.Msg.alert('Informaci\xf3n',result.msg, function(){ 
-                            $.modal.close(); 
-                        });
-                    }
-                } 
-            });
-        }
+                if(result.st == 0)
+                {
+                    Ext.Msg.alert('Error',result.msg);
+                }
+                else if(result.st == 1)
+                {
+                    Ext.Msg.alert('Informaci\xf3n',result.msg, function()
+                    { 
+                        $.modal.close(); 
+                        refrescar_seccion(funcion, seccion); 
+                    });
+                }
+                else if(result.st == 2)
+                {
+                    Ext.Msg.alert('Informaci\xf3n',result.msg, function(){
+                        refrescar_seccion(funcion, seccion);
+                    });
+                }
+                else if(result.st == 3)
+                {
+                    Ext.Msg.alert('Informaci\xf3n',result.msg, function(){
+                        $.modal.close();
+                    });
+                }
+            } 
+        });
         
         return false;
     }
@@ -360,11 +381,24 @@
     }
 
 
-    function marcar_todos(table){
+    function marcar_todos(table)
+    {
         var TABLE = document.getElementById(table);
         for (var i=0; i<TABLE.rows.length; i++) {
             var chk = TABLE.rows[i].cells[1].childNodes[1];
-            chk.checked = true;
+            if(chk)
+            {
+                $('input[type=checkbox]').attr('checked','checked');
+            }
         }
+    }
+    
+
+    function redirect_by_post(form)
+    {
+        var formulario = document.getElementById(form);
+        formulario.submit();
+         
+        return false;
     }
 

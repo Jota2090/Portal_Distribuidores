@@ -45,9 +45,8 @@
                         <i class="icono-guardar">&nbsp;</i>
                         <span>
                         <?php
-                            $imagenes = array('0' => false);
-                            $js = 'onclick="enviar_formulario(\'f_lista_asistente\', \'asistentes/editar_lista_asistente\', \'tabla_lista_asistente\', \'lista_asistente\', '.$imagenes.')"';
-                            echo form_button('crear', 'Guardar cambios', $js);
+                            $js = 'onclick="enviar_formulario(\'f_lista_asistente\', \'tabla_lista_asistente\', \'lista_asistente\')"';
+                            echo form_submit('crear', 'Guardar cambios', $js);
                         ?>
                         </span>
                     </span>

@@ -100,9 +100,8 @@
                     <i class="icono-guardar">&nbsp;</i>
                     <span>
                     <?php
-                        $imagenes = array('0' => false);
-                        $js = 'onclick="enviar_formulario(\'f_asistente\', \'asistentes/editar_asistente\', \'asistentes_disponibles\', \'asistente_listado\', '.$imagenes.')"';
-                        echo form_button('crear', 'Guardar cambios', $js);
+                        $js = 'onclick="enviar_formulario(\'f_asistente\', \'asistentes_disponibles\', \'asistente_listado\')"';
+                        echo form_submit('crear', 'Guardar cambios', $js);
                     ?>
                     </span>
                 </span>

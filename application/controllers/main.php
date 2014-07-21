@@ -640,6 +640,36 @@
             
             $this->load->view("main/contenido/vw_enviar_detalle_curso", $data);
         }
+
+
+        function form_crear_imprimir_asistencia()
+        {
+            $this->load->model("mod_curso","curso");
+            
+            $select = "cur_nombre";
+            $where = array("cur_estado" => "D", "cur_id" => $this->input->post('id'));
+            $resultado = $this->curso->get_cursos($select, $where);
+            if($resultado)
+            {
+                if ($resultado->num_rows() == 1)
+                {
+                    $row = $resultado->row();
+                    $data['curso_nombre'] = $row->cur_nombre;
+                }
+            }
+            
+            $where = array("asi_estado" => "A", "asi_usuario_id" => $this->clslogin->getId(),
+                            "rac_curso_id" => $this->input->post('id') );
+            $join = array( "tbl_asistente" => "rac_asistente_id=asi_cedula", "tbl_lista_asistente" => "rac_lista_asistente_id=la_id");
+            $order_by = array("la_nombre" => "asc", "asi_nombre_completo" => "asc");
+            $resultado = $this->registro_asistente_curso->get_registro_asistente_curso(array(), $where, array(), $join, $order_by);
+
+            $data['resultado'] = $resultado;
+            
+            $data['id_curso'] = $this->input->post('id');
+            
+            $this->load->view("main/contenido/inferior/vw_imprimir_asistencia", $data);
+        }
     }
     
 ?>

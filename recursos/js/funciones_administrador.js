@@ -7,7 +7,8 @@
 
     var servidor = ((location.href.split('/'))[0])+'//'+((location.href.split('/'))[2])+'/'+((location.href.split('/'))[3])+'/';
 
-    function validar_formulario(form){
+    function validar_formulario(form)
+    {
         var frm = document.getElementById(form);
         var validador = 0;
 
@@ -16,19 +17,25 @@
             var value = frm.elements[i].value;
             var type = frm.elements[i].type;
 
-            if(type=="text" || type=="password"){
-                if(value.trim() == "" || value.trim() == null){
+            if(type=="text" || type=="password")
+            {
+                if(value.trim() == "" || value.trim() == null)
+                {
                     validador++;
                 }
             }  
         }
 
-        if(validador > 0){
+        if(validador > 0)
+        {
             Ext.Msg.alert("Error","Debe llenar los campos requeridos");
             return false;
 
-        }else{
-            if(form == 'f_login'){
+        }
+        else
+        {
+            if(form == 'f_login')
+            {
                 var user = document.getElementById('user').value;
                 var password = document.getElementById('password').value;
                 var tipo = document.getElementById('tipo').value;
@@ -37,14 +44,19 @@
                     type:"post",
                     url: servidor+"login/validar",
                     data:"user="+user+"&password="+password+"&tipo="+tipo,
-                    beforeSend: function () {
+                    beforeSend: function () 
+                    {
                         $( "#header" ).html( "<div style='width: 100%; text-align: center;'>Cargando... <img src='"+servidor+"recursos/images/loading.gif'></div>" );
                     },
-                    success:function(info){
+                    success:function(info)
+                    {
                         var success = info.indexOf("true");
-                        if(success > 0){
+                        if(success > 0)
+                        {
                             document.location = servidor+tipo;
-                        }else{
+                        }
+                        else
+                        {
                             $( "#header" ).html( info );
                         }
                     }
@@ -54,9 +66,47 @@
     }
     
     
-    function enviar_formulario(form, action, funcion, seccion, existen_imagenes)
+    function enviar_formulario_multipart(form, funcion, seccion)
     {
-        $('#'+form).ajaxSubmit({ 
+        $('#'+form).ajaxForm({ 
+            beforeSubmit:  function beforeJson(){
+                $( "#contenido_modal" ).hide();
+                $( "#cargando" ).show();
+            },
+            success:   function processJson(result)
+            { 
+                $( "#cargando" ).hide();
+                $( "#contenido_modal" ).show();
+                
+                var success = result.indexOf("false");
+                
+                if(success > 0)
+                {
+                    result = result.replace(/false/gi, "");
+                    result = result.replace(/<\/p>\n/gi, "");
+                    
+                    Ext.Msg.alert('Error',result);
+                }
+                else
+                {
+                    result = result.replace(/st:1/gi, "");
+                    
+                    Ext.Msg.alert('Informaci\xf3n',result, function()
+                    { 
+                        $.modal.close(); 
+                        refrescar_seccion(funcion, seccion); 
+                    });
+                }
+            } 
+        });
+        
+        return false;
+    }
+    
+    
+    function enviar_formulario(form, funcion, seccion)
+    {
+        $('#'+form).ajaxForm({ 
             dataType:  'json',
             beforeSubmit:  function beforeJson(){
                 $( "#contenido_modal" ).hide();

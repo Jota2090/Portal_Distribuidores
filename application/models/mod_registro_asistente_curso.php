@@ -127,9 +127,10 @@
          * @param array $where 
          * @param array $or_where 
          * @param array $join 
+         * @param array $order_by
          * @return array $resultado
         */
-        public function get_registro_asistente_curso($select = array("0" => "*"), $where = array(), $or_where = array(), $join = array()){
+        public function get_registro_asistente_curso($select = array("0" => "*"), $where = array(), $or_where = array(), $join = array(), $order_by = array()){
             
             if(count($select) > 0){
                 foreach ($select as $key => $value) {
@@ -172,6 +173,12 @@
             if(count($join) > 0){
                 foreach ($join as $key => $value) {
                     $this->db->join($key, $value);
+                }
+            }
+
+            if(count($order_by) > 0){
+                foreach ($order_by as $key => $value) {
+                    $this->db->order_by($key, $value);
                 }
             }
             

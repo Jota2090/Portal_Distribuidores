@@ -173,9 +173,8 @@
         <i class="icono-agregar-curso">&nbsp;</i>
         <span>
         <?php
-            $imagenes = array('0' => true, '1' => 'imagen');
-            $js = 'onclick="enviar_formulario(\'f_nuevo_curso\', \'cursos/crear_curso\', \'tabla_listado_cursos\', \'listado_curso\', '.$imagenes.')"';
-            echo form_button('crear', 'Agregar Curso', $js);
+            $js = 'onclick="enviar_formulario_multipart(\'f_nuevo_curso\', \'tabla_listado_cursos\', \'listado_curso\')"';
+            echo form_submit('crear', 'Agregar Curso', $js);
         ?>
         </span>
     </span>
@@ -189,7 +188,7 @@
     $(function() {
         $( "#fecha_inicio" ).datepicker({
             showOn: "button",
-            buttonImage: servidor+"recursos/images/JqueryUi/calendar.gif",
+            buttonImage: "../recursos/images/JqueryUi/calendar.gif",
             buttonImageOnly: true,
             changeMonth: true,
             changeYear: true,
@@ -202,7 +201,7 @@
         
         $( "#fecha_fin" ).datepicker({
             showOn: "button",
-            buttonImage: servidor+"recursos/images/JqueryUi/calendar.gif",
+            buttonImage: "../recursos/images/JqueryUi/calendar.gif",
             buttonImageOnly: true,
             changeMonth: true,
             changeYear: true,

@@ -49,9 +49,8 @@
                 <i class="icono-agregar-asistente_blanco">&nbsp;</i>
                 <span>
                 <?php
-                    $imagenes = array('0' => false);
-                    $js = 'onclick="enviar_formulario(\'f_registro_asistente\', \'asistentes/registrar_asistencia\', \'tabla_cursos_usuarios\', \'listado_cursos_usuarios\', '.$imagenes.')"';
-                    echo form_button('crear', 'Registrar Asistencia', $js);
+                    $js = 'onclick="enviar_formulario(\'f_registro_asistente\', \'tabla_cursos_usuarios\', \'listado_cursos_usuarios\')"';
+                    echo form_submit('crear', 'Registrar Asistencia', $js);
                 ?>
                 </span>
             </span>

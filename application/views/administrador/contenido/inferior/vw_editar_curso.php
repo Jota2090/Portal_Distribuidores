@@ -198,9 +198,8 @@
         <i class="icono-guardar"></i>
         <span>
         <?php
-            $imagenes = array('0' => true, '1' => 'imagen');
-            $js = 'onclick="enviar_formulario(\'f_curso\', \'cursos/editar_curso\', \'tabla_listado_cursos\', \'listado_curso\', '.$imagenes.')"';
-            echo form_button('editar', 'Guardar cambios', $js);
+            $js = 'onclick="enviar_formulario_multipart(\'f_curso\', \'tabla_listado_cursos\', \'listado_curso\')"';
+            echo form_submit('editar', 'Guardar cambios', $js);
         ?>
         </span>
     </span>

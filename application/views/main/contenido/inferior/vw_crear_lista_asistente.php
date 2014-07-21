@@ -69,9 +69,8 @@
         <i class="icono-agregar-lista">&nbsp;</i>
         <span>
         <?php
-            $imagenes = array('0' => false);
-            $js = 'onclick="enviar_formulario(\'f_nueva_lista_asistente\', \'asistentes/crear_lista_asistente\', \'tabla_lista_asistente\', \'lista_asistente\', '.$imagenes.')"';
-            echo form_button('crear', 'Agregar Lista', $js);
+            $js = 'onclick="enviar_formulario(\'f_nueva_lista_asistente\', \'tabla_lista_asistente\', \'lista_asistente\')"';
+            echo form_submit('crear', 'Agregar Lista', $js);
         ?>
         </span>
     </span>

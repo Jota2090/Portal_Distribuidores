@@ -53,6 +53,10 @@
         'cursos/enviar_detalle'=>array(
             array('field'=>'correo', 'label'=>"Correo Electrónico", 'rules'=>'required|valid_emails|trim|xss_clean')
         ),
+
+        'asistentes/imprimir_asistencia'=>array(
+            array('field'=>'asistente', 'label'=>"Asistente", 'rules'=>'required|xss_clean')
+        ),
         
     );
 ?>
