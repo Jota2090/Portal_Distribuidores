@@ -17,7 +17,7 @@
                 <div class="acciones" onclick="refrescar_seccion('editar_asistente','asistente_listado','id_asistente=<?php echo $row->asi_cedula;?>');" >
                     <i class="icono-editar"></i><a href="javascript:">Editar</a>
                 </div>
-                <div class="acciones" onclick="eliminar('asistente_listado','id_asistente=<?php echo $row->asi_cedula;?>');" >
+                <div class="acciones" onclick="eliminar('asistente_listado','id_asistente=<?php echo $row->asi_cedula;?>','tabla_lista_asistente','lista_asistente');" >
                     <div style="margin-top: 1px;"><a href="javascript:">Eliminar</a></div>
                 </div>
             </td>

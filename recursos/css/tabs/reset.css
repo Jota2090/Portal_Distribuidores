@@ -1,0 +1,44 @@
+/**
+ * BlankPlate | Yet another HTML5 Starter Kit
+ *
+ * BlankPlate Reset stylesheet
+ *
+ * Normally you don't have to make any changes in this file.
+ * Your changes should be placed in styles.css file.
+ *
+ * @copyright	Copyright 2012, Dimitris Krestos
+ * @license		Apache License, Version 2.0 (http://www.opensource.org/licenses/apache2.0.php)
+ * @link		http://vdw.staytuned.gr/html5-starter-kit-blankplate/
+ * @package		BlankPlate
+ * @version		v1.2.3
+ */
+
+
+/**
+ * HTML5 ELEMENTS
+ * Handle the following as blocks
+ * -------------------------------------------------------------------------------------------------
+ */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+	display: block
+}
+
+
+/**
+ * TABLES
+ * Reset table borders
+ * -------------------------------------------------------------------------------------------------
+ */
+table {
+	border-collapse: collapse;
+	border-spacing: 0
+}
+
+/**
+ * LISTS
+ * Reset list styles
+ * -------------------------------------------------------------------------------------------------
+ */
+ol, ul {
+	list-style: none outside none
+}

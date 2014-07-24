@@ -59,6 +59,9 @@
                         {
                             $( "#header" ).html( info );
                         }
+                    },
+                    error: function(){
+                        Ext.Msg.alert('Error','Ha ocurrido un problema con el servidor, por favor vuelva a intentarlo');
                     }
                });
            }
@@ -97,7 +100,10 @@
                         refrescar_seccion(funcion, seccion); 
                     });
                 }
-            } 
+            },
+            error: function(){
+                Ext.Msg.alert('Error','Ha ocurrido un problema con el servidor, por favor vuelva a intentarlo');
+            }
         });
         
         return false;
@@ -129,7 +135,10 @@
                         refrescar_seccion(funcion, seccion); 
                     });
                 }
-            } 
+            },
+            error: function(){
+                Ext.Msg.alert('Error','Ha ocurrido un problema con el servidor, por favor vuelva a intentarlo');
+            }
         });
         
         return false;
@@ -147,6 +156,9 @@
             },
             success:function(info){
                 $( "#contenido_modal" ).html( info );
+            },
+            error: function(){
+                Ext.Msg.alert('Error','Ha ocurrido un problema con el servidor, por favor vuelva a intentarlo');
             }
         });
     }
@@ -164,6 +176,9 @@
             },
             success:function(info){
                 $( "#contenido_modal" ).html( info );
+            },
+            error: function(){
+                Ext.Msg.alert('Error','Ha ocurrido un problema con el servidor, por favor vuelva a intentarlo');
             }
         });
     }
@@ -181,6 +196,9 @@
             },
             success:function(info){
                 $( "#contenido_modal" ).html( info );
+            },
+            error: function(){
+                Ext.Msg.alert('Error','Ha ocurrido un problema con el servidor, por favor vuelva a intentarlo');
             }
         });
     }
@@ -198,6 +216,9 @@
                     },
                     success:function(info){
                         $( "#listado_"+form ).html( info );
+                    },
+                    error: function(){
+                        Ext.Msg.alert('Error','Ha ocurrido un problema con el servidor, por favor vuelva a intentarlo');
                     }
                 });
             }
@@ -216,6 +237,9 @@
             },
             success:function(info){
                 $( "#"+seccion ).html( info );
+            },
+            error: function(){
+                Ext.Msg.alert('Error','Ha ocurrido un problema con el servidor, por favor vuelva a intentarlo');
             }
         });
     }
@@ -243,6 +267,9 @@
             },
             success:function(info){
                 $( "#"+seccion ).html( info );
+            },
+            error: function(){
+                Ext.Msg.alert('Error','Ha ocurrido un problema con el servidor, por favor vuelva a intentarlo');
             }
         });
     }

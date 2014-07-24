@@ -579,8 +579,19 @@
                'cur_instructor_id'      => $this->_instructor ,
                'cur_fecha_modificado'   => $this->_fecha_modificado
             );
-
+            
+            $this->db->trans_start();
             $resultado = $this->db->insert($this->get_name_table(), $data);
+            $this->db->trans_complete();
+
+            if ($this->db->trans_status() === FALSE)
+            {
+                $this->db->trans_rollback();
+            }
+            else
+            {
+                $this->db->trans_commit();
+            }
             
             return $resultado;
         }
@@ -604,7 +615,57 @@
                 }
             }
             
+            $this->db->trans_start();
             $resultado = $this->db->update($this->get_name_table(), $data);
+            $this->db->trans_complete();
+
+            if ($this->db->trans_status() === FALSE)
+            {
+                $this->db->trans_rollback();
+            }
+            else
+            {
+                $this->db->trans_commit();
+            }
+            
+            return $resultado;
+        }
+        
+        
+        /**
+         * Initialize sp_curso()
+         * 
+         * Esta función invoca los stored procedures que existen en la base de datos con respecto a esta tabla
+         * 
+         * @access public
+         * @param array $nombre_sp 
+         * @param array $data 
+         * @return boolean $resultado
+        */
+        public function sp_curso($nombre_sp = "", $data = array())
+        {
+            switch ($nombre_sp) 
+            {    
+                case 'sp_eliminar_curso':
+                    
+                    $query = "call ".$nombre_sp."(".$data[0].")";
+                    $this->db->trans_start();
+                    $this->db->query($query); 
+                    $this->db->trans_complete();
+                    
+                    $resultado = $this->db->trans_status();
+                    
+                    if ($this->db->trans_status() === FALSE)
+                    {
+                        $this->db->trans_rollback();
+                    }
+                    else
+                    {
+                        $this->db->trans_commit();
+                    }
+                    
+                    break;
+            }
             
             return $resultado;
         }

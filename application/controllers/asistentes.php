@@ -27,7 +27,7 @@
                 case 0:
                  
                     $select = "*";
-                    $where = array("la_estado" => "D", "la_asistente_id" => $this->clslogin->getId());
+                    $where = array("la_estado" => "D", "la_usuario_id" => $this->clslogin->getId());
                     $resultado = $this->lista_asistente->get_listas_asitentes($select, $where);
                     
                     $items = array();
@@ -118,7 +118,7 @@
             else
             {
                 $this->lista_asistente->set_nombre($this->input->post("nombre_lista"));
-                $this->lista_asistente->set_asistente($this->clslogin->getId());
+                $this->lista_asistente->set_usuario($this->clslogin->getId());
 
                 $this->lista_asistente->guardar_lista_asistente();
                 $resultado = $this->db->_error_message();

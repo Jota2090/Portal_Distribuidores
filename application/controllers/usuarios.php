@@ -83,7 +83,7 @@
                     
                     $this->email->from('miclaro@iclaro.com.ec', 'Portal de Distribuidores');
                     $this->email->to($this->input->post("correo_usuario"));
-                    $this->email->cc('jfranco@dayscript.com');
+                    $this->email->cc('jfranco@dayscript.com, rhuerta@dayscript.com, jmoran@dayscript.com');
                     $this->email->subject('Registro Usuario Nuevo');
                     
                     $contenido	= "";

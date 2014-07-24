@@ -16,13 +16,13 @@
          * @var string      $_name_table        nombre de la tabla en nuestra base de datos
          * @var integer     $_id                id del cargo del asistente
          * @var string      $_nombre            nombre de la lista
-         * @var string      $_asistente         cedula del asistente a la que pertenece la lista
+         * @var string      $_usuario           cedula del usuario a la que pertenece la lista
          * @var string      $_estado            estado de la lista (D=Disponible, E=Eliminado)
         */
         var $_name_table    = "tbl_lista_asistente";
         var $_id            = 0;
         var $_nombre        = "";
-        var $_asistente     = "";
+        var $_usuario       = "";
         var $_estado        = "";
         
         
@@ -78,20 +78,20 @@
         }
         
         /**
-        * get_asistente() retorna la cedula
-        * @return string _asistente
+        * get_usuario() retorna la cedula
+        * @return string _usuario
         */
-        public function get_asistente() {
-            return $this->_asistente;
+        public function get_usuario() {
+            return $this->_usuario;
         }
 
          /**
-        * set_asistente() setea un valor en el parámetro de _asistente
-        * @param string $_asistente 
+        * set_usuario() setea un valor en el parámetro de _usuario
+        * @param string $_usuario 
         * @return void
         */
-        public function set_asistente($_asistente) {
-            $this->_asistente = $_asistente;
+        public function set_usuario($_usuario) {
+            $this->_usuario = $_usuario;
         }
 
         /**
@@ -171,7 +171,7 @@
             
             $data = array(
                'la_nombre'             => $this->_nombre,
-               'la_asistente_id'       => $this->_asistente
+               'la_usuario_id'         => $this->_usuario
             );
 
             $resultado = $this->db->insert($this->get_name_table(), $data);
@@ -199,6 +199,66 @@
             }
             
             $resultado = $this->db->update($this->get_name_table(), $data);
+            
+            return $resultado;
+        }
+        
+        
+        /**
+         * Initialize sp_lista_asistente()
+         * 
+         * Esta función invoca los stored procedures que existen en la base de datos con respecto a esta tabla
+         * 
+         * @access public
+         * @param array $nombre_sp 
+         * @param array $data 
+         * @return boolean $resultado
+        */
+        public function sp_lista_asistente($nombre_sp = "", $data = array()){
+            
+            switch ($nombre_sp) 
+            {    
+                case 'sp_eliminar_lista_asistente':
+                    
+                    $query = "call ".$nombre_sp."(".$data[0].",".$data[1].")";
+                    $this->db->trans_start();
+                    $this->db->query($query); 
+                    $this->db->trans_complete();
+                    
+                    $resultado = $this->db->trans_status();
+                    
+                    if ($this->db->trans_status() === FALSE)
+                    {
+                        $this->db->trans_rollback();
+                    }
+                    else
+                    {
+                        $this->db->trans_commit();
+                    }
+                    
+                    break;
+                    
+                
+                case 'sp_quitar_asistente_lista':
+                    
+                    $query = "call ".$nombre_sp."(".$data[0].",".$data[1].")";
+                    $this->db->trans_start();
+                    $this->db->query($query); 
+                    $this->db->trans_complete();
+                    
+                    $resultado = $this->db->trans_status();
+                    
+                    if ($this->db->trans_status() === FALSE)
+                    {
+                        $this->db->trans_rollback();
+                    }
+                    else
+                    {
+                        $this->db->trans_commit();
+                    }
+                    
+                    break;
+            }
             
             return $resultado;
         }

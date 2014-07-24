@@ -1,0 +1,127 @@
+/**
+ * BlankPlate | Yet another HTML5 Starter Kit
+ *
+ * BlankPlate Main stylesheet
+ *
+ * @copyright	Copyright 2012, Dimitris Krestos
+ * @license		Apache License, Version 2.0 (http://www.opensource.org/licenses/apache2.0.php)
+ * @link		http://vdw.staytuned.gr/html5-starter-kit-blankplate/
+ * @package		BlankPlate
+ * @version		v1.2.3
+ */
+
+/**
+ * TABS
+ *
+ * -------------------------------------------------------------------------------------------------
+ */
+.tabs > div
+{
+    /*border-top: 1px solid #c7c7c7*/
+    margin-top: 10px;
+    background: #F17C71 !important;
+    /*border-bottom: 4px solid #E95855 !important;*/
+}
+
+.tabs > div h3
+{
+    border-bottom: 4px solid #E5E5E5 !important;
+    color: #ccc !important;
+    font-weight: 300;
+    line-height: 186px !important;
+}
+
+.tabs li
+{
+    background: white;
+    border-bottom: 4px solid #E5E5E5;
+}
+
+.tabs_enlace
+{
+    display: block;
+    color: #666666;
+    padding: 5px 30px;
+    text-decoration: none;
+}
+
+.tabs LI:hover
+{
+    background: #cccccc;
+    border-bottom: 4px solid #e5e5e5;
+}
+
+.tabs LI:hover a
+{
+    color: #585858;
+}
+
+.active
+{
+    background: #cccccc !important;
+    border-bottom: 4px solid #e5e5e5 !important;
+}
+
+.active a {
+    color: #585858 !important;
+}
+
+.button
+{
+    background: #a0cac0;
+    border-bottom: 4px solid #68a697;
+    color: #FFFFFF;
+    display: block;
+    float: left;
+    font-size: 14px;
+    letter-spacing: 2px;
+    margin-right: 26px;
+    padding: 15px 20px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 150px;
+    -webkit-transition: all 0.2s ease-out;
+    -moz-transition: all 0.2s ease-out;
+    -o-transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out;
+}
+
+.button:hover
+{
+    background: #93b7ae;
+    color: #585858;
+    text-decoration: none;
+}
+
+.link
+{
+    color: #585858;
+    display: block;
+    float: left;
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    line-height: 48px;
+    text-decoration: none;
+}
+
+.link:hover
+{
+    text-decoration: underline;
+}
+
+.anchorLink
+{
+    border-bottom: 1px dashed white;
+}
+
+.anchorLink:hover
+{
+    text-decoration: none;
+}
+
+.screenshot
+{
+	position: absolute;
+	clip: rect(0 0 0 0);
+}

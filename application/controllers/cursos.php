@@ -76,7 +76,7 @@
                case 1:
                     
                     $select = "*";
-                    $or_where = array("D" => "cur_estado", "C" => "cur_estado", "T" => "cur_estado");
+                    $or_where = array("D" => "cur_estado", "C" => "cur_estado");
                     $join = array( "tbl_ciudad" => "cur_ciudad_id=ciu_id", "tbl_instructor" => "cur_instructor_id=ins_cedula", "tbl_parametros" => "cur_estado=par_sigla"  );
                     
                     $resultado = $this->curso->get_cursos($select, array(), $or_where, $join);

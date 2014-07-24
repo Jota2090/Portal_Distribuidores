@@ -282,11 +282,14 @@
          * @param array $join 
          * @return array $resultado
         */
-        public function get_asistentes($select = array("0" => "*"), $where = array(), $or_where = array(), $join = array()){
-            
-            if(count($select) > 0){
-                foreach ($select as $key => $value) {
-                    switch ($key) {    
+        public function get_asistentes($select = array("0" => "*"), $where = array(), $or_where = array(), $join = array())
+        {
+            if(count($select) > 0)
+            {
+                foreach ($select as $key => $value)
+                {
+                    switch ($key)
+                    {    
                         case "0":
                             $this->db->select($value);
                             break;
@@ -310,20 +313,26 @@
                 }
             }
             
-            if(count($where) > 0){
-                foreach ($where as $key => $value) {
+            if(count($where) > 0)
+            {
+                foreach ($where as $key => $value)
+                {
                     $this->db->where($key, $value);
                 }
             }
             
-            if(count($or_where) > 0){
-                foreach ($or_where as $key => $value) {
+            if(count($or_where) > 0)
+            {
+                foreach ($or_where as $key => $value)
+                {
                     $this->db->or_where($value, $key);
                 }
             }
             
-            if(count($join) > 0){
-                foreach ($join as $key => $value) {
+            if(count($join) > 0)
+            {
+                foreach ($join as $key => $value)
+                {
                     $this->db->join($key, $value);
                 }
             }
@@ -343,8 +352,8 @@
          * @access public
          * @return void
         */
-        public function guardar_asistente(){
-            
+        public function guardar_asistente()
+        {
             $data = array(
                'asi_nombre_completo'        => $this->_nombre,
                'asi_cedula'                 => $this->_cedula ,
@@ -357,8 +366,19 @@
                'asi_usuario_id'             => $this->_usuario ,
                'asi_fecha_modificado'       => $this->_fecha_modificado
             );
-
+            
+            $this->db->trans_start();
             $resultado = $this->db->insert($this->get_name_table(), $data);
+            $this->db->trans_complete();
+
+            if ($this->db->trans_status() === FALSE)
+            {
+                $this->db->trans_rollback();
+            }
+            else
+            {
+                $this->db->trans_commit();
+            }
             
             return $resultado;
         }
@@ -374,15 +394,67 @@
          * @param array $where 
          * @return array $resultado
         */
-        public function update_asistente($data = array(), $where = array()){
-            
-            if(count($where) > 0){
-                foreach ($where as $key => $value) {
+        public function update_asistente($data = array(), $where = array())
+        {
+            if(count($where) > 0)
+            {
+                foreach ($where as $key => $value)
+                {
                     $this->db->where($key, $value);
                 }
             }
             
+            $this->db->trans_start();
             $resultado = $this->db->update($this->get_name_table(), $data);
+            $this->db->trans_complete();
+
+            if ($this->db->trans_status() === FALSE)
+            {
+                $this->db->trans_rollback();
+            }
+            else
+            {
+                $this->db->trans_commit();
+            }
+            
+            return $resultado;
+        }
+        
+        
+        /**
+         * Initialize sp_asistente()
+         * 
+         * Esta función invoca los stored procedures que existen en la base de datos con respecto a esta tabla
+         * 
+         * @access public
+         * @param array $nombre_sp 
+         * @param array $data 
+         * @return boolean $resultado
+        */
+        public function sp_asistente($nombre_sp = "", $data = array())
+        {
+            switch ($nombre_sp) 
+            {    
+                case 'sp_eliminar_asistente':
+                    
+                    $query = "call ".$nombre_sp."(".$data[0].",".$data[1].")";
+                    $this->db->trans_start();
+                    $this->db->query($query); 
+                    $this->db->trans_complete();
+                    
+                    $resultado = $this->db->trans_status();
+                    
+                    if ($this->db->trans_status() === FALSE)
+                    {
+                        $this->db->trans_rollback();
+                    }
+                    else
+                    {
+                        $this->db->trans_commit();
+                    }
+                    
+                    break;
+            }
             
             return $resultado;
         }

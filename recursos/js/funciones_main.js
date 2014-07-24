@@ -47,6 +47,9 @@
                         }else{
                             $( "#header" ).html( info );
                         }
+                    },
+                    error: function(){
+                        Ext.Msg.alert('Error','Ha ocurrido un problema con el servidor, por favor vuelva a intentarlo');
                     }
                });
            }
@@ -85,7 +88,10 @@
                         refrescar_seccion(funcion, seccion); 
                     });
                 }
-            } 
+            },
+            error: function(){
+                Ext.Msg.alert('Error','Ha ocurrido un problema con el servidor, por favor vuelva a intentarlo');
+            }
         });
         
         return false;
@@ -129,7 +135,10 @@
                         $.modal.close();
                     });
                 }
-            } 
+            },
+            error: function(){
+                Ext.Msg.alert('Error','Ha ocurrido un problema con el servidor, por favor vuelva a intentarlo');
+            }
         });
         
         return false;
@@ -152,6 +161,9 @@
             },
             success:function(info){
                 $( "#contenido_modal" ).html( info );
+            },
+            error: function(){
+                Ext.Msg.alert('Error','Ha ocurrido un problema con el servidor, por favor vuelva a intentarlo');
             }
         });
     }
@@ -169,6 +181,9 @@
             },
             success:function(info){
                 $( "#contenido_modal" ).html( info );
+            },
+            error: function(){
+                Ext.Msg.alert('Error','Ha ocurrido un problema con el servidor, por favor vuelva a intentarlo');
             }
         });
     }
@@ -186,12 +201,15 @@
             },
             success:function(info){
                 $( "#contenido_modal" ).html( info );
+            },
+            error: function(){
+                Ext.Msg.alert('Error','Ha ocurrido un problema con el servidor, por favor vuelva a intentarlo');
             }
         });
     }
 
 
-    function eliminar(form,parametros){
+    function eliminar(form,parametros,funcion,seccion){
         
         var recurso = form.split('_');
         
@@ -212,6 +230,14 @@
                     },
                     success:function(info){
                         $( "#"+form ).html( info );
+                        
+                        if(funcion != undefined && seccion != undefined)
+                        {
+                            refrescar_seccion(funcion, seccion, parametros);
+                        }
+                    },
+                    error: function(){
+                        Ext.Msg.alert('Error','Ha ocurrido un problema con el servidor, por favor vuelva a intentarlo');
                     }
                 });
             }
@@ -239,6 +265,9 @@
                         if(funcion !== "" && funcion !== null){
                             refrescar_seccion(funcion, seccion);
                         }
+                    },
+                    error: function(){
+                        Ext.Msg.alert('Error','Ha ocurrido un problema con el servidor, por favor vuelva a intentarlo');
                     }
                 });
             }
@@ -264,6 +293,9 @@
             },
             success:function(info){
                 $( "#"+seccion ).html( info );
+            },
+            error: function(){
+                Ext.Msg.alert('Error','Ha ocurrido un problema con el servidor, por favor vuelva a intentarlo');
             }
         });
     }
@@ -291,6 +323,9 @@
             },
             success:function(info){
                 $( "#"+seccion ).html( info );
+            },
+            error: function(){
+                Ext.Msg.alert('Error','Ha ocurrido un problema con el servidor, por favor vuelva a intentarlo');
             }
         });
     }

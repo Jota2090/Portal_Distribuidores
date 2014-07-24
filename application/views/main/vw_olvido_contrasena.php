@@ -32,8 +32,8 @@
         <span>
         <?php
             $imagenes = array('0' => false);
-            $js = 'onclick="enviar_formulario(\'f_olvido_contrasena\', \'usuarios/olvido_contrasena\', \'\', \'\', '.$imagenes.')"';
-            echo form_button('enviar', 'Enviar', $js);
+            $js = 'onclick="enviar_formulario(\'f_olvido_contrasena\', \'\', \'\')"';
+            echo form_submit('enviar', 'Enviar', $js);
         ?>
         </span>
     </span>

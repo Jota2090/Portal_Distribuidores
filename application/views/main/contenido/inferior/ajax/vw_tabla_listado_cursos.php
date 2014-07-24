@@ -64,7 +64,6 @@
                                         '<a href="javascript:">Asistencia</a>'+
                                        '</div>'+
                                        '<div class="acciones" onclick="crear_formulario(\'imprimir_asistencia\',\'id='+data+'\');">'+
-                                        '<i class="icono-ver_detalles"></i>'+
                                         '<a href="javascript:">Imprimir</a>'+
                                        '</div>';
                               }

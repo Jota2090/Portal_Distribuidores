@@ -19,7 +19,7 @@
     $data = array('class'=>'form_modal_input', 'name'=>'nombre_usuario', 'id'=>'nombre_usuario', 'value'=>set_value("nombre_usuario"), 'autocomplete'=>'off', 'type'=>'text');
     echo "<div class='form_div'>
             <div class='form_modal_label'>
-                Nombres:
+                Nombres *
             </div>
             ".form_input($data)."
           </div>";
@@ -27,7 +27,7 @@
     $data = array('class'=>'form_modal_input', 'name'=>'apellido_usuario', 'id'=>'apellido_usuario', 'value'=>set_value("apellido_usuario"), 'autocomplete'=>'off', 'type'=>'text');
     echo "<div class='form_div'>
             <div class='form_modal_label'>
-                Apellidos:
+                Apellidos *
             </div>
             ".form_input($data)."
           </div>";
@@ -35,7 +35,7 @@
     $data = array('class'=>'form_modal_input', 'name'=>'correo_usuario', 'id'=>'correo_usuario', 'value'=>set_value("correo_usuario"), 'autocomplete'=>'off', 'type'=>'text');
     echo "<div class='form_div'>
             <div class='form_modal_label'>
-                Correo:
+                Correo *
             </div>
             ".form_input($data)."
           </div>";
@@ -44,7 +44,7 @@
     $data = array('class'=>'form_modal_input', 'name'=>'cedula_usuario', 'id'=>'cedula_usuario', 'value'=>set_value("cedula_usuario"), 'autocomplete'=>'off', 'type'=>'text', 'maxlength'=>'10');
     echo "<div class='form_div'>
             <div class='form_modal_label'>
-                C&eacute;dula:
+                C&eacute;dula *
             </div>
             ".form_input($data, '', $js)."
           </div>";
@@ -52,7 +52,7 @@
     $data = array('class'=>'form_modal_input', 'name'=>'usuario', 'id'=>'usuario', 'value'=>set_value("usuario"), 'autocomplete'=>'off', 'type'=>'text');
     echo "<div class='form_div'>
             <div class='form_modal_label'>
-                Usuario:
+                Usuario *
             </div>
             ".form_input($data)."
           </div>";
@@ -60,7 +60,7 @@
     $data = array('class'=>'form_modal_input', 'name'=>'contrasena', 'id'=>'contrasena', 'value'=>set_value("contrasena"), 'autocomplete'=>'off', 'type'=>'password', 'placeholder' => '8 caracteres m&iacute;nimo');
     echo "<div class='form_div'>
             <div class='form_modal_label'>
-                Contrase&ntilde;a:
+                Contrase&ntilde;a *
             </div>
             ".form_input($data)."
             <div class='form_modal_input' style='height: 35px; text-align: right; float: right; margin-right: 55px; margin-top: 10px;' id='validador_contrasena'>
@@ -75,9 +75,8 @@
         <i class="icono-agregar-asistente_blanco">&nbsp;</i>
         <span>
         <?php
-            $imagenes = array('0' => false);
-            $js = 'onclick="enviar_formulario(\'f_nuevo_usuario\', \'usuarios/crear_usuario\', \'\', \'\', '.$imagenes.')"';
-            echo form_button('crear', 'Registrarse', $js);
+            $js = 'onclick="enviar_formulario(\'f_nuevo_usuario\', \'\', \'\')"';
+            echo form_submit('crear', 'Registrarse', $js);
         ?>
         </span>
     </span>

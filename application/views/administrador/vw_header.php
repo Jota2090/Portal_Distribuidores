@@ -19,6 +19,7 @@
         <div class="menu_header">
             <div class="opcion"><a href="<?php echo base_url()?>login/logout/administrador">Cerrar Sesi&oacute;n</a></div>
             <div class="opcion"><a href="<?php echo base_url()?>administrador/reportes">Reportes</a></div>
+            <div class="opcion"><a href="<?php echo base_url()?>administrador/usuarios">Usuarios</a></div>
             <div class="opcion"><a href="<?php echo base_url()?>administrador/cursos">Cursos</a></div>
         </div>
         <?php }else{    ?>

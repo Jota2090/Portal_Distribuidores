@@ -204,7 +204,18 @@
                 'rac_lista_asistente_id'  => $this->_lista_asistente
             );
 
+            $this->db->trans_start();
             $resultado = $this->db->insert($this->get_name_table(), $data);
+            $this->db->trans_complete();
+
+            if ($this->db->trans_status() === FALSE)
+            {
+                $this->db->trans_rollback();
+            }
+            else
+            {
+                $this->db->trans_commit();
+            }
             
             return $resultado;
         }
@@ -227,7 +238,18 @@
                 }
             }
             
+            $this->db->trans_start();
             $resultado = $this->db->delete($this->get_name_table());
+            $this->db->trans_complete();
+
+            if ($this->db->trans_status() === FALSE)
+            {
+                $this->db->trans_rollback();
+            }
+            else
+            {
+                $this->db->trans_commit();
+            }
             
             return $resultado;
         }

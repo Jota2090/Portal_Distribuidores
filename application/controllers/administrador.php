@@ -165,12 +165,21 @@
         function eliminar_curso(){
             $this->load->model("mod_curso","curso");
             
-            $data = array("cur_estado" => "E", "cur_fecha_modificado" => date('Y-m-d H:i:s'));
-            $where = array("cur_id" => $this->input->post('id'));
-            
-            $resultado = $this->curso->update_cursos($data, $where);
+            $data = array('0'=>$this->input->post("id"));
+            $resultado = $this->curso->sp_curso('sp_eliminar_curso', $data);
             
             $this->tabla_listado_cursos();
+        }
+        
+        
+        function usuarios(){
+            $this->data['header_data']['auth'] = $this->clslogin->check(1);
+            $this->data['header_data']['nombre'] = $this->clslogin->getNombre();
+            $this->data['header_data']['apellido'] = $this->clslogin->getApellido();
+
+            $this->data['inferior'] = 'administrador/contenido/inferior/vw_listado_usuario';
+            
+            $this->load->view("vw_plantilla_inicio", $this->data);
         }
     }
     

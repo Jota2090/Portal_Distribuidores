@@ -318,8 +318,19 @@
                'usu_fecha_modificado'   => $this->_fecha_modificado
             );
 
-            $result = $this->db->insert($this->get_name_table(), $data);
-            
+            $this->db->trans_start();
+            $result = $this->db->insert($this->get_name_table(), $data); 
+            $this->db->trans_complete();
+
+            if ($this->db->trans_status() === FALSE)
+            {
+                $this->db->trans_rollback();
+            }
+            else
+            {
+                $this->db->trans_commit();
+            }
+                    
             return $result;
         }
         
@@ -342,7 +353,18 @@
                 }
             }
             
+            $this->db->trans_start();
             $resultado = $this->db->update($this->get_name_table(), $data);
+            $this->db->trans_complete();
+
+            if ($this->db->trans_status() === FALSE)
+            {
+                $this->db->trans_rollback();
+            }
+            else
+            {
+                $this->db->trans_commit();
+            }
             
             return $resultado;
         }

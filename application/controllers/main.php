@@ -105,7 +105,7 @@
         function editar_lista_asistente()
         {
             $select = "*";
-            $where = array("la_estado" => "D", "la_asistente_id" => $this->clslogin->getId(), "la_id" => $this->input->post("id"));
+            $where = array("la_estado" => "D", "la_usuario_id" => $this->clslogin->getId(), "la_id" => $this->input->post("id"));
             $resultado = $this->lista_asistente->get_listas_asitentes($select, $where);
             $data['lista'] = $resultado;
             
@@ -122,12 +122,8 @@
         
         function eliminar_lista_asistente()
         {
-            $data["la_estado"] = "E";
-            $where = array("la_id" => $this->input->post('id'));
-
-            $resultado = $this->lista_asistente->update_listas_asistente($data, $where);
-            $resultado = $this->db->_error_message();
-
+            $data = array('0'=>$this->input->post('id'), '1'=>$this->clslogin->getId());
+            $this->lista_asistente->sp_lista_asistente('sp_eliminar_lista_asistente', $data);
             $this->tabla_lista_asistente();
         }
         
@@ -248,22 +244,16 @@
         
         function eliminar_asistente_listado()
         {
-            $data["asi_estado"] = "E";
-            $data["asi_fecha_modificado"] = date('Y-m-d H:i:s');
-
-            $where = array("asi_cedula" => $this->input->post('id_asistente'), "asi_usuario_id" => $this->clslogin->getId());
-
-            $resultado = $this->asistente->update_asistente($data, $where);
-            $resultado = $this->db->_error_message();
-
+            $data = array('0'=>$this->input->post('id_asistente'), '1'=>$this->clslogin->getId());
+            $this->asistente->sp_asistente('sp_eliminar_asistente', $data);
             $this->asistentes_disponibles();
         }
         
         
         function quitar_asistente_lista()
         {
-            $where = array("ral_lista_asistente_id" => $this->input->post("id_lista"), "ral_asistente_id" => $this->input->post("id_asistente"));
-            $resultado = $this->registro_asistente_lista->delete_asistente_lista($where);
+            $data = array('0'=>$this->input->post("id_lista"), '1'=>$this->input->post("id_asistente"));
+            $resultado = $this->lista_asistente->sp_lista_asistente('sp_quitar_asistente_lista', $data);
             
             $select = "*";
             $where = array("asi_estado" => "A", "asi_usuario_id" => $this->clslogin->getId(), "ral_lista_asistente_id" => $this->input->post("id_lista"));
@@ -391,7 +381,7 @@
             }
             
             $select = "*";
-            $where = array("la_estado" => "D", "la_asistente_id" => $this->clslogin->getId());
+            $where = array("la_estado" => "D", "la_usuario_id" => $this->clslogin->getId());
             $resultado = $this->lista_asistente->get_listas_asitentes($select, $where);
             
             $data['listas_asistente'] = array('' => 'Seleccione');
