@@ -9,9 +9,10 @@
      * @author       Edson Jonathan Franco Borja
      * @version      1.0
     */
-    class usuarios extends CI_Controller {
-    
-        function __construct(){
+    class usuarios extends CI_Controller
+    {
+        function __construct()
+        {
             parent::__construct();
             $this->load->library("form_validation");
             $this->load->model("mod_usuario","usuario");
@@ -30,6 +31,170 @@
                                 'mailtype'  =>  'html'
                             );
             $this->load->library('email', $configs);
+        }
+
+
+        function listar_usuarios($tipo = 0)
+        {
+            switch ($tipo) 
+            {    
+                case 0:
+                    
+                    $where = array("usu_estado" => "A", "usu_tipo" => "U");
+
+                    $resultado = $this->usuario->get_usuarios(array(), $where);
+                    
+                    $items = array();
+                    $data = array();
+                    
+                    if($resultado)
+                    {
+                        foreach ($resultado->result() as $row)
+                        {
+                            $fila = array();
+                            $fila['cedula'] = $row->usu_cedula;
+                            $fila['nombre'] = $row->usu_nombre;
+                            $fila['apellido'] = $row->usu_apellido;
+                            $fila['correo'] = $row->usu_correo;
+                            $items[] = $fila;
+                        }
+                        
+                        $data['draw'] = 1;
+                        $data['recordsTotal'] = count($items);
+                        $data['recordsFiltered'] = count($items);
+                        $data['data'] = $items;
+                    }
+                    else
+                    {
+                        $data['draw'] = 1;
+                        $data['recordsTotal'] = 0;
+                        $data['recordsFiltered'] = 0;
+                        $data['data'] = $items;
+                    }
+                    
+                    $data = json_encode($data);
+                    
+                    break;
+                    
+                    
+               case 1:
+                    
+                    $where = array("usu_estado" => "I", "usu_tipo" => "U");
+
+                    $resultado = $this->usuario->get_usuarios(array(), $where);
+                    
+                    $items = array();
+                    $data = array();
+                    
+                    if($resultado)
+                    {
+                        foreach ($resultado->result() as $row)
+                        {
+                            $fila = array();
+                            $fila['cedula'] = $row->usu_cedula;
+                            $fila['nombre'] = $row->usu_nombre;
+                            $fila['apellido'] = $row->usu_apellido;
+                            $fila['correo'] = $row->usu_correo;
+                            $items[] = $fila;
+                        }
+                        
+                        $data['draw'] = 1;
+                        $data['recordsTotal'] = count($items);
+                        $data['recordsFiltered'] = count($items);
+                        $data['data'] = $items;
+                    }
+                    else
+                    {
+                        $data['draw'] = 1;
+                        $data['recordsTotal'] = 0;
+                        $data['recordsFiltered'] = 0;
+                        $data['data'] = $items;
+                    }
+                    
+                    $data = json_encode($data);
+                    
+                    break;
+
+
+                case 2:
+                    
+                    $where = array("usu_estado" => "P", "usu_tipo" => "U");
+
+                    $resultado = $this->usuario->get_usuarios(array(), $where);
+                    
+                    $items = array();
+                    $data = array();
+                    
+                    if($resultado)
+                    {
+                        foreach ($resultado->result() as $row)
+                        {
+                            $fila = array();
+                            $fila['cedula'] = $row->usu_cedula;
+                            $fila['nombre'] = $row->usu_nombre;
+                            $fila['apellido'] = $row->usu_apellido;
+                            $fila['correo'] = $row->usu_correo;
+                            $items[] = $fila;
+                        }
+                        
+                        $data['draw'] = 1;
+                        $data['recordsTotal'] = count($items);
+                        $data['recordsFiltered'] = count($items);
+                        $data['data'] = $items;
+                    }
+                    else
+                    {
+                        $data['draw'] = 1;
+                        $data['recordsTotal'] = 0;
+                        $data['recordsFiltered'] = 0;
+                        $data['data'] = $items;
+                    }
+                    
+                    $data = json_encode($data);
+                    
+                    break;
+
+
+                case 3:
+                    
+                    $where = array("usu_estado" => "R", "usu_tipo" => "U");
+
+                    $resultado = $this->usuario->get_usuarios(array(), $where);
+                    
+                    $items = array();
+                    $data = array();
+                    
+                    if($resultado)
+                    {
+                        foreach ($resultado->result() as $row)
+                        {
+                            $fila = array();
+                            $fila['cedula'] = $row->usu_cedula;
+                            $fila['nombre'] = $row->usu_nombre;
+                            $fila['apellido'] = $row->usu_apellido;
+                            $fila['correo'] = $row->usu_correo;
+                            $items[] = $fila;
+                        }
+                        
+                        $data['draw'] = 1;
+                        $data['recordsTotal'] = count($items);
+                        $data['recordsFiltered'] = count($items);
+                        $data['data'] = $items;
+                    }
+                    else
+                    {
+                        $data['draw'] = 1;
+                        $data['recordsTotal'] = 0;
+                        $data['recordsFiltered'] = 0;
+                        $data['data'] = $items;
+                    }
+                    
+                    $data = json_encode($data);
+                    
+                    break;
+            }
+            
+            echo $data;
         }
 
 
@@ -79,11 +244,11 @@
  
                 if(empty($resultado)){
                     
-                    $parametro = $this->encrypt($this->input->post("cedula_usuario"), 'YtRsZq@PlMnsuTydF--90HyetrRdf');
+                    //$parametro = $this->encrypt($this->input->post("cedula_usuario"), 'YtRsZq@PlMnsuTydF--90HyetrRdf');
                     
                     $this->email->from('miclaro@iclaro.com.ec', 'Portal de Distribuidores');
                     $this->email->to($this->input->post("correo_usuario"));
-                    $this->email->cc('jfranco@dayscript.com, rhuerta@dayscript.com, jmoran@dayscript.com');
+                    $this->email->cc('jfranco@dayscript.com');
                     $this->email->subject('Registro Usuario Nuevo');
                     
                     $contenido	= "";
@@ -131,7 +296,7 @@
                                                 </div>
                                              </div>
                                              <div style='width: 600px; padding: 15px; clear:both;'>
-                                                Para activar al usuario registrado dar clic en el siguiente enlace: <a href='".base_url()."usuarios/activar/".$parametro."' target='_blank'>Activar</a>
+                                                Para activar al usuario registrado dar clic en el siguiente enlace: <a href='".base_url()."administrador/usuarios/pendientes' target='_blank'>Activar</a>
                                              </div>";           
                     $contenido	.=      "</div>";
                     $contenido	.=      "<div style='width:100%;height:92px;' align='center'>
@@ -234,7 +399,7 @@
         }
         
         
-        function activar($id){
+        /*function activar($id){
             $cedula = $this->decrypt($id, 'YtRsZq@PlMnsuTydF--90HyetrRdf');
             $where = array("usu_cedula" => $cedula);
             $usuario = $this->usuario->get_usuarios(array(), $where);
@@ -258,7 +423,7 @@
             else{
                 echo "no existe usuario".$cedula;
             }
-        }
+        }*/
         
         
         function encrypt($string, $key) {

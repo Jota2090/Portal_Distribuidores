@@ -46,7 +46,7 @@ class CI_Log {
 			$this->_enabled = FALSE;
 		}
 
-		if (is_numeric($config['log_threshold']))
+		if (is_numeric($config['log_threshold']) OR is_array($config['log_threshold']))
 		{
 			$this->_threshold = $config['log_threshold'];
 		}
@@ -69,7 +69,7 @@ class CI_Log {
 	 * @param	bool	whether the error is a native PHP error
 	 * @return	bool
 	 */
-	public function write_log($level = 'error', $msg, $php_error = FALSE)
+	public function write_log($level = 'error', $msg, $php_error = FALSE, $name_log = '')
 	{
 		if ($this->_enabled === FALSE)
 		{
@@ -78,12 +78,14 @@ class CI_Log {
 
 		$level = strtoupper($level);
 
-		if ( ! isset($this->_levels[$level]) OR ($this->_levels[$level] > $this->_threshold))
+		if ( ! isset($this->_levels[$level])
+		OR ($this->_levels[$level] > $this->_threshold)
+		OR (is_array($this->_threshold) && ! in_array($this->_levels[$level], $this->_threshold)))
 		{
 			return FALSE;
 		}
 
-		$filepath = $this->_log_path.'log-'.date('Y-m-d').'.php';
+		$filepath = $this->_log_path.$name_log.'-log-'.date('Y-m-d').'.php';
 		$message  = '';
 
 		if ( ! file_exists($filepath))

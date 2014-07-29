@@ -76,7 +76,7 @@ a{
 
     
         #header_titulo{
-            width: 270px;
+            width: 260px;
             height: 50px;
             float: left;
             font-family: Lego;
@@ -92,9 +92,10 @@ a{
             }
 
             #header_titulo img{
+                float: left;
                 width: 40px;
                 height: 40px;
-                padding-left: 30px;
+                padding-right: 20px;
             }
 
             #header_titulo a{
@@ -444,6 +445,8 @@ a{
             border: 0px;
             color: #ffffff;
             cursor: pointer;
+            position: relative;
+            top: 2px;
         }
         
         .boton_modal_fondo input:hover {

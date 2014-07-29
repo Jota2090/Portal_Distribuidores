@@ -1,43 +1,29 @@
 // Run javascript after DOM is initialized
-$(document).ready(function() {
+$(document).ready(function()
+{
 
-	$('#body').waypoint('sticky');
+	//$('#body').waypoint('sticky');
 
-	$('.tabs_default').tabslet();
-
-	$('.tabs_active').tabslet({
-		active: 2
-	});
-
-	$('.tabs_hover').tabslet({
-		mouseevent: 'hover',
-		attribute: 'href',
-		animation: false
-	});
-
-	$('.tabs_animate').tabslet({
-		mouseevent: 'click',
-		attribute: 'href',
-		animation: true
-	});
-
-	$('.tabs_rotate').tabslet({
-		autorotate: true,
-		delay: 3000
-	});
-
-	$('.tabs_controls').tabslet();
-
-	$('.before_event').tabslet();
-	$('.before_event').on("_before", function() {
-		alert('This alert comes before the tab change!')
-	});
-
-	$('.after_event').tabslet({
-		animation: true
-	});
-	$('.after_event').on("_after", function() {
-		alert('This alert comes after the tab change!')
-	});
+	//$('.tabs_default').tabslet();
+	refrescar_seccion('ver_usuarios/activos','listado_usuario');
 
 });
+
+function cambiar_pestana(id, funcion, seccion)
+{
+    var tabs = ["activos", "inactivos", "pendientes", "rechazados"];
+    
+    for(i=0; i<tabs.length; i++)
+    {
+        if(id === tabs[i])
+        {
+            document.getElementById(tabs[i]).className = "tabs_enlace active";
+        }
+        else
+        {
+            document.getElementById(tabs[i]).className = "tabs_enlace";
+        }
+    }
+    
+    refrescar_seccion(funcion, seccion);
+}

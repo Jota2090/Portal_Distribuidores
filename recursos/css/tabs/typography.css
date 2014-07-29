@@ -41,7 +41,7 @@
  * -------------------------------------------------------------------------------------------------
  */
 UL, OL { /* Horizontal & vertical lists */
-	margin: 1.077em 0 1.077em 1.538em; /*  14px 0 14px 20px */
+	/*margin: 1.077em 0 1.077em 1.538em;*/ /*  14px 0 14px 20px */
 }
 
 UL LI, OL LI {
@@ -65,74 +65,3 @@ UL.horizontal > LI {
 	*display: inline;
 }
 
-/**
- * BLOCKQUOTES AND CODE BOXES
- *
- * -------------------------------------------------------------------------------------------------
- */
-BLOCKQUOTE {
-	border-left: 0.308em solid #EEE; /* 4px */
-	color: #666;
-	margin-bottom: 0.769em; /* 10px */
-	margin-left: 1.538em; 	/* 20px */
-	margin-top: 0.769em; 	/* 10px */
-	padding-left: 0.769em; 	/* 10px */
-}
-
-PRE {
-	color: #333;
-	display: block;
-	font-family: Courier, 'Courier New', monospace;
-	margin: 0 0.154em; 			/* 0 2px */
-	padding: 0.154em 0.308em; 	/* 2px 4px */
-}
-
-CODE {
-	background-color: #F8F8F8;
-	border: 1px solid #CCC;
-	border-radius: 0.231em; 	/* 3px */
-	color: #333;
-	display: block;
-	font-family: Courier, 'Courier New', monospace;
-	margin: 0 0.154em; 			/* 0 2px */
-	padding: 0.077em 0.308em; 	/* 2px 4px */
-}
-
-CODE.monokai { /* Based on Monokai scheme colors */
-	background-color: #272822;
-	color: #FB4383
-}
-
-/**
- * NESTING
- *
- * -------------------------------------------------------------------------------------------------
- */
-P > CODE {
-	display: inline-block
-}
-
-P B, LI B, P STRONG, LI STRONG {
-	font-weight: bold
-}
-
-P I, LI I, P EM, LI EM {
-	font-style: italic
-}
-
-ARTICLE.capitalise H2 + P:first-letter { /* Capitalise first letter of the paragraph */
-	font-size: 2.769em; 	/* 36px */
-	float: left;
-	letter-spacing: 0.111em;/* 4px */
-	margin-top: 0.167em; 	/* 6px */
-}
-
-ARTICLE UL {
-	list-style: disc outside none;
-	margin-left: 2.615em; 	/* 34px */
-}
-
-ARTICLE OL {
-	list-style: decimal outside none;
-	margin-left: 2.615em; 	/* 34px */
-}

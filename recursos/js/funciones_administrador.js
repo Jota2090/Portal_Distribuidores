@@ -135,6 +135,19 @@
                         refrescar_seccion(funcion, seccion); 
                     });
                 }
+                else if(result.st == 2)
+                {
+                    Ext.Msg.alert('Informaci\xf3n',result.msg, function(){
+                        $.modal.close();
+                    });
+                }
+                else if(result.st == 3)
+                {
+                    Ext.Msg.alert('Informaci\xf3n',result.msg, function(){
+                        $.modal.close();
+                        cambiar_pestana('pendientes','ver_usuarios/pendientes','listado_usuario');
+                    });
+                }
             },
             error: function(){
                 Ext.Msg.alert('Error','Ha ocurrido un problema con el servidor, por favor vuelva a intentarlo');
@@ -204,7 +217,7 @@
     }
 
 
-    function eliminar(form,parametros){
+    function eliminar(form,parametros,funcion,seccion){
         Ext.Msg.confirm('Confirmaci\xF3n', 'Confirma que desea eliminar el '+form+' seleccionado?', function(buttonText) {
             if (buttonText == "yes"){
                 $.ajax({
@@ -216,17 +229,109 @@
                     },
                     success:function(info){
                         $( "#listado_"+form ).html( info );
+
+                        if(funcion !== "" && funcion !== null && funcion !== undefined)
+                        {
+                            refrescar_seccion(funcion, seccion);
+                        }
                     },
                     error: function(){
                         Ext.Msg.alert('Error','Ha ocurrido un problema con el servidor, por favor vuelva a intentarlo');
                     }
                 });
             }
-	});
-					
-	return false;
+    	});
+    					
+    	return false;
+    }
+
+
+    function inactivar(form,parametros,funcion,seccion){
+        Ext.Msg.confirm('Confirmaci\xF3n', 'Confirma que desea inactivar el '+form+' seleccionado?', function(buttonText) {
+            if (buttonText == "yes"){
+                $.ajax({
+                    type:"post",
+                    url: servidor+"administrador/inactivar_"+form,
+                    data: parametros,
+                    beforeSend: function () {
+                        $( "#listado_"+form ).html( "<div style='position: relative; top: 40%; vertical-align: middle; text-align: center;'>Cargando... <img src='"+servidor+"recursos/images/loading.gif'></div>" );
+                    },
+                    success:function(info){
+                        $( "#listado_"+form ).html( info );
+
+                        if(funcion !== "" && funcion !== null && funcion !== undefined)
+                        {
+                            refrescar_seccion(funcion, seccion);
+                        }
+                    },
+                    error: function(){
+                        Ext.Msg.alert('Error','Ha ocurrido un problema con el servidor, por favor vuelva a intentarlo');
+                    }
+                });
+            }
+        });
+                        
+        return false;
+    }
+
+
+    function activar(form,parametros,funcion,seccion){
+        Ext.Msg.confirm('Confirmaci\xF3n', 'Confirma que desea activar el '+form+' seleccionado?', function(buttonText) {
+            if (buttonText == "yes"){
+                $.ajax({
+                    type:"post",
+                    url: servidor+"administrador/activar_"+form,
+                    data: parametros,
+                    beforeSend: function () {
+                        $( "#listado_"+form ).html( "<div style='position: relative; top: 40%; vertical-align: middle; text-align: center;'>Cargando... <img src='"+servidor+"recursos/images/loading.gif'></div>" );
+                    },
+                    success:function(info){
+                        $( "#listado_"+form ).html( info );
+
+                        if(funcion !== "" && funcion !== null && funcion !== undefined)
+                        {
+                            refrescar_seccion(funcion, seccion);
+                        }
+                    },
+                    error: function(){
+                        Ext.Msg.alert('Error','Ha ocurrido un problema con el servidor, por favor vuelva a intentarlo');
+                    }
+                });
+            }
+        });
+                        
+        return false;
     }
     
+
+    function rechazar(form,parametros,funcion,seccion){
+        Ext.Msg.confirm('Confirmaci\xF3n', 'Confirma que desea rechazar el '+form+' seleccionado?', function(buttonText) {
+            if (buttonText == "yes"){
+                $.ajax({
+                    type:"post",
+                    url: servidor+"administrador/rechazar_"+form,
+                    data: parametros,
+                    beforeSend: function () {
+                        $( "#listado_"+form ).html( "<div style='position: relative; top: 40%; vertical-align: middle; text-align: center;'>Cargando... <img src='"+servidor+"recursos/images/loading.gif'></div>" );
+                    },
+                    success:function(info){
+                        $( "#listado_"+form ).html( info );
+
+                        if(funcion !== "" && funcion !== null && funcion !== undefined)
+                        {
+                            refrescar_seccion(funcion, seccion);
+                        }
+                    },
+                    error: function(){
+                        Ext.Msg.alert('Error','Ha ocurrido un problema con el servidor, por favor vuelva a intentarlo');
+                    }
+                });
+            }
+        });
+                        
+        return false;
+    }
+
     
     function refrescar_seccion(funcion, seccion){
         $.ajax({

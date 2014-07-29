@@ -6,8 +6,8 @@
         <div id="contenido_modal"></div>
     </div>
     <div id="header_titulo">
-        <div><a href="<?php echo base_url()?>main">Cursos de Capacitaci&oacute;n</a></div>
         <img src="<?php echo HTTP_IMAGES_PATH; ?>Main/Header/logo_claro.png" />
+        <div><a href="<?php echo base_url()?>main">Cursos de Capacitaci&oacute;n</a></div>
     </div>
     <div id="header_opciones">
         <?php

@@ -3,7 +3,7 @@
         <div class="filas">
             <div class="titulo_tabla">LISTA DE USUARIOS</div>
             <div class="boton_agregar">
-                <a href="javascript:" onclick="crear_formulario('usuario');">
+                <a href="javascript:" onclick="crear_formulario('registro_usuario');">
                     <span>
                         <span class="boton_blanco_izq">&nbsp;</span>
                         <span class="boton_blanco_centro">
@@ -15,7 +15,7 @@
                 </a>
             </div>
         </div>
-        <div id="listado_curso" class="filas">
+        <div id="tab-usuarios" class="filas">
             <?php   $this->load->view("administrador/contenido/inferior/ajax/vw_tabla_listado_usuario"); ?>
         </div>
     </div>
