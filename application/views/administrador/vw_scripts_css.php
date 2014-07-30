@@ -10,6 +10,7 @@
 <script type="text/javascript" src="<?php echo HTTP_JS_PATH; ?>jquery-ui.js"></script>
 <script type="text/javascript" src="<?php echo HTTP_JS_PATH; ?>jquery-ui-timepicker-addon.js"></script>
 <script type="text/javascript" src="<?php echo HTTP_JS_PATH; ?>lightbox.min.js"></script>
+<script type="text/javascript" src="<?php echo HTTP_JS_PATH; ?>socialite.min.js"></script>
 <link rel="stylesheet" type="text/css" media="all" href="<?php echo HTTP_CSS_PATH; ?>ext-all.css" />
 <link rel="stylesheet" type="text/css" media="all" href="<?php echo HTTP_CSS_PATH; ?>porta.css" />
 <link rel="stylesheet" type="text/css" media="all" href="<?php echo HTTP_CSS_PATH; ?>estilo_main.css" />

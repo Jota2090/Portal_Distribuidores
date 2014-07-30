@@ -76,7 +76,7 @@ a{
 
     
         #header_titulo{
-            width: 260px;
+            width: 270px;
             height: 50px;
             float: left;
             font-family: Lego;
@@ -179,29 +179,17 @@ a{
                 }
 
                 .drop_menu li ul {
-                    left:0px;
-                    top:30px;
-                    background: url('../images/Main/Header/fondo_login.png') no-repeat;
-                    width: 195px;
-                    height: 190px;
-                    padding:0px;
-                }
-
-                .drop_menu li ul li a {
-                    display:block;
-                    width:168px;
-                    text-indent:15px;
-                    background-color: #ffffff;
-                }
-
-                .drop_menu li ul li a{ 
-                    height: 150px;
+                    max-height: 230px;
+                    left: -25px;
+                    padding: 0;
+                    top: 38px;
+                    min-width: 240px;
                 }
                
                 #header_login{
                     width: auto;
                     height: auto;
-                    padding: 10px;
+                    padding: 25px 40px;
                     overflow: hidden;
                     text-align: left;
                     border: 0px;
@@ -215,6 +203,15 @@ a{
                     width: 160px;
                     position: relative;
                     top: -10px;
+                }
+                
+                #header_login a{
+                    width: 170px;
+                    height: 25px;
+                }
+                
+                #header_login a:hover{
+                    background-color: #dedede;
                 }
          
                 .input_login{
@@ -593,6 +590,7 @@ a{
                 width: 300px;
                 float: left;
                 height: auto;
+                cursor: pointer;
             }
 
             .espacio_cursos_destacados{
@@ -601,17 +599,34 @@ a{
             }
     
                 .titulo_curso_destacados{
-                   background: url('../images/Main/Contenido/Inferior/titulo_curso.png') no-repeat;
                    float: left;
                    width: 300px;
-                   height: 50px;
+                   height: auto;
                    margin-top: 8px;
-                   line-height: 38px;
                    text-align: center;
                    font-weight: bold;
                    font-size: 12px;
                    color: #ff0000;
                 }
+                    
+                    .titulo_curso_destacados .top{
+                        background: url('../images/Main/Contenido/Inferior/titulo_curso_top.png') no-repeat;
+                        width: 300px;
+                        height: 15px;
+                     }
+                     
+                     .titulo_curso_destacados .body{
+                        background: url('../images/Main/Contenido/Inferior/titulo_curso_body.png') repeat-y;
+                        padding: 0px 5px;
+                        height: auto;
+                     }
+                     
+                     .titulo_curso_destacados .bottom{
+                        background: url('../images/Main/Contenido/Inferior/titulo_curso_bottom.png') no-repeat;
+                        float: left;
+                        width: 300px;
+                        height: 19px;
+                     }
 
                 .cuerpo_curso_destacados{
                     background: url('../images/Main/Contenido/Inferior/gradiente_recuadro.png') repeat-x;
@@ -643,6 +658,11 @@ a{
                         font-size: 12px;
                         text-align: center;
                         color: #ffffff;
+                        cursor: pointer;
+                    }
+                    
+                    .boton_curso_destacados:hover{
+                        color: orange;
                     }
 
                     .cuerpo_curso_destacados img{

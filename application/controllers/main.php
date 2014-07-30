@@ -16,7 +16,9 @@
                             "scripts" => "main/vw_scripts_css",
                             "header" => "main/vw_header",
                             "superior" => "main/contenido/superior/vw_inicio_superior",
-                            "inferior" => "main/contenido/inferior/vw_inicio_inferior"
+                            "inferior" => "main/contenido/inferior/vw_inicio_inferior",
+                            "inferior_data" => "",
+                            "superior_data" => ""
                         );
         
         function __construct()
@@ -56,6 +58,11 @@
                 $this->_data['header_data']['nombre'] = $this->clslogin->getNombre();
                 $this->_data['header_data']['apellido'] = $this->clslogin->getApellido();
             }
+            
+            $select = "*";
+            $where = array("cur_estado" => "D", "cur_publicado" => "1");
+            $order_by = array("cur_fecha_inicio" => "desc");
+            $this->_data['inferior_data']['cursos'] = $this->curso->get_cursos($select, $where, array(), array(), $order_by);
             
             $this->load->view("vw_plantilla_inicio", $this->_data);
         }
@@ -561,7 +568,7 @@
                 $this->_data['header_data']['apellido'] = $this->clslogin->getApellido();
             }
 
-            $this->_data['interna'] = 'main/contenido/vw_buscador_cursos';
+            $this->_data['interna'] = 'vw_buscador_cursos';
             
             $string = $this->input->post('nombre_curso');
             
@@ -592,6 +599,7 @@
             
             $this->_data['interna_data']['resultado'] = $this->db->query($query);
             $this->_data['interna_data']['string_busqueda'] = $string;
+            $this->_data['interna_data']['controller'] = "main";
             
             $this->load->view("vw_plantilla_inicio", $this->_data);
         }
@@ -610,7 +618,7 @@
                 $this->_data['header_data']['apellido'] = $this->clslogin->getApellido();
             }
 
-            $this->_data['interna'] = 'main/contenido/vw_ver_informacion_curso';
+            $this->_data['interna'] = 'vw_ver_informacion_curso';
             
             $select = "*";
             $where = array("cur_id" => $id_curso, "cur_estado" => "D");
@@ -619,6 +627,7 @@
             $resultado = $this->curso->get_cursos($select, $where, array(), $join);
             
             $this->_data['interna_data']['resultado'] = $resultado;
+            $this->_data['interna_data']['controller'] = "main";
             
             $this->load->view("vw_plantilla_inicio", $this->_data);
         }
@@ -628,7 +637,7 @@
         {
             $data['curso'] = $this->input->post('id');
             
-            $this->load->view("main/contenido/vw_enviar_detalle_curso", $data);
+            $this->load->view("vw_enviar_detalle_curso", $data);
         }
 
 

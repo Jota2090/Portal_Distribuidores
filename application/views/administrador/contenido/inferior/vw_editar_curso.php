@@ -28,7 +28,7 @@
         <span class="titulo_modal_imagen_der" >&nbsp;</span>
     </span>
 </div>
-<div class="cuerpo_modal" style="height: 335px;">
+<div class="cuerpo_modal" style="height: 345px;">
     <div class="form_modal_contenido">
     <?php  
         $js = "id='estado' class='form_modal_input'";
@@ -122,6 +122,16 @@
     </div>
     <div class="form_modal_contenido">
     <?php
+        if($row->cur_publicado === "1"){ $publicado = true; }
+        else{   $publicado = false;    }
+        $data = array('class'=>'form_modal_input', 'name'=>'publicar', 'id'=>'publicar', 'value'=>'1', 'style'=>'width:10px; margin-right: 10px;');
+        echo "<div class='form_div'>
+                <div class='form_modal_label'>
+                    Publicar
+                </div>
+                ".form_checkbox($data, "1", $publicado)."
+              </div>";
+        
         $js = "id='instructor' class='form_modal_input'";
         echo "<div class='form_div'>
                 <div class='form_modal_label'>

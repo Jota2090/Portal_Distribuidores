@@ -3,7 +3,7 @@
         <div class="filas" style="margin-top: 0px;">
             <?php
                 $attributes = array('id' => 'f_buscador_curso', 'name' => 'f_buscador_curso');
-                echo form_open('main/buscador_cursos', $attributes);
+                echo form_open($controller.'/buscador_cursos', $attributes);
             ?>
                 <div id="buscador">
                     <input id="nombre_curso" name="nombre_curso" class="input_buscador" type="text" placeholder="Busca un curso aqu&iacute;" value="<?php echo $string_busqueda; ?>" />
@@ -45,7 +45,7 @@
                                 </div>
                                 <div class="boton_detalles_buscador_curso">
                                     <span>
-                                        <a href="<?php echo base_url().'main/ver_informacion_cursos/'.$row->cur_id; ?>" >
+                                        <a href="<?php echo base_url($controller).'/ver_informacion_cursos/'.$row->cur_id; ?>" >
                                             <span class="boton_blanco_izq">&nbsp;</span>
                                             <span class="boton_blanco_centro">
                                                 Ver m&aacute;s detalles

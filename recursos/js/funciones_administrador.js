@@ -158,7 +158,8 @@
     }
 
 
-    function crear_formulario(form){
+    function crear_formulario(form)
+    {
         $( "#modal" ).modal('', form);
 
         $.ajax({
@@ -177,7 +178,8 @@
     }
     
     
-    function ver_detalles(form,parametros){
+    function ver_detalles(form,parametros)
+    {
         $( "#modal" ).modal('', form);
 
         $.ajax({
@@ -197,7 +199,8 @@
     }
     
     
-    function editar(form,parametros){
+    function editar(form,parametros)
+    {
         $( "#modal" ).modal('', form);
 
         $.ajax({
@@ -217,7 +220,8 @@
     }
 
 
-    function eliminar(form,parametros,funcion,seccion){
+    function eliminar(form,parametros,funcion,seccion)
+    {
         Ext.Msg.confirm('Confirmaci\xF3n', 'Confirma que desea eliminar el '+form+' seleccionado?', function(buttonText) {
             if (buttonText == "yes"){
                 $.ajax({
@@ -246,7 +250,8 @@
     }
 
 
-    function inactivar(form,parametros,funcion,seccion){
+    function inactivar(form,parametros,funcion,seccion)
+    {
         Ext.Msg.confirm('Confirmaci\xF3n', 'Confirma que desea inactivar el '+form+' seleccionado?', function(buttonText) {
             if (buttonText == "yes"){
                 $.ajax({
@@ -275,7 +280,8 @@
     }
 
 
-    function activar(form,parametros,funcion,seccion){
+    function activar(form,parametros,funcion,seccion)
+    {
         Ext.Msg.confirm('Confirmaci\xF3n', 'Confirma que desea activar el '+form+' seleccionado?', function(buttonText) {
             if (buttonText == "yes"){
                 $.ajax({
@@ -304,7 +310,8 @@
     }
     
 
-    function rechazar(form,parametros,funcion,seccion){
+    function rechazar(form,parametros,funcion,seccion)
+    {
         Ext.Msg.confirm('Confirmaci\xF3n', 'Confirma que desea rechazar el '+form+' seleccionado?', function(buttonText) {
             if (buttonText == "yes"){
                 $.ajax({
@@ -333,7 +340,8 @@
     }
 
     
-    function refrescar_seccion(funcion, seccion){
+    function refrescar_seccion(funcion, seccion)
+    {
         $.ajax({
             type:"post",
             url: servidor+"administrador/"+funcion,
@@ -350,8 +358,8 @@
     }
 
 
-    function cambiar(funcion, parametros, seccion){
-        
+    function cambiar(funcion, parametros, seccion)
+    {
         var parametros_string = "";
         var parametros_array = parametros.split(",");
         
@@ -380,7 +388,8 @@
     }
     
 
-    function ver_mapa(latitud, longitud, direccion){
+    function ver_mapa(latitud, longitud, direccion)
+    {
         if(latitud === "" || longitud === "" || latitud === undefined || longitud === undefined){
             latitud = document.getElementById('latitud').value;
             longitud = document.getElementById('longitud').value;
@@ -406,7 +415,8 @@
     }
 
 
-    function validarSoloNumeros(e) {
+    function validarSoloNumeros(e)
+    {
         tecla = (document.all) ? e.keyCode : e.which;
         if (tecla==8) return true;
         else if (tecla==0||tecla==9) return true;
@@ -416,7 +426,8 @@
     }
     
     
-    function validarSoloLetras(e) {
+    function validarSoloLetras(e)
+    {
         tecla = (document.all) ? e.keyCode : e.which;
         if (tecla==8) return true;
         else if (tecla==0||tecla==9) return true;
@@ -426,8 +437,24 @@
     }
 
 
-    function desplegar(menu){
+    function desplegar(menu)
+    {
         $("#"+menu).toggle();
+    }
+    
+    
+    function registrarse(valor)
+    {
+        if(valor === "1")
+        {
+            document.location.href = servidor+"main/cursos_usuarios";
+        }
+        else
+        {
+            Ext.Msg.alert("Informaci\xf3n", "Debes Loguearte en el Portal para registrarte en un curso", function(){
+                desplegar("iniciar_sesion");
+            });
+        }
     }
 
 

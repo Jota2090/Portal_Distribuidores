@@ -135,7 +135,15 @@
             {
                 return $this->_estado;
             }
-
+        
+        /**
+        * getAuth() retorna si el usuario está autenticado
+        * @return boolean _auth
+        */
+            function getAuth()
+            {
+                return $this->_auth;
+            }
         /**
         * login($user = "", $clave = "")
         * La función de login recibirá dos parámetros: usuario y contraseña que normalmente serán

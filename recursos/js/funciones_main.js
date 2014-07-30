@@ -436,4 +436,19 @@
          
         return false;
     }
+    
+    
+    function registrarse(valor)
+    {
+        if(valor === "1")
+        {
+            document.location.href = servidor+"main/cursos_usuarios";
+        }
+        else
+        {
+            Ext.Msg.alert("Informaci\xf3n", "Debes Loguearte en el Portal para registrarte en un curso", function(){
+                desplegar("iniciar_sesion");
+            });
+        }
+    }
 

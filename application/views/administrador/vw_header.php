@@ -10,14 +10,41 @@
         <div><a href="<?php echo base_url()?>administrador">Cursos de Capacitaci&oacute;n</a></div>
     </div>
     <div id="header_opciones">
-        <?php
-        if(isset($auth) && $auth){  ?>
+    <?php
+        if(isset($auth) && $auth)
+        {  
+    ?>
         <div id="inicio_header">
-            <div><img src="<?php echo HTTP_IMAGES_PATH; ?>Main/Header/ico_usuario.png" /></div>
-            <div id="usuario">Bienvenido, <?php echo $nombre." ".$apellido;?></div>
+            <ul class="drop_menu">
+                <li>
+                    <a href='javascript:'  onclick='desplegar("datos_usuario");' >
+                        <div>
+                            <img src="<?php echo HTTP_IMAGES_PATH; ?>Main/Header/ico_usuario.png" />
+                        </div>
+                        <div id="usuario">
+                            Bienvenido, <?php 
+                                            $nombres = explode(" ",$nombre);
+                                            $apellidos = explode(" ",$apellido);
+                                            echo $nombres[0]." ".$apellidos[0];
+                                         ?>
+                        </div>
+                    </a>
+                    <ul id="datos_usuario" style="display: none; z-index: 1; background: url('<?php echo HTTP_IMAGES_PATH; ?>Main/Header/fondo_logueado_admin.png') no-repeat;">
+                        <li>
+                            <div id="header_login" style="text-align:right;">
+                                <a href="<?php echo base_url()?>login/logout/administrador">
+                                    Editar Datos
+                                </a>
+                                <a href="<?php echo base_url()?>login/logout/administrador">
+                                    Cerrar Sesi&oacute;n
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
         </div>
         <div class="menu_header">
-            <div class="opcion"><a href="<?php echo base_url()?>login/logout/administrador">Cerrar Sesi&oacute;n</a></div>
             <div class="opcion"><a href="<?php echo base_url()?>administrador/reportes">Reportes</a></div>
             <div class="opcion"><a href="<?php echo base_url()?>administrador/usuarios">Usuarios</a></div>
             <div class="opcion"><a href="<?php echo base_url()?>administrador/cursos">Cursos</a></div>
@@ -30,7 +57,7 @@
                         <img src="<?php echo HTTP_IMAGES_PATH; ?>Main/Header/ico_usuario.png" />
                         <div>Iniciar Sesi&oacute;n</div>
                     </a>
-                    <ul id="iniciar_sesion" style="display: none; z-index: 1;">
+                    <ul id="iniciar_sesion" style="display: none; z-index: 1; background: url('<?php echo HTTP_IMAGES_PATH; ?>Main/Header/fondo_login.png') no-repeat;">
                         <li>
                             <div id="header_login">
                                  <?php 
@@ -68,7 +95,7 @@
         </div>
         <div class="menu_header">
             <div class="opcion"><a href="#">Categor&iacute;as</a></div>
-            <div class="opcion"><a href="#">Cursos</a></div>
+            <div class="opcion"><a href="<?php echo base_url()?>administrador/buscador_cursos">Cursos</a></div>
         </div>
         <?php }  ?>
     </div>

@@ -14,8 +14,8 @@
             <?php 
                 if(!isset($interna))
                 {
-                    $this->load->view($superior);
-                    $this->load->view($inferior); 
+                    $this->load->view($superior, $superior_data);
+                    $this->load->view($inferior, $inferior_data); 
                 }
                 else
                 {

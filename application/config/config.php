@@ -22,10 +22,7 @@ define('HTTP_CSS_PATH', $config['base_url'].'recursos/css/');
 define('HTTP_IMAGES_PATH', $config['base_url'].'recursos/images/');
 define('HTTP_JS_PATH', $config['base_url'].'recursos/js/');
 date_default_timezone_set('America/Bogota');
-/*
-define('HTTP_CSS_PATH_ADMIN', $config['base_url'].'assets/admin/css/');
-define('HTTP_IMAGES_PATH_ADMIN', $config['base_url'].'assets/admin/images/');
-define('HTTP_JS_PATH_ADMIN', $config['base_url'].'assets/js/jquery/');*/
+
 /*
 |--------------------------------------------------------------------------
 | Index File

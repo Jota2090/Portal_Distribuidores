@@ -186,6 +186,7 @@
                         $this->curso->set_cupos_total($this->input->post("cupos"));
                         $this->curso->set_costo($this->input->post("costo"));
                         $this->curso->set_comentarios($this->input->post("comentarios"));
+                        $this->curso->set_publicado($this->input->post("publicar"));
                         $this->curso->set_provincia($this->input->post("provincia"));
                         $this->curso->set_ciudad($this->input->post("ciudad"));
                         $this->curso->set_tema($this->input->post("tema"));
@@ -256,6 +257,7 @@
                 $data["cur_cupos_total"] = $this->input->post("cupos");
                 $data["cur_costo"] = $this->input->post("costo");
                 $data["cur_comentarios"] = $this->input->post("comentarios");
+                $data["cur_publicado"] = $this->input->post("publicar");
                 $data["cur_provincia_id"] = $this->input->post("provincia");
                 $data["cur_ciudad_id"] = $this->input->post("ciudad");
                 $data["cur_tema_id"] = $this->input->post("tema");

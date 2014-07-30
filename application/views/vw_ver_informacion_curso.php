@@ -81,7 +81,7 @@
             </div>
             <div class="boton_modal" style="margin-top: 60px;">
                 <span>
-                    <a href="<?php echo base_url()?>main/buscador_cursos">
+                    <a href="<?php echo base_url($controller)?>/buscador_cursos">
                         <span class="boton_blanco_izq">&nbsp;</span>
                         <span class="boton_blanco_centro">
                             Buscar m&aacute;s cursos

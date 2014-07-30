@@ -31,6 +31,7 @@
          * @var string      $_cupos_total           cupos totales del curso
          * @var string      $_costo                 costo del curso (Valor monetario)
          * @var string      $_comentarios           comentarios u observaciones del curso
+         * @var string      $_publicado             verificar si el curso se publica
          * @var integer     $_provincia             id de la provincia en que se dictará curso
          * @var integer     $_ciudad                id de laciudad en que se dictará curso
          * @var integer     $_tema                  id del tema sobre lo que tratará el curso
@@ -58,6 +59,7 @@
         var $_cupos_total           = "";
         var $_costo                 = "";
         var $_comentarios           = "";
+        var $_publicado             = "";
         var $_provincia             = 0;
         var $_ciudad                = 0;
         var $_tema                  = 0;
@@ -374,6 +376,23 @@
         }
 
         /**
+        * get_publicado() retorna si es publicado
+        * @return string _publicado
+        */
+        public function get_publicado() {
+            return $this->_publicado;
+        }
+
+        /**
+        * set_publicado() setea un valor en el parámetro de _publicado
+        * @param string $_publicado 
+        * @return void
+        */
+        public function set_publicado($_publicado) {
+            $this->_publicado = $_publicado;
+        }
+
+        /**
         * get_provincia() retorna la provincia
         * @return integer _provincia
         */
@@ -572,6 +591,7 @@
                'cur_cupos_total'        => $this->_cupos_total,
                'cur_costo'              => $this->_costo ,
                'cur_comentarios'        => $this->_comentarios ,
+               'cur_publicado'          => $this->_publicado ,
                'cur_provincia_id'       => $this->_provincia ,
                'cur_ciudad_id'          => $this->_ciudad ,
                'cur_tema_id'            => $this->_tema ,
