@@ -32,7 +32,7 @@
                     <ul id="datos_usuario" style="display: none; z-index: 1; background: url('<?php echo HTTP_IMAGES_PATH; ?>Main/Header/fondo_logueado_admin.png') no-repeat;">
                         <li>
                             <div id="header_login" style="text-align:right;">
-                                <a href="<?php echo base_url()?>login/logout/administrador">
+                                <a href="javascript:" onclick="editar('usuario','id=<?php echo $this->clslogin->getId();?>');">
                                     Editar Datos
                                 </a>
                                 <a href="<?php echo base_url()?>login/logout/administrador">

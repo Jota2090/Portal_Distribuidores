@@ -70,7 +70,7 @@
 
         function form_crear_registro_usuario()
         {
-            $this->load->view("main/vw_crear_usuario");
+            $this->load->view("vw_crear_usuario");
         }
 
 
