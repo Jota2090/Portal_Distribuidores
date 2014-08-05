@@ -58,5 +58,10 @@
             array('field'=>'asistente', 'label'=>"Asistente", 'rules'=>'required|xss_clean')
         ),
         
+        'usuarios/cambiar_contrasena'=>array(
+            array('field'=>'contrasena_actual', 'label'=>"Contrase&ntilde;a Actual", 'rules'=>'required|trim|xss_clean|min_length[8]'),
+            array('field'=>'contrasena_nueva', 'label'=>"Nueva Contrase&ntilde;a", 'rules'=>'required|trim|xss_clean|min_length[8]'),
+            array('field'=>'contrasena_nueva_2', 'label'=>"Repetir Nueva Contrase&ntilde;a", 'rules'=>'required|trim|xss_clean|min_length[8]')
+        ),
     );
 ?>

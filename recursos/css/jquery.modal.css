@@ -50,11 +50,18 @@
     height: 500px;
 }
 
-.registro_usuario{
-    background: url(../images/Modals/fondo_registro_usuario.png) no-repeat;
+.usuario{
+    background: url(../images/Modals/fondo_usuario.png) no-repeat;
     display: none;
     width: 420px;
     height: 390px;
+}
+
+.contrasena{
+    background: url(../images/Modals/fondo_contrasena.png) no-repeat;
+    display: none;
+    width: 420px;
+    height: 330px;
 }
 
 .olvido_contrasena{

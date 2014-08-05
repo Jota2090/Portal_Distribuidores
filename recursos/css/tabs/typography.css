@@ -45,7 +45,7 @@ UL, OL { /* Horizontal & vertical lists */
 }
 
 UL LI, OL LI {
-	line-height: 1.385em
+	/*line-height: 1.385em*/
 }
 
 UL.vertical { /* Vertical lists */

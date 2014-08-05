@@ -177,7 +177,7 @@
                         FROM tbl_usuario
                         WHERE usu_usuario=? AND usu_contrasena=? AND usu_estado='A'";
                 
-                $salt = '6&KTTmxa$Tej|y6uH%OhSrK@caXbNNo%I23tQmJ20Sid';
+                $salt = '6&KTTmxa%Tej|y6uH%OhSrK@caXbNNo%I23tQmJ20Sid';
                 $enc_pass = sha1(md5($salt.$clave));
 
                 $query = $CI->db->query($sql, array($user, $enc_pass));

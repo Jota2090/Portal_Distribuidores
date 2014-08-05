@@ -65,6 +65,24 @@
                     }
                });
            }
+           else if(form == 'f_contrasena')
+           {
+                var contrasena_nueva = document.getElementById('contrasena_nueva').value;
+                var contrasena_nueva_2 = document.getElementById('contrasena_nueva_2').value;
+
+                if(contrasena_nueva != contrasena_nueva_2) 
+                {
+                    $('#validador_contrasena_2').html("<div>Las contrase&ntilde;as no coinciden.</div>");
+                    Ext.Msg.alert('Error', 'Las contrase\u00F1as no coinciden.');
+                } 
+                else
+                {
+                    $('#validador_contrasena_2').html("");
+                    enviar_formulario(form, '', '');
+                }
+                
+                return false;
+           }
         }
     }
     
@@ -122,7 +140,7 @@
             { 
                 $( "#cargando" ).hide();
                 $( "#contenido_modal" ).show();
-
+                
                 if(result.st == 0)
                 {
                     Ext.Msg.alert('Error',result.msg);
@@ -138,10 +156,16 @@
                 else if(result.st == 2)
                 {
                     Ext.Msg.alert('Informaci\xf3n',result.msg, function(){
-                        $.modal.close();
+                        refrescar_seccion(funcion, seccion);
                     });
                 }
                 else if(result.st == 3)
+                {
+                    Ext.Msg.alert('Informaci\xf3n',result.msg, function(){
+                        $.modal.close();
+                    });
+                }
+                else if(result.st == 4)
                 {
                     Ext.Msg.alert('Informaci\xf3n',result.msg, function(){
                         $.modal.close();

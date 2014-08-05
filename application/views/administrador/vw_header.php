@@ -29,11 +29,14 @@
                                          ?>
                         </div>
                     </a>
-                    <ul id="datos_usuario" style="display: none; z-index: 1; background: url('<?php echo HTTP_IMAGES_PATH; ?>Main/Header/fondo_logueado_admin.png') no-repeat;">
+                    <ul id="datos_usuario" style="display: none; z-index: 1; background: url('<?php echo HTTP_IMAGES_PATH; ?>Main/Header/fondo_logueado.png') no-repeat;">
                         <li>
                             <div id="header_login" style="text-align:right;">
                                 <a href="javascript:" onclick="editar('usuario','id=<?php echo $this->clslogin->getId();?>');">
-                                    Editar Datos
+                                    Editar Datos Personales
+                                </a>
+                                <a href="javascript:" onclick="editar('contrasena','id=<?php echo $this->clslogin->getId();?>');">
+                                    Cambiar Contrase&ntilde;a
                                 </a>
                                 <a href="<?php echo base_url()?>login/logout/administrador">
                                     Cerrar Sesi&oacute;n

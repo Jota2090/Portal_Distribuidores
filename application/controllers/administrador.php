@@ -201,7 +201,7 @@
         
         function eliminar_curso()
         {
-            $data = array('0'=>$this->input->post("id"));
+            $data = array('0'=>"'".$this->input->post("id")."'");
             $resultado = $this->curso->sp_curso('sp_eliminar_curso', $data);
             
             $this->tabla_listado_cursos();
@@ -288,7 +288,7 @@
         function activar_usuario()
         {
             $data = array('usu_estado'=>'A', 'usu_fecha_modificado'=>date('Y-m-d H:i:s'));
-            $where = array('usu_cedulere);a' => $this->input->post("id"));
+            $where = array('usu_cedula' => $this->input->post("id"));
             $resultado = $this->usuario->update_usuarios($data, $where);
             
             if($resultado)
@@ -323,7 +323,7 @@
         }
         
         
-        function form_crear_registro_usuario()
+        function form_crear_usuario()
         {
             $this->load->view("vw_crear_usuario");
         }
@@ -417,10 +417,18 @@
         
         function editar_usuario()
         {
-            $where = array("usu_estado" => "A", "usu_tipo" => "U", "usu_cedula" => $this->input->post('id'));
+            $where = array("usu_estado" => "A", "usu_tipo" => "A", "usu_cedula" => $this->input->post('id'));
             $data['resultado'] = $this->usuario->get_usuarios(array(), $where);
             
             $this->load->view("vw_editar_usuario", $data);
+        }
+        
+        
+        function editar_contrasena()
+        {
+            $data['ced'] = $this->input->post('id');
+            
+            $this->load->view("vw_editar_contrasena", $data);
         }
     }
     

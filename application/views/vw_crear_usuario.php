@@ -63,7 +63,7 @@
                 Contrase&ntilde;a *
             </div>
             ".form_input($data)."
-            <div class='form_modal_input' style='height: 35px; text-align: right; float: right; margin-right: 55px; margin-top: 10px;' id='validador_contrasena'>
+            <div class='form_modal_input' style='height: 35px; text-align: right; float: right; margin-right: 55px;' id='validador_contrasena'>
                 <img src='".  base_url()."recursos/images/Main/Header/barra_gris_contrasena.png' />
             </div>
           </div>";

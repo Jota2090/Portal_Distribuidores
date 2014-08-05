@@ -26,7 +26,7 @@
             parent::__construct();
             
             if($this->uri->segment(2) != "" && $this->uri->segment(2) != "index" 
-                && $this->uri->segment(2) != "form_crear_registro_usuario"
+                && $this->uri->segment(2) != "form_crear_usuario"
                 && $this->uri->segment(2) != "form_crear_olvido_contrasena"
                 && $this->uri->segment(2) != "buscador_cursos"
                 && $this->uri->segment(2) != "ver_informacion_cursos"
@@ -39,6 +39,7 @@
             }
             
             $this->load->model("mod_curso","curso");
+            $this->load->model("mod_usuario","usuario");
             $this->load->model("mod_asistente","asistente");
             $this->load->model("mod_lista_asistente","lista_asistente");
             $this->load->model("mod_registro_asistente_lista","registro_asistente_lista");
@@ -68,7 +69,7 @@
         }
  
 
-        function form_crear_registro_usuario()
+        function form_crear_usuario()
         {
             $this->load->view("vw_crear_usuario");
         }
@@ -129,7 +130,7 @@
         
         function eliminar_lista_asistente()
         {
-            $data = array('0'=>$this->input->post('id'), '1'=>$this->clslogin->getId());
+            $data = array('0'=>"'".$this->input->post('id')."'", '1'=>"'".$this->clslogin->getId()."'");
             $this->lista_asistente->sp_lista_asistente('sp_eliminar_lista_asistente', $data);
             $this->tabla_lista_asistente();
         }
@@ -251,7 +252,7 @@
         
         function eliminar_asistente_listado()
         {
-            $data = array('0'=>$this->input->post('id_asistente'), '1'=>$this->clslogin->getId());
+            $data = array('0'=>"'".$this->input->post('id_asistente')."'", '1'=>"'".$this->clslogin->getId()."'");
             $this->asistente->sp_asistente('sp_eliminar_asistente', $data);
             $this->asistentes_disponibles();
         }
@@ -259,7 +260,7 @@
         
         function quitar_asistente_lista()
         {
-            $data = array('0'=>$this->input->post("id_lista"), '1'=>$this->input->post("id_asistente"));
+            $data = array('0'=>"'".$this->input->post("id_lista")."'", '1'=>"'".$this->input->post("id_asistente")."'");
             $resultado = $this->lista_asistente->sp_lista_asistente('sp_quitar_asistente_lista', $data);
             
             $select = "*";
@@ -668,6 +669,15 @@
             $data['id_curso'] = $this->input->post('id');
             
             $this->load->view("main/contenido/inferior/vw_imprimir_asistencia", $data);
+        }
+        
+        
+        function editar_usuario()
+        {
+            $where = array("usu_estado" => "A", "usu_tipo" => "U", "usu_cedula" => $this->input->post('id'));
+            $data['resultado'] = $this->usuario->get_usuarios(array(), $where);
+            
+            $this->load->view("vw_editar_usuario", $data);
         }
     }
     

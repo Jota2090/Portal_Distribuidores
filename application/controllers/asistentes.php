@@ -9,9 +9,11 @@
      * @author       Edson Jonathan Franco Borja
      * @version      1.0
     */
-    class asistentes extends CI_Controller {
-    
-        function __construct(){
+    class asistentes extends CI_Controller
+    {
+        
+        function __construct()
+        {
             parent::__construct();
             $this->load->library("form_validation");
             $this->load->model("mod_asistente","asistente");
@@ -218,9 +220,12 @@
                 $this->asistente->guardar_asistente();
                 $resultado = $this->db->_error_message();
                 
-                if(empty($resultado)){
+                if(empty($resultado))
+                {
                     echo json_encode(array('st'=>2, 'msg' => 'Asistente guardado con Exito'));
-                }else{
+                }
+                else
+                {
                     echo json_encode(array('st'=>0, 'msg' => 'Hubo un problema con el servidor, por favor vuelva a intentar'.$resultado));
                 }
             }
@@ -251,9 +256,12 @@
                 
                 $resultado = $this->db->_error_message();
 
-                if(empty($resultado)){
+                if(empty($resultado))
+                {
                     echo json_encode(array('st'=>2, 'msg' => 'Cambios guardados con Exito'));
-                }else{
+                }
+                else
+                {
                     echo json_encode(array('st'=>0, 'msg' => 'Hubo un problema con el servidor, por favor vuelva a intentar'.$resultado));
                 }
             }

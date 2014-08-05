@@ -15,26 +15,6 @@
 
 
 /**
- * HTML5 ELEMENTS
- * Handle the following as blocks
- * -------------------------------------------------------------------------------------------------
- */
-article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
-	display: block
-}
-
-
-/**
- * TABLES
- * Reset table borders
- * -------------------------------------------------------------------------------------------------
- */
-table {
-	border-collapse: collapse;
-	border-spacing: 0
-}
-
-/**
  * LISTS
  * Reset list styles
  * -------------------------------------------------------------------------------------------------

@@ -3,7 +3,7 @@
         <div class="filas">
             <div class="titulo_tabla">LISTA DE USUARIOS</div>
             <div class="boton_agregar">
-                <a href="javascript:" onclick="crear_formulario('registro_usuario');">
+                <a href="javascript:" onclick="crear_formulario('usuario');">
                     <span>
                         <span class="boton_blanco_izq">&nbsp;</span>
                         <span class="boton_blanco_centro">

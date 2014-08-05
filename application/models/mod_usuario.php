@@ -347,8 +347,10 @@
         */
         public function update_usuarios($data = array(), $where = array()){
             
-            if(count($where) > 0){
-                foreach ($where as $key => $value) {
+            if(count($where) > 0)
+            {
+                foreach ($where as $key => $value)
+                {
                     $this->db->where($key, $value);
                 }
             }

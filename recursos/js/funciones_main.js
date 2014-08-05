@@ -7,7 +7,8 @@
 
     var servidor = ((location.href.split('/'))[0])+'//'+((location.href.split('/'))[2])+'/'+((location.href.split('/'))[3])+'/';
 
-    function validar_formulario(form){
+    function validar_formulario(form)
+    {
         var frm = document.getElementById(form);
         var validador = 0;
 
@@ -16,19 +17,25 @@
             var value = frm.elements[i].value;
             var type = frm.elements[i].type;
 
-            if(type=="text" || type=="password"){
-                if(value.trim() == "" || value.trim() == null){
+            if(type=="text" || type=="password")
+            {
+                if(value.trim() == "" || value.trim() == null)
+                {
                     validador++;
                 }
             }  
         }
 
-        if(validador > 0){
+        if(validador > 0)
+        {
             Ext.Msg.alert("Error","Debe llenar los campos requeridos");
             return false;
 
-        }else{
-            if(form == 'f_login'){
+        }
+        else
+        {
+            if(form == 'f_login')
+            {
                 var user = document.getElementById('user').value;
                 var password = document.getElementById('password').value;
                 var tipo = document.getElementById('tipo').value;
@@ -52,6 +59,24 @@
                         Ext.Msg.alert('Error','Ha ocurrido un problema con el servidor, por favor vuelva a intentarlo');
                     }
                });
+           }
+           else if(form == 'f_contrasena')
+           {
+                var contrasena_nueva = document.getElementById('contrasena_nueva').value;
+                var contrasena_nueva_2 = document.getElementById('contrasena_nueva_2').value;
+
+                if(contrasena_nueva != contrasena_nueva_2) 
+                {
+                    $('#validador_contrasena_2').html("<div>Las contrase&ntilde;as no coinciden.</div>");
+                    Ext.Msg.alert('Error', 'Las contrase\u00F1as no coinciden.');
+                } 
+                else
+                {
+                    $('#validador_contrasena_2').html("");
+                    enviar_formulario(form, '', '');
+                }
+                
+                return false;
            }
         }
     }
@@ -129,7 +154,7 @@
                         refrescar_seccion(funcion, seccion);
                     });
                 }
-                else if(result.st == 3)
+                else if(result.st == 3 || result.st == 4)
                 {
                     Ext.Msg.alert('Informaci\xf3n',result.msg, function(){
                         $.modal.close();
@@ -145,10 +170,12 @@
     }
 
 
-    function crear_formulario(form, parametros){
+    function crear_formulario(form, parametros)
+    {
         $( "#modal" ).modal('', form);
 
-        if(parametros == undefined || parametros == null){
+        if(parametros == undefined || parametros == null)
+        {
             parametros = "";
         }
 
@@ -169,7 +196,8 @@
     }
     
     
-    function ver_detalles(form,parametros){
+    function ver_detalles(form,parametros)
+    {
         $( "#modal" ).modal('', form);
 
         $.ajax({
@@ -189,7 +217,8 @@
     }
     
     
-    function editar(form,parametros){
+    function editar(form,parametros)
+    {
         $( "#modal" ).modal('', form);
 
         $.ajax({
@@ -209,8 +238,8 @@
     }
 
 
-    function eliminar(form,parametros,funcion,seccion){
-        
+    function eliminar(form,parametros,funcion,seccion)
+    {
         var recurso = form.split('_');
         
         if(recurso[0] === 'lista'){
@@ -246,8 +275,9 @@
 	return false;
     }
     
-    function quitar(form, parametros, funcion, seccion){
-        
+    
+    function quitar(form, parametros, funcion, seccion)
+    {
         var recurso = form.split('_');
         
         Ext.Msg.confirm('Confirmaci\xF3n', 'Confirma que desea quitar el '+recurso[0]+' seleccionado?', function(buttonText) {
@@ -278,9 +308,10 @@
     }
     
     
-    function refrescar_seccion(funcion, seccion, parametros){
-        
-        if(parametros == undefined || parametros == null){
+    function refrescar_seccion(funcion, seccion, parametros)
+    {
+        if(parametros == undefined || parametros == null)
+        {
             parametros = "";
         }
         
@@ -301,8 +332,8 @@
     }
 
 
-    function cambiar(funcion, parametros, seccion){
-        
+    function cambiar(funcion, parametros, seccion)
+    {
         var parametros_string = "";
         var parametros_array = parametros.split(",");
         
@@ -331,22 +362,27 @@
     }
 
 
-    function ver_mapa(latitud, longitud, direccion){
-        if(latitud === "" || longitud === "" || latitud === undefined || longitud === undefined){
+    function ver_mapa(latitud, longitud, direccion)
+    {
+        if(latitud === "" || longitud === "" || latitud === undefined || longitud === undefined)
+        {
             latitud = document.getElementById('latitud').value;
             longitud = document.getElementById('longitud').value;
         }
         
-        if(direccion === "" || direccion === undefined){
+        if(direccion === "" || direccion === undefined)
+        {
             direccion = document.getElementById('direccion_curso').value;
         }
         
-        if(latitud === "" || longitud === ""){
+        if(latitud === "" || longitud === "")
+        {
             Ext.Msg.alert("Atenci\xf3n","Debe ingresar Latitud y Longitud");
             return ;
         }
         
-        if(direccion === ""){
+        if(direccion === "")
+        {
             Ext.Msg.alert("Atenci\xf3n","Debe ingresar la Direcci\xf3n del Curso");
             return ;
         }
@@ -357,7 +393,8 @@
     }
 
 
-    function validarSoloNumeros(e) {
+    function validarSoloNumeros(e)
+    {
         tecla = (document.all) ? e.keyCode : e.which;
         if (tecla==8) return true;
         else if (tecla==0||tecla==9) return true;
@@ -367,7 +404,8 @@
     }
     
     
-    function validarSoloLetras(e) {
+    function validarSoloLetras(e)
+    {
         tecla = (document.all) ? e.keyCode : e.which;
         if (tecla==8) return true;
         else if (tecla==0||tecla==9) return true;
@@ -377,11 +415,12 @@
     } 
     
     
-    function tabs(id, position, opcion, color, funcion, seccion){
-        
+    function tabs(id, position, opcion, color, funcion, seccion)
+    {
         var esquinas = ["izq", "der"];
         
-        switch(opcion) {
+        switch(opcion)
+        {
             case "0":
                 var tabs = ["agregados", "disponibles"];
                 break;
@@ -391,18 +430,26 @@
                 break;
         } 
         
-        for(i=0; i<esquinas.length; i++){
-            if(position === esquinas[i]){
+        for(i=0; i<esquinas.length; i++)
+        {
+            if(position === esquinas[i])
+            {
                 document.getElementById("tab_"+esquinas[i]).className = "selected_boton_"+color+"_"+esquinas[i];
-            }else{
+            }
+            else
+            {
                 document.getElementById("tab_"+esquinas[i]).className = "boton_"+color+"_"+esquinas[i];
             }
         }
         
-        for(i=0; i<tabs.length; i++){
-            if(id === tabs[i]){
+        for(i=0; i<tabs.length; i++)
+        {
+            if(id === tabs[i])
+            {
                 document.getElementById("tab_menu_"+tabs[i]).className = "tabs_content selected_boton_"+color+"_centro";
-            }else{
+            }
+            else
+            {
                 document.getElementById("tab_menu_"+tabs[i]).className = "tabs_content boton_"+color+"_centro";
             }
         }
@@ -411,7 +458,8 @@
     }
 
 
-    function desplegar(menu){
+    function desplegar(menu)
+    {
         $("#"+menu).toggle();
     }
 
