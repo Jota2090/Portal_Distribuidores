@@ -1,12 +1,6 @@
-// Run javascript after DOM is initialized
 $(document).ready(function()
 {
-
-	//$('#body').waypoint('sticky');
-
-	//$('.tabs_default').tabslet();
-	refrescar_seccion('ver_usuarios/activos','listado_usuario');
-
+    refrescar_seccion('ver_usuarios/activos','listado_usuario');
 });
 
 function cambiar_pestana(id, funcion, seccion)

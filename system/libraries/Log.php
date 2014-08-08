@@ -28,7 +28,7 @@ class CI_Log {
 
 	protected $_log_path;
 	protected $_threshold	= 1;
-	protected $_date_fmt	= 'Y-m-d H:i:s';
+	protected $_date_fmt	= 'Y-m';
 	protected $_enabled	= TRUE;
 	protected $_levels	= array('ERROR' => '1', 'DEBUG' => '2',  'INFO' => '3', 'ALL' => '4');
 
@@ -85,7 +85,7 @@ class CI_Log {
 			return FALSE;
 		}
 
-		$filepath = $this->_log_path.$name_log.'-log-'.date('Y-m-d').'.php';
+		$filepath = $this->_log_path.$name_log.'-log-'.date('Y-m').'.php';
 		$message  = '';
 
 		if ( ! file_exists($filepath))

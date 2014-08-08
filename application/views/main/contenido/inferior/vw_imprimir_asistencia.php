@@ -90,14 +90,14 @@
             </div>
         </div>
         <div class="boton_modal">
-            <a href="javascript:" onclick="redirect_by_post('f_imprimir_asistente');">
             <span class="boton_modal_fondo">
                 <i class="icono-agregar-asistente_blanco">&nbsp;</i>
                 <span>
-                Imprimir Asistencia
+                    <a href="javascript:" onclick="redirect_by_post('f_imprimir_asistente');">
+                        Imprimir Asistencia
+                    </a>
                 </span>
             </span>
-        </a>
         </div>
 
 <?php

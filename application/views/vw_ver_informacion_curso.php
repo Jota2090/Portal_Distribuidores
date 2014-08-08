@@ -17,7 +17,7 @@
                     <div class="filas" style="width: 85%;">
                         <div class="boton_modal" style="text-align: left;" >
                             <span class="boton_modal_fondo">
-                                <a rel="modal:close" href="#close-modal">
+                                <a rel="modal:close" href="javascript:" onclick="registrarse('<?php echo $this->clslogin->getAuth(); ?>');">
                                     Registrarse Ahora
                                 </a>
                             </span>
@@ -67,7 +67,9 @@
                 </div>
                 <div class="form_modal_contenido">
                     <div class="filas">
-                        <img width="60%" align="center" src="<?php echo base_url()?>recursos/images/Cursos/<?php echo $row->cur_nombre_imagen; ?>" />
+                        <a href="<?php echo $row->cur_url_imagen; ?>" data-lightbox="<?php echo $row->cur_nombre_imagen; ?>" >
+                            <img width="60%" align="center" src="<?php echo base_url()?>recursos/images/Cursos/<?php echo $row->cur_nombre_imagen; ?>" />
+                        </a>
                     </div>
                     <div class="filas" style="margin-top: 40px;">
                         <font size="5" weight="bold">

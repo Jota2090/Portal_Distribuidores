@@ -87,7 +87,7 @@
 
                                     echo form_close();
                                 ?>
-                                <div id="olvido_contrasena" style="float:right;">
+                                <div id="olvido_contrasena" style="float:right;" onclick="crear_formulario('olvido_contrasena');">
                                     <p>Olvidaste tu contrase&ntilde;a</p>
                                 </div>
                             </div>
@@ -122,3 +122,24 @@
 <?php
     }
 ?>
+<script>
+    $(window).keypress(function(e) 
+    {
+        if(e.keyCode == 13) 
+        {
+            if( $('#header_login').is(":visible") )
+            {
+                validar_formulario('f_login');
+            }
+            else if( $('#buscador').is(":visible") )
+            {
+                var buscar = document.getElementById('nombre_curso').value;
+                
+                if(buscar != '' && buscar != null){
+                    document.forms.f_buscador_curso.submit();
+                    return false;
+                }
+            }
+        }
+    });
+</script>

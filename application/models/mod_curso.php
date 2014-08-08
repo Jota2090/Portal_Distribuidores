@@ -10,8 +10,8 @@
      * @version      1.0
     */
     
-    class mod_curso extends CI_Model {
-        
+    class mod_curso extends CI_Model
+    {
         /**
          * @var string      $_name_table            nombre de la tabla en nuestra base de datos
          * @var integer     $_id                    id del curso
@@ -39,7 +39,7 @@
          * @var integer     $_instructor            id del instructor que dictará el curso
          * @var datetime    $_fecha_modificado      fecha en que es modificado el curso
          * @var string      $_estado                estado del curso (D=Disponible, C=Cancelado, T=Terminado, E=Eliminado)
-        */
+        **/
         
         var $_name_table            = "tbl_curso";
         var $_id                    = 0;
@@ -73,7 +73,8 @@
         * get_name_table() retorna el nombre de la tabla
         * @return string _name_table
         */
-        public function get_name_table() {
+        public function get_name_table()
+        {
             return $this->_name_table;
         }
         
@@ -82,7 +83,8 @@
         * @param string $_name_table 
         * @return void
         */
-        public function set_name_table($_name_table) {
+        public function set_name_table($_name_table)
+        {
             $this->_name_table = $_name_table;
         }      
         
@@ -90,7 +92,8 @@
         * get_id() retorna el id
         * @return integer _id
         */
-        public function get_id() {
+        public function get_id()
+        {
             return $this->_id;
         }
         
@@ -99,7 +102,8 @@
         * @param integer $_id 
         * @return void
         */
-        public function set_id($_id) {
+        public function set_id($_id)
+        {
             $this->_id = $_id;
         }
         
@@ -107,7 +111,8 @@
         * get_nombre() retorna el nombre
         * @return string _nombre
         */
-        public function get_nombre() {
+        public function get_nombre()
+        {
             return $this->_nombre;
         }
         
@@ -116,7 +121,8 @@
         * @param string $_nombre 
         * @return void
         */
-        public function set_nombre($_nombre) {
+        public function set_nombre($_nombre)
+        {
             $this->_nombre = $_nombre;
         }
         
@@ -124,7 +130,8 @@
         * get_descripcion() retorna la descripcion
         * @return string _descripcion
         */
-        public function get_descripcion() {
+        public function get_descripcion()
+        {
             return $this->_descripcion;
         }
 
@@ -133,7 +140,8 @@
         * @param string $_descripcion 
         * @return void
         */
-        public function set_descripcion($_descripcion) {
+        public function set_descripcion($_descripcion)
+        {
             $this->_descripcion = $_descripcion;
         }
         
@@ -141,7 +149,8 @@
         * get_nombre_imagen() retorna el nombre de la imagen
         * @return string _nombre_imagen
         */
-        public function get_nombre_imagen() {
+        public function get_nombre_imagen()
+        {
             return $this->_nombre_imagen;
         }
 
@@ -150,7 +159,8 @@
         * @param string $_nombre_imagen 
         * @return void
         */
-        public function set_nombre_imagen($_nombre_imagen) {
+        public function set_nombre_imagen($_nombre_imagen)
+        {
             $this->_nombre_imagen = $_nombre_imagen;
         }
         
@@ -158,7 +168,8 @@
         * get_url_imagen() retorna la url de la imagen
         * @return string _url_imagen
         */
-        public function get_url_imagen() {
+        public function get_url_imagen()
+        {
             return $this->_url_imagen;
         }
 
@@ -167,7 +178,8 @@
         * @param string $_url_imagen 
         * @return void
         */
-        public function set_url_imagen($_url_imagen) {
+        public function set_url_imagen($_url_imagen)
+        {
             $this->_url_imagen = $_url_imagen;
         }
         
@@ -175,7 +187,8 @@
         * get_fecha_inicio() retorna la fecha de inicio
         * @return date _fecha_inicio
         */
-        public function get_fecha_inicio() {
+        public function get_fecha_inicio()
+        {
             return $this->_fecha_inicio;
         }
 
@@ -184,7 +197,8 @@
         * @param date $_fecha_inicio 
         * @return void
         */
-        public function set_fecha_inicio($_fecha_inicio) {
+        public function set_fecha_inicio($_fecha_inicio)
+        {
             $this->_fecha_inicio = $_fecha_inicio;
         }
         
@@ -192,7 +206,8 @@
         * get_fecha_fin() retorna la fecha de finalización
         * @return date _fecha_fin
         */
-        public function get_fecha_fin() {
+        public function get_fecha_fin()
+        {
             return $this->_fecha_fin;
         }
 
@@ -201,7 +216,8 @@
         * @param date $_fecha_fin 
         * @return void
         */
-        public function set_fecha_fin($_fecha_fin) {
+        public function set_fecha_fin($_fecha_fin)
+        {
             $this->_fecha_fin = $_fecha_fin;
         }
 
@@ -209,7 +225,8 @@
         * get_hora_inicio() retorna la hora de inicio
         * @return string _hora_inicio
         */
-        public function get_hora_inicio() {
+        public function get_hora_inicio()
+        {
             return $this->_hora_inicio;
         }
 
@@ -218,7 +235,8 @@
         * @param string $_hora_inicio 
         * @return void
         */
-        public function set_hora_inicio($_hora_inicio) {
+        public function set_hora_inicio($_hora_inicio)
+        {
             $this->_hora_inicio = $_hora_inicio;
         }
 
@@ -226,7 +244,8 @@
         * get_hora_fin() retorna la hora de finalización
         * @return string _hora_fin
         */
-        public function get_hora_fin() {
+        public function get_hora_fin()
+        {
             return $this->_hora_fin;
         }
 
@@ -235,7 +254,8 @@
         * @param string $_hora_fin 
         * @return void
         */
-        public function set_hora_fin($_hora_fin) {
+        public function set_hora_fin($_hora_fin)
+        {
             $this->_hora_fin = $_hora_fin;
         }
 
@@ -243,7 +263,8 @@
         * get_jornada() retorna la jornada
         * @return string _jornada
         */
-        public function get_jornada() {
+        public function get_jornada()
+        {
             return $this->_jornada;
         }
 
@@ -252,7 +273,8 @@
         * @param string $_jornada 
         * @return void
         */
-        public function set_jornada($_jornada) {
+        public function set_jornada($_jornada)
+        {
             $this->_jornada = $_jornada;
         }
 
@@ -260,7 +282,8 @@
         * get_direccion() retorna la direccion
         * @return string _direccion
         */
-        public function get_direccion() {
+        public function get_direccion()
+        {
             return $this->_direccion;
         }
 
@@ -269,7 +292,8 @@
         * @param string $_direccion 
         * @return void
         */
-        public function set_direccion($_direccion) {
+        public function set_direccion($_direccion)
+        {
             $this->_direccion = $_direccion;
         }
 
@@ -277,7 +301,8 @@
         * get_latitud() retorna la latitud
         * @return string _latitud
         */
-        public function get_latitud() {
+        public function get_latitud()
+        {
             return $this->_latitud;
         }
 
@@ -286,7 +311,8 @@
         * @param string $_latitud 
         * @return void
         */
-        public function set_latitud($_latitud) {
+        public function set_latitud($_latitud)
+        {
             $this->_latitud = $_latitud;
         }
 
@@ -294,7 +320,8 @@
         * get_longitud() retorna la longitud
         * @return string _longitud
         */
-        public function get_longitud() {
+        public function get_longitud()
+        {
             return $this->_longitud;
         }
 
@@ -303,7 +330,8 @@
         * @param string $_longitud 
         * @return void
         */
-        public function set_longitud($_longitud) {
+        public function set_longitud($_longitud)
+        {
             $this->_longitud = $_longitud;
         }
 
@@ -311,7 +339,8 @@
         * get_duracion() retorna la duracion
         * @return string _duracion
         */
-        public function get_duracion() {
+        public function get_duracion()
+        {
             return $this->_duracion;
         }
 
@@ -320,7 +349,8 @@
         * @param string $_duracion 
         * @return void
         */
-        public function set_duracion($_duracion) {
+        public function set_duracion($_duracion)
+        {
             $this->_duracion = $_duracion;
         }
 
@@ -328,7 +358,8 @@
         * get_cupos_total() retorna los cupos totales
         * @return string _cupos_total
         */
-        public function get_cupos_total() {
+        public function get_cupos_total()
+        {
             return $this->_cupos_total;
         }
 
@@ -337,7 +368,8 @@
         * @param string $_cupos_total 
         * @return void
         */
-        public function set_cupos_total($_cupos_total) {
+        public function set_cupos_total($_cupos_total)
+        {
             $this->_cupos_total = $_cupos_total;
         }
 
@@ -345,7 +377,8 @@
         * get_costo() retorna el costo
         * @return string _costo
         */
-        public function get_costo() {
+        public function get_costo()
+        {
             return $this->_costo;
         }
 
@@ -354,7 +387,8 @@
         * @param string $_costo 
         * @return void
         */
-        public function set_costo($_costo) {
+        public function set_costo($_costo)
+        {
             $this->_costo = $_costo;
         }
 
@@ -362,7 +396,8 @@
         * get_comentarios() retorna los comentarios u observaciones
         * @return string _comentarios
         */
-        public function get_comentarios() {
+        public function get_comentarios()
+        {
             return $this->_comentarios;
         }
 
@@ -371,7 +406,8 @@
         * @param string $_comentarios 
         * @return void
         */
-        public function set_comentarios($_comentarios) {
+        public function set_comentarios($_comentarios)
+        {
             $this->_comentarios = $_comentarios;
         }
 
@@ -379,7 +415,8 @@
         * get_publicado() retorna si es publicado
         * @return string _publicado
         */
-        public function get_publicado() {
+        public function get_publicado()
+        {
             return $this->_publicado;
         }
 
@@ -388,7 +425,8 @@
         * @param string $_publicado 
         * @return void
         */
-        public function set_publicado($_publicado) {
+        public function set_publicado($_publicado)
+        {
             $this->_publicado = $_publicado;
         }
 
@@ -396,7 +434,8 @@
         * get_provincia() retorna la provincia
         * @return integer _provincia
         */
-        public function get_provincia() {
+        public function get_provincia()
+        {
             return $this->_provincia;
         }
 
@@ -405,7 +444,8 @@
         * @param integer $_provincia 
         * @return void
         */
-        public function set_provincia($_provincia) {
+        public function set_provincia($_provincia)
+        {
             $this->_provincia = $_provincia;
         }
 
@@ -413,7 +453,8 @@
         * get_ciudad() retorna la ciudad
         * @return integer _ciudad
         */
-        public function get_ciudad() {
+        public function get_ciudad()
+        {
             return $this->_ciudad;
         }
 
@@ -422,7 +463,8 @@
         * @param integer $_ciudad 
         * @return void
         */
-        public function set_ciudad($_ciudad) {
+        public function set_ciudad($_ciudad)
+        {
             $this->_ciudad = $_ciudad;
         }
 
@@ -430,7 +472,8 @@
         * get_tema() retorna el tema
         * @return integer _tema
         */
-        public function get_tema() {
+        public function get_tema()
+        {
             return $this->_tema;
         }
 
@@ -439,7 +482,8 @@
         * @param integer $_tema 
         * @return void
         */
-        public function set_tema($_tema) {
+        public function set_tema($_tema)
+        {
             $this->_tema = $_tema;
         }
 
@@ -447,7 +491,8 @@
         * get_subtema() retorna el subtema
         * @return string _subtema
         */
-        public function get_subtema() {
+        public function get_subtema()
+        {
             return $this->_subtema;
         }
 
@@ -456,7 +501,8 @@
         * @param string $_subtema 
         * @return void
         */
-        public function set_subtema($_subtema) {
+        public function set_subtema($_subtema)
+        {
             $this->_subtema = $_subtema;
         }
 
@@ -464,7 +510,8 @@
         * get_instructor() retorna la hora de inicio
         * @return integer _instructor
         */
-        public function get_instructor() {
+        public function get_instructor()
+        {
             return $this->_instructor;
         }
 
@@ -473,7 +520,8 @@
         * @param integer $_instructor 
         * @return void
         */
-        public function set_instructor($_instructor) {
+        public function set_instructor($_instructor)
+        {
             $this->_instructor = $_instructor;
         }
        
@@ -481,7 +529,8 @@
         * get_fecha_modificado() retorna la fecha en que fue modificado
         * @return datetime _fecha_modificado
         */
-        public function get_fecha_modificado() {
+        public function get_fecha_modificado()
+        {
             return $this->_fecha_modificado;
         }
 
@@ -490,7 +539,8 @@
         * @param datetime $_fecha_modificado
         * @return void
         */
-        public function set_fecha_modificado($_fecha_modificado) {
+        public function set_fecha_modificado($_fecha_modificado)
+        {
             $this->_fecha_modificado = $_fecha_modificado;
         }
 
@@ -498,7 +548,8 @@
         * get_estado() retorna el estado
         * @return string _estado
         */
-        public function get_estado() {
+        public function get_estado()
+        {
             return $this->_estado;
         }
 
@@ -507,12 +558,14 @@
         * @param string $_estado 
         * @return void
         */
-        public function set_estado($_estado) {
+        public function set_estado($_estado)
+       {
             $this->_estado = $_estado;
         }
 
             
-        public function __construct(){
+        public function __construct()
+        {
             parent::__construct();
         }
         
@@ -530,8 +583,8 @@
          * @param array $order_by
          * @return array $resultado
         */
-        public function get_cursos($select = "*", $where = array(), $or_where = array(), $join = array(), $order_by = array()){
-            
+        public function get_cursos($select = "*", $where = array(), $or_where = array(), $join = array(), $order_by = array())
+        {
             $this->db->select($select);
             
             if(count($where) > 0){
@@ -570,50 +623,61 @@
          * Esta función crea un curso nuevo en el portal
          * 
          * @access public
-         * @return void
+         * @return boolean
         */
-        public function guardar_curso(){
-            
+        public function guardar_curso()
+        {
             $data = array(
-               'cur_nombre'             => $this->_nombre,
-               'cur_descripcion'        => $this->_descripcion ,
-               'cur_nombre_imagen'      => $this->_nombre_imagen ,
-               'cur_url_imagen'         => $this->_url_imagen ,
-               'cur_fecha_inicio'       => $this->_fecha_inicio ,
-               'cur_fecha_fin'          => $this->_fecha_fin ,
-               'cur_hora_inicio'        => $this->_hora_inicio,
-               'cur_hora_fin'           => $this->_hora_fin ,
-               'cur_jornada'            => $this->_jornada,
-               'cur_direccion'          => $this->_direccion ,
-               'cur_latitud'            => $this->_latitud ,
-               'cur_longitud'           => $this->_longitud ,
-               'cur_duracion'           => $this->_duracion ,
-               'cur_cupos_total'        => $this->_cupos_total,
-               'cur_costo'              => $this->_costo ,
-               'cur_comentarios'        => $this->_comentarios ,
-               'cur_publicado'          => $this->_publicado ,
-               'cur_provincia_id'       => $this->_provincia ,
-               'cur_ciudad_id'          => $this->_ciudad ,
-               'cur_tema_id'            => $this->_tema ,
-               'cur_subtema'            => $this->_subtema ,
-               'cur_instructor_id'      => $this->_instructor ,
-               'cur_fecha_modificado'   => $this->_fecha_modificado
-            );
+                            'cur_nombre'             => $this->_nombre,
+                            'cur_descripcion'        => $this->_descripcion ,
+                            'cur_nombre_imagen'      => $this->_nombre_imagen ,
+                            'cur_url_imagen'         => $this->_url_imagen ,
+                            'cur_fecha_inicio'       => $this->_fecha_inicio ,
+                            'cur_fecha_fin'          => $this->_fecha_fin ,
+                            'cur_hora_inicio'        => $this->_hora_inicio,
+                            'cur_hora_fin'           => $this->_hora_fin ,
+                            'cur_jornada'            => $this->_jornada,
+                            'cur_direccion'          => $this->_direccion ,
+                            'cur_latitud'            => $this->_latitud ,
+                            'cur_longitud'           => $this->_longitud ,
+                            'cur_duracion'           => $this->_duracion ,
+                            'cur_cupos_total'        => $this->_cupos_total,
+                            'cur_costo'              => $this->_costo ,
+                            'cur_comentarios'        => $this->_comentarios ,
+                            'cur_publicado'          => $this->_publicado ,
+                            'cur_provincia_id'       => $this->_provincia ,
+                            'cur_ciudad_id'          => $this->_ciudad ,
+                            'cur_tema_id'            => $this->_tema ,
+                            'cur_subtema'            => $this->_subtema ,
+                            'cur_instructor_id'      => $this->_instructor ,
+                            'cur_fecha_modificado'   => $this->_fecha_modificado
+                         );
             
             $this->db->trans_start();
-            $resultado = $this->db->insert($this->get_name_table(), $data);
+            $this->db->insert($this->get_name_table(), $data);
+            $id_insertado = $this->db->insert_id();
             $this->db->trans_complete();
+            
+            $parametros = "";
+            foreach($data as $dato)
+            {
+                $parametros = $parametros.$dato.", ";
+            }
 
             if ($this->db->trans_status() === FALSE)
             {
+                log_message('error', 'Accion: CREAR; Mensaje: PROBLEMA CON EL SERVIDOR; Id_Curso: null; Info_Curso: ('.$parametros.'); Realizado por: '.$this->clslogin->getId(), FALSE, 'Cursos');
+                    
                 $this->db->trans_rollback();
             }
             else
             {
+                log_message('info', 'Accion: CREAR; Mensaje: EXITO; Id_Curso: '.$id_insertado.'; Info_Curso: ('.$parametros.'); Realizado por: '.$this->clslogin->getId(), FALSE, 'Cursos');
+                
                 $this->db->trans_commit();
             }
             
-            return $resultado;
+            return $this->db->trans_status();
         }
         
         
@@ -625,30 +689,43 @@
          * @access public
          * @param array $data 
          * @param array $where 
-         * @return array $resultado
+         * @param string $accion 
+         * @return boolean
         */
-        public function update_cursos($data = array(), $where = array()){
-            
-            if(count($where) > 0){
-                foreach ($where as $key => $value) {
+        public function update_cursos($data = array(), $where = array(), $accion = "EDITAR")
+        {
+            if(count($where) > 0)
+            {
+                foreach ($where as $key => $value)
+                {
                     $this->db->where($key, $value);
                 }
             }
             
             $this->db->trans_start();
-            $resultado = $this->db->update($this->get_name_table(), $data);
+            $this->db->update($this->get_name_table(), $data);
             $this->db->trans_complete();
-
+            
+            $parametros = "";
+            foreach($data as $dato)
+            {
+                $parametros = $parametros.$dato.", ";
+            }
+            
             if ($this->db->trans_status() === FALSE)
             {
+                log_message('error', 'Accion: '.$accion.'; Mensaje: PROBLEMA CON EL SERVIDOR; Id_Curso: '.$this->input->post("id").'; Info_Curso: ('.$parametros.'); Realizado por: '.$this->clslogin->getId(), FALSE, 'Cursos');
+                    
                 $this->db->trans_rollback();
             }
             else
             {
+                log_message('info', 'Accion: '.$accion.'; Mensaje: EXITO; Id_Curso: '.$this->input->post("id").'; Info_Curso: ('.$parametros.'); Realizado por: '.$this->clslogin->getId(), FALSE, 'Cursos');
+                    
                 $this->db->trans_commit();
             }
             
-            return $resultado;
+            return $this->db->trans_status();
         }
         
         
@@ -660,7 +737,7 @@
          * @access public
          * @param array $nombre_sp 
          * @param array $data 
-         * @return boolean $resultado
+         * @return boolean
         */
         public function sp_curso($nombre_sp = "", $data = array())
         {
@@ -673,21 +750,23 @@
                     $this->db->query($query); 
                     $this->db->trans_complete();
                     
-                    $resultado = $this->db->trans_status();
-                    
                     if ($this->db->trans_status() === FALSE)
                     {
+                        log_message('error', 'Accion: ELIMINAR; Mensaje: PROBLEMA CON EL SERVIDOR; Id_Curso: '.$data[0].'; Info_Curso: (); Realizado por: '.$this->clslogin->getId(), FALSE, 'Cursos');
+                    
                         $this->db->trans_rollback();
                     }
                     else
                     {
+                        log_message('info', 'Accion: ELIMINAR; Mensaje: EXITO; Id_Curso: '.$data[0].'; Info_Curso: (); Realizado por: '.$this->clslogin->getId(), FALSE, 'Cursos');
+                        
                         $this->db->trans_commit();
                     }
                     
                     break;
             }
             
-            return $resultado;
+            return $this->db->trans_status();
         }
     }
 ?>

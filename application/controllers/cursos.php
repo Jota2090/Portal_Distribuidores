@@ -9,9 +9,10 @@
      * @author       Edson Jonathan Franco Borja
      * @version      1.0
     */
-    class cursos extends CI_Controller {
-    
-        function __construct(){
+    class cursos extends CI_Controller
+    {
+        function __construct()
+        {
             parent::__construct();
             $this->load->library("form_validation");
             $this->load->model("mod_curso","curso");
@@ -27,22 +28,44 @@
         }
         
         
-        function listar_cursos($tipo = 0){
-            
-            switch ($tipo) {    
+        function listar_cursos($tipo = 0, $estado = "D")
+        {
+            switch ($tipo)
+            {    
                 case 0:
                     
                     $select = "*";
-                    $or_where = array("D" => "cur_estado", "C" => "cur_estado", "T" => "cur_estado");
+                    
+                    switch ($estado)
+                    {    
+                        case "D":
+                            $where = array("cur_estado" => "D");
+                            break;
+                        
+                        case "T":
+                            $where = array("cur_estado" => "T");
+                            break;
+                        
+                        case "C":
+                            $where = array("cur_estado" => "C");
+                            break;
+                        
+                        default:
+                            $where = array("cur_estado" => "D");
+                            break;
+                    }
+                        
                     $join = array( "tbl_ciudad" => "cur_ciudad_id=ciu_id", "tbl_instructor" => "cur_instructor_id=ins_cedula", "tbl_parametros" => "cur_estado=par_sigla"  );
                     
-                    $resultado = $this->curso->get_cursos($select, array(), $or_where, $join);
+                    $resultado = $this->curso->get_cursos($select, $where, array(), $join);
                     
                     $items = array();
                     $data = array();
                     
-                    if($resultado){
-                        foreach ($resultado->result() as $row) {
+                    if($resultado)
+                    {
+                        foreach ($resultado->result() as $row)
+                        {
                             $cupos_disponibles = $row->cur_cupos_total - $row->cur_cupos_usados;
                             
                             $fila = array();
@@ -61,7 +84,9 @@
                         $data['recordsTotal'] = count($items);
                         $data['recordsFiltered'] = count($items);
                         $data['data'] = $items;
-                    }else{
+                    }
+                    else
+                    {
                         $data['draw'] = 1;
                         $data['recordsTotal'] = 0;
                         $data['recordsFiltered'] = 0;
@@ -76,7 +101,7 @@
                case 1:
                     
                     $select = "*";
-                    $or_where = array("D" => "cur_estado", "C" => "cur_estado");
+                    $or_where = array("D" => "cur_estado");
                     $join = array( "tbl_ciudad" => "cur_ciudad_id=ciu_id", "tbl_instructor" => "cur_instructor_id=ins_cedula", "tbl_parametros" => "cur_estado=par_sigla"  );
                     
                     $resultado = $this->curso->get_cursos($select, array(), $or_where, $join);
@@ -84,8 +109,10 @@
                     $items = array();
                     $data = array();
                     
-                    if($resultado){
-                        foreach ($resultado->result() as $row) {
+                    if($resultado)
+                    {
+                        foreach ($resultado->result() as $row)
+                        {
                             $cupos_disponibles = $row->cur_cupos_total - $row->cur_cupos_usados;
 
                             $fila = array();
@@ -116,7 +143,9 @@
                         $data['recordsTotal'] = count($items);
                         $data['recordsFiltered'] = count($items);
                         $data['data'] = $items;
-                    }else{
+                    }
+                    else
+                    {
                         $data['draw'] = 1;
                         $data['recordsTotal'] = 0;
                         $data['recordsFiltered'] = 0;
@@ -136,7 +165,7 @@
         {
             if ($this->form_validation->run() == FALSE)
             {
-                echo "<div id='success'>false</div><div>".validation_errors()."</div>";
+                echo "<div id='success'>false</div>".validation_errors();
             }
             else
             {
@@ -147,7 +176,7 @@
                 
                 if ($this->form_validation->run() == FALSE)
                 {
-                    echo "<div id='success'>false</div><div>".validation_errors()."</div>";
+                    echo "<div id='success'>false</div>".validation_errors();
                 }
                 else
                 {
@@ -162,7 +191,7 @@
                     
                     if ( ! $this->upload->do_upload('imagen'))
                     {
-                        echo "<div id='success'>false</div><div>".$this->upload->display_errors()."</div>";
+                        echo "<div id='success'>false</div>".$this->upload->display_errors();
                     }
                     else
                     {
@@ -194,27 +223,27 @@
                         $this->curso->set_instructor($this->input->post("instructor"));
                         $this->curso->set_fecha_modificado(date('Y-m-d H:i:s'));
 
-                        $this->curso->guardar_curso();
-                        $resultado = $this->db->_error_message();
+                        $resultado = $this->curso->guardar_curso();
 
-                        if(empty($resultado)){
-                            echo "Curso Guardado con Exito";
-                        }else{
+                        if($resultado)
+                        {
+                            echo "cursos_pestana_Curso guardado con Éxito";
+                        }
+                        else
+                        {
                             echo "<div id='success'>false</div><div>Hubo un problema con el servidor, por favor vuelva a intentarlo</div>";
                         }
-                    }
-                    
+                    }  
                 }
             }
-            
         }
         
         
-        function editar_curso(){
-            
+        function editar_curso()
+        {
             if ($this->form_validation->run('cursos/crear_curso') == FALSE)
             {
-                echo "<div id='success'>false</div><div>".validation_errors()."</div>";
+                echo "<div id='success'>false</div>".validation_errors();
             }
             else
             {
@@ -233,7 +262,7 @@
                     
                     if ( ! $this->upload->do_upload('imagen'))
                     {
-                        echo "<div id='success'>false</div><div>".$this->upload->display_errors()."</div>";
+                        echo "<div id='success'>false</div>".$this->upload->display_errors();
                     }
                     else
                     {
@@ -263,7 +292,9 @@
                 $data["cur_tema_id"] = $this->input->post("tema");
                 $data["cur_subtema"] = $this->input->post("subtema");
                 $data["cur_instructor_id"] = $this->input->post("instructor");
-                if(count($imagen_cargada)>0){
+                
+                if(count($imagen_cargada)>0)
+                {
                     
                     /*$archivo_antiguo = './recursos/images/Cursos/'.$this->input->post("nombre_imagen");
                     chown($archivo_antiguo, 0777);
@@ -272,25 +303,27 @@
                     $data["cur_nombre_imagen"] = $imagen_cargada['file_name'];
                     $data["cur_url_imagen"] = base_url().'recursos/images/Cursos/'.$imagen_cargada['file_name'];
                 }
-                $data["cur_fecha_modificado"] = date('Y-m-d H:i:s');
                 
-                $where = array("cur_id" => $this->input->post('id'));
+                $data["cur_fecha_modificado"] = date("Y-m-d H:i:s");
+                
+                $where = array("cur_id" => $this->input->post("id"));
 
                 $resultado = $this->curso->update_cursos($data, $where);
                 
-                $resultado = $this->db->_error_message();
-                
-                if(empty($resultado)){
-                    echo "Cambios guardados con Exito";
-                }else{
-                    echo "<div id='success'>false</div><div>Hubo un problema con el servidor, por favor vuelva a intentarlo</div>";
+                if($resultado)
+                {
+                    echo "cursos_pestana_Cambios guardados con Éxito";
                 }
-            }
-            
+                else
+                {
+                    echo "<div id='success'>false</div>Hubo un problema con el servidor, por favor vuelva a intentarlo";
+                }
+            } 
         }
         
         
-        function crear_miniaturas($filename){
+        function crear_miniaturas($filename)
+        {
             $config['image_library'] = 'gd2';
             $config['source_image'] = './recursos/images/Cursos/'.$filename;
             $config['create_thumb'] = TRUE;
@@ -327,7 +360,7 @@
 
                         $this->email->from('miclaro@iclaro.com.ec', 'Portal De Distribuidores');
                         $this->email->to($correos);
-                        $this->email->cc('jfranco@dayscript.com');
+                        $this->email->cc('jfranco@dayscript.com, rhuerta@dayscript.com, jmoran@dayscript.com');
                         $this->email->subject($row->cur_nombre);
 
                         $contenido  = '';

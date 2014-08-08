@@ -79,25 +79,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    $(window).keypress(function(e) 
-    {
-        if(e.keyCode == 13) 
-        {
-            if( $('#header_login').is(":visible") )
-            {
-                validar_formulario('f_login');
-            }
-            else if( $('#buscador').is(":visible") )
-            {
-                var buscar = document.getElementById('nombre_curso').value;
-                
-                if(buscar != '' && buscar != null){
-                    document.forms.f_buscador_curso.submit();
-                    return false;
-                }
-            }
-        }
-    });
-</script>

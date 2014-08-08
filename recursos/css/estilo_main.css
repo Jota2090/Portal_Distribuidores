@@ -453,6 +453,8 @@ a{
         
         .boton_modal_fondo a{
             color: #ffffff;
+            position: relative;
+            top: 2px;
         }
         
         .boton_modal_fondo a:hover{
@@ -503,7 +505,7 @@ a{
         
         .boton_detalles_buscador_curso{
             float: left;
-            width: 134px;
+            width: 135px;
             height: auto;
             margin: 30px 0px;
         }
@@ -827,7 +829,7 @@ i{
 }
 
 .icono-agregar-asistente_blanco{
-    background-position: -40px 0px;
+    background-position: -41px 0px;
 }
 
 .icono-ver_detalles{

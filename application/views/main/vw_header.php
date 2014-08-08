@@ -38,7 +38,7 @@
                                     <a href="javascript:" onclick="editar('contrasena','id=<?php echo $this->clslogin->getId();?>');">
                                         Cambiar Contrase&ntilde;a
                                     </a>
-                                    <a href="<?php echo base_url()?>login/logout/administrador">
+                                    <a href="<?php echo base_url()?>login/logout/main">
                                         Cerrar Sesi&oacute;n
                                     </a>
                                 </div>
@@ -117,3 +117,24 @@
 <?php
     }
 ?>
+<script>
+    $(window).keypress(function(e) 
+    {
+        if(e.keyCode == 13) 
+        {
+            if( $('#header_login').is(":visible") )
+            {
+                validar_formulario('f_login');
+            }
+            else if( $('#buscador').is(":visible") )
+            {
+                var buscar = document.getElementById('nombre_curso').value;
+                
+                if(buscar != '' && buscar != null){
+                    document.forms.f_buscador_curso.submit();
+                    return false;
+                }
+            }
+        }
+    });
+</script>

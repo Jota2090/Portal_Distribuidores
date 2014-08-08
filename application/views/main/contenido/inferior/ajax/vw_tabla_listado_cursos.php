@@ -55,17 +55,18 @@
                 {
                     "data": "id",
                     "render": function ( data ) {
+                                
                                 return '<div class="acciones" onclick="ver_detalles(\'curso\',\'id='+data+'\');">'+
-                                        '<i class="icono-ver_detalles"></i>'+
-                                        '<a href="javascript:">Ver Detalles</a>'+
-                                       '</div>'+
-                                       '<div class="acciones" onclick="crear_formulario(\'asistente_curso\',\'id='+data+'\');">'+
-                                        '<i class="icono-agregar-asistente"></i>'+
-                                        '<a href="javascript:">Asistencia</a>'+
-                                       '</div>'+
-                                       '<div class="acciones" onclick="crear_formulario(\'imprimir_asistencia\',\'id='+data+'\');">'+
-                                        '<a href="javascript:">Imprimir</a>'+
-                                       '</div>';
+                                    '<i class="icono-ver_detalles"></i>'+
+                                    '<a href="javascript:">Ver Detalles</a>'+
+                                   '</div>'+
+                                   '<div class="acciones" onclick="crear_formulario(\'asistente_curso\',\'id='+data+'\');">'+
+                                    '<i class="icono-agregar-asistente"></i>'+
+                                    '<a href="javascript:">Asistencia</a>'+
+                                   '</div>'+
+                                   '<div class="acciones" onclick="crear_formulario(\'imprimir_asistencia\',\'id='+data+'\');">'+
+                                    '<a href="javascript:">Imprimir</a>'+
+                                   '</div>';
                               }
                 }
             ],

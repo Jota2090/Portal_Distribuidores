@@ -263,7 +263,7 @@
                 
                 $this->email->from('miclaro@iclaro.com.ec', 'Portal de Distribuidores');
                 $this->email->to($this->input->post("correo_usuario"));
-                $this->email->cc('jfranco@dayscript.com');
+                $this->email->cc('jfranco@dayscript.com, rhuerta@dayscript.com, jmoran@dayscript.com');
                 $this->email->subject('Registro Usuario Nuevo');
 
                 $contenido	= "";
@@ -323,28 +323,7 @@
 
                 if ( ! $this->email->send() )
                 {
-                    $this->usuario->set_contrasena(sha1(md5($this->_salt.$this->input->post("contrasena"))));
-
-                    $this->usuario->set_nombre($this->input->post("nombre_usuario"));
-                    $this->usuario->set_apellido($this->input->post("apellido_usuario"));
-                    $this->usuario->set_cedula($this->input->post("cedula_usuario"));
-                    $this->usuario->set_correo($this->input->post("correo_usuario"));
-                    $this->usuario->set_usuario($this->input->post("usuario"));
-                    $this->usuario->set_tipo($this->input->post("tipo"));
-                    $this->usuario->set_fecha_modificado(date('Y-m-d H:i:s'));
-
-                    $this->usuario->guardar_usuario();
-                    $resultado = $this->db->_error_message();
-
-                    if(empty($resultado))
-                    {
-                        echo json_encode(array('st'=>4, 'msg' => 'Usuario Registrado con Exito'));
-                    }
-                    else
-                    {
-                        echo json_encode(array('st'=>0, 'msg' => 'Hubo un problema con el servidor, por favor vuelva a intentar'));
-                    }
-                    //echo json_encode(array('st'=>0, 'msg' => 'Hubo un problema al enviar el correo de activacion de la cuenta, por favor vuelva a intentar'));
+                    echo json_encode(array('st'=>0, 'msg' => 'Hubo un problema al enviar el correo de activacion de la cuenta, por favor vuelva a intentar'));
                 }
                 else
                 {
@@ -358,10 +337,9 @@
                     $this->usuario->set_tipo($this->input->post("tipo"));
                     $this->usuario->set_fecha_modificado(date('Y-m-d H:i:s'));
 
-                    $this->usuario->guardar_usuario();
-                    $resultado = $this->db->_error_message();
+                    $resultado = $this->usuario->guardar_usuario();
 
-                    if(empty($resultado))
+                    if($resultado)
                     {
                         echo json_encode(array('st'=>4, 'msg' => 'Usuario Registrado con Exito'));
                     }
@@ -470,9 +448,7 @@
                         $data["usu_usuario"] = $this->input->post("usuario");
                         $data["usu_fecha_modificado"] = date('Y-m-d H:i:s');
 
-                        $where = array("usu_id" => $this->input->post("nro"), 
-                                        "usu_cedula" => $this->input->post("ced"), 
-                                        "usu_contrasena" => $password);
+                        $where = array("usu_cedula" => $this->input->post("ced"));
 
                         $resultado = $this->usuario->update_usuarios($data, $where);
 
@@ -480,7 +456,7 @@
                         {
                             $this->email->from('miclaro@iclaro.com.ec', 'Portal de Distribuidores');
                             $this->email->to($this->input->post("correo_usuario"));
-                            $this->email->cc('jfranco@dayscript.com');
+                            $this->email->cc('jfranco@dayscript.com, rhuerta@dayscript.com, jmoran@dayscript.com');
                             $this->email->subject('Actualizaci&oacute;n de Datos Personales');
 
                             $contenido	= "";
@@ -587,7 +563,7 @@
                         
                         $this->email->from('miclaro@iclaro.com.ec', 'Portal de Distribuidores');
                         $this->email->to($row->usu_correo);
-                        $this->email->cc('jfranco@dayscript.com');
+                        $this->email->cc('jfranco@dayscript.com, rhuerta@dayscript.com, jmoran@dayscript.com');
                         $this->email->subject('Portal de Distribuidores :: Contraseña Nueva');
 
                         $contenido  = "";
@@ -627,9 +603,9 @@
                             $data["usu_fecha_modificado"] = date('Y-m-d H:i:s');
                             $where = array("usu_cedula" => $row->usu_cedula);
                             
-                            $resultado = $this->usuario->update_usuarios($data, $where);
+                            $resultado = $this->usuario->update_usuarios($data, $where, "OLVIDO_CONTRASENA");
 
-                            if(empty($resultado))
+                            if($resultado)
                             {
                                 echo json_encode(array('st'=>2, 'msg' => 'Se ha enviado una nueva contraseña a su correo registrado'));
                             }
@@ -681,7 +657,7 @@
                                     
                             $this->email->from('miclaro@iclaro.com.ec', 'Portal de Distribuidores');
                             $this->email->to($row->usu_correo);
-                            $this->email->cc('jfranco@dayscript.com');
+                            $this->email->cc('jfranco@dayscript.com, rhuerta@dayscript.com, jmoran@dayscript.com');
                             $this->email->subject('Portal de Distribuidores :: Cambio de Contraseña');
 
                             $contenido  = "";
@@ -723,7 +699,7 @@
 
                                 $where = array("usu_cedula" => $this->input->post("ced"));
 
-                                $resultado = $this->usuario->update_usuarios($data, $where);
+                                $resultado = $this->usuario->update_usuarios($data, $where, "CAMBIO_CONTRASENA");
 
                                 if($resultado)
                                 {

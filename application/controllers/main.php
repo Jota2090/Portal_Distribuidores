@@ -44,11 +44,9 @@
             $this->load->model("mod_lista_asistente","lista_asistente");
             $this->load->model("mod_registro_asistente_lista","registro_asistente_lista");
             $this->load->model("mod_registro_asistente_curso","registro_asistente_curso");
-        }
-        
-        
-        function index()
-        {
+            
+            $this->_data['interna_data']['controller'] = "main";
+            
             if(!$this->clslogin->check(0))
             {
                 $this->_data['header_data']['form_login'] = '';
@@ -59,10 +57,14 @@
                 $this->_data['header_data']['nombre'] = $this->clslogin->getNombre();
                 $this->_data['header_data']['apellido'] = $this->clslogin->getApellido();
             }
-            
+        }
+        
+        
+        function index()
+        {
             $select = "*";
             $where = array("cur_estado" => "D", "cur_publicado" => "1");
-            $order_by = array("cur_fecha_inicio" => "desc");
+            $order_by = array("cur_fecha_inicio" => "asc");
             $this->_data['inferior_data']['cursos'] = $this->curso->get_cursos($select, $where, array(), array(), $order_by);
             
             $this->load->view("vw_plantilla_inicio", $this->_data);
@@ -77,16 +79,12 @@
 
         function form_crear_olvido_contrasena()
         {
-            $this->load->view("main/vw_olvido_contrasena");
+            $this->load->view("vw_olvido_contrasena");
         }
 
        
         function lista_asistente()
         {
-            $this->_data['header_data']['auth'] = $this->clslogin->check(0);
-            $this->_data['header_data']['nombre'] = $this->clslogin->getNombre();
-            $this->_data['header_data']['apellido'] = $this->clslogin->getApellido();
-
             $this->_data['inferior'] = 'main/contenido/inferior/vw_lista_asistente';
             
             $this->load->view("vw_plantilla_inicio", $this->_data);
@@ -339,10 +337,6 @@
         
         function cursos_usuarios()
         {
-            $this->_data['header_data']['auth'] = $this->clslogin->check(0);
-            $this->_data['header_data']['nombre'] = $this->clslogin->getNombre();
-            $this->_data['header_data']['apellido'] = $this->clslogin->getApellido();
-
             $this->_data['inferior'] = 'main/contenido/inferior/vw_listado_cursos';
             
             $this->load->view("vw_plantilla_inicio", $this->_data);
@@ -558,17 +552,6 @@
         
         function buscador_cursos()
         {
-            if(!$this->clslogin->check(0))
-            {
-                $this->_data['header_data']['form_login'] = '';
-            }
-            else
-            {
-                $this->_data['header_data']['auth'] = $this->clslogin->check(0);
-                $this->_data['header_data']['nombre'] = $this->clslogin->getNombre();
-                $this->_data['header_data']['apellido'] = $this->clslogin->getApellido();
-            }
-
             $this->_data['interna'] = 'vw_buscador_cursos';
             
             $string = $this->input->post('nombre_curso');
@@ -600,7 +583,6 @@
             
             $this->_data['interna_data']['resultado'] = $this->db->query($query);
             $this->_data['interna_data']['string_busqueda'] = $string;
-            $this->_data['interna_data']['controller'] = "main";
             
             $this->load->view("vw_plantilla_inicio", $this->_data);
         }
@@ -608,17 +590,6 @@
         
         function ver_informacion_cursos($id_curso)
         {
-            if(!$this->clslogin->check(0))
-            {
-                $this->_data['header_data']['form_login'] = '';
-            }
-            else
-            {
-                $this->_data['header_data']['auth'] = $this->clslogin->check(0);
-                $this->_data['header_data']['nombre'] = $this->clslogin->getNombre();
-                $this->_data['header_data']['apellido'] = $this->clslogin->getApellido();
-            }
-
             $this->_data['interna'] = 'vw_ver_informacion_curso';
             
             $select = "*";
@@ -678,6 +649,14 @@
             $data['resultado'] = $this->usuario->get_usuarios(array(), $where);
             
             $this->load->view("vw_editar_usuario", $data);
+        }
+        
+        
+        function editar_contrasena()
+        {
+            $data['ced'] = $this->input->post('id');
+            
+            $this->load->view("vw_editar_contrasena", $data);
         }
     }
     

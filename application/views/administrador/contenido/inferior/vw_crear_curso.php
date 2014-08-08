@@ -181,7 +181,7 @@
         <i class="icono-agregar-curso">&nbsp;</i>
         <span>
         <?php
-            $js = 'onclick="enviar_formulario_multipart(\'f_nuevo_curso\', \'tabla_listado_cursos\', \'listado_curso\')"';
+            $js = 'onclick="enviar_formulario_multipart(\'f_nuevo_curso\', \'\', \'\')"';
             echo form_submit('crear', 'Agregar Curso', $js);
         ?>
         </span>

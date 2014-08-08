@@ -27,6 +27,7 @@
             if($this->uri->segment(2) != "" && $this->uri->segment(2) != "index"
                 && $this->uri->segment(2) != "buscador_cursos"
                 && $this->uri->segment(2) != "ver_informacion_cursos"
+                && $this->uri->segment(2) != "form_crear_olvido_contrasena"
                 && $this->uri->segment(2) != "form_crear_enviar_detalle_curso")
             {
                 if($this->uri->segment(3) == 'pendientes' && $this->uri->segment(2) == 'usuarios')
@@ -51,11 +52,9 @@
             
             $this->load->model("mod_curso","curso");
             $this->load->model("mod_usuario","usuario");
-        }
-        
-        
-        function index()
-        {
+            
+            $this->_data['interna_data']['controller'] = "administrador";
+            
             if(!$this->clslogin->check(1))
             {
                 $this->_data['header_data'] = '';
@@ -66,10 +65,14 @@
                 $this->_data['header_data']['nombre'] = $this->clslogin->getNombre();
                 $this->_data['header_data']['apellido'] = $this->clslogin->getApellido();  
             }
-            
+        }
+        
+        
+        function index()
+        {
             $select = "*";
             $where = array("cur_estado" => "D", "cur_publicado" => "1");
-            $order_by = array("cur_fecha_inicio" => "desc");
+            $order_by = array("cur_fecha_inicio" => "asc");
             $this->_data['inferior_data']['cursos'] = $this->curso->get_cursos($select, $where, array(), array(), $order_by);
             
             $this->load->view("vw_plantilla_inicio", $this->_data);
@@ -78,10 +81,6 @@
         
         function cursos()
         {
-            $this->_data['header_data']['auth'] = $this->clslogin->check(1);
-            $this->_data['header_data']['nombre'] = $this->clslogin->getNombre();
-            $this->_data['header_data']['apellido'] = $this->clslogin->getApellido();
-
             $this->_data['inferior'] = 'administrador/contenido/inferior/vw_listado_curso';
             
             $this->load->view("vw_plantilla_inicio", $this->_data);
@@ -136,6 +135,29 @@
         function tabla_listado_cursos()
         {
             $this->load->view("administrador/contenido/inferior/ajax/vw_tabla_listado_curso");
+        }
+        
+        
+        function tabs_cursos($tipo)
+        {
+            switch ($tipo)
+            {
+                case 'disponibles':
+                    $this->load->view("administrador/contenido/inferior/ajax/vw_cursos_disponibles");
+                    break;
+
+                case 'terminados':
+                    $this->load->view("administrador/contenido/inferior/ajax/vw_cursos_terminados");
+                    break;
+
+                case 'cancelados':
+                    $this->load->view("administrador/contenido/inferior/ajax/vw_cursos_cancelados");
+                    break;
+                
+                default:
+                    $this->load->view("administrador/contenido/inferior/ajax/vw_cursos_disponibles");
+                    break;
+            }
         }
                 
         
@@ -208,12 +230,18 @@
         }
         
         
+        function activar_curso()
+        {
+            $data = array('cur_estado'=>'D', 'cur_fecha_modificado'=>date('Y-m-d H:i:s'));
+            $where = array('cur_id' => $this->input->post("id"));
+            $this->curso->update_cursos($data, $where, 'ACTIVAR');
+
+            $this->tabs_cursos($this->input->post("tipo"));   
+        }
+        
+        
         function usuarios()
         {
-            $this->_data['header_data']['auth'] = $this->clslogin->check(1);
-            $this->_data['header_data']['nombre'] = $this->clslogin->getNombre();
-            $this->_data['header_data']['apellido'] = $this->clslogin->getApellido();
-
             $this->_data['inferior'] = 'administrador/contenido/inferior/vw_listado_usuario';
             
             $this->load->view("vw_plantilla_inicio", $this->_data);
@@ -251,16 +279,7 @@
         {
             $data = array('usu_estado'=>'I', 'usu_fecha_modificado'=>date('Y-m-d H:i:s'));
             $where = array('usu_cedula' => $this->input->post("id"));
-            $resultado = $this->usuario->update_usuarios($data, $where);
-            
-            if($resultado)
-            {
-                log_message('info', 'Usuario: '.$this->input->post("id").', Realizado por: '.$this->clslogin->getId(), FALSE, 'Inactivar_Usuarios_EXITO');
-            }
-            else
-            {
-                log_message('error', 'Usuario: '.$this->input->post("id").', Realizado por: '.$this->clslogin->getId(), FALSE, 'Inactivar_Usuarios_ERROR');
-            }
+            $this->usuario->update_usuarios($data, $where, 'INACTIVAR');
 
             $this->ver_usuarios($this->input->post("tipo"));   
         }
@@ -270,17 +289,8 @@
         {
             $data = array('usu_estado'=>'E', 'usu_fecha_modificado'=>date('Y-m-d H:i:s'));
             $where = array('usu_cedula' => $this->input->post("id"));
-            $resultado = $this->usuario->update_usuarios($data, $where);
+            $this->usuario->update_usuarios($data, $where, 'ELIMINAR');
             
-            if($resultado)
-            {
-                log_message('info', 'Usuario: '.$this->input->post("id").', Realizado por: '.$this->clslogin->getId(), FALSE, 'Eliminar_Usuarios_EXITO');
-            }
-            else
-            {
-                log_message('error', 'Usuario: '.$this->input->post("id").', Realizado por: '.$this->clslogin->getId(), FALSE, 'Eliminar_Usuarios_ERROR');
-            }
-
             $this->ver_usuarios($this->input->post("tipo"));   
         }
 
@@ -289,17 +299,8 @@
         {
             $data = array('usu_estado'=>'A', 'usu_fecha_modificado'=>date('Y-m-d H:i:s'));
             $where = array('usu_cedula' => $this->input->post("id"));
-            $resultado = $this->usuario->update_usuarios($data, $where);
+            $this->usuario->update_usuarios($data, $where, 'ACTIVAR');
             
-            if($resultado)
-            {
-                log_message('info', 'Usuario: '.$this->input->post("id").', Realizado por: '.$this->clslogin->getId(), FALSE, 'Activar_Usuarios_EXITO');
-            }
-            else
-            {
-                log_message('error', 'Usuario: '.$this->input->post("id").', Realizado por: '.$this->clslogin->getId(), FALSE, 'Activar_Usuarios_ERROR');
-            }
-
             $this->ver_usuarios($this->input->post("tipo"));   
         }
 
@@ -308,17 +309,8 @@
         {
             $data = array('usu_estado'=>'R', 'usu_fecha_modificado'=>date('Y-m-d H:i:s'));
             $where = array('usu_cedula' => $this->input->post("id"));
-            $resultado = $this->usuario->update_usuarios($data, $where);
+            $this->usuario->update_usuarios($data, $where, 'RECHAZAR');
             
-            if($resultado)
-            {
-                log_message('info', 'Usuario: '.$this->input->post("id").', Realizado por: '.$this->clslogin->getId(), FALSE, 'Rechazar_Usuarios_EXITO');
-            }
-            else
-            {
-                log_message('error', 'Usuario: '.$this->input->post("id").', Realizado por: '.$this->clslogin->getId(), FALSE, 'Rechazar_Usuarios_ERROR');
-            }
-
             $this->ver_usuarios($this->input->post("tipo"));   
         }
         
@@ -331,17 +323,6 @@
         
         function buscador_cursos()
         {
-            if(!$this->clslogin->check(1))
-            {
-                $this->_data['header_data']['form_login'] = '';
-            }
-            else
-            {
-                $this->_data['header_data']['auth'] = $this->clslogin->check(1);
-                $this->_data['header_data']['nombre'] = $this->clslogin->getNombre();
-                $this->_data['header_data']['apellido'] = $this->clslogin->getApellido();
-            }
-
             $this->_data['interna'] = 'vw_buscador_cursos';
             
             $string = $this->input->post('nombre_curso');
@@ -373,7 +354,6 @@
             
             $this->_data['interna_data']['resultado'] = $this->db->query($query);
             $this->_data['interna_data']['string_busqueda'] = $string;
-            $this->_data['interna_data']['controller'] = "administrador";
             
             $this->load->view("vw_plantilla_inicio", $this->_data);
         }
@@ -381,17 +361,6 @@
         
         function ver_informacion_cursos($id_curso)
         {
-            if(!$this->clslogin->check(1))
-            {
-                $this->_data['header_data']['form_login'] = '';
-            }
-            else
-            {
-                $this->_data['header_data']['auth'] = $this->clslogin->check(1);
-                $this->_data['header_data']['nombre'] = $this->clslogin->getNombre();
-                $this->_data['header_data']['apellido'] = $this->clslogin->getApellido();
-            }
-
             $this->_data['interna'] = 'vw_ver_informacion_curso';
             
             $select = "*";
@@ -401,7 +370,6 @@
             $resultado = $this->curso->get_cursos($select, $where, array(), $join);
             
             $this->_data['interna_data']['resultado'] = $resultado;
-            $this->_data['interna_data']['controller'] = "administrador";
             
             $this->load->view("vw_plantilla_inicio", $this->_data);
         }
@@ -429,6 +397,12 @@
             $data['ced'] = $this->input->post('id');
             
             $this->load->view("vw_editar_contrasena", $data);
+        }
+
+
+        function form_crear_olvido_contrasena()
+        {
+            $this->load->view("vw_olvido_contrasena");
         }
     }
     

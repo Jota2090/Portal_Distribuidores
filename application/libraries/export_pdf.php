@@ -4,7 +4,8 @@
     
     class export_pdf
     {
-        function registro_asistencia(){
+        function registro_asistencia()
+        {
             $CI = & get_instance();
             
             $CI->load->library("cezpdf");
@@ -55,7 +56,7 @@
                         $CI->cezpdf->ezText(utf8_decode("<b>Curso :</b>                              ".$row_rac->cur_nombre),9);
                         $CI->cezpdf->ezText("\n",8);
                         $CI->cezpdf->ezText("\n",8);
-                        $CI->cezpdf->ezImage(base_url().'recursos/images/QrCode/qrcode'.$curso.'_'.$asistente.'_'.$lista_asistente.'.png', 0, '', 5, 'left');
+                        $CI->cezpdf->ezImage(base_url().'recursos/images/QrCode/qrcode'.$curso.'_'.$asistente.'_'.$lista_asistente.'.png', 0, 80, 5, 'left');
                         
                         if($contador < count($asistentes))
                         {

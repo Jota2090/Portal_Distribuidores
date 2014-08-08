@@ -31,8 +31,8 @@ class CI_Form_validation {
 	protected $_config_rules		= array();
 	protected $_error_array			= array();
 	protected $_error_messages		= array();
-	protected $_error_prefix		= '<p>';
-	protected $_error_suffix		= '</p>';
+	protected $_error_prefix		= '';
+	protected $_error_suffix		= '<br/>';
 	protected $error_string			= '';
 	protected $_safe_form_data		= FALSE;
 
@@ -186,7 +186,7 @@ class CI_Form_validation {
 	 * @param	string
 	 * @return	void
 	 */
-	public function set_error_delimiters($prefix = '<p>', $suffix = '</p>')
+	public function set_error_delimiters($prefix = '', $suffix = '<br/>')
 	{
 		$this->_error_prefix = $prefix;
 		$this->_error_suffix = $suffix;

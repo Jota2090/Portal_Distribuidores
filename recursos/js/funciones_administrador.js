@@ -98,10 +98,10 @@
             { 
                 $( "#cargando" ).hide();
                 $( "#contenido_modal" ).show();
-                
+            
                 var success = result.indexOf("false");
                 
-                if(success > 0)
+                if(success >= 0)
                 {
                     result = result.replace(/false/gi, "");
                     result = result.replace(/<\/p>\n/gi, "");
@@ -110,12 +110,21 @@
                 }
                 else
                 {
-                    result = result.replace(/st:1/gi, "");
+                    var pestana = result.indexOf("cursos_pestana_");
+                    result = result.replace(/cursos_pestana_/gi, "");
                     
                     Ext.Msg.alert('Informaci\xf3n',result, function()
                     { 
-                        $.modal.close(); 
-                        refrescar_seccion(funcion, seccion); 
+                        $.modal.close();
+                        
+                        if(pestana >= 0)
+                        {
+                            cambiar_pestana('disponibles','tabs_cursos/disponibles','listado_curso');
+                        }
+                        else
+                        {
+                            refrescar_seccion(funcion, seccion); 
+                        }
                     });
                 }
             },
