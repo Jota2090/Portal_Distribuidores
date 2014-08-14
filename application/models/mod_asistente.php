@@ -10,8 +10,8 @@
      * @version      1.0
     */
     
-    class mod_asistente extends CI_Model {
-        
+    class mod_asistente extends CI_Model
+    {
         /**
          * @var string      $_name_table        nombre de la tabla en nuestra base de datos
          * @var integer     $_id                id del asistente
@@ -47,7 +47,8 @@
         * get_name_table() retorna el nombre de la tabla
         * @return string _name_table
         */
-        public function get_name_table() {
+        public function get_name_table()
+        {
             return $this->_name_table;
         }
         
@@ -56,7 +57,8 @@
         * @param string $_name_table 
         * @return void
         */
-        public function set_name_table($_name_table) {
+        public function set_name_table($_name_table)
+        {
             $this->_name_table = $_name_table;
         }
         
@@ -64,7 +66,8 @@
         * get_id() retorna el id
         * @return integer _id
         */
-        public function get_id() {
+        public function get_id()
+        {
             return $this->_id;
         }
         
@@ -73,7 +76,8 @@
         * @param integer $_id 
         * @return void
         */
-        public function set_id($_id) {
+        public function set_id($_id)
+        {
             $this->_id = $_id;
         }
         
@@ -81,7 +85,8 @@
         * get_nombre() retorna el nombre
         * @return string _nombre
         */
-        public function get_nombre() {
+        public function get_nombre()
+        {
             return $this->_nombre;
         }
         
@@ -90,7 +95,8 @@
         * @param string $_nombre 
         * @return void
         */
-        public function set_nombre($_nombre) {
+        public function set_nombre($_nombre)
+        {
             $this->_nombre = $_nombre;
         }
         
@@ -98,7 +104,8 @@
         * get_cedula() retorna el numero de cedula
         * @return string _cedula
         */
-        public function get_cedula() {
+        public function get_cedula()
+        {
             return $this->_cedula;
         }
 
@@ -107,7 +114,8 @@
         * @param string $_cedula 
         * @return void
         */
-        public function set_cedula($_cedula) {
+        public function set_cedula($_cedula)
+        {
             $this->_cedula = $_cedula;
         }
 
@@ -115,7 +123,8 @@
         * get_correo() retorna el correo
         * @return string _correo
         */
-        public function get_correo() {
+        public function get_correo()
+        {
             return $this->_correo;
         }
 
@@ -124,7 +133,8 @@
         * @param string $_correo 
         * @return void
         */
-        public function set_correo($_correo) {
+        public function set_correo($_correo)
+        {
             $this->_correo = $_correo;
         }
 
@@ -132,7 +142,8 @@
         * get_telefono() retorna el telefono
         * @return string _telefono
         */
-        public function get_telefono() {
+        public function get_telefono()
+        {
             return $this->_telefono;
         }
 
@@ -141,7 +152,8 @@
         * @param string $_telefono 
         * @return void
         */
-        public function set_telefono($_telefono) {
+        public function set_telefono($_telefono)
+        {
             $this->_telefono = $_telefono;
         }
 
@@ -149,7 +161,8 @@
         * get_antiguedad() retorna la antiguedad
         * @return string _antiguedad
         */
-        public function get_antiguedad() {
+        public function get_antiguedad()
+        {
             return $this->_antiguedad;
         }
 
@@ -158,7 +171,8 @@
         * @param string $_antiguedad 
         * @return void
         */
-        public function set_antiguedad($_antiguedad) {
+        public function set_antiguedad($_antiguedad)
+        {
             $this->_antiguedad = $_antiguedad;
         }
 
@@ -166,7 +180,8 @@
         * get_distribuidor() retorna el id del distribuidor
         * @return integer _distribuidor
         */
-        public function get_distribuidor() {
+        public function get_distribuidor()
+        {
             return $this->_distribuidor;
         }
 
@@ -175,7 +190,8 @@
         * @param integer $_distribuidor 
         * @return void
         */
-        public function set_distribuidor($_distribuidor) {
+        public function set_distribuidor($_distribuidor)
+        {
             $this->_distribuidor = $_distribuidor;
         }
         
@@ -183,7 +199,8 @@
         * get_cargo() retorna el id del cargo
         * @return integer _cargo
         */
-        public function get_cargo() {
+        public function get_cargo()
+        {
             return $this->_cargo;
         }
 
@@ -192,7 +209,8 @@
         * @param integer $_cargo 
         * @return void
         */
-        public function set_cargo($_cargo) {
+        public function set_cargo($_cargo)
+        {
             $this->_cargo = $_cargo;
         }
         
@@ -200,7 +218,8 @@
         * get_tipo() retorna el tipo
         * @return integer _tipo
         */
-        public function get_tipo() {
+        public function get_tipo()
+        {
             return $this->_tipo;
         }
 
@@ -209,7 +228,8 @@
         * @param integer $_tipo 
         * @return void
         */
-        public function set_tipo($_tipo) {
+        public function set_tipo($_tipo)
+        {
             $this->_tipo = $_tipo;
         }
         
@@ -217,7 +237,8 @@
         * get_usuario() retorna el numero de cédula
         * @return string _usuario
         */
-        public function get_usuario() {
+        public function get_usuario()
+        {
             return $this->_usuario;
         }
 
@@ -226,7 +247,8 @@
         * @param string $_usuario 
         * @return void
         */
-        public function set_usuario($_usuario) {
+        public function set_usuario($_usuario)
+        {
             $this->_usuario = $_usuario;
         }
 
@@ -234,7 +256,8 @@
         * get_fecha_modificado() retorna la fecha en que fue modificado
         * @return datetime _fecha_modificado
         */
-        public function get_fecha_modificado() {
+        public function get_fecha_modificado()
+        {
             return $this->_fecha_modificado;
         }
 
@@ -243,7 +266,8 @@
         * @param datetime $_fecha_modificado
         * @return void
         */
-        public function set_fecha_modificado($_fecha_modificado) {
+        public function set_fecha_modificado($_fecha_modificado)
+        {
             $this->_fecha_modificado = $_fecha_modificado;
         }
 
@@ -251,7 +275,8 @@
         * get_estado() retorna el estado
         * @return string _estado
         */
-        public function get_estado() {
+        public function get_estado()
+        {
             return $this->_estado;
         }
 
@@ -260,12 +285,14 @@
         * @param string $_estado 
         * @return void
         */
-        public function set_estado($_estado) {
+        public function set_estado($_estado)
+        {
             $this->_estado = $_estado;
         }
 
                 
-        public function __construct(){
+        public function __construct()
+        {
             parent::__construct();
         }
         
@@ -350,7 +377,7 @@
          * Esta función crea un asistente nuevo en el portal
          * 
          * @access public
-         * @return void
+         * @return boolean
         */
         public function guardar_asistente()
         {
@@ -368,19 +395,30 @@
             );
             
             $this->db->trans_start();
-            $resultado = $this->db->insert($this->get_name_table(), $data);
+            $this->db->insert($this->get_name_table(), $data);
+            $id_insertado = $this->db->insert_id();
             $this->db->trans_complete();
-
+            
+            $parametros = "";
+            foreach($data as $dato)
+            {
+                $parametros = $parametros.$dato.", ";
+            }
+            
             if ($this->db->trans_status() === FALSE)
             {
+                log_message('error', 'Accion: CREAR; Mensaje: PROBLEMA CON EL SERVIDOR; Id_Asistente: null; Info_Asistente: ('.$parametros.'); Realizado por: '.$this->clslogin->getId(), FALSE, 'Asistentes');
+                    
                 $this->db->trans_rollback();
             }
             else
             {
+                log_message('info', 'Accion: CREAR; Mensaje: EXITO; Id_Asistente: '.$id_insertado.'; Info_Asistente: ('.$parametros.'); Realizado por: '.$this->clslogin->getId(), FALSE, 'Asistentes');
+                    
                 $this->db->trans_commit();
             }
-            
-            return $resultado;
+                    
+            return $this->db->trans_status();
         }
         
         
@@ -392,32 +430,44 @@
          * @access public
          * @param array $data 
          * @param array $where 
-         * @return array $resultado
+         * @return boolean
         */
-        public function update_asistente($data = array(), $where = array())
+        public function update_asistente($data = array(), $where = array(), $accion = "EDITAR")
         {
+            $id_asistente = "";
             if(count($where) > 0)
             {
                 foreach ($where as $key => $value)
                 {
                     $this->db->where($key, $value);
+                    $id_asistente = $id_asistente.$value.", ";
                 }
             }
             
             $this->db->trans_start();
-            $resultado = $this->db->update($this->get_name_table(), $data);
+            $this->db->update($this->get_name_table(), $data);
             $this->db->trans_complete();
-
+            
+            $parametros = "";
+            foreach($data as $dato)
+            {
+                $parametros = $parametros.$dato.", ";
+            }
+            
             if ($this->db->trans_status() === FALSE)
             {
+                log_message('error', 'Accion: '.$accion.'; Mensaje: PROBLEMA CON EL SERVIDOR; Id_Asistente: ('.$id_asistente.'); Info_Lista: ('.$parametros.'); Realizado por: '.$this->clslogin->getId(), FALSE, 'Asistentes');
+                    
                 $this->db->trans_rollback();
             }
             else
             {
+                log_message('info', 'Accion: '.$accion.'; Mensaje: EXITO; Id_Asistente: ('.$id_asistente.'); Info_Lista: ('.$parametros.'); Realizado por: '.$this->clslogin->getId(), FALSE, 'Asistentes');
+                    
                 $this->db->trans_commit();
             }
             
-            return $resultado;
+            return $this->db->trans_status();
         }
         
         
@@ -437,7 +487,7 @@
             {    
                 case 'sp_eliminar_asistente':
                     
-                    $query = "call ".$nombre_sp."(".$data[0].",".$data[1].")";
+                    $query = "call ".$nombre_sp."(".$data['asistente'].",".$data['usuario'].")";
                     $this->db->trans_start();
                     $this->db->query($query); 
                     $this->db->trans_complete();
@@ -446,10 +496,14 @@
                     
                     if ($this->db->trans_status() === FALSE)
                     {
+                        log_message('error', 'Accion: ELIMINAR; Mensaje: PROBLEMA CON EL SERVIDOR; Id_Asistente: ('.$data['asistente'].'); Info_Lista: (); Realizado por: '.$this->clslogin->getId(), FALSE, 'Asistentes');
+
                         $this->db->trans_rollback();
                     }
                     else
                     {
+                        log_message('info', 'Accion: ELIMINAR; Mensaje: EXITO; Id_Asistente: ('.$data['asistente'].'); Info_Lista: (); Realizado por: '.$this->clslogin->getId(), FALSE, 'Asistentes');
+
                         $this->db->trans_commit();
                     }
                     

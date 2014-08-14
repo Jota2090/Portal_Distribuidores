@@ -10,8 +10,8 @@
      * @version      1.0
     */
     
-    class mod_provincia extends CI_Model {
-        
+    class mod_provincia extends CI_Model
+    {
         /**
          * @var string      $_name_table        nombre de la tabla en nuestra base de datos
          * @var integer     $_id                id de la provincia
@@ -28,7 +28,8 @@
         * get_name_table() retorna el nombre de la tabla
         * @return string _name_table
         */
-        public function get_name_table() {
+        public function get_name_table()
+        {
             return $this->_name_table;
         }
         
@@ -37,7 +38,8 @@
         * @param string $_name_table 
         * @return void
         */
-        public function set_name_table($_name_table) {
+        public function set_name_table($_name_table)
+        {
             $this->_name_table = $_name_table;
         }
         
@@ -45,7 +47,8 @@
         * get_id() retorna el id
         * @return integer _id
         */
-        public function get_id() {
+        public function get_id()
+        {
             return $this->_id;
         }
         
@@ -54,7 +57,8 @@
         * @param integer $_id 
         * @return void
         */
-        public function set_id($_id) {
+        public function set_id($_id)
+        {
             $this->_id = $_id;
         }
         
@@ -62,7 +66,8 @@
         * get_nombre() retorna el nombre
         * @return string _nombre
         */
-        public function get_nombre() {
+        public function get_nombre()
+        {
             return $this->_nombre;
         }
         
@@ -71,7 +76,8 @@
         * @param string $_nombre 
         * @return void
         */
-        public function set_nombre($_nombre) {
+        public function set_nombre($_nombre)
+        {
             $this->_nombre = $_nombre;
         }
         
@@ -79,7 +85,8 @@
         * get_estado() retorna el estado
         * @return string _estado
         */
-        public function get_estado() {
+        public function get_estado()
+        {
             return $this->_estado;
         }
 
@@ -88,12 +95,14 @@
         * @param string $_estado 
         * @return void
         */
-        public function set_estado($_estado) {
+        public function set_estado($_estado)
+        {
             $this->_estado = $_estado;
         }
 
                 
-        public function __construct(){
+        public function __construct()
+        {
             parent::__construct();
         }
         
@@ -110,24 +119,30 @@
          * @param array $join 
          * @return array $resultado
         */
-        public function get_provincias($select = "*", $where = array(), $or_where = array(), $join = array()){
-            
+        public function get_provincias($select = "*", $where = array(), $or_where = array(), $join = array())
+        {
             $this->db->select($select);
             
-            if(count($where) > 0){
-                foreach ($where as $key => $value) {
+            if(count($where) > 0)
+            {
+                foreach ($where as $key => $value)
+                {
                     $this->db->where($key, $value);
                 }
             }
             
-            if(count($or_where) > 0){
-                foreach ($or_where as $key => $value) {
+            if(count($or_where) > 0)
+            {
+                foreach ($or_where as $key => $value)
+                {
                     $this->db->or_where($key, $value);
                 }
             }
             
-            if(count($join) > 0){
-                foreach ($join as $key => $value) {
+            if(count($join) > 0)
+            {
+                foreach ($join as $key => $value)
+                {
                     $this->db->join($key, $value);
                 }
             }

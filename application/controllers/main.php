@@ -11,7 +11,6 @@
     */
     class main extends CI_Controller
     {
-    
         var $_data = array(
                             "scripts" => "main/vw_scripts_css",
                             "header" => "main/vw_header",
@@ -128,7 +127,7 @@
         
         function eliminar_lista_asistente()
         {
-            $data = array('0'=>"'".$this->input->post('id')."'", '1'=>"'".$this->clslogin->getId()."'");
+            $data = array('lista'=>"'".$this->input->post('id')."'", 'usuario'=>"'".$this->clslogin->getId()."'");
             $this->lista_asistente->sp_lista_asistente('sp_eliminar_lista_asistente', $data);
             $this->tabla_lista_asistente();
         }
@@ -250,7 +249,7 @@
         
         function eliminar_asistente_listado()
         {
-            $data = array('0'=>"'".$this->input->post('id_asistente')."'", '1'=>"'".$this->clslogin->getId()."'");
+            $data = array('asistente'=>"'".$this->input->post('id_asistente')."'", 'usuario'=>"'".$this->clslogin->getId()."'");
             $this->asistente->sp_asistente('sp_eliminar_asistente', $data);
             $this->asistentes_disponibles();
         }
@@ -258,7 +257,7 @@
         
         function quitar_asistente_lista()
         {
-            $data = array('0'=>"'".$this->input->post("id_lista")."'", '1'=>"'".$this->input->post("id_asistente")."'");
+            $data = array('lista'=>"'".$this->input->post("id_lista")."'", 'asistente'=>"'".$this->input->post("id_asistente")."'");
             $resultado = $this->lista_asistente->sp_lista_asistente('sp_quitar_asistente_lista', $data);
             
             $select = "*";
@@ -517,9 +516,8 @@
             
             $where = array("rac_curso_id" => $id_curso, "rac_asistente_id" => $id_asistente);
             $resultado = $this->registro_asistente_curso->delete_asistente_curso($where);
-            $resultado = $this->db->_error_message();
                 
-            if(empty($resultado))
+            if($resultado)
             {
                 $select = "cur_cupos_usados";
                 $where = array("cur_id" => $id_curso);

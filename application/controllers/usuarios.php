@@ -457,7 +457,7 @@
                             $this->email->from('miclaro@iclaro.com.ec', 'Portal de Distribuidores');
                             $this->email->to($this->input->post("correo_usuario"));
                             $this->email->cc('jfranco@dayscript.com, rhuerta@dayscript.com, jmoran@dayscript.com');
-                            $this->email->subject('Actualizaci&oacute;n de Datos Personales');
+                            $this->email->subject('Actualización de Datos Personales');
 
                             $contenido	= "";
                             $contenido	.= "<div style = 'width:798px;min-height:200px;height:auto;' align='left'>";
@@ -729,7 +729,8 @@
         {
             $result = "";
             
-            for($i=0; $i<strlen($string); $i++) {
+            for($i=0; $i<strlen($string); $i++)
+            {
                 $char = substr($string, $i, 1);
                 $keychar = substr($key, ($i % strlen($key))-1, 1);
                 $char = chr(ord($char)+ord($keychar));
@@ -745,7 +746,8 @@
             $result = "";
             $string = base64_decode($string);
             
-            for($i=0; $i<strlen($string); $i++) {
+            for($i=0; $i<strlen($string); $i++)
+            {
                 $char = substr($string, $i, 1);
                 $keychar = substr($key, ($i % strlen($key))-1, 1);
                 $char = chr(ord($char)-ord($keychar));

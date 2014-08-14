@@ -11,7 +11,6 @@
     */
     class asistentes extends CI_Controller
     {
-        
         function __construct()
         {
             parent::__construct();
@@ -23,9 +22,10 @@
         }
         
         
-        function get_listas_predeterminadas($tipo = 0){
-            
-            switch ($tipo) {    
+        function get_listas_predeterminadas($tipo = 0)
+        {
+            switch ($tipo) 
+            {    
                 case 0:
                  
                     $select = "*";
@@ -122,27 +122,26 @@
                 $this->lista_asistente->set_nombre($this->input->post("nombre_lista"));
                 $this->lista_asistente->set_usuario($this->clslogin->getId());
 
-                $this->lista_asistente->guardar_lista_asistente();
-                $resultado = $this->db->_error_message();
+                $resultado = $this->lista_asistente->guardar_lista_asistente();
                 
-                if(empty($resultado)){
-                    
-                    $id_lista_insertado = $this->db->insert_id();
-                    
+                if($resultado['status'])
+                {
                     $asistentes = $this->input->post("asistente");
                     
-                    if($asistentes){
-                        
-                        foreach ($asistentes as $row) {
-                            $this->registro_asistente_lista->set_lista_asistente($id_lista_insertado);
+                    if($asistentes)
+                    {
+                        foreach ($asistentes as $row)
+                        {
+                            $this->registro_asistente_lista->set_lista_asistente($resultado['id_insertado']);
                             $this->registro_asistente_lista->set_asistente($row);
-
                             $this->registro_asistente_lista->guardar_asistente_lista();
                         }
                         
                         echo json_encode(array('st'=>1, 'msg' => 'Lista Guardada con Exito'));
                         
-                    }else{
+                    }
+                    else
+                    {
                         echo json_encode(array('st'=>1, 'msg' => 'Lista Guardada con Exito'));
                     }
                 }
@@ -167,10 +166,8 @@
                 $where = array("la_id" => $this->input->post('id'));
 
                 $resultado = $this->lista_asistente->update_listas_asistente($data, $where);
-                
-                $resultado = $this->db->_error_message();
 
-                if(empty($resultado))
+                if($resultado)
                 {
                     $asistentes = $this->input->post("asistente");
                     
@@ -217,10 +214,9 @@
                 $this->asistente->set_usuario($this->clslogin->getId());
                 $this->asistente->set_fecha_modificado(date('Y-m-d H:i:s'));
 
-                $this->asistente->guardar_asistente();
-                $resultado = $this->db->_error_message();
+                $resultado = $this->asistente->guardar_asistente();
                 
-                if(empty($resultado))
+                if($resultado)
                 {
                     echo json_encode(array('st'=>2, 'msg' => 'Asistente guardado con Exito'));
                 }
@@ -253,16 +249,14 @@
                 $where = array("asi_cedula" => $this->input->post('id_asistente'), "asi_usuario_id" => $this->clslogin->getId());
 
                 $resultado = $this->asistente->update_asistente($data, $where);
-                
-                $resultado = $this->db->_error_message();
 
-                if(empty($resultado))
+                if($resultado)
                 {
                     echo json_encode(array('st'=>2, 'msg' => 'Cambios guardados con Exito'));
                 }
                 else
                 {
-                    echo json_encode(array('st'=>0, 'msg' => 'Hubo un problema con el servidor, por favor vuelva a intentar'.$resultado));
+                    echo json_encode(array('st'=>0, 'msg' => 'Hubo un problema con el servidor, por favor vuelva a intentar'));
                 }
             }
         }
@@ -319,30 +313,42 @@
 
                                             $resultado_get = $this->registro_asistente_curso->get_registro_asistente_curso(array(), $where, array(), $join);
 
-                                            if($resultado_get && $resultado_get->num_rows() == 1)
+                                            if($resultado_get)
                                             {
-                                                $reporte_final .= "* El asistente ".$nombres[$i]." ha sido registrado anteriormente<br/>";
+                                                if($resultado_get->num_rows() == 1)
+                                                {
+                                                    $reporte_final .= "* El asistente ".$nombres[$i]." ha sido registrado anteriormente<br/>";
+                                                }
+                                                else
+                                                {
+                                                    $this->registro_asistente_curso->set_curso($this->input->post('id'));
+                                                    $this->registro_asistente_curso->set_lista_asistente($this->input->post("lista_asistente"));
+                                                    $this->registro_asistente_curso->set_asistente($row_asistente);
+
+                                                    $resultado_save = $this->registro_asistente_curso->guardar_asistente_curso();
+                                                    
+                                                    if($resultado_save)
+                                                    {
+                                                        $contador++;
+
+                                                        $data["cur_cupos_usados"] = $cupos_usados;
+                                                        $data["cur_fecha_modificado"] = date('Y-m-d H:i:s');
+
+                                                        $where = array("cur_id" => $this->input->post('id'));
+
+                                                        $this->curso->update_cursos($data, $where);
+                                                    }
+                                                    else
+                                                    {
+                                                        echo json_encode(array('st'=>1, 'msg' => 'Hubo un problema al registrar los asistentes, por favor vuelva a intentarlo.'));
+                                                        break;
+                                                    }
+                                                }
                                             }
                                             else
                                             {
-                                                $this->registro_asistente_curso->set_curso($this->input->post('id'));
-                                                $this->registro_asistente_curso->set_lista_asistente($this->input->post("lista_asistente"));
-                                                $this->registro_asistente_curso->set_asistente($row_asistente);
-
-                                                $resultado_save = $this->registro_asistente_curso->guardar_asistente_curso();
-                                                $resultado_save = $this->db->_error_message();
-
-                                                if(empty($resultado_save))
-                                                {
-                                                    $contador++;
-
-                                                    $data["cur_cupos_usados"] = $cupos_usados;
-                                                    $data["cur_fecha_modificado"] = date('Y-m-d H:i:s');
-
-                                                    $where = array("cur_id" => $this->input->post('id'));
-
-                                                    $this->curso->update_cursos($data, $where);
-                                                }
+                                                echo json_encode(array('st'=>1, 'msg' => 'Hubo un problema al registrar los asistentes, por favor vuelva a intentarlo.'));
+                                                break;
                                             }
                                         }
                                         else
@@ -404,7 +410,7 @@
         {
             if ($this->form_validation->run() == FALSE)
             {
-                echo 'No ha seleccionado ningún asistente';
+                echo 'No ha seleccionado ningun asistente';
             }
             else
             {
@@ -415,5 +421,4 @@
         }
             
     }
-    
 ?>

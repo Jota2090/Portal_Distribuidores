@@ -9,17 +9,19 @@
      * @author       Edson Jonathan Franco Borja
      * @version      1.0
     */
-    class ciudad extends CI_Controller {
-    
-        function __construct(){
+    class ciudad extends CI_Controller
+    {
+        function __construct()
+        {
             parent::__construct();
             $this->load->model("mod_ciudad","ciudad");
         }
         
         
-        function listar_ciudades($tipo = 0){
-            
-            switch ($tipo) {    
+        function listar_ciudades($tipo = 0)
+        {
+            switch ($tipo)
+            {    
                 case 0:
                     
                     $select = "*";
@@ -28,8 +30,11 @@
                     $resultado = $this->ciudad->get_ciudades($select, $where);
                     
                     $data['ciudades'] = array('' => 'Seleccione');
-                    if($resultado){
-                        foreach ($resultado->result() as $row) {
+                    
+                    if($resultado)
+                    {
+                        foreach ($resultado->result() as $row)
+                        {
                             $data['ciudades'][$row->ciu_id] = $row->ciu_nombre;
                         }
                     }
