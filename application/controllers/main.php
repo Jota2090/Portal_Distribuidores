@@ -33,7 +33,10 @@
             {
                 if(!$this->clslogin->check(0))
                 {
-                    redirect('main');
+                    echo "<script>"
+                            ."alert('Hubo mucho tiempo de inactividad, por favor vuelva a loguearse.');"
+                            ."window.location.href='../main';"
+                        ."</script>";
                 }
             }
             

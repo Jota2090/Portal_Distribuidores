@@ -101,4 +101,12 @@
         }
         return true;
     });
+    
+    /*$('#usuario').keyup(function(e) {
+        var texto = document.getElementById('usuario').value;
+        texto = texto.replace(/\s+/gi, " ");
+        $(this).val(texto);
+        
+        return true;
+    });*/
 </script>

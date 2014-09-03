@@ -138,7 +138,6 @@
                         }
                         
                         echo json_encode(array('st'=>1, 'msg' => 'Lista Guardada con Exito'));
-                        
                     }
                     else
                     {

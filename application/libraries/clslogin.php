@@ -36,7 +36,7 @@
         * ver empiezan todas con un “_” de manera que serán variables del tipo “privado” de
         * manera, que solo podremos acceder a ellas y modificarlas dentro de la misma clase.
         * También aprovecharemos para darles un valor por defecto.
-        * @var integer $_id id del usuario logoneado
+        * @var integer $_id cedula del usuario logoneado
         * @var string $_nombre nombre del usuario
         * @var string $_apellido apellido del usuario
         * @var string $_tipo_user tipo de usuario (S=SuperAdministrador, A=Administradores, U=Usuarios(Asistente))
@@ -182,8 +182,8 @@
 
                 $query = $CI->db->query($sql, array($user, $enc_pass));
 
-                if ($query->num_rows() == 1) {
-
+                if ($query->num_rows() == 1) 
+                {
                     $row                    = $query->row();
                     $this->_id              = $row->usu_cedula;
                     $this->_nombre          = $row->usu_nombre;
