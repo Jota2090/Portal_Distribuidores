@@ -28,7 +28,7 @@
             Total: <?php if($resultado){ echo $resultado->num_rows(); }else{ echo "0"; } ?>
         </div>
     </div> 
-    <div class="contenido_cuerpo_modal">
+    <div>
         <div style="float: right; padding: 5px 28px;">
             <a href="javascript:" onclick="marcar_todos('asistentes');" >Marcar Todos</a>
         </div>

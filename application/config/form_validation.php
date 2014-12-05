@@ -16,6 +16,7 @@
         'cursos/crear_curso'=>array(
             array('field'=>'nombre_curso', 'label'=>"Nombre", 'rules'=>'required|trim|xss_clean'),
             array('field'=>'descripcion', 'label'=>"Descripci&oacute;n", 'rules'=>'required|trim|xss_clean'),
+            array('field'=>'acerca_del_curso', 'label'=>"Acerca del Curso", 'rules'=>'required|trim|xss_clean'),
             array('field'=>'fecha_inicio', 'label'=>"Fecha", 'rules'=>'required|max_length[10]|trim|xss_clean'),
             array('field'=>'fecha_fin', 'label'=>"Fecha", 'rules'=>'required|max_length[10]|trim|xss_clean'),
             array('field'=>'hora_inicio', 'label'=>"Hora", 'rules'=>'required|max_length[8]|trim|xss_clean'),

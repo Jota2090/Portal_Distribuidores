@@ -1,8 +1,10 @@
 <?php
-    if($resultado){
-        foreach ($resultado->result() as $row) {
+    if($resultado)
+    {
+        foreach ($resultado->result() as $row)
+        {
 ?>
-    <div class="titulo_modal">
+    <div class="titulo_modal fondo_titulo_modal_large">
         <span>
             <span class="titulo_modal_imagen_izq">&nbsp;</span>
             <span class="titulo_modal_cuerpo">
@@ -13,7 +15,7 @@
             <span class="titulo_modal_imagen_der" >&nbsp;</span>
         </span>
     </div>
-    <div class="cuerpo_modal" style="height: 325px; margin-top:20px;">
+    <div class="cuerpo_modal fondo_cuerpo_modal_large">
         <div class="form_modal_contenido">
             <div class="form_div">
                 <div class="form_modal_label">
@@ -21,6 +23,14 @@
                 </div>
                 <div class="form_modal_input right">
                     <?php echo $row->cur_descripcion; ?>
+                </div>
+            </div>
+            <div class="form_div">
+                <div class="form_modal_label">
+                    Acerca del Curso:
+                </div>
+                <div class="form_modal_input right">
+                    <?php echo $row->cur_acerca_del_curso; ?>
                 </div>
             </div>
             <div class="form_div" style="margin-top: 10px;">
@@ -82,14 +92,6 @@
                     <?php echo "$".$row->cur_costo; ?> 
                 </div>
             </div>
-            <div class="form_div">
-                <div class="form_modal_label">
-                    Comentarios:
-                </div>
-                <div class="form_modal_input right">
-                    <textarea class="textarea-detalle" cols="18" rows="2" readonly="true"><?php echo $row->cur_comentarios; ?></textarea>
-                </div>
-            </div>
         </div>
         <div class="form_modal_contenido">
             <div class="form_div">
@@ -135,7 +137,8 @@
                 </div>
             </div>
             <?php
-                if(!empty($row->cur_latitud) && !empty($row->cur_longitud)){
+                if(!empty($row->cur_latitud) && !empty($row->cur_longitud))
+                {
             ?>
             <div class="form_div" style="height: 50px;">
                 <div class="form_modal_label">
@@ -149,7 +152,9 @@
                 </div>
             </div>       
             <?php    
-                }else{
+                }
+                else
+                {
             ?>        
             <div class="form_div">
                 <div class="form_modal_label">
@@ -162,14 +167,24 @@
             <?php
                 }
             ?>
+            <div class="form_div">
+                <div class="form_modal_label">
+                    Comentarios:
+                </div>
+                <div class="form_modal_input right">
+                    <textarea  class="textarea-detalle" cols="18" rows="2" readonly="true"><?php echo $row->cur_comentarios; ?></textarea>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="boton_modal">
-        <span class="boton_modal_fondo">
-            <a rel="modal:close" href="#close-modal">
-                Salir
-            </a>
-        </span>
+    <div class="fondo_footer_modal_large">
+        <a rel="modal:close" href="#close-modal">
+            <div class="boton_modal">
+                <span class="boton_modal_fondo">
+                    Salir
+                </span>
+            </div>
+        </a>
     </div>
 <?php
             break;

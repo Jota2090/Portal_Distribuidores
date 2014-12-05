@@ -23,7 +23,7 @@
             <span id="tab_der" class="boton_blanco_der" >&nbsp;</span>
        </span>
     </div>
-    <div id="asistente_listado" class="contenido_cuerpo_modal">
+    <div id="asistente_listado">
         <?php   $this->load->view("main/contenido/inferior/ajax/vw_tabla_asistentes_disponibles", $lista_asistentes);  ?>
     </div>
 </div>

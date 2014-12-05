@@ -17,6 +17,7 @@
          * @var integer     $_id                    id del curso
          * @var string      $_nombre                nombre del curso
          * @var string      $_descripcion           descripcion del curso
+         * @var string      $_acerca_del_curso      acerca del del curso
          * @var string      $_nombre_imagen         nombre de la imagen del curso
          * @var string      $_url_imagen            url de la imagen del curso
          * @var string      $_fecha_inicio          fecha de incio del curso
@@ -45,6 +46,7 @@
         var $_id                    = 0;
         var $_nombre                = "";
         var $_descripcion           = "";
+        var $_acerca_del_curso      = "";
         var $_nombre_imagen         = "";
         var $_url_imagen            = "";
         var $_fecha_inicio          = "";
@@ -143,6 +145,25 @@
         public function set_descripcion($_descripcion)
         {
             $this->_descripcion = $_descripcion;
+        }
+        
+        /**
+        * get_acerca_del_curso() retorna la descripcion
+        * @return string _acerca_del_curso
+        */
+        public function get_acerca_del_curso()
+        {
+            return $this->_acerca_del_curso;
+        }
+
+        /**
+        * set_acerca_del_curso() setea un valor en el parámetro de _acerca_del_curso
+        * @param string $_acerca_del_curso 
+        * @return void
+        */
+        public function set_acerca_del_curso($_acerca_del_curso)
+        {
+            $this->_acerca_del_curso = $_acerca_del_curso;
         }
         
         /**
@@ -630,6 +651,7 @@
             $data = array(
                             'cur_nombre'             => $this->_nombre,
                             'cur_descripcion'        => $this->_descripcion ,
+                            'cur_acerca_del_curso'   => $this->_acerca_del_curso ,
                             'cur_nombre_imagen'      => $this->_nombre_imagen ,
                             'cur_url_imagen'         => $this->_url_imagen ,
                             'cur_fecha_inicio'       => $this->_fecha_inicio ,

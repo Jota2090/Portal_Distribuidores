@@ -5,7 +5,7 @@
             $hidden = array('id_asistente' => $row->asi_cedula);
             echo form_open('asistentes/editar_asistente', $attributes, $hidden);
 ?>
-            <div style="margin-top: 15px;">
+            <div class="contenido_cuerpo_modal">
 <?php
                 $data = array('class'=>'form_modal_input', 'name'=>'nombre_asistente', 'id'=>'nombre_asistente', 'value'=>set_value("nombre_asistente", $row->asi_nombre_completo), 'autocomplete'=>'off', 'type'=>'text');
                 echo "<div class='form_div'>

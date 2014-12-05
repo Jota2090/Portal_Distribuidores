@@ -81,8 +81,8 @@
                     if ( $this->login( $CI->session->userdata('usuario'), $CI->session->userdata('contrasena') ) )
                     {
                         $this->_id              = $CI->session->userdata('id');
-                        $this->nombre           = $CI->session->userdata('nombre');
-                        $this->apellido         = $CI->session->userdata('apellido');
+                        $this->_nombre           = $CI->session->userdata('nombre');
+                        $this->_apellido         = $CI->session->userdata('apellido');
                         $this->_tipo_usuario    = $CI->session->userdata('tipo');
                         $this->_estado          = $CI->session->userdata('estado');
                         $this->_auth            = true;
@@ -175,12 +175,12 @@
 
                 $sql = "SELECT usu_cedula, usu_nombre, usu_apellido, usu_tipo, usu_estado
                         FROM tbl_usuario
-                        WHERE usu_usuario=? AND usu_contrasena=? AND usu_estado='A'";
+                        WHERE usu_usuario=? AND usu_contrasena=? AND usu_estado=?";
                 
                 $salt = '6&KTTmxa%Tej|y6uH%OhSrK@caXbNNo%I23tQmJ20Sid';
                 $enc_pass = sha1(md5($salt.$clave));
 
-                $query = $CI->db->query($sql, array($user, $enc_pass));
+                $query = $CI->db->query($sql, array($user, $enc_pass, 'A'));
 
                 if ($query->num_rows() == 1) 
                 {
@@ -206,8 +206,8 @@
 
                     return true;
                 }
-                else {
-
+                else
+                {
                     $this->_auth = false;
                     $this->logout();
 
@@ -256,8 +256,8 @@
                 if($tipo == "main"){ $tipo = 0; }
                 elseif($tipo == "administrador") { $tipo = 1; }
                 
-                switch ($tipo) {
-                    
+                switch ($tipo) 
+                {
                     case 0:
                         if ($this->_auth && ($this->_tipo_usuario == 'U' || $this->_tipo_usuario == 'S')){
                             return true;

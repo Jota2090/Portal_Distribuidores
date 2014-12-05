@@ -1,107 +1,170 @@
-.modal {
-  display: none;
-  width: 400px;
-  background: #fff;
-  padding: 15px 30px;
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  -o-border-radius: 8px;
-  -ms-border-radius: 8px;
-  border-radius: 8px;
-  -webkit-box-shadow: 0 0 10px #000;
-  -moz-box-shadow: 0 0 10px #000;
-  -o-box-shadow: 0 0 10px #000;
-  -ms-box-shadow: 0 0 10px #000;
-  box-shadow: 0 0 10px #000;
+.modal
+{
+    display: none;
+    width: 400px;
+    background: #fff;
+    padding: 15px 30px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -o-border-radius: 8px;
+    -ms-border-radius: 8px;
+    border-radius: 8px;
+    -webkit-box-shadow: 0 0 10px #000;
+    -moz-box-shadow: 0 0 10px #000;
+    -o-box-shadow: 0 0 10px #000;
+    -ms-box-shadow: 0 0 10px #000;
+    box-shadow: 0 0 10px #000;
 }
 
-.curso {
-    background: url(../images/Modals/fondo_curso.png) no-repeat;
+.curso
+{
     display: none;
     width: 800px;
-    height: 500px;
+    min-height: 550px;
+    height: auto;
+    overflow: hidden;
 }
 
-.asistente {
+.asistente
+{
     background: url(../images/Modals/fondo_asistente.png) no-repeat;
     display: none;
     width: 500px;
     height: 500px;
 }
 
-.asistente_curso {
+.asistente_curso
+{
+    display: none;
+    width: 500px;
+    height: 590px;
+}
+
+.imprimir_asistencia
+{
     background: url(../images/Modals/fondo_asistente_curso.png) no-repeat;
     display: none;
     width: 500px;
     height: 590px;
 }
 
-.imprimir_asistencia {
-    background: url(../images/Modals/fondo_asistente_curso.png) no-repeat;
-    display: none;
-    width: 500px;
-    height: 590px;
-}
-
-.lista_asistente {
+.lista_asistente
+{
     background: url(../images/Modals/fondo_lista_asistente.png) no-repeat;
     display: none;
     width: 420px;
     height: 500px;
 }
 
-.usuario{
-    background: url(../images/Modals/fondo_usuario.png) no-repeat;
+.usuario
+{
     display: none;
     width: 420px;
     height: 390px;
 }
 
-.contrasena{
-    background: url(../images/Modals/fondo_contrasena.png) no-repeat;
+.contrasena
+{
     display: none;
     width: 420px;
     height: 330px;
 }
 
-.olvido_contrasena{
+.olvido_contrasena
+{
+    display: none;
+    width: 420px;
+    height: 200px;
+}
+
+.enviar_detalle_curso
+{
     background: url(../images/Modals/fondo_olvido_contrasena.png) no-repeat;
     display: none;
     width: 420px;
     height: 200px;
 }
 
-.enviar_detalle_curso{
-    background: url(../images/Modals/fondo_olvido_contrasena.png) no-repeat;
+a.close-modal
+{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: block;
+    width: 30px;
+    height: 30px;
+    text-indent: -9999px;
+    background: url(../images/close.png) no-repeat 0 0;
+}
+
+.modal-spinner
+{
     display: none;
+    width: 64px;
+    height: 64px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-right: -32px;
+    margin-top: -32px;
+    background: url(../images/loading.gif) #111 no-repeat center center;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -o-border-radius: 8px;
+    -ms-border-radius: 8px;
+    border-radius: 8px;
+}
+
+.fondo_titulo_modal_small
+{
+    background: url(../images/Modals/titulo_modal_small.png) no-repeat;
     width: 420px;
-    height: 200px;
 }
 
-a.close-modal {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  display: block;
-  width: 30px;
-  height: 30px;
-  text-indent: -9999px;
-  background: url(../images/close.png) no-repeat 0 0;
+.fondo_cuerpo_modal_small
+{
+    background: url(../images/Modals/cuerpo_modal_small.png) repeat-y;
 }
 
-.modal-spinner {
-  display: none;
-  width: 64px;
-  height: 64px;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  margin-right: -32px;
-  margin-top: -32px;
-  background: url(../images/loading.gif) #111 no-repeat center center;
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  -o-border-radius: 8px;
-  -ms-border-radius: 8px;
-  border-radius: 8px;
+.fondo_footer_modal_small
+{
+    background: url(../images/Modals/footer_modal_small.png) no-repeat;
+    width: 420px;
+    height: 57px;
+}
+
+.fondo_titulo_modal_medium
+{
+    background: url(../images/Modals/titulo_modal_medium.png) no-repeat;
+    width: 500px;
+}
+
+.fondo_cuerpo_modal_medium
+{
+    background: url(../images/Modals/cuerpo_modal_medium.png) repeat-y;
+}
+
+.fondo_footer_modal_medium
+{
+    background: url(../images/Modals/footer_modal_medium.png) no-repeat;
+    width: 500px;
+    height: 47px;
+}
+
+.fondo_titulo_modal_large
+{
+    background: url(../images/Modals/titulo_modal_large.png) no-repeat;
+    width: 800px;
+}
+
+.fondo_cuerpo_modal_large
+{
+    background: url(../images/Modals/cuerpo_modal_large.png) repeat-y;
+}
+
+.fondo_footer_modal_large
+{
+    background: url(../images/Modals/footer_modal_large.png) no-repeat;
+    width: 800px;
+    height: 68px;
 }

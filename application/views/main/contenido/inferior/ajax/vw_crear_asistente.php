@@ -3,7 +3,7 @@
     echo form_open('asistentes/crear_asistente', $attributes);
 ?>
 
-    <div style="margin-top: 15px;">
+    <div class="contenido_cuerpo_modal">
 <?php
         $data = array('class'=>'form_modal_input', 'name'=>'nombre_asistente', 'id'=>'nombre_asistente', 'value'=>set_value("nombre_asistente"), 'autocomplete'=>'off', 'type'=>'text');
         echo "<div class='form_div'>

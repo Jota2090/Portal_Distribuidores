@@ -1,6 +1,8 @@
 <?php
-    if($lista){
-        foreach ($lista->result() as $row) {
+    if($lista)
+    {
+        foreach ($lista->result() as $row)
+        {
             $attributes = array('id' => 'f_lista_asistente', 'name' => 'f_lista_asistente');
             $hidden = array('id' => $row->la_id);
             echo form_open('asistentes/editar_lista_asistente', $attributes, $hidden);
@@ -36,7 +38,7 @@
                             <span id="tab_der" class="boton_blanco_der" >&nbsp;</span>
                         </span>
                     </div>
-                    <div id="asistente_lista" class="contenido_cuerpo_modal">
+                    <div id="asistente_lista">
                         <?php   $this->load->view("main/contenido/inferior/ajax/vw_tabla_asistentes_agregados_listas", $lista_asistentes);  ?>
                     </div>
                 </div>
@@ -57,7 +59,9 @@
                 
             break;
         }
-    }else{
+    }
+    else
+    {
 ?>
         <div class="cuerpo_modal">
             No existe informaci&oacute;n para esta Lista Predeterminada 

@@ -126,13 +126,19 @@
                             $where = array("rac_curso_id" => $row->cur_id, "rac_asistente_id" => $this->clslogin->getId());
                             $rac_resultado = $this->registro_asistente_curso->get_registro_asistente_curso(array(),$where);
                             
-                            if($rac_resultado){
-                                if($rac_resultado->num_rows() == 1){
+                            if($rac_resultado)
+                            {
+                                if($rac_resultado->num_rows() == 1)
+                                {
                                     $fila['estado'] = 'Registrado';
-                                }else{
+                                }
+                                else
+                                {
                                     $fila['estado'] = 'No Registrado';
                                 }
-                            }else{
+                            }
+                            else
+                            {
                                 $fila['estado'] = 'No Registrado';
                             }
                             
@@ -201,6 +207,7 @@
                         
                         $this->curso->set_nombre($this->input->post("nombre_curso"));
                         $this->curso->set_descripcion($this->input->post("descripcion"));
+                        $this->curso->set_acerca_del_curso($this->input->post("acerca_del_curso"));
                         $this->curso->set_nombre_imagen($imagen_cargada['file_name']);
                         $this->curso->set_url_imagen(base_url().'recursos/images/Cursos/'.$imagen_cargada['file_name']);
                         $this->curso->set_fecha_inicio($this->input->post("fecha_inicio"));
@@ -274,6 +281,7 @@
                 $data["cur_estado"] = $this->input->post("estado");
                 $data["cur_nombre"] = $this->input->post("nombre_curso");
                 $data["cur_descripcion"] = $this->input->post("descripcion");
+                $data["cur_acerca_del_curso"] = $this->input->post("acerca_del_curso");
                 $data["cur_fecha_inicio"] = $this->input->post("fecha_inicio");
                 $data["cur_fecha_fin"] = $this->input->post("fecha_fin");
                 $data["cur_hora_inicio"] = $this->input->post("hora_inicio");

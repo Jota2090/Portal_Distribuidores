@@ -3,7 +3,7 @@
         <div class="filas">
             <div class="titulo_tabla">CURSOS DESTACADOS DEL D&Iacute;A</div>
         </div>
-        <div class="filas">
+        <div class="filas display-flex">
             <?php
                 $cont_max = 3;
                 $cont_inicial = 0;
@@ -44,7 +44,6 @@
                                 Registrarse
                             </div>
                         </div>
-                        <div class="espacio_cursos_destacados">&nbsp;</div>
             <?php
                             if($cont_inicial == $cont_max)
                             {

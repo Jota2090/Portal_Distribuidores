@@ -361,7 +361,7 @@
             
             $data['resultado'] = $resultado;
             
-            $this->load->view("main/contenido/inferior/ajax/vw_ver_detalles_curso", $data);
+            $this->load->view("main/contenido/inferior/vw_ver_detalles_curso", $data);
         }
         
         

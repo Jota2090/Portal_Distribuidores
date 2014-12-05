@@ -1,9 +1,9 @@
 <?php
-    $attributes = array('id' => 'f_contrasena', 'name' => 'f_contrasena', 'onsubmit' => 'return validar_formulario(\'f_contrasena\');');
+    $attributes = array('id' => 'f_contrasena', 'name' => 'f_contrasena');
     $hidden = array('ced' => $ced);
     echo form_open('usuarios/cambiar_contrasena', $attributes, $hidden);
 ?>
-<div class="titulo_modal">
+<div class="titulo_modal fondo_titulo_modal_small">
     <span>
         <span class="titulo_modal_imagen_izq">&nbsp;</span>
         <span class="titulo_modal_cuerpo">
@@ -14,48 +14,52 @@
         <span class="titulo_modal_imagen_der" >&nbsp;</span>
     </span>
 </div>
-<div class="cuerpo_modal">
+<div class="cuerpo_modal fondo_cuerpo_modal_small">
 <?php
-    $data = array('class'=>'form_modal_input', 'name'=>'contrasena_actual', 'id'=>'contrasena_actual', 'value'=>set_value("contrasena_actual"), 'autocomplete'=>'off', 'type'=>'password', 'placeholder' => '8 caracteres m&iacute;nimo');
+    $data = array('name'=>'contrasena_actual', 'id'=>'contrasena_actual', 'value'=>set_value("contrasena_actual"), 'autocomplete'=>'off', 'type'=>'password', 'placeholder' => '8 caracteres m&iacute;nimo');
     echo "<div class='form_div'>
             <div class='form_modal_label'>
                 Contrase&ntilde;a Actual *
             </div>
-            ".form_input($data)."
+            <div class='form_modal_input'>
+                ".form_input($data)."
+            </div>
           </div>";
     
     $js = 'onchange="validar_contrasenas()"';
-    $data = array('class'=>'form_modal_input', 'name'=>'contrasena_nueva', 'id'=>'contrasena_nueva', 'value'=>set_value("contrasena_nueva"), 'autocomplete'=>'off', 'type'=>'password', 'placeholder' => '8 caracteres m&iacute;nimo');
+    $data = array('name'=>'contrasena_nueva', 'id'=>'contrasena_nueva', 'value'=>set_value("contrasena_nueva"), 'autocomplete'=>'off', 'type'=>'password', 'placeholder' => '8 caracteres m&iacute;nimo');
     echo "<div class='form_div'>
             <div class='form_modal_label'>
                 Nueva Contrase&ntilde;a *
             </div>
-            ".form_input($data, '', $js)."
-            <div class='form_modal_input' style='height: 35px; text-align: right; float: right; margin-right: 55px;' id='validador_contrasena'>
-                <img src='".  base_url()."recursos/images/Main/Header/barra_gris_contrasena.png' />
+            <div class='form_modal_input'>
+                ".form_input($data, '', $js)."   
+                <div class='form_modal_input' style='height: 35px; text-align: right; float: right; margin-right: 55px;' id='validador_contrasena'>
+                    <img src='".  base_url()."recursos/images/Main/Header/barra_gris_contrasena.png' />
+                </div>
             </div>
           </div>";
     
-    $data = array('class'=>'form_modal_input', 'name'=>'contrasena_nueva_2', 'id'=>'contrasena_nueva_2', 'value'=>set_value("contrasena_nueva_2"), 'autocomplete'=>'off', 'type'=>'password', 'placeholder' => '8 caracteres m&iacute;nimo');
+    $data = array('name'=>'contrasena_nueva_2', 'id'=>'contrasena_nueva_2', 'value'=>set_value("contrasena_nueva_2"), 'autocomplete'=>'off', 'type'=>'password', 'placeholder' => '8 caracteres m&iacute;nimo');
     echo "<div class='form_div' style='padding-top:15px;'>
             <div class='form_modal_label'>
                 Repetir Nueva Contrase&ntilde;a *
             </div>
-            ".form_input($data)."
-            <div class='form_modal_input' style='color: #ff0000; height: 35px; text-align: left; float: right; margin-right: 55px; margin-top:5px;' id='validador_contrasena_2'></div>
+            <div class='form_modal_input'>
+                ".form_input($data)."
+                <div class='form_modal_input' style='color: #ff0000; text-align: left; float: right; margin-right: 55px; margin-top:5px;' id='validador_contrasena_2'></div>
+            </div>
           </div>";
 
 ?>
 </div>
-<div class="boton_modal">
-    <span class="boton_modal_fondo">
-        <i class="icono-guardar">&nbsp;</i>
-        <span>
-        <?php
-            echo form_submit('guardar', 'Guardar Cambios');
-        ?>
-        </span>
-    </span>
+<div class="fondo_footer_modal_small">
+    <div class="boton_modal">
+        <button type="submit" class="boton_modal_fondo" onclick="enviar_formulario('f_contrasena','','');">
+            <i class="icono-guardar">&nbsp;</i>
+            Guardar Cambios
+        </button>
+    </div>
 </div>
 <?php
     echo form_close();
