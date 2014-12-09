@@ -323,7 +323,8 @@ a{
         top: 2px;
     }
     
-    .titulo_modal_cuerpo{
+    .titulo_modal_cuerpo
+    {
         background: url(../images/Administrador/Contenido/cuerpo_titulo.png) repeat-x;
         width: auto;
         color: #666666;
@@ -352,8 +353,28 @@ a{
         height: auto;
         overflow: hidden;
         padding-top: 10px;
-        padding-bottom: 10px;
+        padding-bottom: 30px;
         padding-left: 40px;
+    }
+    
+    .max-height
+    {
+        max-height: 300px;
+    }
+    
+    .scroll-y
+    {
+        overflow-y: scroll;
+    }
+    
+    .col-nombre
+    {
+        width: 80%;
+    }
+    
+    .col-opciones
+    {
+        width: 20%;
     }
     
         .titulo_cuerpo_modal
@@ -365,7 +386,7 @@ a{
             font-weight: bold;
             font-size: 13px;
             overflow: hidden;
-            padding: 10px 0px;
+            /*padding: 10px 0px;*/
             width: auto;
         }
         
@@ -914,7 +935,7 @@ i
 
 .icono-tiempo
 {
-    background-position: -217px -2px;
+    background-position: -218px -2px;
 }
 
 .icono-sobre-gris

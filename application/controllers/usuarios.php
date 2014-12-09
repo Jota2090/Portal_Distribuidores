@@ -327,8 +327,11 @@
                 }
                 else
                 {
-                    $this->usuario->set_contrasena(sha1(md5($this->_salt.$this->input->post("contrasena"))));
-
+                    $salt = random_string('unique');
+                    $contrasena = sha1(md5($salt.$this->input->post("contrasena")));
+                    $contrasena .= ":".$salt;
+                    
+                    $this->usuario->set_contrasena($contrasena);
                     $this->usuario->set_nombre($this->input->post("nombre_usuario"));
                     $this->usuario->set_apellido($this->input->post("apellido_usuario"));
                     $this->usuario->set_cedula($this->input->post("cedula_usuario"));
@@ -360,11 +363,8 @@
             }
             else
             {
-                $password = sha1(md5($this->_salt.$this->input->post("contrasena")));
-                
-                $where_1 = array("usu_id" => $this->input->post("nro"), 
-                                    "usu_cedula" => $this->input->post("ced"),
-                                    "usu_contrasena" => $password);
+                $where_1 = array("usu_id" => $this->clslogin->getId(), 
+                                 "usu_cedula" => $this->clslogin->getCedula());
                 
                 $contrasena = $this->usuario->get_usuarios(array(), $where_1);
                 
@@ -372,160 +372,186 @@
                 {
                     if($contrasena->num_rows() == 1)
                     {
-                        $where_1 = array("usu_correo" => $this->input->post("correo_usuario"));
-                        $correo = $this->usuario->get_usuarios(array(), $where_1);
-
-                        if($correo)
-                        {
-                            if($correo->num_rows() == 1)
-                            {    
-                                $row = $correo->row();
-                                
-                                if($row->usu_id != $this->input->post("nro"))
-                                {
-                                    echo json_encode(array('st'=>0, 'msg' => 'El correo ya fue registrado')); 
-                                    exit();
-                                }
-                            }
-                        }
-                        else
-                        {
-                            echo json_encode(array('st'=>0, 'msg' => 'Hubo un problema con el servidor, por favor vuelva a intentar'));
-                            exit();
-                        }
-
-
-                        $where_2 = array("usu_cedula" => $this->input->post("cedula_usuario"));
-                        $cedula = $this->usuario->get_usuarios(array(), $where_2);
-
-                        if($cedula)
-                        {
-                            if($cedula->num_rows() == 1)
-                            {    
-                                $row = $cedula->row();
-                                
-                                if($row->usu_id != $this->input->post("nro"))
-                                {
-                                    echo json_encode(array('st'=>0, 'msg' => 'La cedula ya fue registrada')); 
-                                    exit();
-                                }
-                            }
-                        }
-                        else
-                        {
-                            echo json_encode(array('st'=>0, 'msg' => 'Hubo un problema con el servidor, por favor vuelva a intentar'));
-                            exit();
-                        }
-
-
-                        $where_3 = array("usu_usuario" => $this->input->post("usuario"));
-                        $usuario = $this->usuario->get_usuarios(array(), $where_3);
-
-                        if($usuario)
-                        {
-                            if($usuario->num_rows() == 1)
-                            {
-                                $row = $usuario->row();
-                                
-                                if($row->usu_id != $this->input->post("nro"))
-                                {
-                                    echo json_encode(array('st'=>0, 'msg' => 'El usuario ya existe'));  
-                                    exit();
-                                }
-                            }
-                        }
-                        else
-                        {
-                            echo json_encode(array('st'=>0, 'msg' => 'Hubo un problema con el servidor, por favor vuelva a intentar'));
-                            exit();
-                        }
+                        $verificar_contrasena = $this->passwordJoinSalt($contrasena->row()->usu_contrasena, $this->input->post("contrasena"));
                         
-                        $data = array();
-                        $data["usu_nombre"] = $this->input->post("nombre_usuario");
-                        $data["usu_apellido"] = $this->input->post("apellido_usuario");
-                        $data["usu_cedula"] =  $this->input->post("cedula_usuario");
-                        $data["usu_correo"] = $this->input->post("correo_usuario");
-                        $data["usu_usuario"] = $this->input->post("usuario");
-                        $data["usu_fecha_modificado"] = date('Y-m-d H:i:s');
-
-                        $where = array("usu_cedula" => $this->input->post("ced"));
-
-                        $resultado = $this->usuario->update_usuarios($data, $where);
-
-                        if($resultado)
+                        if($verificar_contrasena)
                         {
-                            $this->email->from('miclaro@iclaro.com.ec', 'Portal de Distribuidores');
-                            $this->email->to($this->input->post("correo_usuario"));
-                            $this->email->cc('jfranco@dayscript.com, rhuerta@dayscript.com, jmoran@dayscript.com');
-                            $this->email->subject('Actualización de Datos Personales');
+                            $where_1 = array("usu_correo" => $this->input->post("correo_usuario"));
+                            $correo = $this->usuario->get_usuarios(array(), $where_1);
 
-                            $contenido	= "";
-                            $contenido	.= "<div style = 'width:798px;min-height:200px;height:auto;' align='left'>";
-                            $contenido	.=      "<div style = 'width:100%;height:100px;'>
-                                                    <img src = '".base_url()."recursos/images/cabecera_correo.png'>
-                                                </div>";
-                            $contenido	.=      "<div style='border:black thin solid; width:798px;' align='left'>";
-                            $contenido	.=          "<div style='width: 600px; margin: 15px;'>
-                                                        Estimado(a) Usuario sus Datos Personales han sido actualizados:
-                                                     </div>
-                                                     <div style='width: 600px; margin: 15px; text-align: left; clear:both;'>
-                                                        <b>Datos Personales</b>
-                                                     </div>
-                                                     <div style='width: 600px; margin: 10px 15px 0px 15px; clear:both;'>
-                                                        <div style='float:left; width: 150px;'>
-                                                            <b>Nombres y Apellidos:</b>
-                                                        </div>
-                                                        <div style='float:left; width: 400px;'>
-                                                            ".$this->input->post("nombre_usuario")." ".$this->input->post("apellido_usuario")."
-                                                        </div>
-                                                     </div>
-                                                     <div style='width: 600px; margin: 10px 15px 0px 15px; clear:both;'>
-                                                        <div style='float:left; width: 150px;'>
-                                                            <b>Correo:</b>
-                                                        </div>
-                                                        <div style='float:left; width: 400px;'>
-                                                            ".$this->input->post("correo_usuario")."
-                                                        </div>
-                                                     </div>
-                                                     <div style='width: 600px; margin: 10px 15px 0px 15px; clear:both;'>
-                                                        <div style='float:left; width: 150px;'>
-                                                            <b>C&eacute;dula:</b>
-                                                        </div>
-                                                        <div style='float:left; width: 400px;'>
-                                                            ".$this->input->post("cedula_usuario")."
-                                                        </div>
-                                                     </div>
-                                                     <div style='width: 600px; margin: 10px 15px 15px 15px; clear:both;'>
-                                                        <div style='float:left; width: 150px;'>
-                                                            <b>Usuario:</b>
-                                                        </div>
-                                                        <div style='float:left; width: 400px;'>
-                                                            ".$this->input->post("usuario")."
-                                                        </div>
-                                                     </div>
-                                                     <div style='width: 600px; padding: 15px; clear:both;'>
-                                                        Para activar al usuario registrado dar clic en el siguiente enlace: <a href='".base_url()."administrador/usuarios/pendientes' target='_blank'>Activar</a>
-                                                     </div>";           
-                            $contenido	.=      "</div>";
-                            $contenido	.=      "<div style='width:100%;height:92px;' align='center'>
-                                                    <img src = '".base_url()."recursos/images/footer_correo.png'>
-                                                </div>";
-                            $contenido	.= "</div>";
-
-                            $this->email->message($contenido);
-
-                            if ( ! $this->email->send() )
+                            if($correo)
                             {
-                                echo json_encode(array('st'=>0, 'msg' => 'Hubo un problema al enviar el correo de notificación de la actualización de sus datos personales, por favor vuelva a intentar'));
+                                if($correo->num_rows() == 1)
+                                {    
+                                    $row = $correo->row();
+
+                                    if($row->usu_id != $this->clslogin->getId())
+                                    {
+                                        echo json_encode(array('st'=>0, 'msg' => 'El correo ya fue registrado')); 
+                                        exit();
+                                    }
+                                }
                             }
                             else
                             {
-                                echo json_encode(array('st'=>3, 'msg' => 'Cambios guardados con Éxito'));
+                                echo json_encode(array('st'=>0, 'msg' => 'Hubo un problema con el servidor, por favor vuelva a intentar'));
+                                exit();
+                            }
+
+
+                            $where_2 = array("usu_cedula" => $this->input->post("cedula_usuario"));
+                            $cedula = $this->usuario->get_usuarios(array(), $where_2);
+
+                            if($cedula)
+                            {
+                                if($cedula->num_rows() == 1)
+                                {    
+                                    $row = $cedula->row();
+
+                                    if($row->usu_id != $this->clslogin->getId())
+                                    {
+                                        echo json_encode(array('st'=>0, 'msg' => 'La cedula ya fue registrada')); 
+                                        exit();
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                echo json_encode(array('st'=>0, 'msg' => 'Hubo un problema con el servidor, por favor vuelva a intentar'));
+                                exit();
+                            }
+
+
+                            $where_3 = array("usu_usuario" => $this->input->post("usuario"));
+                            $usuario = $this->usuario->get_usuarios(array(), $where_3);
+
+                            if($usuario)
+                            {
+                                if($usuario->num_rows() == 1)
+                                {
+                                    $row = $usuario->row();
+
+                                    if($row->usu_id != $this->clslogin->getId())
+                                    {
+                                        echo json_encode(array('st'=>0, 'msg' => 'El usuario ya existe'));  
+                                        exit();
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                echo json_encode(array('st'=>0, 'msg' => 'Hubo un problema con el servidor, por favor vuelva a intentar'));
+                                exit();
+                            }
+
+                            $data = array();
+                            $data["usu_nombre"] = $this->input->post("nombre_usuario");
+                            $data["usu_apellido"] = $this->input->post("apellido_usuario");
+                            $data["usu_cedula"] =  $this->input->post("cedula_usuario");
+                            $data["usu_correo"] = $this->input->post("correo_usuario");
+                            $data["usu_usuario"] = $this->input->post("usuario");
+                            $data["usu_fecha_modificado"] = date('Y-m-d H:i:s');
+
+                            $where = array("usu_id" => $this->clslogin->getId());
+
+                            $resultado = $this->usuario->update_usuarios($data, $where);
+
+                            if($resultado)
+                            {
+                                $this->email->from('miclaro@iclaro.com.ec', 'Portal de Distribuidores');
+                                $this->email->to($this->input->post("correo_usuario"));
+                                $this->email->cc('jfranco@dayscript.com, rhuerta@dayscript.com, jmoran@dayscript.com');
+                                $this->email->subject('Actualización de Datos Personales');
+
+                                $contenido	= "";
+                                $contenido	.= "<div style = 'width:798px;min-height:200px;height:auto;' align='left'>";
+                                $contenido	.=      "<div style = 'width:100%;height:100px;'>
+                                                        <img src = '".base_url()."recursos/images/cabecera_correo.png'>
+                                                    </div>";
+                                $contenido	.=      "<div style='border:black thin solid; width:798px;' align='left'>";
+                                $contenido	.=          "<div style='width: 600px; margin: 15px;'>
+                                                            Estimado(a) Usuario sus Datos Personales han sido actualizados:
+                                                         </div>
+                                                         <div style='width: 600px; margin: 15px; text-align: left; clear:both;'>
+                                                            <b>Datos Personales</b>
+                                                         </div>
+                                                         <div style='width: 600px; margin: 10px 15px 0px 15px; clear:both;'>
+                                                            <div style='float:left; width: 150px;'>
+                                                                <b>Nombres y Apellidos:</b>
+                                                            </div>
+                                                            <div style='float:left; width: 400px;'>
+                                                                ".$this->input->post("nombre_usuario")." ".$this->input->post("apellido_usuario")."
+                                                            </div>
+                                                         </div>
+                                                         <div style='width: 600px; margin: 10px 15px 0px 15px; clear:both;'>
+                                                            <div style='float:left; width: 150px;'>
+                                                                <b>Correo:</b>
+                                                            </div>
+                                                            <div style='float:left; width: 400px;'>
+                                                                ".$this->input->post("correo_usuario")."
+                                                            </div>
+                                                         </div>
+                                                         <div style='width: 600px; margin: 10px 15px 0px 15px; clear:both;'>
+                                                            <div style='float:left; width: 150px;'>
+                                                                <b>C&eacute;dula:</b>
+                                                            </div>
+                                                            <div style='float:left; width: 400px;'>
+                                                                ".$this->input->post("cedula_usuario")."
+                                                            </div>
+                                                         </div>
+                                                         <div style='width: 600px; margin: 10px 15px 15px 15px; clear:both;'>
+                                                            <div style='float:left; width: 150px;'>
+                                                                <b>Usuario:</b>
+                                                            </div>
+                                                            <div style='float:left; width: 400px;'>
+                                                                ".$this->input->post("usuario")."
+                                                            </div>
+                                                         </div>
+                                                         <div style='width: 600px; padding: 15px; clear:both;'>
+                                                            Para activar al usuario registrado dar clic en el siguiente enlace: <a href='".base_url()."administrador/usuarios/pendientes' target='_blank'>Activar</a>
+                                                         </div>";           
+                                $contenido	.=      "</div>";
+                                $contenido	.=      "<div style='width:100%;height:92px;' align='center'>
+                                                        <img src = '".base_url()."recursos/images/footer_correo.png'>
+                                                    </div>";
+                                $contenido	.= "</div>";
+
+                                $this->email->message($contenido);
+
+                                if ( ! $this->email->send() )
+                                {
+                                    echo json_encode(array('st'=>0, 'msg' => 'Hubo un problema al enviar el correo de notificación de la actualización de sus datos personales, por favor vuelva a intentar'));
+                                }
+                                else
+                                {
+                                    if($this->input->post("usuario") != $this->clslogin->getId())
+                                    {
+                                        if($this->clslogin->getTipoUsuario() == "U")
+                                        {
+                                            $url = base_url('main');
+                                        }
+                                        else if($this->clslogin->getTipoUsuario() == "A")
+                                        {
+                                            $url = base_url('administrador');
+                                        }
+                                        
+                                        $this->clslogin->logout();
+                                        echo json_encode(array('st'=>5, 'msg' => 'Cambios guardados con Éxito. Por favor vuelva a iniciar sesión.','url' => $url));
+                                    }
+                                    else
+                                    {
+                                        echo json_encode(array('st'=>3, 'msg' => 'Cambios guardados con Éxito'));
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                echo json_encode(array('st'=>0, 'msg' => 'Hubo un problema al actualizar sus datos personales, por favor vuelva a intentar'));
                             }
                         }
                         else
                         {
-                            echo json_encode(array('st'=>0, 'msg' => 'Hubo un problema al actualizar sus datos personales, por favor vuelva a intentar'));
+                            echo json_encode(array('st'=>0, 'msg' => 'La contraseña ingresada no coincide con la registrada'));
                         }
                     }
                     else
@@ -597,8 +623,10 @@
                         }
                         else
                         {
-                            $nueva_contrasena= sha1(md5($this->_salt.$contrasena));
-
+                            $salt = random_string('unique');
+                            $nueva_contrasena = sha1(md5($salt.$contrasena));
+                            $nueva_contrasena .= ":".$salt;
+                    
                             $data["usu_contrasena"] = $nueva_contrasena;
                             $data["usu_fecha_modificado"] = date('Y-m-d H:i:s');
                             $where = array("usu_cedula" => $row->usu_cedula);
@@ -642,9 +670,7 @@
                 }
                 else
                 {
-                    $password = sha1(md5($this->_salt.$this->input->post("contrasena_actual")));
-
-                    $where = array('usu_cedula' => $this->input->post("ced"), 'usu_contrasena' => $password);
+                    $where = array('usu_cedula' => $this->clslogin->getCedula(), 'usu_id' => $this->clslogin->getId());
                     $usuario = $this->usuario->get_usuarios(array(), $where);
 
                     if($usuario)
@@ -653,62 +679,83 @@
                         {
                             $row = $usuario->row();
                             
-                            $contrasena = $this->input->post("contrasena_nueva");
-                                    
-                            $this->email->from('miclaro@iclaro.com.ec', 'Portal de Distribuidores');
-                            $this->email->to($row->usu_correo);
-                            $this->email->cc('jfranco@dayscript.com, rhuerta@dayscript.com, jmoran@dayscript.com');
-                            $this->email->subject('Portal de Distribuidores :: Cambio de Contraseña');
-
-                            $contenido  = "";
-                            $contenido  .= "<div style = 'width:798px;min-height:200px;height:auto;' align='left'>";
-                            $contenido  .=      "<div style = 'width:100%;height:100px;'>
-                                                    <img src = '".base_url()."recursos/images/cabecera_correo.png'>
-                                                </div>";
-                            $contenido  .=      "<div style='border:black thin solid; width:798px; height: auto; overflow: hidden;' align='left'>";
-                            $contenido  .=          "<div style='width: 600px; margin: 15px;'>
-                                                        Estimado(a) ".$row->usu_nombre." ".$row->usu_apellido." usted ha realizado un cambio de contrase&ntilde;a dentro del Portal de Distribuidores.
-                                                     </div>
-                                                     <div style='width: 600px; padding: 30px;'>
-                                                        <div style='float:left; width: 150px;'>
-                                                            <b>Contrase&ntilde;a Nueva:</b>
-                                                        </div>
-                                                        <div style='float:left; width: 400px;'>
-                                                            ".$contrasena."
-                                                        </div>
-                                                     </div>";           
-                            $contenido  .=      "</div>";
-                            $contenido  .=      "<div style='width:100%;height:92px;' align='center'>
-                                                    <img src = '".base_url()."recursos/images/footer_correo.png'>
-                                                </div>";
-                            $contenido  .= "</div>";
-
-                            $this->email->message($contenido);    
-
-                            if ( ! $this->email->send() )
+                            $verificar_contrasena = $this->passwordJoinSalt($usuario->row()->usu_contrasena, $this->input->post("contrasena_actual"));
+                        
+                            if($verificar_contrasena)
                             {
-                                echo json_encode(array('st'=>0, 'msg' => 'Hubo un problema al enviar la notificación del cambio de contraseña, por favor vuelva a intentar'));
-                            }
-                            else
-                            {
-                                $new_password = sha1(md5($this->_salt.$contrasena));
+                                $contrasena = $this->input->post("contrasena_nueva");
 
-                                $data = array();
-                                $data["usu_contrasena"] = $new_password;
-                                $data["usu_fecha_modificado"] = date('Y-m-d H:i:s');
+                                $this->email->from('miclaro@iclaro.com.ec', 'Portal de Distribuidores');
+                                $this->email->to($row->usu_correo);
+                                $this->email->cc('jfranco@dayscript.com, rhuerta@dayscript.com, jmoran@dayscript.com');
+                                $this->email->subject('Portal de Distribuidores :: Cambio de Contraseña');
 
-                                $where = array("usu_cedula" => $this->input->post("ced"));
+                                $contenido  = "";
+                                $contenido  .= "<div style = 'width:798px;min-height:200px;height:auto;' align='left'>";
+                                $contenido  .=      "<div style = 'width:100%;height:100px;'>
+                                                        <img src = '".base_url()."recursos/images/cabecera_correo.png'>
+                                                    </div>";
+                                $contenido  .=      "<div style='border:black thin solid; width:798px; height: auto; overflow: hidden;' align='left'>";
+                                $contenido  .=          "<div style='width: 600px; margin: 15px;'>
+                                                            Estimado(a) ".$row->usu_nombre." ".$row->usu_apellido." usted ha realizado un cambio de contrase&ntilde;a dentro del Portal de Distribuidores.
+                                                         </div>
+                                                         <div style='width: 600px; padding: 30px;'>
+                                                            <div style='float:left; width: 150px;'>
+                                                                <b>Contrase&ntilde;a Nueva:</b>
+                                                            </div>
+                                                            <div style='float:left; width: 400px;'>
+                                                                ".$contrasena."
+                                                            </div>
+                                                         </div>";           
+                                $contenido  .=      "</div>";
+                                $contenido  .=      "<div style='width:100%;height:92px;' align='center'>
+                                                        <img src = '".base_url()."recursos/images/footer_correo.png'>
+                                                    </div>";
+                                $contenido  .= "</div>";
 
-                                $resultado = $this->usuario->update_usuarios($data, $where, "CAMBIO_CONTRASENA");
+                                $this->email->message($contenido);    
 
-                                if($resultado)
+                                if ( ! $this->email->send() )
                                 {
-                                    echo json_encode(array('st'=>3, 'msg' => 'Su contraseña ha sido actualizada con Éxito.'));
+                                    echo json_encode(array('st'=>0, 'msg' => 'Hubo un problema al enviar la notificación del cambio de contraseña, por favor vuelva a intentar'));
                                 }
                                 else
                                 {
-                                    echo json_encode(array('st'=>0, 'msg' => 'Hubo un problema al guardar su nueva contraseña, por favor vuelva a intentar.'));
+                                    $salt = random_string('unique');
+                                    $new_password = sha1(md5($salt.$contrasena));
+                                    $new_password .= ":".$salt;
+                    
+                                    $data = array();
+                                    $data["usu_contrasena"] = $new_password;
+                                    $data["usu_fecha_modificado"] = date('Y-m-d H:i:s');
+
+                                    $where = array('usu_cedula' => $this->clslogin->getCedula(), 'usu_id' => $this->clslogin->getId());
+
+                                    $resultado = $this->usuario->update_usuarios($data, $where, "CAMBIO_CONTRASENA");
+
+                                    if($resultado)
+                                    {
+                                        if($this->clslogin->getTipoUsuario() == "U")
+                                        {
+                                            $url = base_url('main');
+                                        }
+                                        else if($this->clslogin->getTipoUsuario() == "A")
+                                        {
+                                            $url = base_url('administrador');
+                                        }
+                                        
+                                        $this->clslogin->logout();
+                                        echo json_encode(array('st'=>5, 'msg' => 'Su contraseña ha sido actualizada con Éxito. Por favor vuelva a iniciar sesión.','url' => $url));
+                                    }
+                                    else
+                                    {
+                                        echo json_encode(array('st'=>0, 'msg' => 'Hubo un problema al guardar su nueva contraseña, por favor vuelva a intentar.'));
+                                    }
                                 }
+                            }
+                            else
+                            {
+                                echo json_encode(array('st'=>0, 'msg' => 'No coincide el campo de contraseña actual con la contraseña registrada'));
                             }
                         }
                         else
@@ -755,6 +802,23 @@
             }
             
             return $result;
+        }
+        
+        
+        function passwordJoinSalt( $passwordBase, $passwordWritesByUser )
+        {
+            $salt = explode(":", $passwordBase);
+            $enc_pass = sha1(md5($salt[1].$passwordWritesByUser));
+            $finalPassword = $enc_pass.":".$salt[1];
+            
+            if($passwordBase === $finalPassword)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 ?>

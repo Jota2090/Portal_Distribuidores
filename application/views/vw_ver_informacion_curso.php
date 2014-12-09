@@ -1,8 +1,10 @@
 <div id="seccion_interna">
     <div id="seccion_interna_contenido" >
         <?php
-            if($resultado){
-                foreach ($resultado->result() as $row) {
+            if($resultado)
+            {
+                foreach ($resultado->result() as $row)
+                {
         ?>
             <div class="cuerpo_modal" style="margin-top:20px; margin-left: 36px;">
                 <div class="form_modal_contenido">
@@ -77,7 +79,7 @@
                         </font>
                     </div>
                     <div class="filas" style="margin-top: 30px; width: 85%;">
-                        <?php echo $row->cur_descripcion; ?>
+                        <?php echo $row->cur_acerca_del_curso; ?>
                     </div>
                 </div>
             </div>
@@ -95,7 +97,9 @@
         <?php
                     break;
                 }
-            }else{
+            }
+            else
+            {
         ?>
             <div class="cuerpo_modal">
                 No existe informaci&oacute;n para este Curso 
@@ -105,7 +109,8 @@
         ?>
         <div id="fb-root"></div>
         <script>
-            $(document).ready(function() {
+            $(document).ready(function()
+            {
                 Socialite.setup({
                     facebook: {
                         lang     : 'es_LA'

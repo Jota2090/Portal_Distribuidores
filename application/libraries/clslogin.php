@@ -39,6 +39,7 @@
         * @var integer $_id cedula del usuario logoneado
         * @var string $_nombre nombre del usuario
         * @var string $_apellido apellido del usuario
+        * @var string $_cedula cedula del usuario
         * @var string $_tipo_user tipo de usuario (S=SuperAdministrador, A=Administradores, U=Usuarios(Asistente))
         * @var string $_estado estado del usuario
         * @var boolean $_auth indica si esta logoneado el usuario o no
@@ -47,6 +48,7 @@
             var $_id            = 0;
             var $_nombre        = "";
             var $_apellido      = "";
+            var $_cedula        = "";
             var $_tipo_usuario  = "";
             var $_estado        = "";
             var $_auth          = false;
@@ -77,12 +79,13 @@
                 if ($auto) {
 
                     $CI = &get_instance();
-
+                    
                     if ( $this->login( $CI->session->userdata('usuario'), $CI->session->userdata('contrasena') ) )
                     {
                         $this->_id              = $CI->session->userdata('id');
-                        $this->_nombre           = $CI->session->userdata('nombre');
-                        $this->_apellido         = $CI->session->userdata('apellido');
+                        $this->_nombre          = $CI->session->userdata('nombre');
+                        $this->_apellido        = $CI->session->userdata('apellido');
+                        $this->_cedula          = $CI->session->userdata('cedula');
                         $this->_tipo_usuario    = $CI->session->userdata('tipo');
                         $this->_estado          = $CI->session->userdata('estado');
                         $this->_auth            = true;
@@ -116,6 +119,15 @@
             function getApellido()
             {
                 return $this->_apellido;
+            }
+
+        /**
+        * getCedula() retorna el apellido del usuario
+        * @return string _cedula
+        */
+            function getCedula()
+            {
+                return $this->_cedula;
             }
 
         /**
@@ -173,38 +185,52 @@
 
                 $CI = &get_instance();
 
-                $sql = "SELECT usu_cedula, usu_nombre, usu_apellido, usu_tipo, usu_estado
+                $sql = "SELECT usu_id, usu_cedula, usu_contrasena, usu_nombre, usu_apellido, usu_tipo, usu_estado
                         FROM tbl_usuario
-                        WHERE usu_usuario=? AND usu_contrasena=? AND usu_estado=?";
-                
-                $salt = '6&KTTmxa%Tej|y6uH%OhSrK@caXbNNo%I23tQmJ20Sid';
-                $enc_pass = sha1(md5($salt.$clave));
+                        WHERE usu_usuario=? AND usu_estado=?";
 
-                $query = $CI->db->query($sql, array($user, $enc_pass, 'A'));
+                $query = $CI->db->query($sql, array($user, 'A'));
 
                 if ($query->num_rows() == 1) 
                 {
-                    $row                    = $query->row();
-                    $this->_id              = $row->usu_cedula;
-                    $this->_nombre          = $row->usu_nombre;
-                    $this->_apellido        = $row->usu_apellido;
-                    $this->_tipo_usuario    = $row->usu_tipo;
-                    $this->_estado          = $row->usu_estado;
-                    $this->_auth            = true;
+                    $row = $query->row();
+                    
+                    $salt = explode(":", $row->usu_contrasena);
+                    $enc_pass = sha1(md5($salt[1].$clave));
+                    $contrasena_final = $enc_pass.":".$salt[1];
+                    
+                    if($contrasena_final === $row->usu_contrasena)
+                    {
+                        $this->_id              = $row->usu_id;
+                        $this->_cedula          = $row->usu_cedula;
+                        $this->_nombre          = $row->usu_nombre;
+                        $this->_apellido        = $row->usu_apellido;
+                        $this->_tipo_usuario    = $row->usu_tipo;
+                        $this->_estado          = $row->usu_estado;
+                        $this->_auth            = true;
 
-                    $info_session = array(
-                                            'id'            => $this->_id, 
-                                            'nombre'        => $this->_nombre,
-                                            'apellido'      => $this->_apellido,
-                                            'tipo'          => $this->_tipo_usuario,
-                                            'estado'        => $this->_estado,
-                                            'usuario'       => $user,
-                                            'contrasena'    => $clave
-                                         );
+                        $info_session = array(
+                                                'id'            => $this->_id, 
+                                                'nombre'        => $this->_nombre,
+                                                'apellido'      => $this->_apellido,
+                                                'cedula'        => $this->_cedula,
+                                                'tipo'          => $this->_tipo_usuario,
+                                                'estado'        => $this->_estado,
+                                                'usuario'       => $user,
+                                                'contrasena'    => $clave
+                                             );
 
-                    $CI->session->set_userdata($info_session);
+                        $CI->session->set_userdata($info_session);
 
-                    return true;
+                        return true;
+                    }
+                    else
+                    {
+                        $this->_auth = false;
+                        $this->logout();
+
+                        return false;
+                    } 
                 }
                 else
                 {
@@ -233,6 +259,7 @@
                 $this->_id              = 0;
                 $this->_nombre          = "";
                 $this->_apellido        = "";
+                $this->_cedula          = "";
                 $this->_tipo_usuario    = "";
                 $this->_estado          = "";
                

@@ -368,36 +368,30 @@
         function form_crear_asistente_curso()
         {
             $this->load->model("mod_curso","curso");
+            $data['existe_lista'] = true;
             
-            $select = "cur_nombre, cur_cupos_usados, cur_cupos_total";
+            $select = "cur_id, cur_nombre, cur_cupos_usados, cur_cupos_total";
             $where = array("cur_estado" => "D", "cur_id" => $this->input->post('id'));
             $resultado = $this->curso->get_cursos($select, $where);
             if($resultado)
             {
                 if ($resultado->num_rows() == 1)
                 {
-                    $row = $resultado->row();
-                    $data['curso_nombre'] = $row->cur_nombre;
+                    $row_curso = $resultado->row();
+                    $data['curso_nombre'] = $row_curso->cur_nombre;
 
-                    $cupos_disponibles = $row->cur_cupos_total - $row->cur_cupos_usados;
+                    $cupos_disponibles = $row_curso->cur_cupos_total - $row_curso->cur_cupos_usados;
                     $data['curso_cupos'] = $cupos_disponibles;
                 }
             }
             
-            $select = "*";
-            $where = array("la_estado" => "D", "la_usuario_id" => $this->clslogin->getId());
-            $resultado = $this->lista_asistente->get_listas_asitentes($select, $where);
+            $resultado = "";
             
-            $data['listas_asistente'] = array('' => 'Seleccione');
-            if($resultado)
-            {
-                foreach ($resultado->result() as $row)
-                {
-                    $data['listas_asistente'][$row->la_id] = $row->la_nombre;
-                }
-            }
+            $data_procedure = array('usuario'=>"'".$this->clslogin->getCedula()."'", 'estado_lista'=>"'D'", 'curso'=>"'".$row_curso->cur_id."'");
+            $resultado = $this->lista_asistente->sp_lista_asistente('sp_select_asistentes_registrados_curso', $data_procedure);
             
             $data['id_curso'] = $this->input->post('id');
+            $data['asistentes']['resultado'] = $resultado;
             
             $this->load->view("main/contenido/inferior/vw_registrar_asistencia", $data);
         }
@@ -646,7 +640,7 @@
         
         function editar_usuario()
         {
-            $where = array("usu_estado" => "A", "usu_tipo" => "U", "usu_cedula" => $this->input->post('id'));
+            $where = array("usu_estado" => "A", "usu_tipo" => "U", "usu_id" => $this->clslogin->getId());
             $data['resultado'] = $this->usuario->get_usuarios(array(), $where);
             
             $this->load->view("vw_editar_usuario", $data);

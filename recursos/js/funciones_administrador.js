@@ -4,7 +4,6 @@
     Author     : Edson Jonathan Franco Borja
     Description: Funciones sobre procesos del portal 
 */
-
     var servidor = ((location.href.split('/'))[0])+'//'+((location.href.split('/'))[2])+'/'+((location.href.split('/'))[3])+'/';
 
     function validar_formulario(form)
@@ -30,7 +29,6 @@
         {
             Ext.Msg.alert("Error","Debe llenar los campos requeridos");
             return false;
-
         }
         else
         {
@@ -179,6 +177,13 @@
                     Ext.Msg.alert('Informaci\xf3n',result.msg, function(){
                         $.modal.close();
                         cambiar_pestana('pendientes','ver_usuarios/pendientes','listado_usuario');
+                    });
+                }
+                else if(result.st == 5)
+                {
+                    Ext.Msg.alert('Informaci\xf3n',result.msg, function(){
+                        $.modal.close();
+                        window.location.replace(result.url);
                     });
                 }
             },
@@ -421,30 +426,9 @@
     }
     
 
-    function ver_mapa(latitud, longitud, direccion)
+    function ver_mapa()
     {
-        if(latitud === "" || longitud === "" || latitud === undefined || longitud === undefined){
-            latitud = document.getElementById('latitud').value;
-            longitud = document.getElementById('longitud').value;
-        }
-        
-        if(direccion === "" || direccion === undefined){
-            direccion = document.getElementById('direccion_curso').value;
-        }
-        
-        if(latitud === "" || longitud === ""){
-            Ext.Msg.alert("Atenci\xf3n","Debe ingresar Latitud y Longitud");
-            return ;
-        }
-        
-        if(direccion === ""){
-            Ext.Msg.alert("Atenci\xf3n","Debe ingresar la Direcci\xf3n del Curso");
-            return ;
-        }
-        
-        direccion = direccion.replace(/ /gi, "_");
-        
-        window.open(servidor+'administrador/google_maps/'+latitud+'/'+longitud+'/'+direccion,'_newtab');
+        window.open(servidor+'administrador/google_maps/','_newtab');
     }
 
 

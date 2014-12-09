@@ -1,65 +1,244 @@
-<?php 
-    if(empty($latitud)){   $latitud =  "-34.397";   }
-    if(empty($longitud)){   $longitud =  "150.644";   }
-    if(empty($direccion)){   $direccion =  "Guayaquil";   }
-?>
-
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-    <script type="text/javascript" src="<?php echo HTTP_JS_PATH; ?>mis_funciones.js"></script>
-    <style type="text/css">
-        html { height: 100% }
-        body { height: 100%; margin: 0; padding: 0 }
-        #map_canvas { height: 100% }
-    </style>
-    
-    <script type="text/javascript">
-        function initialize() {
-            var mapOptions = {
-                zoom: 10,
-                center: new google.maps.LatLng(<?php echo $latitud; ?>, <?php echo $longitud; ?>),
-                mapTypeId: google.maps.MapTypeId.ROADMAP
+    <head>
+        <title>Portal De Distribuidores - Google Maps</title>
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+        <meta charset="utf-8">
+        <style>
+            html, body, #map-canvas
+            {
+                height: 100%;
+                margin: 0px;
+                padding: 0px
             }
-            
-            var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
-            
-            var image = servidor+'recursos/images/Main/Header/logo_claro.png';
-            var marker = new google.maps.Marker({
-                position: map.getCenter(),
-                map: map,
-                icon: image
-            });
-            
-            attachSecretMessage(marker);
-        }
+
+            .controls
+            {
+                margin-top: 16px;
+                border: 1px solid transparent;
+                border-radius: 2px 0 0 2px;
+                box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                height: 32px;
+                outline: none;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            }
+
+            #pac-input
+            {
+                background-color: #fff;
+                padding: 0 11px 0 13px;
+                width: 400px;
+                font-family: Roboto;
+                font-size: 15px;
+                font-weight: 300;
+                text-overflow: ellipsis;
+            }
+
+            #pac-input:focus
+            {
+                border-color: #4d90fe;
+                margin-left: -1px;
+                padding-left: 14px;  /* Regular padding-left + 1. */
+                width: 401px;
+            }
+
+            .pac-container
+            {
+                font-family: Roboto;
+            }
+
+            #type-selector
+            {
+                color: #fff;
+                background-color: #4d90fe;
+                padding: 5px 11px 0px 11px;
+            }
+
+            #type-selector label
+            {
+                font-family: Roboto;
+                font-size: 13px;
+                font-weight: 300;
+            }
+
+            #content
+            {
+                width: 300px;
+                height: auto;
+                overflow: hidden;
+            }
+        </style>
         
-        
-        function attachSecretMessage(marker) {
-            var infowindow = new google.maps.InfoWindow({
-              content: '<?php echo $direccion; ?>',
-              maxWidth: 200
-            });
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
 
-            google.maps.event.addListener(marker, 'click', function() {
-              infowindow.open(marker.get('map'), marker);
-            });
-        }
+        <script>
+            function initialize()
+            {
+                var mapOptions = 
+                {
+                    center: new google.maps.LatLng(-2.19761,-79.8917601),
+                    zoom: 15
+                };
 
+                var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
-        function loadScript() {
-          var script = document.createElement("script");
-          script.type = "text/javascript";
-          script.src = "http://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyA-i_PTRqrVd0x3vwi1jb3Fl-KDBazWvJI&sensor=false&callback=initialize";
-          document.body.appendChild(script);
-        }
+                var input = /** @type {HTMLInputElement} */( document.getElementById('pac-input') );
 
-        window.onload = loadScript;
-    </script>
-  </head>
-  <body >
-    <div id="map_canvas" style="width:100%; height:100%"></div>
-  </body>
+                var types = document.getElementById('type-selector');
+                map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+                map.controls[google.maps.ControlPosition.TOP_LEFT].push(types);
+
+                var autocomplete = new google.maps.places.Autocomplete(input);
+                autocomplete.bindTo('bounds', map);
+
+                var infowindow = new google.maps.InfoWindow();
+                var marker = new google.maps.Marker
+                ({
+                    map: map,
+                    draggable:true,
+                    anchorPoint: new google.maps.Point(0, -29)
+                });
+
+                google.maps.event.addListener(marker, 'dragend', function()
+                { 
+                    infowindow.close();
+                    geocodePosition(marker.getPosition());
+                });
+
+                function geocodePosition(pos) 
+                {
+                    geocoder = new google.maps.Geocoder();
+                    geocoder.geocode
+                    (
+                        {
+                            latLng: pos
+                        }, 
+                        function(results, status) 
+                        {
+                            if (status == google.maps.GeocoderStatus.OK) 
+                            {
+                                infowindow.setContent
+                                (
+                                    '<div id="content">'
+                                    + '<strong>' 
+                                            + results[0].formatted_address
+                                    + '</strong>'
+                                    + '<br>' 
+                                    + results[0].geometry.location.lat() + ',' + results[0].geometry.location.lng()
+                                    +'</div>'
+                                );
+                            } 
+                            else 
+                            {
+                                infowindow.setContent
+                                (
+                                    '<div>'
+                                            + '<strong>No se pudo determinar la dirección de este lugar</strong>'
+                                    +'</div>'
+                                );
+                            }
+
+                            infowindow.open(map, marker);
+                        }
+                    );
+                }
+
+                google.maps.event.addListener(autocomplete, 'place_changed', function()
+                {
+                    infowindow.close();
+                    marker.setVisible(false);
+                    var place = autocomplete.getPlace();
+                    if (!place.geometry)
+                    {
+                        return;
+                    }
+
+                    // If the place has a geometry, then present it on a map.
+                    if (place.geometry.viewport)
+                    {
+                        map.fitBounds(place.geometry.viewport);
+                    }
+                    else
+                    {
+                        map.setCenter(place.geometry.location);
+                        map.setZoom(17);  // Why 17? Because it looks good.
+                    }
+
+                    marker.setIcon
+                    (/** @type {google.maps.Icon} */
+                        ({
+                            url: place.icon,
+                            size: new google.maps.Size(71, 71),
+                            origin: new google.maps.Point(0, 0),
+                            anchor: new google.maps.Point(17, 34),
+                            scaledSize: new google.maps.Size(35, 35)
+                        })
+                    );
+
+                    marker.setPosition(place.geometry.location);
+                    marker.setVisible(true);
+
+                    var address = '';
+                    if (place.address_components)
+                    {
+                        address =
+                        [
+                                (place.address_components[0] && place.address_components[0].short_name || ''),
+                                (place.address_components[1] && place.address_components[1].short_name || ''),
+                                (place.address_components[2] && place.address_components[2].short_name || '')
+                        ].join(' ');
+                    }
+
+                    infowindow.setContent
+                    (
+                        '<div id="content">'
+                        + '<strong>' 
+                                + place.name 
+                        + '</strong>'
+                        + '<br>' 
+                        + place.geometry.location.lat() + ',' + place.geometry.location.lng()
+                        + '<br>' 
+                        + address
+                    );
+
+                    infowindow.open(map, marker);
+                });
+
+                // Sets a listener on a radio button to change the filter type on Places
+                // Autocomplete.
+                function setupClickListener(id, types)
+                {
+                    var radioButton = document.getElementById(id);
+                    google.maps.event.addDomListener(radioButton, 'click', function() {
+                            autocomplete.setTypes(types);
+                    });
+                }
+
+                /*setupClickListener('changetype-all', []);
+                setupClickListener('changetype-address', ['address']);
+                setupClickListener('changetype-establishment', ['establishment']);
+                setupClickListener('changetype-geocode', ['geocode']);*/
+            }
+
+            google.maps.event.addDomListener(window, 'load', initialize);
+        </script>
+    </head>
+    <body>
+        <input id="pac-input" class="controls" type="text" placeholder="Enter a location" />
+        <!--<div id="type-selector" class="controls">
+          <input type="radio" name="type" id="changetype-all" checked="checked">
+          <label for="changetype-all">All</label>
+
+          <input type="radio" name="type" id="changetype-establishment">
+          <label for="changetype-establishment">Establishments</label>
+
+          <input type="radio" name="type" id="changetype-address">
+          <label for="changetype-address">Addresses</label>
+
+          <input type="radio" name="type" id="changetype-geocode">
+          <label for="changetype-geocode">Geocodes</label>
+        </div>-->
+        <div id="map-canvas"></div>
+    </body>
 </html>
-

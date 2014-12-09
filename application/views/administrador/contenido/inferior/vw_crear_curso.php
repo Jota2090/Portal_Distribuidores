@@ -192,7 +192,7 @@
                     <div style='float: left; padding: 2px 5px 0px 0px;'> Lat </div>".form_input($data).
                     "<div style='float: left; padding: 2px 5px;'> Lon </div>".form_input($data2).
                     "<div style='clear: both; padding-top: 5px; text-align: right;'> 
-                       <a style='color: red' href='javascript:' onclick='ver_mapa();'> Abrir GoogleMaps </a> 
+                        <a style='color: red' href='javascript:' onclick='ver_mapa();'> Abrir GoogleMaps </a> 
                      </div>
                 </div>
              </div>";

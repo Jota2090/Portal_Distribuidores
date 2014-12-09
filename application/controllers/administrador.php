@@ -111,8 +111,10 @@
             
             $resultado = $this->tema->get_temas('*', array('tem_estado'=>'D'));
             $data['temas'] = array('' => 'Seleccione');
-            if($resultado){
-                foreach ($resultado->result() as $row) {
+            if($resultado)
+            {
+                foreach ($resultado->result() as $row) 
+                {
                     $data['temas'][$row->tem_id] = $row->tem_nombre;
                 }
             }
@@ -123,13 +125,9 @@
         }
         
         
-        function google_maps($latitud, $longitud, $direccion)
+        function google_maps()
         {
-            $data['latitud'] = $latitud;
-            $data['longitud'] = $longitud;
-            $data['direccion'] = str_replace("_", " ", $direccion);
-            
-            $this->load->view("vw_google_maps", $data);
+           $this->load->view("vw_google_maps");
         }
         
         function tabla_listado_cursos()
@@ -385,7 +383,7 @@
         
         function editar_usuario()
         {
-            $where = array("usu_estado" => "A", "usu_tipo" => "A", "usu_cedula" => $this->input->post('id'));
+            $where = array("usu_estado" => "A", "usu_tipo" => "A", "usu_id" => $this->clslogin->getId());
             $data['resultado'] = $this->usuario->get_usuarios(array(), $where);
             
             $this->load->view("vw_editar_usuario", $data);
@@ -394,9 +392,7 @@
         
         function editar_contrasena()
         {
-            $data['ced'] = $this->input->post('id');
-            
-            $this->load->view("vw_editar_contrasena", $data);
+            $this->load->view("vw_editar_contrasena");
         }
 
 

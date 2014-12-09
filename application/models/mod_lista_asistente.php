@@ -333,6 +333,29 @@
                     }
                     
                     break;
+                    
+                    
+                case 'sp_select_asistentes_registrados_curso':
+                    
+                    $query = "call ".$nombre_sp."(".$data['usuario'].",".$data['estado_lista'].",".$data['curso'].")";
+                    $this->db->trans_start();
+                    $resultado = $this->db->query($query); 
+                    $this->db->trans_complete();
+                    
+                    if ($this->db->trans_status() === FALSE)
+                    {
+                        log_message('error', 'Accion: SELECT_ASISTENTES_REGISTRADOS_CURSO; Mensaje: PROBLEMA CON EL SERVIDOR; Id_Lista: ('.$data['usuario'].'); Info_Lista: (Estado: '.$data['estado_lista'].', Curso: '.$data['curso'].'); Realizado por: '.$this->clslogin->getId(), FALSE, 'Lista_Asistente');
+
+                        $this->db->trans_rollback();
+                    }
+                    else
+                    {
+                        log_message('info', 'Accion: SELECT_ASISTENTES_REGISTRADOS_CURSO; Mensaje: EXITO; Id_Lista: ('.$data['usuario'].'); Info_Lista: (Estado: '.$data['estado_lista'].', Curso: '.$data['curso'].'); Realizado por: '.$this->clslogin->getId(), FALSE, 'Lista_Asistente');
+
+                        $this->db->trans_commit();
+                    }
+                    
+                    break;
             }
             
             return $resultado;

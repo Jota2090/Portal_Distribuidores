@@ -39,7 +39,7 @@
                         }
                     }
                     
-                    $js = "id='ciudad' class='form_modal_input'";
+                    $js = "id='ciudad'";
                     $data = form_dropdown('ciudad', $data['ciudades'], '', $js);
 
                     break;

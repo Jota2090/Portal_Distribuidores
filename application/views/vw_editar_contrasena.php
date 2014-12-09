@@ -1,7 +1,6 @@
 <?php
     $attributes = array('id' => 'f_contrasena', 'name' => 'f_contrasena');
-    $hidden = array('ced' => $ced);
-    echo form_open('usuarios/cambiar_contrasena', $attributes, $hidden);
+    echo form_open('usuarios/cambiar_contrasena', $attributes);
 ?>
 <div class="titulo_modal fondo_titulo_modal_small">
     <span>

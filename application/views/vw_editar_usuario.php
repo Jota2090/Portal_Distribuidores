@@ -6,8 +6,9 @@
             $row = $resultado->row();
             
             $attributes = array('id' => 'f_usuario', 'name' => 'f_usuario');
-            $hidden = array('ced' => $row->usu_cedula, 'nro' => $row->usu_id);
-            echo form_open('usuarios/editar_usuario', $attributes, $hidden);
+            /*$hidden = array('ced' => $row->usu_cedula, 'nro' => $row->usu_id);
+            echo form_open('usuarios/editar_usuario', $attributes, $hidden);*/
+            echo form_open('usuarios/editar_usuario', $attributes);
     ?>
             <div class="titulo_modal fondo_titulo_modal_small">
                 <span>

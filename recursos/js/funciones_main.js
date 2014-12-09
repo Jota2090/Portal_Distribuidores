@@ -160,6 +160,13 @@
                         $.modal.close();
                     });
                 }
+                else if(result.st == 5)
+                {
+                    Ext.Msg.alert('Informaci\xf3n',result.msg, function(){
+                        $.modal.close();
+                        window.location.replace(result.url);
+                    });
+                }
             },
             error: function(){
                 Ext.Msg.alert('Error','Ha ocurrido un problema con el servidor, por favor vuelva a intentarlo');

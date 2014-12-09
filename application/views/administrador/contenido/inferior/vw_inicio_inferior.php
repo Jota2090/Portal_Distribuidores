@@ -40,9 +40,9 @@
                                 </div>
                             </div>
                             <div class="footer_curso_destacados">&nbsp;</div>
-                            <div class="boton_curso_destacados" onclick="registrarse('<?php echo $this->clslogin->getAuth(); ?>');">
+                            <!--<div class="boton_curso_destacados" onclick="registrarse('<?php echo $this->clslogin->getAuth(); ?>');">
                                 Registrarse
-                            </div>
+                            </div>-->
                         </div>
                         <div class="espacio_cursos_destacados">&nbsp;</div>
             <?php
