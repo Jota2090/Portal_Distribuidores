@@ -25,8 +25,10 @@
 </table>
 
 <script>
-    $(document).ready(function() {
-        $('#cursos').dataTable({
+    $(document).ready(function()
+    {
+        $('#cursos').dataTable
+        ({
             "ajax": '<?php echo base_url()."cursos/listar_cursos/1";?>',
             "order": [[ 2, "asc" ]],
             "columns": [
@@ -54,23 +56,24 @@
                 { "data": "estado" },
                 {
                     "data": "id",
-                    "render": function ( data ) {
-                                
-                                return '<div class="acciones" onclick="ver_detalles(\'curso\',\'id='+data+'\');">'+
-                                    '<i class="icono-ver_detalles"></i>'+
-                                    '<a href="javascript:">Ver Detalles</a>'+
-                                   '</div>'+
-                                   '<div class="acciones" onclick="crear_formulario(\'asistente_curso\',\'id='+data+'\');">'+
-                                    '<i class="icono-agregar-asistente"></i>'+
-                                    '<a href="javascript:">Asistencia</a>'+
-                                   '</div>'+
-                                   '<div class="acciones" onclick="crear_formulario(\'imprimir_asistencia\',\'id='+data+'\');">'+
-                                    '<a href="javascript:">Imprimir</a>'+
-                                   '</div>';
-                              }
+                    "render": function ( data )
+                    {
+                        return '<div class="acciones" onclick="ver_detalles(\'curso\',\'id='+data+'\');">'+
+                            '<i class="icono-ver_detalles"></i>'+
+                            '<a href="javascript:">Ver Detalles</a>'+
+                           '</div>'+
+                           '<div class="acciones" onclick="crear_formulario(\'asistente_curso\',\'id='+data+'\');">'+
+                            '<i class="icono-agregar-asistente"></i>'+
+                            '<a href="javascript:">Asistencia</a>'+
+                           '</div>'+
+                           '<div class="acciones" onclick="crear_formulario(\'imprimir_asistencia\',\'id='+data+'\');">'+
+                            '<a href="javascript:">Imprimir</a>'+
+                           '</div>';
+                    }
                 }
             ],
-            "language": {
+            "language":
+            {
                 "lengthMenu": "Mostrar _MENU_ cursos por p&aacute;gina",
                 "zeroRecords": "No existen cursos registrados",
                 "info": "Mostrando del _START_ al _END_ de _TOTAL_ cursos",

@@ -36,7 +36,7 @@
                     Lista de Asistentes
                 </div>
                 <div id="asistente_listado" class="max-height scroll-y">
-                    <?php  $this->load->view('main/contenido/inferior/vw_opciones_registrar_asistencia', $asistentes); ?>
+                    <?php  $this->load->view('main/contenido/inferior/vw_listado_asistentes_curso', $asistentes); ?>
                 </div>
             </div>
         </div>
