@@ -288,7 +288,8 @@
         var recurso = form.split('_');
         
         Ext.Msg.confirm('Confirmaci\xF3n', 'Confirma que desea quitar el '+recurso[0]+' seleccionado?', function(buttonText) {
-            if (buttonText == "yes"){
+            if (buttonText == "yes")
+			{
                 $.ajax({
                     type:"post",
                     url: servidor+"main/quitar_"+form,
@@ -296,14 +297,17 @@
                     beforeSend: function () {
                         $( "#"+form ).html( "<div style='position: relative; top: 40%; vertical-align: middle; text-align: center;'>Cargando... <img src='"+servidor+"recursos/images/loading.gif'></div>" );
                     },
-                    success:function(info){
+                    success:function(info)
+					{
                         $( "#"+form ).html( info );
                         
-                        if(funcion !== "" && funcion !== null){
+                        if(funcion !== "" && funcion !== null)
+						{
                             refrescar_seccion(funcion, seccion);
                         }
                     },
-                    error: function(){
+                    error: function()
+					{
                         Ext.Msg.alert('Error','Ha ocurrido un problema con el servidor, por favor vuelva a intentarlo');
                     }
                 });
@@ -469,19 +473,6 @@
     {
         $("#"+menu).toggle();
     }
-
-
-    function marcar_todos(table)
-    {
-        var TABLE = document.getElementById(table);
-        for (var i=0; i<TABLE.rows.length; i++) {
-            var chk = TABLE.rows[i].cells[1].childNodes[1];
-            if(chk)
-            {
-                $('input[type=checkbox]').attr('checked','checked');
-            }
-        }
-    }
     
 
     function redirect_by_post(form)
@@ -504,6 +495,36 @@
             Ext.Msg.alert("Informaci\xf3n", "Debes Loguearte en el Portal para registrarte en un curso", function(){
                 desplegar("iniciar_sesion");
             });
+        }
+    }
+
+
+    function marcar_todos(table, checkbox)
+    {
+        var TABLE = document.getElementById(table);
+        var checkBox = $('#'+checkbox) || false;
+        
+        for (var i=0; i<TABLE.rows.length; i++)
+        {
+            var chk = TABLE.rows[i].cells[1].childNodes[1];
+            if(chk)
+            {
+                if(checkBox)
+                {
+                    if( checkBox.is(':checked') )
+                    {
+                        $('input[type=checkbox]').prop('checked', true);
+                    }
+                    else
+                    {
+                        $('input[type=checkbox]').prop('checked',false);
+                    }
+                }
+                else
+                {
+                    $('input[type=checkbox]').attr('checked','checked');
+                }
+            }
         }
     }
 

@@ -102,7 +102,7 @@
         function form_crear_lista_asistente()
         {
             $select = array("0" => "*");
-            $where = array("asi_estado" => "A", "asi_usuario_id" => $this->clslogin->getId());
+            $where = array("asi_estado" => "A", "asi_usuario_id" => $this->clslogin->getCedula());
             $resultado = $this->asistente->get_asistentes($select, $where);
             $data['resultado'] = $resultado;
             
@@ -113,12 +113,20 @@
         function editar_lista_asistente()
         {
             $select = "*";
-            $where = array("la_estado" => "D", "la_usuario_id" => $this->clslogin->getId(), "la_id" => $this->input->post("id"));
+            $where = array(
+                            "la_estado" => "D",
+                            "la_usuario_id" => $this->clslogin->getCedula(),
+                            "la_id" => $this->input->post("id")
+                          );
             $resultado = $this->lista_asistente->get_listas_asitentes($select, $where);
             $data['lista'] = $resultado;
             
             $select = "*";
-            $where = array("asi_estado" => "A", "asi_usuario_id" => $this->clslogin->getId(), "ral_lista_asistente_id" => $this->input->post("id"));
+            $where = array(
+                            "asi_estado" => "A",
+                            "asi_usuario_id" => $this->clslogin->getCedula(),
+                            "ral_lista_asistente_id" => $this->input->post("id")
+                          );
             $join = array( "tbl_asistente" => "ral_asistente_id=asi_cedula" );
             $order_by = array("asi_nombre_completo" => "asc");
             $resultado = $this->registro_asistente_lista->get_registro_asistente_lista($select, $where, array(), $join, $order_by);
@@ -397,53 +405,14 @@
         }
 
 
-        function asistentes_agregados_cursos($id_curso,$id_lista)
+        function asistentes_agregados_cursos_y_disponibles($id_curso)
         {
-            $data['existe_lista'] = false;
+            $data_procedure = array('usuario'=>"'".$this->clslogin->getCedula()."'", 'estado_lista'=>"'D'", 'curso'=>"'".$id_curso."'");
+            $resultado = $this->lista_asistente->sp_lista_asistente('sp_select_asistentes_registrados_curso', $data_procedure);
             
-            $this->load->model("mod_registro_asistente_curso","registro_asistente_curso");
+            $data['resultado'] = $resultado;
             
-            $post_lista = $this->input->post('lista_asistente');
-            
-            if(($id_lista == 0 || $id_lista == null || $id_lista == "") && $post_lista)
-            {   
-                $id_lista = $this->input->post('lista_asistente');
-            }
-            
-            if($id_lista != 0 && $id_lista != null && $id_lista != "")
-            {
-                $where = array("asi_estado" => "A", "asi_usuario_id" => $this->clslogin->getId(),
-                            "rac_lista_asistente_id" => $id_lista,
-                            "rac_curso_id" => $id_curso );
-                $join = array( "tbl_asistente" => "rac_asistente_id=asi_cedula" );
-                $order_by = array("asi_nombre_completo" => "asc");
-                $resultado = $this->registro_asistente_curso->get_registro_asistente_curso(array(), $where, array(), $join, $order_by);
-
-                $asistentes = $resultado;
-                $data['existe_lista'] = true;
-            }
-            
-            if($post_lista)
-            {
-                $data['lista_asistentes']['asistentes'] = $asistentes;
-                $data['curso_id'] = $id_curso;
-                $data['lista_id'] = $id_lista;
-                $data['view'] = 'main/contenido/inferior/ajax/vw_tabla_asistentes_agregados_cursos';
-
-                $this->load->view('main/contenido/inferior/vw_opciones_registrar_asistencia', $data);
-            }
-            else
-            {
-                if($data['existe_lista'])
-                {
-                    $data['asistentes'] = $asistentes;
-                    $this->load->view('main/contenido/inferior/ajax/vw_tabla_asistentes_agregados_cursos', $data);
-                }
-                else
-                {
-                    $this->load->view('main/contenido/inferior/vw_opciones_registrar_asistencia', $data);
-                }
-            }
+            $this->load->view("main/contenido/inferior/vw_listado_asistentes_curso", $data);
         }
         
         
@@ -505,7 +474,7 @@
         }
         
         
-        function quitar_asistente_lista_curso()
+        function quitar_asistente_listado()
         {
             $id_curso = $this->input->post("id_curso");
             $id_lista = $this->input->post("id_lista");
@@ -541,7 +510,7 @@
                 echo 'Hubo un problema con el servidor, por favor vuelva a intentar';
             }
             
-            $this->asistentes_agregados_cursos($id_curso,$id_lista);
+            $this->asistentes_agregados_cursos_y_disponibles($id_curso);
         }
         
         
@@ -624,12 +593,12 @@
                 }
             }
             
-            $where = array("asi_estado" => "A", "asi_usuario_id" => $this->clslogin->getId(),
+            $where = array("asi_estado" => "A", "asi_usuario_id" => $this->clslogin->getCedula(),
                             "rac_curso_id" => $this->input->post('id') );
             $join = array( "tbl_asistente" => "rac_asistente_id=asi_cedula", "tbl_lista_asistente" => "rac_lista_asistente_id=la_id");
             $order_by = array("la_nombre" => "asc", "asi_nombre_completo" => "asc");
             $resultado = $this->registro_asistente_curso->get_registro_asistente_curso(array(), $where, array(), $join, $order_by);
-
+            //var_dump($resultado);
             $data['resultado'] = $resultado;
             
             $data['id_curso'] = $this->input->post('id');

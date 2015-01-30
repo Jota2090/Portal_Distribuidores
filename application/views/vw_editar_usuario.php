@@ -88,8 +88,6 @@
                       </div>";
 
             ?>
-            </div>
-            <div class="fondo_footer_modal_small">
                 <div class="boton_modal">
                     <button type="submit" class="boton_modal_fondo" onclick="enviar_formulario('f_usuario', '', '');">
                         <i class="icono-guardar">&nbsp;</i>
@@ -97,6 +95,7 @@
                     </button>
                 </div>
             </div>
+            <div class="fondo_footer_modal_small">&nbsp;</div>
 <?php
             echo form_close();
         }

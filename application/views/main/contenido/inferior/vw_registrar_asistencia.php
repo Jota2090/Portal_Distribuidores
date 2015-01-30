@@ -39,20 +39,14 @@
                     <?php  $this->load->view('main/contenido/inferior/vw_listado_asistentes_curso', $asistentes); ?>
                 </div>
             </div>
-        </div>
-        <div class="fondo_footer_modal_medium">
             <div class="boton_modal">
-                <span class="boton_modal_fondo">
+                <button type="submit" class="boton_modal_fondo" onclick="enviar_formulario('f_registro_asistente', 'tabla_cursos_usuarios', 'listado_cursos_usuarios');">
                     <i class="icono-agregar-asistente_blanco">&nbsp;</i>
-                    <span>
-                    <?php
-                        $js = 'onclick="enviar_formulario(\'f_registro_asistente\', \'tabla_cursos_usuarios\', \'listado_cursos_usuarios\')"';
-                        echo form_submit('crear', 'Registrar Asistencia', $js);
-                    ?>
-                    </span>
-                </span>
+                    Registrar Asistencia
+                </button>
             </div>
         </div>
+        <div class="fondo_footer_modal_medium">&nbsp;</div>
 
 <?php
     echo form_close();

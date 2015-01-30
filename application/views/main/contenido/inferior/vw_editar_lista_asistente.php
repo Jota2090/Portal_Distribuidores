@@ -7,7 +7,7 @@
             $hidden = array('id' => $row->la_id);
             echo form_open('asistentes/editar_lista_asistente', $attributes, $hidden);
 ?>
-                <div class="titulo_modal">
+                <div class="titulo_modal fondo_titulo_modal_small">
                     <span>
                         <span class="titulo_modal_imagen_izq">&nbsp;</span>
                         <span class="titulo_modal_cuerpo">
@@ -18,14 +18,17 @@
                         <span class="titulo_modal_imagen_der" >&nbsp;</span>
                     </span>
                 </div>
-                <div class="cuerpo_modal">
+                <div class="cuerpo_modal fondo_cuerpo_modal_small">
                     <?php    
                         $data = array('autocomplete'=>'off', 'class'=>'form_modal_input', 'name'=>'nombre_lista', 'id'=>'nombre_lista', 'value'=>set_value("nombre_lista", $row->la_nombre), 'type'=>'text');
-                        echo "<div class='form_div'><div class='form_modal_label' style='width:100px'>Nombre:</div>".form_input($data)."</div>";
+                        echo "<div class='form_div'>".
+                                "<div class='form_modal_label' style='width:100px'>".
+                                    "Nombre:".
+                                "</div>".
+                                form_input($data).
+                             "</div>";
                     ?>
-                </div>
-                <div class="cuerpo_modal">
-                    <div class="titulo_cuerpo_modal" style="margin-bottom: 0px;">
+                    <div class="titulo_cuerpo_modal">
                         <span class="tabs">
                             <span id="tab_izq" class="selected_boton_blanco_izq">&nbsp;</span>
                             <span id="tab_menu_agregados" class="tabs_content selected_boton_blanco_centro" onclick="tabs('agregados','izq','0','blanco','listado_asistentes_agregados/<?php echo $row->la_id;  ?>','asistente_lista');">

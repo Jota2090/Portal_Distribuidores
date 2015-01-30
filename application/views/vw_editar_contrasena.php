@@ -33,8 +33,8 @@
             </div>
             <div class='form_modal_input'>
                 ".form_input($data, '', $js)."   
-                <div class='form_modal_input' style='height: 35px; text-align: right; float: right; margin-right: 55px;' id='validador_contrasena'>
-                    <img src='".  base_url()."recursos/images/Main/Header/barra_gris_contrasena.png' />
+                <div class='form_modal_input' style='height: 35px; text-align: right; float: right; margin-right: 71px;' id='validador_contrasena'>
+                    <img width='180px' src='".  base_url()."recursos/images/Main/Header/barra_gris_contrasena.png' />
                 </div>
             </div>
           </div>";
@@ -51,8 +51,6 @@
           </div>";
 
 ?>
-</div>
-<div class="fondo_footer_modal_small">
     <div class="boton_modal">
         <button type="submit" class="boton_modal_fondo" onclick="enviar_formulario('f_contrasena','','');">
             <i class="icono-guardar">&nbsp;</i>
@@ -60,6 +58,7 @@
         </button>
     </div>
 </div>
+<div class="fondo_footer_modal_small">&nbsp;</div>
 <?php
     echo form_close();
 ?>
@@ -71,13 +70,13 @@
         var enoughRegex = new RegExp("(?=.{8,}).*", "g");
 
         if (false == enoughRegex.test($(this).val())) {
-             $('#validador_contrasena').html("<img src='<?php echo base_url() ?>recursos/images/Main/Header/barra_gris_contrasena.png' /><div>8 caracteres m&iacute;nimo</div>");
+             $('#validador_contrasena').html("<img width='180px' src='<?php echo base_url() ?>recursos/images/Main/Header/barra_gris_contrasena.png' /><div>8 caracteres m&iacute;nimo</div>");
         } else if (strongRegex.test($(this).val())) {
-             $('#validador_contrasena').html("<img src='<?php echo base_url() ?>recursos/images/Main/Header/barra_fuerte_contrasena.png' /><div>Segura</div>");
+             $('#validador_contrasena').html("<img width='180px' src='<?php echo base_url() ?>recursos/images/Main/Header/barra_fuerte_contrasena.png' /><div>Segura</div>");
         } else if (mediumRegex.test($(this).val())) {
-             $('#validador_contrasena').html("<img src='<?php echo base_url() ?>recursos/images/Main/Header/barra_medio_contrasena.png' /><div>Medio</div>");
+             $('#validador_contrasena').html("<img width='180px' src='<?php echo base_url() ?>recursos/images/Main/Header/barra_medio_contrasena.png' /><div>Medio</div>");
         } else {
-             $('#validador_contrasena').html("<img src='<?php echo base_url() ?>recursos/images/Main/Header/barra_debil_contrasena.png' /><div>D&eacute;bil</div>");
+             $('#validador_contrasena').html("<img width='180px' src='<?php echo base_url() ?>recursos/images/Main/Header/barra_debil_contrasena.png' /><div>D&eacute;bil</div>");
         }
         return true;
     });

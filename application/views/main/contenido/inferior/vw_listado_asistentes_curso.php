@@ -53,13 +53,13 @@
                                     <?php
                                         if($row->rac_curso_id == "" || $row->rac_curso_id == null)
                                         {
-                                            $data = array('name'=>'asistente[]', 'id'=>'asistente', 'value'=>$row->asi_cedula);
+                                            $data = array('name'=>'asistente[]', 'id'=>'asistente', 'value'=>$row->asi_cedula."_".$lista_id);
                                             echo form_checkbox($data);
                                         }
                                         else
                                         {
                                     ?>
-                                            <div onclick="quitar('asistente_lista_curso','id_asistente=<?php echo $row->asi_cedula;?>&id_curso=<?php echo $row->rac_curso_id;?>&id_lista=<?php echo $row->rac_lista_asistente_id;?>','tabla_cursos_usuarios','listado_cursos_usuarios');">
+                                            <div onclick="quitar('asistente_listado','id_asistente=<?php echo $row->asi_cedula;?>&id_curso=<?php echo $row->rac_curso_id;?>&id_lista=<?php echo $row->rac_lista_asistente_id;?>','tabla_cursos_usuarios','listado_cursos_usuarios');">
                                                 <a href="javascript:">Quitar</a>
                                             </div>
                                     <?php

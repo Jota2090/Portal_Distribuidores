@@ -173,16 +173,15 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="fondo_footer_modal_large">
-        <a rel="modal:close" href="#close-modal">
-            <div class="boton_modal">
-                <span class="boton_modal_fondo">
+        <div class="boton_modal">
+            <a rel="modal:close" href="#close-modal">
+                <span class="boton_modal_fondo" style="padding: 12px 40px;">
                     Salir
                 </span>
-            </div>
-        </a>
+            </a>
+        </div>
     </div>
+    <div class="fondo_footer_modal_large">&nbsp;</div>
 <?php
             break;
         }

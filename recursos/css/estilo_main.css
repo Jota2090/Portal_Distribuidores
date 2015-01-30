@@ -5,7 +5,8 @@
     Description: Estilo de la estructura principal del portal
 */
 
-body{
+body
+{
     width: 100%;
     height: auto;
     padding: 0px; 
@@ -15,13 +16,16 @@ body{
     font-size: 12px;
 }
 
-@font-face {
+
+@font-face
+{
     font-family: Lego;
     src: url('../fonts/Lego.ttf');
 }
 
 
-button{
+button
+{
     background: transparent;
     border: 0px;
     position: relative;
@@ -30,24 +34,29 @@ button{
     cursor: pointer;
 }
 
-button:hover{
+button:hover
+{
     color: orange;
 }
 
-img{
+img
+{
     border: 0;
 }
 
-a{
+a
+{
     text-decoration: none;
     color: red;
 }
 
-.right{
+.right
+{
     text-align: right;
 }
 
-.left{
+.left
+{
     text-align: left;
 }
 
@@ -352,9 +361,7 @@ a{
     {
         height: auto;
         overflow: hidden;
-        padding-top: 10px;
-        padding-bottom: 30px;
-        padding-left: 40px;
+        padding: 10px 40px 0px;
     }
     
     .max-height
@@ -411,10 +418,9 @@ a{
         
             .form_div
             {
-                width: 90%;
                 min-height: 30px;
                 clear: both;
-                padding-top: 2px;
+                padding: 2px 15px;
                 height: auto;
                 overflow: hidden;
             }
@@ -473,10 +479,10 @@ a{
     {
         clear: both;
         width: 100%;
-        height: 30px;
-        /*padding: 20px;*/
+        /*height: 30px;*/
         text-align: center;
         cursor: pointer;
+        margin-top: 25px;
     }
     
         .boton_modal_fondo
@@ -484,11 +490,11 @@ a{
             background: url(../images/Administrador/Contenido/cuerpo_btn_rojo.png) repeat-x transparent;
             width: auto;
             color: white;
-            padding: 12px 40px;
+            padding: 5px 40px;
             text-align: center;
             border: 0px;
             min-width: 150px;
-            line-height: 15px;
+            line-height: 30px;
         }
         
         .boton_modal_fondo input{
@@ -854,6 +860,17 @@ a{
             .acciones a:hover
             {
                 text-decoration: underline;
+            }
+            
+            .checkAll{
+                float: right;
+                padding: 4px 10px;
+                color: red;
+            }
+            
+            .checkAll input{
+                position: relative;
+                top: 2px;
             }
 
 /* Footer */

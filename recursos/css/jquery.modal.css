@@ -42,7 +42,6 @@
 
 .imprimir_asistencia
 {
-    background: url(../images/Modals/fondo_asistente_curso.png) no-repeat;
     display: none;
     width: 500px;
     height: 590px;
@@ -50,7 +49,6 @@
 
 .lista_asistente
 {
-    background: url(../images/Modals/fondo_lista_asistente.png) no-repeat;
     display: none;
     width: 420px;
     height: 500px;
@@ -130,7 +128,7 @@ a.close-modal
 {
     background: url(../images/Modals/footer_modal_small.png) no-repeat;
     width: 420px;
-    height: 57px;
+    height: 37px;
 }
 
 .fondo_titulo_modal_medium
@@ -148,7 +146,7 @@ a.close-modal
 {
     background: url(../images/Modals/footer_modal_medium.png) no-repeat;
     width: 500px;
-    height: 47px;
+    height: 37px;
 }
 
 .fondo_titulo_modal_large
@@ -166,5 +164,5 @@ a.close-modal
 {
     background: url(../images/Modals/footer_modal_large.png) no-repeat;
     width: 800px;
-    height: 68px;
+    height: 48px;
 }

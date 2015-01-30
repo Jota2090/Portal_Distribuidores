@@ -29,7 +29,7 @@
                 case 0:
                  
                     $select = "*";
-                    $where = array("la_estado" => "D", "la_usuario_id" => $this->clslogin->getId());
+                    $where = array("la_estado" => "D", "la_usuario_id" => $this->clslogin->getCedula());
                     $resultado = $this->lista_asistente->get_listas_asitentes($select, $where);
                     
                     $items = array();
@@ -120,7 +120,7 @@
             else
             {
                 $this->lista_asistente->set_nombre($this->input->post("nombre_lista"));
-                $this->lista_asistente->set_usuario($this->clslogin->getId());
+                $this->lista_asistente->set_usuario($this->clslogin->getCedula());
 
                 $resultado = $this->lista_asistente->guardar_lista_asistente();
                 
@@ -146,7 +146,7 @@
                 }
                 else
                 {
-                    echo json_encode(array('st'=>0, 'msg' => 'Hubo un problema con el servidor, por favor vuelva a intentar'.$resultado));
+                    echo json_encode(array('st'=>0, 'msg' => 'Hubo un problema con el servidor, por favor vuelva a intentar'));
                 }
             }
             
@@ -276,8 +276,10 @@
                 $resultado = $this->curso->get_cursos($select_curso, $where_curso);
                 
                 $asistentes = $this->input->post("asistente");
+                $listas = $this->input->post("lista");
                 $nombres = $this->input->post("nombre");
-                
+               /* echo $this->db->last_query();
+                var_dump($resultado);*/
                 if($resultado)
                 {
                     if($resultado->num_rows() == 1)
@@ -295,6 +297,7 @@
                             
                             foreach ($asistentes as $row_asistente)
                             {
+                                $parameters = explode("_",$row_asistente);
                                 $cursos = $this->curso->get_cursos($select_curso, $where_curso);
                                 
                                 if($cursos)
@@ -307,7 +310,7 @@
                                         
                                         if($cupos_disponibles == 0 ||  $cupos_disponibles > 0)
                                         {
-                                            $where = array("asi_estado" => "A", "rac_asistente_id" => $row_asistente, "rac_curso_id" => $this->input->post('id'));
+                                            $where = array("asi_estado" => "A", "rac_asistente_id" => $parameters[0], "rac_curso_id" => $this->input->post('id'));
                                             $join = array("tbl_asistente" => "rac_asistente_id=asi_cedula");
 
                                             $resultado_get = $this->registro_asistente_curso->get_registro_asistente_curso(array(), $where, array(), $join);
@@ -316,13 +319,13 @@
                                             {
                                                 if($resultado_get->num_rows() == 1)
                                                 {
-                                                    $reporte_final .= "* El asistente ".$nombres[$i]." ha sido registrado anteriormente<br/>";
+                                                    $reporte_final .= "* El asistente ".$nombres[$i]." ha sido registrado anteriormente.<br/>";
                                                 }
                                                 else
                                                 {
                                                     $this->registro_asistente_curso->set_curso($this->input->post('id'));
-                                                    $this->registro_asistente_curso->set_lista_asistente($this->input->post("lista_asistente"));
-                                                    $this->registro_asistente_curso->set_asistente($row_asistente);
+                                                    $this->registro_asistente_curso->set_lista_asistente($parameters[1]);
+                                                    $this->registro_asistente_curso->set_asistente($parameters[0]);
 
                                                     $resultado_save = $this->registro_asistente_curso->guardar_asistente_curso();
                                                     
@@ -339,14 +342,14 @@
                                                     }
                                                     else
                                                     {
-                                                        echo json_encode(array('st'=>1, 'msg' => 'Hubo un problema al registrar los asistentes, por favor vuelva a intentarlo.'));
+                                                        echo json_encode(array('st'=>1, 'msg' => 'Hubo un problema al registrar los asistentes, por favor vuelva a intentarlo6432.'));
                                                         break;
                                                     }
                                                 }
                                             }
                                             else
                                             {
-                                                echo json_encode(array('st'=>1, 'msg' => 'Hubo un problema al registrar los asistentes, por favor vuelva a intentarlo.'));
+                                                echo json_encode(array('st'=>1, 'msg' => 'Hubo un problema al registrar los asistentes, por favor vuelva a intentarlo7899.'));
                                                 break;
                                             }
                                         }
@@ -357,13 +360,13 @@
                                     }
                                     else
                                     {
-                                        echo json_encode(array('st'=>1, 'msg' => 'Hubo un problema al registrar los asistentes, por favor vuelva a intentarlo.'));
+                                        echo json_encode(array('st'=>1, 'msg' => 'Hubo un problema al registrar los asistentes, por favor vuelva a intentarlo 456.'));
                                         break;
                                     }
                                 }
                                 else
                                 {
-                                    echo json_encode(array('st'=>1, 'msg' => 'Hubo un problema al registrar los asistentes, por favor vuelva a intentarlo.'));
+                                    echo json_encode(array('st'=>1, 'msg' => 'Hubo un problema al registrar los asistentes, por favor vuelva a intentarlo 123.'));
                                     break;
                                 }
                                 
@@ -372,7 +375,7 @@
                             
                             if($contador == 0 && $reporte_final == "")
                             {
-                                echo json_encode(array('st'=>1, 'msg' => 'Hubo un problema al registrar los asistentes, por favor vuelva a intentarlo.'));
+                                echo json_encode(array('st'=>1, 'msg' => 'Hubo un problema al registrar los asistentes, por favor vuelva a intentarlo545454.'));
                             }
                             else if($reporte_final != "" && $contador == 0)
                             {
